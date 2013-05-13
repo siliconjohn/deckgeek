@@ -12,6 +12,11 @@ games=Game.create(
   [{ name: 'Game 1:1', description:'desc 1:1', user_id:users[0].id},
    { name: 'Game 2:1', description:'desc 2:1', user_id:users[0].id},
    { name: 'Game 3:1', description:'desc 3:1', user_id:users[0].id},
+   { name: 'Game 4:1', description:'desc 1:1', user_id:users[0].id},
+   { name: 'Game 5:1', description:'desc 2:1', user_id:users[0].id},
+   { name: 'Game 6:1', description:'desc 3:1', user_id:users[0].id},
+   { name: 'Game 7:1', description:'desc 1:1', user_id:users[0].id},
+   { name: 'Game 8:1', description:'desc 2:1', user_id:users[0].id},
    { name: 'Game 1:2', description:'desc 1:2', user_id:users[1].id},
    { name: 'Game 2:2', description:'desc 2:2', user_id:users[1].id},
    { name: 'Game 3:2', description:'desc 3:2', user_id:users[1].id}

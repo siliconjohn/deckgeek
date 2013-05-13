@@ -1,3 +1,16 @@
-// Place all the styles related to the games controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.game-view {
+  background-color: #F0F0F0;
+  width: 200px;
+  height: 300px;
+  float: left;
+  margin: 5px;
+  overflow: hidden;
+  border-radius:10px;
+  -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
+  box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
+}
+
+.games-view {
+  background-color:#808080;
+  margin-left: 50px;
+}

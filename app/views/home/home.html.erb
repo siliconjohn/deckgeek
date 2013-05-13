@@ -1,6 +1,25 @@
+<div id="games">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="brand" href="">My Games</div>
+          <!--  <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">New Game</a></li>
+            <li><a href="#">Link</a></li>
+          </ul> -->
 
-<% if current_user %>
-  <p><%= current_user %>
-</p>
-<% end %>
+          <ul class="nav pull-right">
+            <li><a href="#">New Game</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Load the games -->
+<script type="text/javascript">
+  $(function(){getGames('#games');});
+</script>
 

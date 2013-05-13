@@ -1,0 +1,48 @@
+<legend>Sign In</legend>
+<div class="row">
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+    <div class="span5">
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label">Email</label>
+          <div class="controls">
+            <%= f.email_field :email, :placeholder => 'Email', :id => 'idemail' %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Password</label>
+          <div class="controls">
+            <%= f.password_field :password, :placeholder => 'Password' %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <% if devise_mapping.rememberable? -%>
+            <label class="checkbox">
+              <%= f.check_box :remember_me, :class => "checkbox" %> Remember me
+            </label>
+            <% end -%>
+          <div><%= f.submit "Sign in", :class => "btn" %></div>
+        </div>
+      <br/>
+      <div class="control-group">
+        <div class="controls">
+          <%= render :partial => "devise/shared/links" %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="span2">
+    <img id="idadvatar" src=""/>
+  </div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+$("#idemail").focusout(function(){
+  var email=$('#idemail').val();
+  $('#idadvatar').attr('src','http://www.gravatar.com/avatar/'+md5(email)+'?d=monsterid');
+});
+</script>

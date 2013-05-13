@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>GG</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- Top toolbar -->
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <ul class="nav">
+    <% if user_signed_in? %>
+      <li><%= gravatar_for(current_user.email, size:30, class: 'avatar-small', alt: 'avatar') %></li>
+      <li><a class="brand" href="/">Game Genisis</a></li>
+      <li><%= link_to "#{current_user.email}", edit_user_registration_path %></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    </ul>
+    <% else %>
+      <% if params[:controller]!="devise/registrations" || %>
+      <% controller_name=="devise/registrations" && action_name!="new" %>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+      <% end %>
+    </ul>
+      <% if params[:controller]!="devise/sessions" || %>
+      <% controller_name=="devise/sessions" && action_name!="new" %>
+      <ul class="nav pull-right">
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+      </ul>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<!-- Main container -->
+<div class="container-fluid">
+
+  <% if notice %>
+    <div class="alert alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <%= yield %>
+
+</div>
+
+</body>
+</html>

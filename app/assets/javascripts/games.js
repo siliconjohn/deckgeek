@@ -9,7 +9,7 @@ App.Game=Backbone.Model.extend({
 App.GameView=Backbone.View.extend({
   tag:"div",
   className:"game-view",
-  template: _.template('rrr'),
+  template: _.template('<a href="games/<%= this.model.id %>">Edit</a>'),
 
   initialize:function(){
     _.bindAll(this,'render', 'remove');
@@ -17,6 +17,7 @@ App.GameView=Backbone.View.extend({
   },
 
   render:function(){
+    console.log('wwwwewew');
     this.$el.html(this.template(this.model.attributes));
   },
 
@@ -44,7 +45,7 @@ App.GamesView=Backbone.View.extend({
   addGame: function(gameModel){
     var gameView=new App.GameView({model:gameModel});
     gameView.$el.appendTo(this.$el);
-    gameView.render;
+    gameView.render();
   }
 });
 

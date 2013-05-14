@@ -5,12 +5,44 @@
   float: left;
   margin: 5px;
   overflow: hidden;
+   position:relative;
   border-radius:10px;
   -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
   box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
 }
 
-.games-view {
-  background-color:#808080;
+.game-view .game-toolbar {
+
+  position:absolute;
+  left:8px;
+  top:262px;
+}
+
+.game-view .game-toolbar .btn-wide {
+  width:91px;
+}
+
+.game-view .game-name {
+  color: rgb(119, 119, 119);
+  display: block;
+  float: left;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 20px;
+  margin-left: -10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 6px;
+  overflow:hidden;
+  text-shadow: rgb(255, 255, 255) 0px 0.6666666865348816px 0px;
+}
+
+.games-view .navbar-inner {
+  padding-right: 5px;
+}
+
+.games-list {
   margin-left: 50px;
 }

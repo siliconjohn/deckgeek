@@ -2,18 +2,17 @@ class GamesController < ApplicationController
 
   before_filter :require_login
 
-  # GET /games
+  # ROUTE: games#index
   # GET /games.json
   def index
     @games = Game.where(:user_id => current_user.id)# || params[:user_id]
-    logger.info(params)
 
     respond_to do |format|
-      format.html # index.html.erb
       format.json { render json: @games }
     end
   end
 
+  # ROUTE: games#show
   # GET /games/1
   # GET /games/1.json
   def show
@@ -25,38 +24,7 @@ class GamesController < ApplicationController
     end
   end
 
-  # GET /games/new
-  # GET /games/new.json
-  def new
-    @game = Game.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @game }
-    end
-  end
-
-  # GET /games/1/edit
-  def edit
-    @game = Game.find(params[:id])
-  end
-
-  # POST /games
-  # POST /games.json
-  def create
-    @game = Game.new(params[:game])
-@game.user_id = current_user.id;
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render json: @game, status: :created, location: @game }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
+  # ROUTE: games#update
   # PUT /games/1
   # PUT /games/1.json
   def update
@@ -73,6 +41,25 @@ class GamesController < ApplicationController
     end
   end
 
+  # ROUTE: games#create
+  # POST /games
+  # POST /games.json
+  def create
+    @game = Game.new(params[:game])
+    @game.user_id = current_user.id;
+
+    respond_to do |format|
+      if @game.save
+        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.json { render json: @game, status: :created, location: @game }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # ROUTE: games#destroy
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy

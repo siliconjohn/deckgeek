@@ -3,7 +3,6 @@ window.App = window.App || {};
 // Game model and view //////////////
 
 App.Game=Backbone.Model.extend({
-
 });
 
 App.GameView=Backbone.View.extend({
@@ -11,11 +10,12 @@ App.GameView=Backbone.View.extend({
   className:"game-view",
   template: JST['templates/games/gameview'],
   events: {
-    'click .delete-game-btn': 'delete'
+    'click .delete-game-btn': 'delete',
+    'click .edit-game-button' : 'editGame'
   },
 
   initialize:function(){
-    _.bindAll(this,'render', 'remove', 'delete');
+    _.bindAll(this,'render', 'remove', 'delete', 'editGame');
     this.listenTo(this.model,'change',this.render);
   },
 
@@ -30,6 +30,10 @@ App.GameView=Backbone.View.extend({
   delete:function(){
     if(confirm("Are you sure you want to delete this game?"))
       this.model.destroy();
+  },
+
+  editGame: function(){
+    window.location="/games/" + this.model.id ;
   }
 });
 

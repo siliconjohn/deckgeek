@@ -1,17 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="brand" href="">Edit Game</div>
+        <a href="/" class="btn btn-danger pull-right">Back to Games</a>
+      </div>
+    </div>
+  </div>
+<div>
 
-<p>
-  <b>Name:</b>
-  <%= @game.name %>
-</p>
+<div class="hero-unit">
+  <h1><%= @game.name %></h1>
+  <p><%= @game.description %></p>
+  <p>
+    <a class="btn btn-primary btn-large">
+      Bla
+    </a>
+  </p>
+</div>
 
-<p>
-  <b>Description:</b>
-  <%= @game.description %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @game.user %>
-</p>
-
+<div class="card-list"></div>

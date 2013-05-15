@@ -1,3 +1,6 @@
+.navbar-inner {
+  padding-right: 5px;
+}
 .game-view {
   background-color: #F0F0F0;
   width: 200px;
@@ -12,7 +15,6 @@
 }
 
 .game-view .game-toolbar {
-
   position:absolute;
   left:8px;
   top:262px;
@@ -37,10 +39,6 @@
   padding-top: 6px;
   overflow:hidden;
   text-shadow: rgb(255, 255, 255) 0px 0.6666666865348816px 0px;
-}
-
-.games-view .navbar-inner {
-  padding-right: 5px;
 }
 
 .games-list {

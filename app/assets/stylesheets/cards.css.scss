@@ -1,6 +1,6 @@
-.games-view {
+.cards-view {
 
-  .games-list {
+  .cards-list {
     margin-left: 20px;
   }
 
@@ -12,7 +12,7 @@
     padding-right: 5px;
   }
 
-  .game-view {
+  .card-view {
     background-color: #F0F0F0;
     width: 888px;
     height: 200px;
@@ -24,14 +24,14 @@
     -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
     box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
 
-    .edit-game-button {
+    .edit-card-button {
       position:absolute;
       left:704px;
       top:162px;
       width:150px;
     }
 
-    .delete-game-btn {
+    .delete-card-btn {
       position:absolute;
       left:8px;
       top:162px;
@@ -41,7 +41,7 @@
       width:91px;
     }
 
-    .game-name {
+    .card-name {
       color: rgb(119, 119, 119);
       display: block;
       float: left;
@@ -68,4 +68,3 @@
     }
   }
 }
-

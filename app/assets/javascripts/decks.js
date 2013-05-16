@@ -1,21 +1,21 @@
 window.App = window.App || {};
 
-// Game model and view //////////////
+// Deck model and view //////////////
 
-App.Game=Backbone.Model.extend({
+App.Deck=Backbone.Model.extend({
 });
 
-App.GameView=Backbone.View.extend({
+App.DeckView=Backbone.View.extend({
   tag:"div",
-  className:"game-view",
-  template: JST['templates/games/gameview'],
+  className:"deck-view",
+  template: JST['templates/decks/deckview'],
   events: {
-    'click .delete-game-btn': 'delete',
-    'click .edit-game-button' : 'editGame'
+    'click .delete-deck-btn': 'delete',
+    'click .edit-deck-button' : 'editDeck'
   },
 
   initialize:function(){
-    _.bindAll(this,'render', 'remove', 'delete', 'editGame');
+    _.bindAll(this,'render', 'remove', 'delete', 'editDeck');
     this.listenTo(this.model,'change',this.render);
   },
 
@@ -28,62 +28,62 @@ App.GameView=Backbone.View.extend({
   },
 
   delete:function(){
-    if(confirm("Are you sure you want to delete this game?"))
+    if(confirm("Are you sure you want to delete this deck?"))
       this.model.destroy();
   },
 
-  editGame: function(){
-    window.location="/games/" + this.model.id ;
+  editDeck: function(){
+    window.location="/decks/" + this.model.id ;
   }
 });
 
-// Games collection and view ////////
+// Decks collection and view ////////
 
-App.Games=Backbone.Collection.extend({
-  model:App.Game,
-  url:"/games"
+App.Decks=Backbone.Collection.extend({
+  model:App.Deck,
+  url:"/decks"
 });
 
-App.GamesView=Backbone.View.extend({
+App.DecksView=Backbone.View.extend({
   tag:"div",
-  className:"games-view",
-  template: JST['templates/games/gamesview'],
+  className:"decks-view",
+  template: JST['templates/decks/decksview'],
   events: {
-    'click .new-game-button' : 'newGame'
+    'click .new-deck-button' : 'newDeck'
   },
 
   initialize:function(){
-    _.bindAll(this,'addGame','render', 'newGame');
-    this.listenTo(this.collection,'add',this.addGame);
+    _.bindAll(this,'addDeck','render', 'newDeck');
+    this.listenTo(this.collection,'add',this.addDeck);
     this.listenTo(this.collection,'remove',this.render);
   },
 
   render: function(){
     this.$el.html(this.template());
-    this.collection.each(this.addGame);
+    this.collection.each(this.addDeck);
   },
 
-  addGame: function(gameModel){
-    var gameView=new App.GameView({model:gameModel});
-    gameView.$el.appendTo(this.$('.games-list'))
-    gameView.render();
+  addDeck: function(deckModel){
+    var deckView=new App.DeckView({model:deckModel});
+    deckView.$el.appendTo(this.$('.decks-list'))
+    deckView.render();
   },
 
-  newGame: function(){
-    var name=prompt("What do you want to call this game? (you can change it later)");
+  newDeck: function(){
+    var name=prompt("What do you want to delete this deck? (you can change it later)");
     if(name)
     {
-      game= new App.Game({name:name});
-      this.collection.add(game);
-      game.save();
+      deck= new App.Deck({name:name});
+      this.collection.add(deck);
+      deck.save();
     }
   }
 });
 
-function getGames(container){
-  window.games = new App.Games();
-  window.gamesView = new App.GamesView({collection: games});
-  window.gamesView.$el.appendTo(container);
-  window.gamesView.render();
-  window.games.fetch();
+function getDecks(container){
+  window.decks = new App.Decks();
+  window.decksView = new App.DecksView({collection: decks});
+  window.decksView.$el.appendTo(container);
+  window.decksView.render();
+  window.decks.fetch();
 }

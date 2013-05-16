@@ -70,7 +70,7 @@ App.GamesView=Backbone.View.extend({
   },
 
   newGame: function(){
-    var name=prompt("What do you want to call this game? (you can change it later)");
+    var name=prompt("What do you want to name this game? (you can change it later)");
     if(name)
     {
       game= new App.Game({name:name});

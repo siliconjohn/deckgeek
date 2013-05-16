@@ -3,6 +3,8 @@ Gg::Application.routes.draw do
   devise_for :users
 
   resources :games, :only => [:create, :show, :update, :destroy, :index]
+  resources :decks, :only => [:create, :show, :update, :destroy, :index]
+  resources :cards, :only => [:create, :show, :update, :destroy, :index]
 
   root :to => "home#index"
 

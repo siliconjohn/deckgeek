@@ -1,6 +1,5 @@
 class DecksController < ApplicationController
 
-  respond_to :json
   before_filter :require_login
 
   # GET /games/:game_id/decks(.:format)
@@ -16,12 +15,15 @@ class DecksController < ApplicationController
 
   # /games/:game_id/decks/:id(.:format)
   def show
-    @deck = Deck.where(:id => params[:id],:game_id => params[:game_id])
-
-    if @deck.any?
-      render json: @deck
+    begin
+       @deck = Deck.find(params[:id],:conditions => {:game_id => params[:game_id]})
+    rescue ActiveRecord::RecordNotFound => e
+      render_404
     else
-      render_json_200
+      respond_to do |format|
+        format.html
+        format.json { render json: @deck }
+      end
     end
   end
 

@@ -41,7 +41,9 @@ App.CardView=Backbone.View.extend({
 
 App.Cards=Backbone.Collection.extend({
   model:App.Card,
-  url:"/cards"
+  url: function() {
+      return window.App.data.deck_id + "/cards";
+    }
 });
 
 App.CardsView=Backbone.View.extend({

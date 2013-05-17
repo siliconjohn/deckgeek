@@ -3,6 +3,9 @@ window.App = window.App || {};
 // Deck model and view //////////////
 
 App.Deck=Backbone.Model.extend({
+  url: function() {
+      return window.App.data.game_id + "/decks/" + this.id;
+    }
 });
 
 App.DeckView=Backbone.View.extend({
@@ -33,7 +36,7 @@ App.DeckView=Backbone.View.extend({
   },
 
   editDeck: function(){
-    window.location="/decks/" + this.model.id ;
+    window.location=this.model.url();
   }
 });
 

@@ -1,7 +1,7 @@
 .cards-view {
 
   .cards-list {
-    margin-left: 20px;
+    margin-left: 40px;
   }
 
   .navbar {
@@ -14,31 +14,27 @@
 
   .card-view {
     background-color: #F0F0F0;
-    width: 888px;
-    height: 200px;
+    width: 200px;
+    height: 300px;
     float: left;
-    margin: 6px;
+    margin: 7px;
     overflow: hidden;
     position:relative;
     border-radius:10px;
     -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
     box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
 
-    .edit-card-button {
+     .edit-card-button {
       position:absolute;
-      left:704px;
-      top:162px;
-      width:150px;
+      left:125px;
+      top:262px;
+      width:40px;
     }
 
     .delete-card-btn {
       position:absolute;
       left:8px;
-      top:162px;
-    }
-
-    .btn-wide {
-      width:91px;
+      top:262px;
     }
 
     .card-name {

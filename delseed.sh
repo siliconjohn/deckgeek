@@ -1,4 +1,4 @@
 #!/bin/bash
-rm *.sqlite3
+rm db/*.sqlite3
 rake db:migrate
 rake db:seed

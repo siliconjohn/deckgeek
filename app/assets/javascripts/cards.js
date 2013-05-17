@@ -33,7 +33,7 @@ App.CardView=Backbone.View.extend({
   },
 
   editCard: function(){
-    window.location="/cards/" + this.model.id ;
+    window.location=window.App.data.deck_id +"/cards/" + this.model.id ;
   }
 });
 

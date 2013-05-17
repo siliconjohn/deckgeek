@@ -19,7 +19,7 @@
 //= require templates/games/gamesview
 //= require templates/cards/cardview
 //= require templates/cards/cardsview
-//= require templates/decks/decksview
+//= require templates/decks/deckview
 //= require templates/decks/decksview
 //= require_tree .
 

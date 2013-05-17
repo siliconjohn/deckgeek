@@ -41,7 +41,9 @@ App.DeckView=Backbone.View.extend({
 
 App.Decks=Backbone.Collection.extend({
   model:App.Deck,
-  url:"/decks"
+  url: function() {
+      return window.App.data.game_id + "/decks";
+    }
 });
 
 App.DecksView=Backbone.View.extend({
@@ -70,7 +72,7 @@ App.DecksView=Backbone.View.extend({
   },
 
   newDeck: function(){
-    var name=prompt("What do you want to delete this deck? (you can change it later)");
+    var name=prompt("What do you want to name this deck? (you can change it later)");
     if(name)
     {
       deck= new App.Deck({name:name});

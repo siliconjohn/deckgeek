@@ -1,0 +1,38 @@
+
+body {
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar for bootstrap*/
+  background-color:#efefef;
+}
+
+.hero-unit {
+  margin-bottom:15px;
+  background-color: #fff;
+  border-radius:10px;
+  border:1px solid #d0d0d0;
+}
+
+.avatar-small{
+  border-radius:5px;
+  vertical-align:text-top;
+  margin-top: 3px;
+  margin-right: 13px;
+  margin-left:12px;
+  -webkit-box-shadow:  1px 1px 4px 0px rgba(248, 248, 248, .5);
+  box-shadow:  1px 1px 4px 0px rgba(248, 248, 248, .5);
+}
+
+#idadvatar{
+  border-radius:8px;
+  margin-top: 0px;
+  margin-left:20px;
+  -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
+  box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
+}
+
+.line {
+  border-top: 1px solid #d0d0d0;
+  border-bottom: 1px solid #ffffff;
+  height:0px;
+  margin-top: 15px;
+  width:100%;
+}

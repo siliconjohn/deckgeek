@@ -18,6 +18,10 @@ body {
   background-color:#f8f8f8;
 }
 
+.hero-unit {
+  margin-bottom:15px;
+}
+
 .avatar-small{
   border-radius:5px;
   vertical-align:text-top;

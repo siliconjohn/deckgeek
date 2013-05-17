@@ -1,41 +1,56 @@
 .decks-view {
-
-  .decks-list {
-    margin-left: 40px;
-  }
-
-  .navbar {
-    margin-bottom: 16px;
-  }
-
-  .navbar-inner {
-    padding-right: 5px;
-  }
+  margin-left:20px;
+  margin-top:42px;
 
   .deck-view {
-    background-color: #F0F0F0;
-    width: 200px;
-    height: 300px;
-    float: left;
-    margin:7px;
 
-    overflow: hidden;
-    position:relative;
-    border-radius:10px;
-    -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
-    box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
+    .deck {
+      background-color:#f0f0f0;
+      width: 200px;
+      height: 300px;
+      float: left;
+      margin-left: -3px;
+      margin-top: -3px;
+      margin-right:30px;
+      margin-bottom:47px;
+      position:relative;
+      border-radius:10px;
+      border-style:solid;
+      border-width:1px;
+      border-color: #d0d0d0;
+    }
+
+    .top {
+      border-color: #e9e9e9;
+      background-color: #fafafa;
+      margin-left: -10px;
+      margin-top: -17px;
+           -webkit-box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+        box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+
+    }
+
+    .mid {
+      background-color:#eeeeee;
+    }
+
+    .bottom {
+        -webkit-box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+        box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+    }
+
+    .btn-group {
+      position:absolute;
+      left:10px;
+      top:262px;
+    }
 
     .edit-deck-button {
-      position:absolute;
-      left:125px;
-      top:262px;
-      width:40px;
+      width:65px;
     }
 
     .delete-deck-btn {
-      position:absolute;
-      left:8px;
-      top:262px;
+      width:65px;
     }
 
     .deck-name {

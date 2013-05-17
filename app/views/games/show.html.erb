@@ -1,22 +1,9 @@
-<div class="show-game">
-    <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <div class="brand" href="">Edit Game</div>
-          <a href="javascript:history.back();" class="btn btn-danger pull-right">Back to Games</a>
-        </div>
-      </div>
-    </div>
-  <div>
-
+<div class="game-show">
   <div class="hero-unit">
     <h1><%= @game.name %></h1>
     <p><%= @game.description %></p>
     <p>
-      <a class="btn btn-primary btn-large">
-        Bla
-      </a>
-    </p>
+      </p>
   </div>
 
   <!-- Load the decks -->
@@ -24,6 +11,6 @@
     window.App = window.App || {};
     window.App.data = window.App.data || {};
     App.data.game_id = <%= @game.id %>;
-    $(function(){getDecks('.show-game');});
+    $(function(){getDecks('.game-show');});
   </script>
 </div>

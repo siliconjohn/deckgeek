@@ -4,7 +4,10 @@ window.App = window.App || {};
 
 App.Deck=Backbone.Model.extend({
   url: function() {
-      return window.App.data.game_id + "/decks/" + this.id;
+      if(this.id)
+        return window.App.data.game_id + "/decks/" +this.id;
+      else
+        return window.App.data.game_id + "/decks/";
     }
 });
 
@@ -54,7 +57,7 @@ App.DecksView=Backbone.View.extend({
   className:"decks-view",
   template: JST['templates/decks/decksview'],
   events: {
-    'click .new-deck-button' : 'newDeck'
+    'click #add-deck-btn' : 'newDeck'
   },
 
   initialize:function(){

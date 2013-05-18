@@ -30,14 +30,14 @@ class DecksController < ApplicationController
   # PUT /games/:game_id/decks/:id(.:format)
   def update
     begin
-      @deck = Deck.where(:id => params[:id],:game_id => params[:game_id])
+      @deck = Deck.find(params[:id])
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
       if @deck.update_attributes(params[:deck])
-        format.json { head :no_content }
+        render json:@deck, status: :ok
       else
-        format.json { render json: @deck.errors, status: :unprocessable_entity }
+        render json: @deck.errors, status: :unprocessable_entity
       end
     end
   end
@@ -48,9 +48,9 @@ class DecksController < ApplicationController
     @deck.game_id = params[:game_id];
 
     if @deck.save
-      format.json { render json: @deck, status: :created, location: @deck }
+      render json: @deck ,status: :created #render json:@deck,status::created,location:@deck
     else
-      format.json { render json: @deck.errors, status: :unprocessable_entity }
+      render json: @deck.errors, status: :unprocessable_entity
     end
   end
 

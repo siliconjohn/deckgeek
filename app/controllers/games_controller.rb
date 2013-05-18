@@ -30,14 +30,14 @@ class GamesController < ApplicationController
   # PUT /games/:id(.:format)
   def update
     begin
-       @game = Game.find(params[:id],:conditions => {:user_id => current_user.id})
+       @game = Game.find(params[:id])
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
       if @game.update_attributes(params[:game])
-        format.json { head :no_content }
+        render json:@game, status: :ok
       else
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        render json: @game.errors, status: :unprocessable_entity
       end
     end
   end

@@ -3,9 +3,4 @@ add edit names and descriptions
 fix top toolbar
 fix deck css to look like a deck of cards
 
-
-
-
-this.model.set({name:"111212121212121212121"});
-    console.log(this.model.toJSON());
-    this.model.save();//
+foreward button doesnt work

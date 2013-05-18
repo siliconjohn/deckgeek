@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require templates/games/gameview
 //= require templates/games/gamesview
+//= require templates/games/gameheroview
 //= require templates/cards/cardview
 //= require templates/cards/cardsview
 //= require templates/decks/deckview

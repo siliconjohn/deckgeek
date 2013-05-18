@@ -1,6 +1,2 @@
-add new deck, new card btn
-add edit names and descriptions
-fix top toolbar
-fix deck css to look like a deck of cards
-
+hero save button is mis a ligned on broweser small size
 foreward button doesnt work

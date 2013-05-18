@@ -34,6 +34,5 @@ function getGameHero(container){
   window.gameHero = new App.GameHero();
   window.gameHeroView = new App.GameHeroView({model: gameHero});
   window.gameHeroView.$el.appendTo(container);
- // window.gameHeroView.render();
   window.gameHero.fetch();
 }

@@ -1,40 +1,46 @@
+.cards-list {
+  margin-top:19px;
+}
+
 .cards-view {
 
-  .cards-list {
-    margin-left: 40px;
-  }
-
-  .navbar {
-    margin-bottom: 16px;
-  }
-
-  .navbar-inner {
-    padding-right: 5px;
-  }
-
   .card-view {
-    background-color: #F0F0F0;
-    width: 200px;
-    height: 300px;
-    float: left;
-    margin: 7px;
-    overflow: hidden;
+    width: 235px;
+    height: 335px;
+    float:left;
     position:relative;
-    border-radius:10px;
-    -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
-    box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
 
-     .edit-card-button {
+    .card-base {
+      background-color:#f0f0f0;
+      width: 200px;
+      height: 300px;
+      float: left;
+      border:1px solid #d0d0d0;
+      border-radius:10px;
       position:absolute;
-      left:125px;
+    }
+
+    .card-1 {
+      left:16px;
+      top:0px;
+      border:1px solid #d0d0d0;
+      background-color: #fafafa;
+      -webkit-box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+      box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+    }
+
+    .btn-group {
+      position:absolute;
+      left:10px;
       top:262px;
-      width:40px;
+    }
+
+    .edit-card-button {
+      width:65px;
     }
 
     .delete-card-btn {
-      position:absolute;
-      left:8px;
-      top:262px;
+      width:65px;
     }
 
     .card-name {
@@ -52,15 +58,6 @@
       padding-top: 6px;
       overflow:hidden;
       text-shadow: rgb(255, 255, 255) 0px 0.6666666865348816px 0px;
-    }
-
-    .line {
-      border-top: 1px solid #d4d4d4;
-      border-bottom: 1px solid #ffffff;
-      position:absolute;
-      left:0px;
-      top:32px;
-      width:100%;
     }
   }
 }

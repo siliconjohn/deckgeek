@@ -51,7 +51,7 @@ App.CardsView=Backbone.View.extend({
   className:"cards-view",
   template: JST['templates/cards/cardsview'],
   events: {
-    'click .new-card-button' : 'newCard'
+    'click #add-card-btn' : 'newCard'
   },
 
   initialize:function(){

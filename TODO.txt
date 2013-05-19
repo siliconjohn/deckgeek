@@ -1,2 +1,7 @@
 hero save button is mis a ligned on broweser small size
 foreward button doesnt work
+
+make front page with stupid hero
+
+validate precence and length of all text, make sure it appears properly on cards, heros etc
+

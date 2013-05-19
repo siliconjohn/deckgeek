@@ -1,71 +1,31 @@
 .games-view {
 
-  .games-list {
-    margin-left: 20px;
-  }
-
-  .navbar {
-    margin-bottom: 16px;
-  }
-
-  .navbar-inner {
-    padding-right: 5px;
-  }
-
   .game-view {
-    background-color: #F0F0F0;
-    width: 888px;
-    height: 200px;
-    float: left;
-    margin: 6px;
-    overflow: hidden;
-    position:relative;
+    margin-left:16px;
+    width:907px;
+    height: 212px;
+    border:1px solid #d0d0d0;
+    background-color: #fafafa;
+    -webkit-box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+    box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
     border-radius:10px;
-    -webkit-box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
-    box-shadow:  1px 1px 4px 0px rgba(48, 48, 48, .5);
+    margin-top:19px;
 
     .edit-game-button {
-      position:absolute;
-      left:704px;
-      top:162px;
       width:150px;
+      position:relative;
+      left:651px;
+      top:124px;
     }
 
     .delete-game-btn {
-      position:absolute;
-      left:8px;
-      top:162px;
-    }
-
-    .btn-wide {
-      width:91px;
+      position:relative;
+      left:7px;
+      top:124px;
     }
 
     .game-name {
-      color: rgb(119, 119, 119);
-      display: block;
-      float: left;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 18px;
-      font-weight: 200;
-      line-height: 20px;
-      margin-left: -10px;
-      padding-bottom: 10px;
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-top: 6px;
-      overflow:hidden;
-      text-shadow: rgb(255, 255, 255) 0px 0.6666666865348816px 0px;
-    }
-
-    .line {
-      border-top: 1px solid #d4d4d4;
-      border-bottom: 1px solid #ffffff;
-      position:absolute;
-      left:0px;
-      top:32px;
-      width:100%;
+      margin:10px;
     }
   }
 }
-

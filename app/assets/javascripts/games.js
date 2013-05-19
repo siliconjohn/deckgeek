@@ -49,7 +49,7 @@ App.GamesView=Backbone.View.extend({
   className:"games-view",
   template: JST['templates/games/gamesview'],
   events: {
-    'click .new-game-button' : 'newGame'
+    'click #new-game-button' : 'newGame'
   },
 
   initialize:function(){

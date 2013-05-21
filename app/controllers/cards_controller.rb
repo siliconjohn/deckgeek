@@ -1,13 +1,14 @@
 class CardsController < ApplicationController
 
   before_filter :require_login
+
   #     /games/   1    /decks/   1    /cards.json
   # GET /games/:game_id/decks/:deck_id/cards(.:format)
   def index
     @cards = Card.where(:deck_id => params[:deck_id])
 
     if @cards.any?
-      render json: @cards
+      render :json => @cards.to_json(:include => {:theme => {:only => :class_name}})
     else
       render_json_200
     end

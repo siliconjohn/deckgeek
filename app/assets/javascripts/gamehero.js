@@ -35,4 +35,14 @@ function getGameHero(container){
   window.gameHeroView = new App.GameHeroView({model: gameHero});
   window.gameHeroView.$el.appendTo(container);
   window.gameHero.fetch();
+
+  $(".hero-unit").hover(
+    function(){
+      $("#edit-btn").animate({ opacity: 1.0 }, 100)
+       },
+    // mouse out
+    function(){
+      $("#edit-btn").animate({ opacity: 0.0 }, 100)
+    }
+  );
 }

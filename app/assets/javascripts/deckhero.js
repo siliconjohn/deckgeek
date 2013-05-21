@@ -35,4 +35,14 @@ function getDeckHero(container){
   window.deckHeroView = new App.DeckHeroView({model: deckHero});
   window.deckHeroView.$el.appendTo(container);
   window.deckHero.fetch();
+
+  $(".hero-unit").hover(
+    function(){
+      $("#edit-btn").animate({ opacity: 1.0 }, 100)
+       },
+    // mouse out
+    function(){
+      $("#edit-btn").animate({ opacity: 0.0 }, 100)
+    }
+  );
 }

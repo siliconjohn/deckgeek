@@ -4,7 +4,7 @@ class CreateCards < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.references :deck
-
+      t.references :theme
       t.timestamps
     end
     add_index :cards, :deck_id

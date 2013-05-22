@@ -91,10 +91,11 @@ App.CardsView=Backbone.View.extend({
   setStyle:function(style_id){
      this.collection.each(function(card){
       card.set('style_id',style_id);
+      card.set('style',{class_name:"style-"+style_id});
       card.save();
     });
 
-    window.cards.fetch();
+   // window.cards.fetch();
   }
 });
 

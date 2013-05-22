@@ -49,9 +49,9 @@ class CardsController < ApplicationController
     @card.deck_id = params[:deck_id];
 
     if @card.save
-      format.json { render json: @card, status: :created, location: @card }
+       render json: @card, status: :created
     else
-      format.json { render json: @card.errors, status: :unprocessable_entity }
+       render json: @card.errors, status: :unprocessable_entity
     end
   end
 

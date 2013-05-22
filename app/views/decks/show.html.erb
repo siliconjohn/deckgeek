@@ -1,12 +1,27 @@
-<div class="deck-show">
-  <script type="text/javascript">
-    window.App = window.App || {};
-    window.App.data = window.App.data || {};
-    App.data.deck_id = <%= @deck.id %>;
-    $(function(){
-      getDeckHero('.deck-show');
-      getStyles('.deck-show');
-      getCards('.deck-show');
-    });
-  </script>
+<div class="hero-holder"></div>
+
+<div class="btn-toolbar ">
+  <button id="add-card-btn" class="btn btn-large btn-danger">Add a New Card</button>
+  <button id="change-style-btn" class="btn btn-large btn-danger" data-toggle="collapse" data-target="#card-style-carosel-parent">Change Deck Style</button>
 </div>
+
+<div class="style-holder"></div>
+
+<div class="deck-holder"></div>
+
+<script type="text/javascript">
+  window.App = window.App || {};
+  window.App.data = window.App.data || {};
+  App.data.deck_id = <%= @deck.id %>;
+  $(function(){
+    getDeckHero('.hero-holder');
+    getStyles('.style-holder');
+    getCards('.deck-holder');
+  });
+
+  $("#add-card-btn").bind("click", function()
+  {
+    window.cardsView.newCard();
+  });
+
+</script>

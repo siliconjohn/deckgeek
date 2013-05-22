@@ -8,7 +8,7 @@ class CardsController < ApplicationController
     @cards = Card.where(:deck_id => params[:deck_id])
 
     if @cards.any?
-      render :json => @cards.to_json(:include => {:theme => {:only => :class_name }})
+      render :json => @cards.to_json(:include => {:style => {:only => :class_name }})
     else
       render_json_200
     end

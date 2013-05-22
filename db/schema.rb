@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20130521165926) do
     t.string   "name"
     t.string   "description"
     t.integer  "deck_id"
-    t.integer  "theme_id"
+    t.integer  "style_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20130521165926) do
 
   add_index "games", ["user_id"], :name => "index_games_on_user_id"
 
-  create_table "themes", :force => true do |t|
+  create_table "styles", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "class_name"

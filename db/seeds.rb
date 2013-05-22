@@ -9,11 +9,11 @@ users=User.create(
   ])
 
 
-themes=Theme.create(
-   [{ name: 'Theme 1', description:'Theme description 1', class_name:'theme-1'},
-   { name: 'Theme 2', description:'Theme description 2', class_name:'theme-2'},
-   { name: 'Theme 3', description:'Theme description 3', class_name:'theme-3'},
-   { name: 'Theme 4', description:'Theme description 4', class_name:'theme-4'}
+styles=Style.create(
+   [{ name: 'Style 1', description:'Style description 1', class_name:'style-1'},
+   { name: 'Style 2', description:'Style description 2', class_name:'style-2'},
+   { name: 'Style 3', description:'Style description 3', class_name:'style-3'},
+   { name: 'Style 4', description:'Style description 4', class_name:'style-4'}
    ])
 
 games=Game.create(
@@ -48,24 +48,24 @@ decks=Deck.create(
   ])
 
 cards=Card.create(
-  [{ name: 'Card 1:1', description:'Card description 1:1', theme_id:themes[0].id, deck_id:games[0].id},
-   { name: 'Card 1:2', description:'Card description 1:2', theme_id:themes[1].id, deck_id:games[0].id},
-   { name: 'Card 1:3', description:'Card description 1:3', theme_id:themes[2].id, deck_id:games[0].id},
-   { name: 'Card 1:4', description:'Card description 1:4', theme_id:themes[3].id, deck_id:games[0].id},
-   { name: 'Card 1:5', description:'Card description 1:5', theme_id:themes[1].id, deck_id:games[0].id},
-   { name: 'Card 1:6', description:'Card description 1:6', theme_id:themes[1].id, deck_id:games[0].id},
-   { name: 'Card 1:7', description:'Card description 1:7', theme_id:themes[2].id, deck_id:games[0].id},
-   { name: 'Card 1:8', description:'Card description 1:8', theme_id:themes[2].id, deck_id:games[0].id},
-   { name: 'Card 1:9', description:'Card description 1:9', theme_id:themes[3].id, deck_id:games[0].id},
-   { name: 'Card 2:1', description:'Card description 2:1', theme_id:themes[3].id, deck_id:games[1].id},
-   { name: 'Card 2:2', description:'Card description 2:2', theme_id:themes[1].id, deck_id:games[1].id},
-   { name: 'Card 2:3', description:'Card description 2:3', theme_id:themes[1].id, deck_id:games[1].id},
-   { name: 'Card 2:4', description:'Card description 2:4', theme_id:themes[0].id, deck_id:games[1].id},
-   { name: 'Card 2:5', description:'Card description 2:5', theme_id:themes[0].id, deck_id:games[1].id},
-   { name: 'Card 2:6', description:'Card description 2:6', theme_id:themes[3].id, deck_id:games[1].id},
-   { name: 'Card 2:7', description:'Card description 2:7', theme_id:themes[3].id, deck_id:games[1].id},
-   { name: 'Card 2:8', description:'Card description 2:8', theme_id:themes[0].id, deck_id:games[1].id},
-   { name: 'Card 2:9', description:'Card description 2:9', theme_id:themes[0].id, deck_id:games[1].id}
+  [{ name: 'Card 1:1', description:'Card description 1:1', style_id:styles[0].id, deck_id:games[0].id},
+   { name: 'Card 1:2', description:'Card description 1:2', style_id:styles[1].id, deck_id:games[0].id},
+   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[2].id, deck_id:games[0].id},
+   { name: 'Card 1:4', description:'Card description 1:4', style_id:styles[3].id, deck_id:games[0].id},
+   { name: 'Card 1:5', description:'Card description 1:5', style_id:styles[1].id, deck_id:games[0].id},
+   { name: 'Card 1:6', description:'Card description 1:6', style_id:styles[1].id, deck_id:games[0].id},
+   { name: 'Card 1:7', description:'Card description 1:7', style_id:styles[2].id, deck_id:games[0].id},
+   { name: 'Card 1:8', description:'Card description 1:8', style_id:styles[2].id, deck_id:games[0].id},
+   { name: 'Card 1:9', description:'Card description 1:9', style_id:styles[3].id, deck_id:games[0].id},
+   { name: 'Card 2:1', description:'Card description 2:1', style_id:styles[3].id, deck_id:games[1].id},
+   { name: 'Card 2:2', description:'Card description 2:2', style_id:styles[1].id, deck_id:games[1].id},
+   { name: 'Card 2:3', description:'Card description 2:3', style_id:styles[1].id, deck_id:games[1].id},
+   { name: 'Card 2:4', description:'Card description 2:4', style_id:styles[0].id, deck_id:games[1].id},
+   { name: 'Card 2:5', description:'Card description 2:5', style_id:styles[0].id, deck_id:games[1].id},
+   { name: 'Card 2:6', description:'Card description 2:6', style_id:styles[3].id, deck_id:games[1].id},
+   { name: 'Card 2:7', description:'Card description 2:7', style_id:styles[3].id, deck_id:games[1].id},
+   { name: 'Card 2:8', description:'Card description 2:8', style_id:styles[0].id, deck_id:games[1].id},
+   { name: 'Card 2:9', description:'Card description 2:9', style_id:styles[0].id, deck_id:games[1].id}
    ])
 
 

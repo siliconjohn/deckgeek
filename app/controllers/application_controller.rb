@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
       format.any  { head :not_found }
     end
   end
+
+  def log(v)
+    logger.info(v)
+  end
 end

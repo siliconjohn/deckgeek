@@ -31,14 +31,14 @@ class CardsController < ApplicationController
   # PUT /games/:game_id/decks/:deck_id/cards/:id(.:format)
   def update
     begin
-      @card = Card.where(:id => params[:id],:deck_id => params[:deck_id])
+      @card = Card.find(params[:id])
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
-      if @card.update_attributes(params[:deck])
-        format.json { head :no_content }
+      if @card.update_attributes(params[:card])
+        render json:@card, status: :ok
       else
-        format.json { render json: @card.errors, status: :unprocessable_entity }
+        render json: @card.errors, status: :unprocessable_entity
       end
     end
   end

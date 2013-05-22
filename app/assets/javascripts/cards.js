@@ -41,9 +41,9 @@ App.CardView=Backbone.View.extend({
 
 App.Cards=Backbone.Collection.extend({
   model:App.Card,
-  url: function() {
-      return window.App.data.deck_id + "/cards";
-    }
+  url: function(){
+    return window.App.data.deck_id + "/cards";
+  }
 });
 
 App.CardsView=Backbone.View.extend({
@@ -55,7 +55,7 @@ App.CardsView=Backbone.View.extend({
   },
 
   initialize:function(){
-    _.bindAll(this,'addCard','render', 'newCard');
+    _.bindAll(this,'addCard','render', 'newCard','setStyle');
     this.listenTo(this.collection,'add',this.addCard);
     this.listenTo(this.collection,'remove',this.render);
   },
@@ -79,6 +79,15 @@ App.CardsView=Backbone.View.extend({
       this.collection.add(card);
       card.save();
     }
+  },
+
+  setStyle:function(style_id){
+     this.collection.each(function(card){
+      card.set('style_id',style_id);
+      card.save();
+    });
+
+    window.cards.fetch();
   }
 });
 

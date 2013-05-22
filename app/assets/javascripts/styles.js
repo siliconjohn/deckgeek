@@ -9,9 +9,12 @@ App.StyleView=Backbone.View.extend({
   tag:"div",
   className:"item",
   template: JST['templates/styles/styleview'],
+  events: {
+    "click .item": "click"
+  },
 
   initialize:function(){
-    _.bindAll(this,'render', 'remove');
+    _.bindAll(this,'render', 'remove', 'click');
     this.listenTo(this.model,'change',this.render);
   },
 
@@ -21,6 +24,10 @@ App.StyleView=Backbone.View.extend({
 
   remove:function(){
     this.model.destroy();
+  },
+
+  click:function(){
+    window.cardsView.setStyle(this.model.id);
   }
 });
 

@@ -94,8 +94,6 @@ App.CardsView=Backbone.View.extend({
       card.set('style',{class_name:"style-"+style_id});
       card.save();
     });
-
-   // window.cards.fetch();
   }
 });
 

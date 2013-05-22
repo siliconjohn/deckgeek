@@ -10,7 +10,7 @@ App.StyleView=Backbone.View.extend({
   className:"item",
   template: JST['templates/styles/styleview'],
   events: {
-    "click .item": "click"
+    "click .card-style-btn": "click"
   },
 
   initialize:function(){

@@ -75,7 +75,14 @@ App.CardsView=Backbone.View.extend({
     var name=prompt("What do you want to name this card? (you can change it later)");
     if(name)
     {
-      card= new App.Card({name:name,style_id:0});
+      // give the new card the style of the last in collection
+      lastCard=this.collection.last();
+
+      if(lastCard)
+        card=new App.Card({name:name,style_id:lastCard.get("style_id"), style:lastCard.get("style")});
+      else
+        card= new App.Card({name:name,style_id:1, style:{class_name:"style-1"}});
+
       this.collection.add(card);
       card.save();
     }

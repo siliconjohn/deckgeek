@@ -1,0 +1,68 @@
+window.App = window.App || {};
+
+// Style model and view //////////////
+
+App.Style=Backbone.Model.extend({
+});
+
+App.StyleView=Backbone.View.extend({
+  tag:"div",
+  className:"item",
+  template: JST['templates/styles/styleview'],
+
+  initialize:function(){
+    _.bindAll(this,'render', 'remove');
+    this.listenTo(this.model,'change',this.render);
+  },
+
+  render:function(){
+    this.$el.html(this.template(this.model.attributes));
+  },
+
+  remove:function(){
+    this.model.destroy();
+  }
+});
+
+// Styles collection and view ////////
+
+App.Styles=Backbone.Collection.extend({
+  model:App.Style,
+  url: "/styles.json"
+});
+
+App.StylesView=Backbone.View.extend({
+  tag:"div",
+  className:"collapse in",
+  id:"card-style-carosel-parent",
+  template: JST['templates/styles/stylesview'],
+
+  initialize:function(){
+    _.bindAll(this,'addStyle','render');
+    this.listenTo(this.collection, 'add', this.addStyle);
+  },
+
+  render: function(){
+    this.$el.html(this.template());
+    this.collection.each(this.addStyle);
+  },
+
+  addStyle: function(styleModel){
+    var styleView=new App.StyleView({model:styleModel});
+    styleView.$el.appendTo(this.$('.carousel-inner'))
+
+    // set first style card to active
+    if(this.$('.carousel-inner').children().size()==1)
+      styleView.$el.addClass("item active");
+
+    styleView.render();
+  }
+});
+
+function getStyles(container){
+  window.styles = new App.Styles();
+  window.stylesView = new App.StylesView({collection: styles});
+  window.stylesView.$el.appendTo(container);
+  window.stylesView.render();
+  window.styles.fetch();
+}

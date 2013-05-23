@@ -21,6 +21,8 @@ class GamesController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
+      @decks = Deck.where(:game_id => params[:id])
+
       respond_to do |format|
         format.html
         format.json { render json: @game }

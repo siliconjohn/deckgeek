@@ -30,11 +30,11 @@ App.GameHeroView=Backbone.View.extend({
   }
 });
 
-function getGameHero(container){
+function getGameHero(container,json){
   window.gameHero = new App.GameHero();
   window.gameHeroView = new App.GameHeroView({model: gameHero});
   window.gameHeroView.$el.appendTo(container);
-  window.gameHero.fetch();
+  window.gameHero.set(json);
 
   $(".hero-unit").hover(
     function(){

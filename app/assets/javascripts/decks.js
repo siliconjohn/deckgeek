@@ -88,10 +88,10 @@ App.DecksView=Backbone.View.extend({
   }
 });
 
-function getDecks(container){
+function getDecks(container,json){
   window.decks = new App.Decks();
   window.decksView = new App.DecksView({collection: decks});
   window.decksView.$el.appendTo(container);
+  window.decks.reset(json);
   window.decksView.render();
-  window.decks.fetch();
 }

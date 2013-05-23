@@ -1,5 +1,9 @@
 <div class="hero-holder"></div>
 
+<div class="btn-toolbar bump-it">
+    <button id="add-deck-btn" class="btn btn-large btn-danger">Add a New Deck of Cards</button>
+</div>
+
 <div class="decks-holder"></div>
 
 <script type="text/javascript">
@@ -12,6 +16,10 @@
   $(function(){
     getGameHero('.hero-holder', <%= @game.to_json.to_s.html_safe %>);
     getDecks('.decks-holder', <%=  @decks.to_json.to_s.html_safe %>);
+  });
+
+  $("#add-deck-btn").bind("click", function(){
+    window.decksView.newDeck();
   });
 
 </script>

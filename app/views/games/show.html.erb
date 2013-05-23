@@ -1,12 +1,18 @@
-<div class="game-show">
-  <script type="text/javascript">
-    window.App = window.App || {};
-    window.App.data = window.App.data || {};
-    App.data.game_id = <%= @game.id %>;
+<div class="hero-holder"></div>
 
-    $(function(){
-      getGameHero('.game-show',<%= @game.to_json.to_s.html_safe %>);
-      getDecks('.game-show',<%=  @decks.to_json.to_s.html_safe %>);
-    });
-  </script>
-</div>
+<div class="decks-holder"></div>
+
+<script type="text/javascript">
+
+  window.App = window.App || {};
+  window.App.data = window.App.data || {};
+
+  App.data.game_id = <%= @game.id %>;
+
+  $(function(){
+    getGameHero('.hero-holder',<%= @game.to_json.to_s.html_safe %>);
+    getDecks('.decks-holder',<%=  @decks.to_json.to_s.html_safe %>);
+  });
+
+</script>
+

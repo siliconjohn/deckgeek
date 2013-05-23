@@ -10,8 +10,8 @@
   App.data.game_id = <%= @game.id %>;
 
   $(function(){
-    getGameHero('.hero-holder',<%= @game.to_json.to_s.html_safe %>);
-    getDecks('.decks-holder',<%=  @decks.to_json.to_s.html_safe %>);
+    getGameHero('.hero-holder', <%= @game.to_json.to_s.html_safe %>);
+    getDecks('.decks-holder', <%=  @decks.to_json.to_s.html_safe %>);
   });
 
 </script>

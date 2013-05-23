@@ -97,10 +97,10 @@ App.CardsView=Backbone.View.extend({
   }
 });
 
-function getCards(container){
+function getCards(container,json){
   window.cards = new App.Cards();
   window.cardsView = new App.CardsView({collection: cards});
   window.cardsView.$el.appendTo(container);
+  window.cards.reset(json);
   window.cardsView.render();
-  window.cards.fetch();
 }

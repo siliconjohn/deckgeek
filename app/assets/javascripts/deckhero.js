@@ -30,11 +30,11 @@ App.DeckHeroView=Backbone.View.extend({
   }
 });
 
-function getDeckHero(container){
+function getDeckHero(container,json){
   window.deckHero = new App.DeckHero();
   window.deckHeroView = new App.DeckHeroView({model: deckHero});
   window.deckHeroView.$el.appendTo(container);
-  window.deckHero.fetch();
+  window.deckHero.set(json);
 
   $(".hero-unit").hover(
     function(){

@@ -21,6 +21,9 @@ class DecksController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
+        @cards= Card.where(:deck_id => params[:id])
+        @styles= Style.all
+
       respond_to do |format|
         format.html
         format.json { render json: @deck }

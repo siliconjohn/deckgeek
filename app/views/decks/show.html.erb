@@ -17,9 +17,9 @@
   App.data.deck_id = <%= @deck.id %>;
 
   $(function(){
-    getDeckHero('.hero-holder');
-    getStyles('.styles-holder');
-    getCards('.cards-holder');
+    getDeckHero('.hero-holder', <%= @deck.to_json.to_s.html_safe %>);
+    getStyles('.styles-holder', <%= @styles.to_json.to_s.html_safe %>);
+    getCards('.cards-holder', <%= @cards.to_json(:include => {:style => {:only => :class_name }}).to_s.html_safe %>);
   });
 
   $("#add-card-btn").bind("click", function(){

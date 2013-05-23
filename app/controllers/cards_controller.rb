@@ -2,7 +2,6 @@ class CardsController < ApplicationController
 
   before_filter :require_login
 
-  #     /games/   1    /decks/   1    /cards.json
   # GET /games/:game_id/decks/:deck_id/cards(.:format)
   def index
     @cards = Card.where(:deck_id => params[:deck_id])

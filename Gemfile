@@ -23,6 +23,11 @@ group :development do
   gem 'webrick', '~> 1.3.1'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '2.13.1'
+  gem 'shoulda-matchers'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

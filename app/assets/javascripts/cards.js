@@ -81,7 +81,7 @@ App.CardsView=Backbone.View.extend({
       if(lastCard)
         card=new App.Card({name:name,style_id:lastCard.get("style_id"), style:lastCard.get("style")});
       else
-        card= new App.Card({name:name,style_id:1, style:{class_name:"style-1"}});
+        card= new App.Card({name:name,style_id:1, style:{template_name:"style-1"}});
 
       this.collection.add(card);
       card.save();
@@ -91,7 +91,7 @@ App.CardsView=Backbone.View.extend({
   setStyle:function(style_id){
      this.collection.each(function(card){
       card.set('style_id',style_id);
-      card.set('style',{class_name:"style-"+style_id});
+      card.set('style',{template_name:"style-"+style_id});
       card.save();
     });
   }

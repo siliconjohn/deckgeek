@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(:version => 20130521165926) do
   create_table "styles", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "class_name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "template_name"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|

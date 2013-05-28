@@ -15,16 +15,7 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
-//= require templates/games/gameview
-//= require templates/games/gamesview
-//= require templates/games/gameheroview
-//= require templates/cards/cardview
-//= require templates/cards/cardsview
-//= require templates/decks/deckview
-//= require templates/decks/decksview
-//= require templates/decks/deckheroview
-//= require templates/styles/stylesview
-//= require templates/styles/styleview
+//= require_tree ./templates
 //= require_tree .
 
 $(function(){

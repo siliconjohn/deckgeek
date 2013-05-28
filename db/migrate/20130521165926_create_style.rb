@@ -3,7 +3,7 @@ class CreateStyle < ActiveRecord::Migration
     create_table :styles do |t|
       t.string :name
       t.string :description
-      t.string :class_name
+      t.string :template_name
       t.timestamps
     end
   end

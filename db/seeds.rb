@@ -10,10 +10,10 @@ users=User.create(
 
 
 styles=Style.create(
-   [{ name: 'Style 1', description:'Style description 1', class_name:'style-1'},
-   { name: 'Style 2', description:'Style description 2', class_name:'style-2'},
-   { name: 'Style 3', description:'Style description 3', class_name:'style-3'},
-   { name: 'Style 4', description:'Style description 4', class_name:'style-4'}
+   [{ name: 'Style 1', description:'Style description 1', template_name:'style-1'},
+   { name: 'Style 2', description:'Style description 2', template_name:'style-2'},
+   { name: 'Style 3', description:'Style description 3', template_name:'style-3'},
+   { name: 'Style 4', description:'Style description 4', template_name:'style-4'}
    ])
 
 games=Game.create(

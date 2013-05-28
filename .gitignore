@@ -10,7 +10,7 @@
 /log/*.log
 /tmp
 /public/assets
- 
+
 # OS generated files #
 .DS_Store
 .DS_Store?
@@ -20,3 +20,6 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# John's custom
+TODO.txt

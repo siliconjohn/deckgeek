@@ -1,14 +1,11 @@
 window.App = window.App || {};
 
-// Card model and view //////////////
-
 App.Card=Backbone.Model.extend({
 });
 
 App.CardView=Backbone.View.extend({
   tag:"div",
   className:"card-view",
-  template: JST['templates/cards/cardview'],
   events: {
     'click .delete-card-btn': 'delete',
     'click .edit-card-button' : 'editCard'
@@ -20,6 +17,7 @@ App.CardView=Backbone.View.extend({
   },
 
   render:function(){
+    this.template = JST['templates/styles/'+this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
   },
 
@@ -36,8 +34,6 @@ App.CardView=Backbone.View.extend({
     window.location=window.App.data.deck_id +"/cards/" + this.model.id ;
   }
 });
-
-// Cards collection and view ////////
 
 App.Cards=Backbone.Collection.extend({
   model:App.Card,

@@ -1,7 +1,5 @@
 window.App = window.App || {};
 
-// Style model and view //////////////
-
 App.Style=Backbone.Model.extend({
 });
 
@@ -20,6 +18,8 @@ App.StyleView=Backbone.View.extend({
 
   render:function(){
     this.$el.html(this.template(this.model.attributes));
+    this.$el.find(".carosel-card").prepend(JST['templates/styles/'+this.model.attributes.template_name]);
+    this.$el.find(".card-view-base").addClass('card-view-shadow');
   },
 
   remove:function(){
@@ -30,8 +30,6 @@ App.StyleView=Backbone.View.extend({
     window.cardsView.setStyle(this.model.id);
   }
 });
-
-// Styles collection and view ////////
 
 App.Styles=Backbone.Collection.extend({
   model:App.Style,

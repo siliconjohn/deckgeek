@@ -5,7 +5,7 @@ App.Card=Backbone.Model.extend({
 
 App.CardView=Backbone.View.extend({
   tag:"div",
-  className:"card-view",
+  className:"card-view-container",
   events: {
     'click .delete-card-btn': 'delete',
     'click .edit-card-button' : 'editCard'
@@ -19,6 +19,9 @@ App.CardView=Backbone.View.extend({
   render:function(){
     this.template = JST['templates/styles/'+this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
+    this.$el.addClass('card-view-positioning');
+    this.$el.find(".card-view-base").addClass('card-view-shadow');
+    this.$el.append( JST['templates/cards/cardviewbuttons']);
   },
 
   remove:function(){
@@ -44,7 +47,7 @@ App.Cards=Backbone.Collection.extend({
 
 App.CardsView=Backbone.View.extend({
   tag:"div",
-  className:"cards-view",
+  className:"cards-view-container",
   template: JST['templates/cards/cardsview'],
   events: {
     'click #add-card-btn' : 'newCard'
@@ -63,7 +66,7 @@ App.CardsView=Backbone.View.extend({
 
   addCard: function(cardModel){
     var cardView=new App.CardView({model:cardModel});
-    cardView.$el.appendTo(this.$('.cards-list'))
+    cardView.$el.appendTo(this.$('.cards-list-container'))
     cardView.render();
   },
 

@@ -1,0 +1,23 @@
+#image-style-carosel {
+  margin-top: 16px;
+  height:240px;
+}
+
+.image-view {
+  width: 280px;
+  height: 240px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+img{
+   -webkit-box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .5);
+  box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .5);
+}
+
+.image-style-btn
+{
+  margin-top: 7px;
+  width: 280px;
+
+}

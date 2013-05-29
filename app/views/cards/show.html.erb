@@ -5,6 +5,10 @@
   <button class="btn btn-large pull-right" onclick="window.history.back();">Back</button>
 </div>
 
+<div class="line"></div>
+
+<div class="images-holder"></div>
+
 <div class="card-holder"></div>
 
 <script type="text/javascript">
@@ -16,7 +20,8 @@
 
   $(function(){
     getCardHero('.hero-holder', <%= @card.to_json.to_s.html_safe %>);
+    getImages('.images-holder', <%= @images.to_json.to_s.html_safe %>);
+
   });
 
 </script>
-

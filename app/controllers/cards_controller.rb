@@ -17,7 +17,8 @@ class CardsController < ApplicationController
   # GET /games/:game_id/decks/:deck_id/cards/:id(.:format)
   def show
     begin
-       @card = Card.find(params[:id],:conditions => {:deck_id => params[:deck_id]})
+      @card = Card.find(params[:id],:conditions => {:deck_id => params[:deck_id]})
+      @images= Image.all
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else

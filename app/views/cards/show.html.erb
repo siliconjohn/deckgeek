@@ -1,22 +1,22 @@
-<div class="show-card">
-    <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <div class="brand" href="">Edit Card</div>
-          <a href="javascript:history.back();" class="btn btn-danger pull-right">Back </a>
-        </div>
-      </div>
-    </div>
-  <div>
+<div class="hero-holder"></div>
 
-  <div class="hero-unit">
-    <h1><%= @card.name %></h1>
-    <p><%= @card.description %></p>
-    <p>
-      <a class="btn btn-primary btn-large">
-        Bla
-      </a>
-    </p>
-  </div>
-
+<div class="btn-toolbar">
+  <button id="none" class="btn btn-large btn-danger">?</button>
+  <button class="btn btn-large pull-right" onclick="window.history.back();">Back</button>
 </div>
+
+<div class="card-holder"></div>
+
+<script type="text/javascript">
+
+  window.App = window.App || {};
+  window.App.data = window.App.data || {};
+
+  App.data.card_id = <%= @card.id %>;
+
+  $(function(){
+    getCardHero('.hero-holder', <%= @card.to_json.to_s.html_safe %>);
+  });
+
+</script>
+

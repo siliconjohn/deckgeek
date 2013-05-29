@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521165926) do
+ActiveRecord::Schema.define(:version => 20130529032456) do
 
   create_table "cards", :force => true do |t|
     t.string   "name"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(:version => 20130521165926) do
   end
 
   add_index "games", ["user_id"], :name => "index_games_on_user_id"
+
+  create_table "images", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "styles", :force => true do |t|
     t.string   "name"

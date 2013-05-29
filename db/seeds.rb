@@ -36,5 +36,14 @@ cards=Card.create(
    { name: 'Card 2:3', description:'Card description 2:3', style_id:styles[1].id, deck_id:games[1].id}
   ])
 
+images=Image.create(
+  [{ name: 'Image 1', url:'image1.jpeg'},
+   { name: 'Image 2', url:'image2.jpeg'},
+   { name: 'Image 3', url:'image3.jpeg'},
+   { name: 'Image 4', url:'image4.jpeg'},
+   { name: 'Image 5', url:'image5.jpeg'},
+   { name: 'Image 6', url:'image6.jpeg'},
+   { name: 'Image 7', url:'image7.jpeg'}
+  ])
 
 

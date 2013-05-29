@@ -1,9 +1,9 @@
 window.App = window.App || {};
 
 App.CardHero=Backbone.Model.extend({
-  url:function(){
-        return window.App.data.card_id;
-      }
+  // url:function(){
+  //       return window.App.data.card_id;
+  //     }
 });
 
 App.CardHeroView=Backbone.View.extend({

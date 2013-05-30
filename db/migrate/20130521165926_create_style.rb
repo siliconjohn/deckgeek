@@ -4,6 +4,7 @@ class CreateStyle < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :template_name
+      t.references :image
       t.timestamps
     end
   end

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130529032456) do
     t.string   "description"
     t.integer  "deck_id"
     t.integer  "style_id"
+    t.integer  "image_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130529032456) do
     t.string   "name"
     t.string   "description"
     t.string   "template_name"
+    t.integer  "image_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

@@ -21,7 +21,7 @@ App.ImageView=Backbone.View.extend({
   },
 
   click:function(){
-    //window.cardsView.setImage(this.model.id);
+    window.cardEditView.setImage(this.model.id);
   }
 });
 
@@ -50,8 +50,7 @@ App.ImagesView=Backbone.View.extend({
     var imageView=new App.ImageView({model:imageModel});
     imageView.$el.appendTo(this.$('.carousel-inner'))
 
-    // set first image to active
-    if(this.$('.carousel-inner').children().size()==1)
+    if(imageModel.id==window.App.data.card_image_id)
       imageView.$el.addClass("item active");
 
     imageView.render();

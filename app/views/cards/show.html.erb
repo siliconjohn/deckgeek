@@ -51,6 +51,7 @@
   window.App.data = window.App.data || {};
 
   App.data.card_id = <%= @card.id %>;
+  App.data.card_image_id = <%= @card.image_id %>;
 
   $(function(){
     //getCardHero('.hero-holder', <%= @card.to_json.to_s.html_safe %>);
@@ -61,5 +62,7 @@
   $("#save-changes-btn").bind("click", function(){
     window.cardEditView.saveChanges();
   });
+
+
 
 </script>

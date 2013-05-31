@@ -1,7 +1,5 @@
-window.App = window.App || {};
 
 App.CardEdit=Backbone.Model.extend({
-
   url:function(){
         return window.App.data.card_id;
       }
@@ -22,13 +20,17 @@ App.CardEditView=Backbone.View.extend({
   },
 
   saveChanges:function(){
-      this.model.set("name",$("#name-input").val());
-      this.model.set("description",$("#description-input").val());
-      this.model.save();
+    this.model.set("name",$("#name-input").val());
+    this.model.set("description",$("#description-input").val());
+    this.model.save();
   },
 
   setImage:function(image_id){
+    //show charly - resets vals
     this.model.set("image_id",image_id);
+    this.model.set("name",$("#name-input").val());
+    this.model.set("description",$("#description-input").val());
+
   }
 });
 

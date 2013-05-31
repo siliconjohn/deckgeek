@@ -1,4 +1,3 @@
-window.App = window.App || {};
 
 App.Image=Backbone.Model.extend({
 });

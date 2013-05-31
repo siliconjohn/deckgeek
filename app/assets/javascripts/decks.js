@@ -1,6 +1,3 @@
-window.App = window.App || {};
-
-// Deck model and view //////////////
 
 App.Deck=Backbone.Model.extend({
   url: function() {
@@ -42,8 +39,6 @@ App.DeckView=Backbone.View.extend({
     window.location=this.model.url();
   }
 });
-
-// Decks collection and view ////////
 
 App.Decks=Backbone.Collection.extend({
   model:App.Deck,

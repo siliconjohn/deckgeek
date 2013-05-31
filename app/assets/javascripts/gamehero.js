@@ -1,4 +1,3 @@
-window.App = window.App || {};
 
 App.GameHero=Backbone.Model.extend({
   url:function(){

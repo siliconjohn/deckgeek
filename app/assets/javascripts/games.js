@@ -1,6 +1,3 @@
-window.App = window.App || {};
-
-// Game model and view //////////////
 
 App.Game=Backbone.Model.extend({
 });
@@ -36,8 +33,6 @@ App.GameView=Backbone.View.extend({
     window.location="/games/" + this.model.id ;
   }
 });
-
-// Games collection and view ////////
 
 App.Games=Backbone.Collection.extend({
   model:App.Game,

@@ -1,4 +1,3 @@
-window.App = window.App || {};
 
 App.Style=Backbone.Model.extend({
 });

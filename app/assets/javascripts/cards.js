@@ -1,4 +1,3 @@
-window.App = window.App || {};
 
 App.Card=Backbone.Model.extend({
 });
@@ -78,8 +77,8 @@ App.CardsView=Backbone.View.extend({
       lastCard=this.collection.last();
 
       if(lastCard)
-        card=new App.Card({name:name,style_id:lastCard.get("style_id"), style:lastCard.get("style")});
-      else
+        card=new App.Card({name:name,style_id:lastCard.get("style_id"), style:lastCard.get("style"), image:lastCard.get("image")});
+      else`
         card= new App.Card({name:name,style_id:1, style:{template_name:"style-1"}});
 
       this.collection.add(card);

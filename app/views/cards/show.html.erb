@@ -1,12 +1,11 @@
 <div class="hero-holder"></div>
 
 <div class="btn-toolbar">
-  <button id="none" class="btn btn-large btn-success">Save Changes</button>
+  <button id="save-changes-btn" class="btn btn-large btn-success">Save Changes</button>
   <button class="btn btn-large pull-right" onclick="window.history.back();">Back</button>
 </div>
 
-<div class="line"></div>
-<br/>
+<div class="line"></div><br/>
 
 <div class="row-fluid">
 
@@ -24,39 +23,25 @@
         </div>
       </div>
     </div>
-
-
-
-<div class="accordion" id="accordion2">
-
+    <div class="accordion" id="accordion2">
       <div class="accordion-group">
         <div class="accordion-heading">
            <button id="none" class="btn btn-wide " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Text</button>
-
-
         </div>
         <div id="collapseTwo" class="accordion-body collapse in">
           <div class="accordion-inner">
+            <div class="card-edit-holder">
 
-
-
-            <input id="input-name" type="text" placeholder="Heading" ></input>
-            <input id="input-name" type="text" placeholder="Misc" ></input>
-            <textarea id="input-name" type="text" placeholder="Description" ></textarea>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-
-
-
-</div>
+  </div>
   <div class="span6">
     <div class="card-holder">
-      <div class="card-view-base style-1 card-view-shadow">
-
-</div></div>
+      <div class="card-view-base style-1 card-view-shadow"></div>
+    </div>
   </div>
 </div>
 
@@ -68,9 +53,13 @@
   App.data.card_id = <%= @card.id %>;
 
   $(function(){
-    getCardHero('.hero-holder', <%= @card.to_json.to_s.html_safe %>);
+    //getCardHero('.hero-holder', <%= @card.to_json.to_s.html_safe %>);
+    getCardEdit('.card-edit-holder', <%= @card.to_json.to_s.html_safe %>);
     getImages('.images-holder', <%= @images.to_json.to_s.html_safe %>);
+  });
 
+  $("#save-changes-btn").bind("click", function(){
+    window.cardEditView.saveChanges();
   });
 
 </script>

@@ -32,9 +32,7 @@ App.DeckHeroView=Backbone.View.extend({
 
 function getDeckHero(container,json){
   window.deckHero = new App.DeckHero();
-  window.deckHeroView =
-  new App.DeckHeroView(
-    {model: deckHero});
+  window.deckHeroView =new App.DeckHeroView({model: deckHero});
   window.deckHeroView.$el.appendTo(container);
   window.deckHero.set(json);
 

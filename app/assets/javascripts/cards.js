@@ -77,9 +77,9 @@ App.CardsView=Backbone.View.extend({
       lastCard=this.collection.last();
 
       if(lastCard)
-        card=new App.Card({name:name,style_id:lastCard.get("style_id"), style:lastCard.get("style"), image:lastCard.get("image")});
-      else`
-        card= new App.Card({name:name,style_id:1, style:{template_name:"style-1"}});
+        card=new App.Card({name:name,description:'', style_id:lastCard.get("style_id"), style:lastCard.get("style"), image:lastCard.get("image")});
+      else
+        card=new App.Card({name:name,description:'', style_id:1, style:{template_name:"style-1"}, image_id:1, image: {url:"image1.jpeg"}});
 
       this.collection.add(card);
       card.save();

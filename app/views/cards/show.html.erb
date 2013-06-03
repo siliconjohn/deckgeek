@@ -7,7 +7,8 @@
   App.data.card_id = <%= @card.id %>;
 
   $(function(){
-    getCardEdit('.card-edit-holder', <%= @card.to_json.to_s.html_safe %>);
+    getCardEdit('.card-edit-holder', <%= @card.to_json.to_s.html_safe %>,
+      <%= @nextCardIndex %>,<%= @prevCardIndex %>);
 });
 
 </script>

@@ -5,7 +5,7 @@ class CardsController < ApplicationController
 
   # GET /games/:game_id/decks/:deck_id/cards(.:format)
   def index
-    @cards = Card.where(:deck_id => params[:deck_id])
+    @cards = Card.where(:deck_id => params[:deck_id]).order(:created_at)
 
     if @cards.any?
       render :json => @cards.to_json(:include => {:style => {:only => :template_name }})
@@ -17,8 +17,18 @@ class CardsController < ApplicationController
   # GET /games/:game_id/decks/:deck_id/cards/:id(.:format)
   def show
     begin
+
       @card = Card.find(params[:id],:conditions => {:deck_id => params[:deck_id]})
-      @images= Image.all
+      @images = Image.all
+
+      @cards = Card.where(:deck_id => params[:deck_id]).order(:created_at)
+      index=@cards.index(@card);
+
+      tempNext=@cards[index+1]
+      tempNext == nil ? @nextCardIndex = -1 : @nextCardIndex = tempNext.id
+
+      index-1<0 ? @prevCardIndex = -1 : @prevCardIndex = @cards[index-1].id
+
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else

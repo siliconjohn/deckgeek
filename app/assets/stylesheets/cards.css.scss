@@ -10,6 +10,20 @@
   height: 335px;
   float:left;
   position:relative;
+
+  .btn-group {
+    left:10px;
+    top:262px;
+    position:absolute;
+
+    .edit-card-button {
+      width:65px;
+    }
+
+    .delete-card-btn {
+      width:65px;
+    }
+  }
 }
 
 .card-view-base {
@@ -34,18 +48,5 @@
   box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .3);
 }
 
-.btn-group {
-  left:10px;
-  top:262px;
-  position:absolute;
-
-  .edit-card-button {
-    width:65px;
-  }
-
-  .delete-card-btn {
-    width:65px;
-  }
-}
 
 

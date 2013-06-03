@@ -11,11 +11,13 @@ App.CardEditView=Backbone.View.extend({
   template: JST['templates/cards/cardedit'],
   events: {
     'click .use-image-btn': 'changeImage',
-    'click .save-changes-btn': 'save'
+    'click .save-changes-btn': 'save',
+    'click #next-card-btn': 'nextCard',
+    'click #prev-card-btn': 'prevCard'
   },
 
   initialize:function(){
-    _.bindAll(this,'render','save','changeImage','enableSave','disableSave');
+    _.bindAll(this,'render','save','changeImage','enableSave','disableSave', 'nextCard', 'prevCard');
   },
 
   selectCardsImage:function(r)
@@ -27,6 +29,16 @@ App.CardEditView=Backbone.View.extend({
     this.$el.html(this.template(this.model.attributes));
     $("#name-input").bind('keyup cut paste',this.enableSave);
     $("#description-input").bind('keyup cut paste',this.enableSave);
+
+    if(this.options.nextCard==-1)
+      $("#next-card-btn").addClass('disabled')
+    else
+      $("#next-card-btn").removeClass("disabled");
+
+    if(this.options.prevCard==-1)
+      $("#prev-card-btn").addClass('disabled')
+    else
+      $("#prev-card-btn").removeClass("disabled");
 
     this.images = new App.Images();
     this.images.fetch();
@@ -53,6 +65,16 @@ App.CardEditView=Backbone.View.extend({
       }
   },
 
+  nextCard:function(){
+    if(this.options.nextCard!=-1)
+      window.location=this.options.nextCard;
+  },
+
+  prevCard:function(){
+    if(this.options.prevCard!=-1)
+      window.location=this.options.prevCard;
+  },
+
   enableSave:function(){
     $(".save-changes-btn").addClass("btn-success").removeClass("disabled");
   },
@@ -62,9 +84,9 @@ App.CardEditView=Backbone.View.extend({
   }
 });
 
-function getCardEdit(container,json){
+function getCardEdit(container,json,next,prev){
   window.cardEditModel = new App.CardEditModel();
-  window.cardEditView = new App.CardEditView({model: cardEditModel});
+  window.cardEditView = new App.CardEditView({model: cardEditModel, nextCard:next, prevCard:prev});
   window.cardEditView.$el.appendTo(container);
   window.cardEditModel.set(json);
   window.cardEditView.render();

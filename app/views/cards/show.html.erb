@@ -2,12 +2,11 @@
 
 <div class="card-edit-holder"></div>
 
-
 <script type="text/javascript">
 
   App.data.card_id = <%= @card.id %>;
+
   $(function(){
-    //getCardHero('.hero-holder', <%= @card.to_json.to_s.html_safe %>);
     getCardEdit('.card-edit-holder', <%= @card.to_json.to_s.html_safe %>);
 });
 

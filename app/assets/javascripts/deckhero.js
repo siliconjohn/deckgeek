@@ -1,4 +1,4 @@
-window.App = window.App || {};
+
 
 App.DeckHero=Backbone.Model.extend({
   url:function(){

@@ -5,48 +5,10 @@
 
 <script type="text/javascript">
 
-  window.App = window.App || {};
-  window.App.data = window.App.data || {};
-
   App.data.card_id = <%= @card.id %>;
-  App.data.card_image_id = <%= @card.image_id %>;
-
-  // function enableSaveButton(){
-  //   $("#save-changes-btn").addClass("btn-success");
-  //   $("#save-changes-btn").removeClass("disabled");
-  // }
-
-  // function disableSaveButton(){
-  //   $("#save-changes-btn").removeClass("btn-success");
-  //   $("#save-changes-btn").addClass("disabled");
-  // }
-
   $(function(){
     //getCardHero('.hero-holder', <%= @card.to_json.to_s.html_safe %>);
     getCardEdit('.card-edit-holder', <%= @card.to_json.to_s.html_safe %>);
-   // getImages('.images-holder', <%= @images.to_json.to_s.html_safe %>);
 });
-  //   $(".use-image-btn").bind("click", function(){
-  //     enableSaveButton();
-  //   });
-
-  //   // looses binding on bb save charly
-  //   $("#name-input").bind('keyup cut paste', function(event){
-  //     enableSaveButton();
-  //   });
-
-  //   $("#description-input").bind('keyup cut paste', function(event){
-  //     enableSaveButton();
-  //   });
-  // });
-
-  // $("#save-changes-btn").bind("click", function(){
-  //   if(!$("#save-changes-btn").hasClass("disabled")){
-  //     window.cardEditView.saveChanges();
-  //     disableSaveButton();
-  //   }
-  // });
-
-
 
 </script>

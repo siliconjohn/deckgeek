@@ -1,3 +1,61 @@
-<input id="name-input" type="text" placeholder="Heading" value="<%= name %>"></input>
-<input id="misc-input" type="text" placeholder="Misc" ></input>
-<textarea id="description-input" type="text" placeholder="Description"><%= description %></textarea>
+<div class="btn-toolbar">
+  <button class="btn btn-large disabled save-changes-btn">Save Changes</button>
+  <button class="btn btn-large pull-right" onclick="window.history.back();">Back</button>
+</div>
+
+<div class="line"></div><br/>
+
+<div class="row-fluid">
+  <div class="span6">
+
+    <!-- images accordian -->
+    <div class="accordion" id="accordion1">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <button id="none" class="btn btn-wide " data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Image</button>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse in">
+          <div class="accordion-inner">
+
+            <!-- images-holder -->
+            <div class="images-holder"></div>
+            <!---->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- text edit accordian -->
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+           <button id="none" class="btn btn-wide " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Text</button>
+        </div>
+        <div id="collapseTwo" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            <div class="card-edit-holder">
+
+              <!-- text-inputs -->
+              <input id="name-input" type="text" placeholder="Heading" value="<%= name %>"></input>
+              <input id="misc-input" type="text" placeholder="Misc" ></input>
+              <textarea id="description-input" type="text" placeholder="Description"><%= description %></textarea>
+              <!---->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="span6">
+    <div class="card-holder">
+
+      <!-- card view -->
+      <div class="card-view-base style-1 card-view-shadow"></div>
+      <!---->
+
+    </div>
+  </div>
+</div>

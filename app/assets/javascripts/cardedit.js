@@ -51,19 +51,16 @@ App.CardEditView=Backbone.View.extend(
   initialize:function()
   {
     _.bindAll(this,'render','save','changeImage','enableSave','disableSave',
-              'nextCard', 'prevCard');
-  },
-
-  selectCardsImage:function(r)
-  {
-    this.imagesView.selectImageWithID(this.model.get("image_id"));
+              'nextCard', 'prevCard','updateCardDescription','updateCardName');
   },
 
   render:function()
   {
     this.$el.html(this.template(this.model.attributes));
     $("#name-input").bind('keyup cut paste',this.enableSave);
+    $("#name-input").bind('keyup cut paste',this.updateCardName);
     $("#description-input").bind('keyup cut paste',this.enableSave);
+    $("#description-input").bind('keyup cut paste',this.updateCardDescription);
 
     if(this.options.nextCard==-1)
       $("#next-card-btn").addClass('disabled')
@@ -88,14 +85,6 @@ App.CardEditView=Backbone.View.extend(
     return this;
   },
 
-  save:function()
-  {
-    this.model.set("name",$("#name-input").val());
-    this.model.set("description",$("#description-input").val());
-    this.model.save();
-    this.disableSave();
-  },
-
   changeImage:function(e)
   {
       var imageId=$(e.target).data("id");
@@ -104,6 +93,27 @@ App.CardEditView=Backbone.View.extend(
         this.model.set("image_id",imageId);
         this.enableSave();
       }
+  },
+
+  selectCardsImage:function(r)
+  {
+    this.imagesView.selectImageWithID(this.model.get("image_id"));
+  },
+
+  updateCardDescription:function()
+  {
+    this.model.set("description",$("#description-input").val());
+  },
+
+  updateCardName:function()
+  {
+    this.model.set("name",$("#name-input").val());
+  },
+
+  save:function()
+  {
+    this.model.save();
+    this.disableSave();
   },
 
   nextCard:function()

@@ -21,13 +21,13 @@ class CardsController < ApplicationController
       @card = Card.find(params[:id],:conditions => {:deck_id => params[:deck_id]})
       @images = Image.all
 
-      @cards = Card.where(:deck_id => params[:deck_id]).order(:created_at)
-      index=@cards.index(@card);
+      cards = Card.where(:deck_id => params[:deck_id]).order(:created_at)
+      index=cards.index(@card);
 
-      tempNext=@cards[index+1]
+      tempNext=cards[index+1]
       tempNext == nil ? @nextCardIndex = -1 : @nextCardIndex = tempNext.id
 
-      index-1<0 ? @prevCardIndex = -1 : @prevCardIndex = @cards[index-1].id
+      index-1<0 ? @prevCardIndex = -1 : @prevCardIndex = cards[index-1].id
 
     rescue ActiveRecord::RecordNotFound => e
       render_404

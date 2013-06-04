@@ -29,7 +29,6 @@ App.CardPreviewView=Backbone.View.extend(
     this.$el.html(this.template(this.model.attributes));
     this.$el.addClass('card-view-positioning');
     this.$el.find(".card-view-base").addClass('card-view-shadow');
-    this.$el.append( JST['templates/cards/cardviewbuttons']);
   }
 });
 

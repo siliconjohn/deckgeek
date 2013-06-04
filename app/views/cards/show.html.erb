@@ -1,11 +1,10 @@
-<div class="hero-holder"></div>
-
-<div class="card-edit-holder"></div>
+<!-- all card edit stuff-->
+<div class="card-edit-view-parent"></div>
 
 <script type="text/javascript">
 
   $(function(){
-    getCardEdit('.card-edit-holder', <%= @card.to_json(:include => { :style => {:only => :template_name },:image => {:only => :url }}).to_s.html_safe %>,
+    getCardEdit('.card-edit-view-parent', <%= @card.to_json(:include => { :style => {:only => :template_name },:image => {:only => :url }}).to_s.html_safe %>,
       <%= @nextCardIndex %>,<%= @prevCardIndex %>);
 });
 

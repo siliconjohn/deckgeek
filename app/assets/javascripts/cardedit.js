@@ -17,7 +17,7 @@ App.CardModel=Backbone.Model.extend(
 App.CardPreviewView=Backbone.View.extend(
 {
   tag:"div",
-  className:"card-view-container",
+  id:"card-preview-view",
 
   initialize:function(){
     _.bindAll(this,'render');
@@ -27,8 +27,7 @@ App.CardPreviewView=Backbone.View.extend(
   render:function(){
     this.template = JST['templates/styles/'+this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
-    this.$el.addClass('card-view-positioning');
-    this.$el.find(".card-view-base").addClass('card-view-shadow');
+    this.$el.find(".card-view-base").addClass('card-view-shadow center');
   }
 });
 
@@ -39,7 +38,7 @@ App.CardPreviewView=Backbone.View.extend(
 App.CardEditView=Backbone.View.extend(
 {
   tag:"div",
-  className:"card-edit",
+  className:"card-edit-view",
   template: JST['templates/cards/cardedit'],
   events: {
     'click .use-image-btn': 'changeImage',
@@ -79,7 +78,7 @@ App.CardEditView=Backbone.View.extend(
     this.imagesView.render();
 
     this.cardPreview = new App.CardPreviewView({model:this.model});
-    this.cardPreview.$el.appendTo(this.$el.find(".card-holder"));
+    this.cardPreview.$el.appendTo(this.$el.find("#card-preview-parent"));
     this.cardPreview.render();
 
     return this;

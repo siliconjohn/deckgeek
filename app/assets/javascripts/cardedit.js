@@ -1,11 +1,44 @@
+/////////////////////////////
+// Card Model              //
+/////////////////////////////
 
-App.CardEditModel=Backbone.Model.extend({
-  url:function(){
-        return window.App.data.card_id;
-      }
+App.CardModel=Backbone.Model.extend(
+{
+  url:function()
+  {
+    return this.get("id");
+  }
 });
 
-App.CardEditView=Backbone.View.extend({
+/////////////////////////////
+// Card Preview View       //
+/////////////////////////////
+
+App.CardPreviewView=Backbone.View.extend(
+{
+  tag:"div",
+  className:"card-view-container",
+
+  initialize:function(){
+    _.bindAll(this,'render');
+    this.listenTo(this.model,'change',this.render);
+  },
+
+  render:function(){
+    this.template = JST['templates/styles/'+this.model.attributes.style.template_name];
+    this.$el.html(this.template(this.model.attributes));
+    this.$el.addClass('card-view-positioning');
+    this.$el.find(".card-view-base").addClass('card-view-shadow');
+    this.$el.append( JST['templates/cards/cardviewbuttons']);
+  }
+});
+
+/////////////////////////////
+// Card Edit View          //
+/////////////////////////////
+
+App.CardEditView=Backbone.View.extend(
+{
   tag:"div",
   className:"card-edit",
   template: JST['templates/cards/cardedit'],
@@ -16,8 +49,10 @@ App.CardEditView=Backbone.View.extend({
     'click #prev-card-btn': 'prevCard'
   },
 
-  initialize:function(){
-    _.bindAll(this,'render','save','changeImage','enableSave','disableSave', 'nextCard', 'prevCard');
+  initialize:function()
+  {
+    _.bindAll(this,'render','save','changeImage','enableSave','disableSave',
+              'nextCard', 'prevCard');
   },
 
   selectCardsImage:function(r)
@@ -25,7 +60,8 @@ App.CardEditView=Backbone.View.extend({
     this.imagesView.selectImageWithID(this.model.get("image_id"));
   },
 
-  render:function(){
+  render:function()
+  {
     this.$el.html(this.template(this.model.attributes));
     $("#name-input").bind('keyup cut paste',this.enableSave);
     $("#description-input").bind('keyup cut paste',this.enableSave);
@@ -46,17 +82,23 @@ App.CardEditView=Backbone.View.extend({
     this.imagesView.$el.appendTo(this.$el.find(".images-holder"));
     this.imagesView.render();
 
+    this.cardPreview = new App.CardPreviewView({model:this.model});
+    this.cardPreview.$el.appendTo(this.$el.find(".card-holder"));
+    this.cardPreview.render();
+
     return this;
   },
 
-  save:function(){
+  save:function()
+  {
     this.model.set("name",$("#name-input").val());
     this.model.set("description",$("#description-input").val());
     this.model.save();
     this.disableSave();
   },
 
-  changeImage:function(e){
+  changeImage:function(e)
+  {
       var imageId=$(e.target).data("id");
 
       if(imageId){
@@ -65,29 +107,33 @@ App.CardEditView=Backbone.View.extend({
       }
   },
 
-  nextCard:function(){
+  nextCard:function()
+  {
     if(this.options.nextCard!=-1)
       window.location=this.options.nextCard;
   },
 
-  prevCard:function(){
+  prevCard:function()
+  {
     if(this.options.prevCard!=-1)
       window.location=this.options.prevCard;
   },
 
-  enableSave:function(){
+  enableSave:function()
+  {
     $(".save-changes-btn").addClass("btn-success").removeClass("disabled");
   },
 
-  disableSave:function(){
+  disableSave:function()
+  {
     $(".save-changes-btn").addClass("disabled").removeClass("btn-success");
   }
 });
 
-function getCardEdit(container,json,next,prev){
-  window.cardEditModel = new App.CardEditModel();
-  window.cardEditView = new App.CardEditView({model: cardEditModel, nextCard:next, prevCard:prev});
+function getCardEdit(container,json,next,prev)
+{
+  window.cardModel = new App.CardModel(json);
+  window.cardEditView = new App.CardEditView({model: cardModel, nextCard:next, prevCard:prev});
   window.cardEditView.$el.appendTo(container);
-  window.cardEditModel.set(json);
   window.cardEditView.render();
 }

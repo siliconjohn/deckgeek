@@ -129,12 +129,12 @@ App.CardEditView=Backbone.View.extend(
 
   enableSave:function()
   {
-    $(".save-changes-btn").addClass("btn-success").removeClass("disabled");
+    $(".save-changes-btn").removeClass("disabled");
   },
 
   disableSave:function()
   {
-    $(".save-changes-btn").addClass("disabled").removeClass("btn-success");
+    $(".save-changes-btn").addClass("disabled");
   }
 });
 

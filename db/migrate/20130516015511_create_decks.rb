@@ -1,8 +1,8 @@
 class CreateDecks < ActiveRecord::Migration
   def change
     create_table :decks do |t|
-      t.string :name
-      t.string :description
+      t.string :name, :default => "My deck of cards"
+      t.string :description, :default => "Describe your deck here"
       t.references :game
 
       t.timestamps

@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
   end
 
   create_table "cards", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
+    t.string   "name",                                        :default => "My Card"
+    t.string   "description",                                 :default => "Describe your card here"
     t.string   "border_style",                                :default => "solid"
     t.string   "border_color",                                :default => "#808080"
     t.integer  "border_radius",                               :default => 10
@@ -31,18 +31,18 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.integer  "style_id"
     t.integer  "image_id"
     t.integer  "background_id"
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
+    t.datetime "created_at",                                                                         :null => false
+    t.datetime "updated_at",                                                                         :null => false
   end
 
   add_index "cards", ["deck_id"], :name => "index_cards_on_deck_id"
 
   create_table "decks", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
+    t.string   "name",        :default => "My deck of cards"
+    t.string   "description", :default => "Describe your deck here"
     t.integer  "game_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
   add_index "decks", ["game_id"], :name => "index_decks_on_game_id"

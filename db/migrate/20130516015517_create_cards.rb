@@ -1,8 +1,8 @@
 class CreateCards < ActiveRecord::Migration
   def change
     create_table :cards do |t|
-      t.string :name
-      t.string :description
+      t.string :name, :default => "My Card"
+      t.string :description, :default => "Describe your card here"
       t.string :border_style, :default => "solid"
       t.string :border_color, :default => "#808080"
       t.integer :border_radius, :default => 10

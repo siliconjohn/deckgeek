@@ -10,6 +10,7 @@ class CreateCards < ActiveRecord::Migration
       t.references :deck
       t.references :style
       t.references :image
+      t.references :background
       t.timestamps
     end
     add_index :cards, :deck_id

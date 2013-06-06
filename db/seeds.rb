@@ -18,6 +18,11 @@ images=Image.create(
    { name: 'Image 7', url:'image7.jpeg'}
   ])
 
+backgrounds=Background.create(
+  [{ name: 'background 1', url:'bg1.jpg'},
+   { name: 'background 2', url:'bg2.jpg'}
+  ])
+
 styles=Style.create(
    [{ name: 'Title Here', description:'Description 1 goes here, this can be a whole paragraph.', template_name:'style-1', image_id:images[0].id },
    { name: 'Title Here', description:'Description 2 goes here, this can be a whole paragraph.', template_name:'style-2', image_id:images[1].id },

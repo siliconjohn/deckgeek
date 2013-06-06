@@ -50,16 +50,18 @@ App.CardEditView=Backbone.View.extend(
   initialize:function()
   {
     _.bindAll(this,'render','save','changeImage','enableSave','disableSave',
-              'nextCard', 'prevCard','updateCardDescription','updateCardName');
+              'nextCard', 'prevCard','updateCardDescription','updateCardName',
+              'updateBorderColor','updateBorderStyle','updateBorderWidth');
   },
 
   render:function()
   {
     this.$el.html(this.template(this.model.attributes));
-    $("#name-input").bind('keyup cut paste',this.enableSave);
     $("#name-input").bind('keyup cut paste',this.updateCardName);
-    $("#description-input").bind('keyup cut paste',this.enableSave);
     $("#description-input").bind('keyup cut paste',this.updateCardDescription);
+    $("#border-style-select").bind('change',this.updateBorderStyle);
+    $("#border-width-slider").bind('change',this.updateBorderWidth);
+    $("#border-color-picker").bind('change',this.updateBorderColor);
 
     if(this.options.nextCard==-1)
       $("#next-card-btn").addClass('disabled')
@@ -97,16 +99,37 @@ App.CardEditView=Backbone.View.extend(
   selectCardsImage:function(r)
   {
     this.imagesView.selectImageWithID(this.model.get("image_id"));
+    this.enableSave();
   },
 
   updateCardDescription:function()
   {
     this.model.set("description",$("#description-input").val());
+    this.enableSave();
   },
 
   updateCardName:function()
   {
     this.model.set("name",$("#name-input").val());
+    this.enableSave();
+  },
+
+  updateBorderStyle:function()
+  {
+    this.model.set("border_style",$("#border-style-select").val());
+    this.enableSave();
+  },
+
+  updateBorderWidth:function()
+  {
+    this.model.set("border_width",$("#border-width-slider").val());
+    this.enableSave();
+  },
+
+  updateBorderColor:function()
+  {
+    this.model.set("border_color",$("#border-color-picker").val());
+    this.enableSave();
   },
 
   save:function()

@@ -23,7 +23,7 @@
         <div class="accordion-heading">
           <button class="btn btn-wide " data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Image</button>
         </div>
-        <div id="collapseOne" class="accordion-body collapse in">
+        <div id="collapseOne" class="accordion-body collapse out">
           <div class="accordion-inner">
 
             <!-- images-holder -->
@@ -40,7 +40,7 @@
         <div class="accordion-heading">
            <button class="btn btn-wide " data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Text</button>
         </div>
-        <div id="collapseTwo" class="accordion-body collapse in">
+        <div id="collapseTwo" class="accordion-body collapse out">
           <div class="accordion-inner">
             <div class="card-edit-view-parent">
 
@@ -54,6 +54,43 @@
         </div>
       </div>
     </div>
+
+
+
+    <!-- border accordian -->
+    <div class="accordion" id="accordionborder">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <button class="btn btn-wide " data-toggle="collapse" data-parent="#accordionborder" href="#collapseaccordionborder">Border</button>
+        </div>
+        <div id="collapseaccordionborder" class="accordion-body collapse in">
+          <div class="accordion-inner">
+
+          <!-- border inputs -->
+          <label>Border Style:</label>
+          <select id="border-style-select" class="border-control">
+            <option <% if (border_style == 'none') { %> selected="selected"<% } %>value="none">None</option>
+            <option <% if (border_style == 'solid') { %> selected="selected"<% } %> value="solid">Solid</option>
+            <option <% if (border_style == 'inset') { %> selected="selected"<% } %>value="inset">Raised</option>
+            <option <% if (border_style == 'outset') { %> selected="selected"<% } %>value="outset">Lowered</option>
+            <option <% if (border_style == 'groove') { %> selected="selected"<% } %>value="groove">Groove</option>
+            <option <% if (border_style == 'double') { %> selected="selected"<% } %>value="double">Double</option>
+            <option <% if (border_style == 'ridge') { %> selected="selected"<% } %>value="ridge">Ridge</option>
+          </select>
+
+          <!-- border width -->
+          <label>Border Width:</label>
+          <input id="border-width-slider" class="border-control" type="range" name="points" min="0" max="4" step="0.01" value="<%= border_width %>">
+
+          <!-- border color -->
+          <label>Border Color:</label>
+          <input id="border-color-picker" class="color-control" type="color" name="favcolor" value="<%= border_color %>">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- right column -->

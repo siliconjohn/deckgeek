@@ -16,11 +16,15 @@ ActiveRecord::Schema.define(:version => 20130529032456) do
   create_table "cards", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.string   "border_style",                                 :default => "solid"
+    t.string   "border_color",                                 :default => "#808080"
+    t.integer  "border_radius",                                :default => 10
+    t.decimal  "border_width",  :precision => 10, :scale => 2, :default => 0.2
     t.integer  "deck_id"
     t.integer  "style_id"
     t.integer  "image_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
   end
 
   add_index "cards", ["deck_id"], :name => "index_cards_on_deck_id"
@@ -56,9 +60,13 @@ ActiveRecord::Schema.define(:version => 20130529032456) do
     t.string   "name"
     t.string   "description"
     t.string   "template_name"
+    t.string   "border_style",                                 :default => "solid"
+    t.string   "border_color",                                 :default => "#808080"
+    t.integer  "border_radius",                                :default => 10
+    t.decimal  "border_width",  :precision => 10, :scale => 2, :default => 0.2
     t.integer  "image_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -20,6 +20,7 @@ class CardsController < ApplicationController
 
       @card = Card.find(params[:id],:conditions => {:deck_id => params[:deck_id]})
       @images = Image.all
+      @backgrounds =Background.all;
 
       cards = Card.where(:deck_id => params[:deck_id]).order(:created_at)
       index=cards.index(@card);

@@ -10,6 +10,7 @@ Gg::Application.routes.draw do
 
   resources :styles, :only => :index
   resources :images, :only => :index
+  resources :backgrounds, :only => :index
 
   root :to => "home#index"
 

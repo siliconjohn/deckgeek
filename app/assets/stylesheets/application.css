@@ -11,5 +11,6 @@
  *= require_self
  *= require bootstrap
  *= require defaults
+ *= require jPicker-1.1.6.min
  *= require_tree .
 */

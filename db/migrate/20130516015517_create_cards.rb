@@ -6,7 +6,7 @@ class CreateCards < ActiveRecord::Migration
       t.string :border_style, :default => "solid"
       t.string :border_color, :default => "#808080"
       t.integer :border_radius, :default => 10
-      t.decimal :border_width, :precision => 10, :scale => 2 , :default => 0.2
+      t.decimal :border_width, :precision => 2, :scale => 2 , :default => 0.2
       t.references :deck
       t.references :style
       t.references :image

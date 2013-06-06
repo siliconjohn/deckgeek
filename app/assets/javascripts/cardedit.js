@@ -32,6 +32,36 @@ App.CardPreviewView=Backbone.View.extend(
 });
 
 /////////////////////////////
+// Color Picker View       //
+/////////////////////////////
+
+App.ColorPickerView=Backbone.View.extend(
+{
+  tag:"span",
+
+  initialize:function(){
+// take argument to change a property name
+    _.bindAll(this,'render');
+    this.listenTo(this.model,'change',this.render);
+  },
+
+  render:function(){
+    console.log(this.model.get("border_color") );
+       this.$el.jPicker({
+          window:{
+            expandable: true
+          },
+          color:
+          {
+            alphaSupport: false,
+            active: new $.jPicker.Color({ hex: this.model.get("border_color") })
+          }
+
+      });
+   }
+});
+
+/////////////////////////////
 // Card Edit View          //
 /////////////////////////////
 
@@ -82,6 +112,10 @@ App.CardEditView=Backbone.View.extend(
     this.cardPreview = new App.CardPreviewView({model:this.model});
     this.cardPreview.$el.appendTo(this.$el.find("#card-preview-parent"));
     this.cardPreview.render();
+
+    this.borderColorView = new App.ColorPickerView({model:this.model});
+    this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
+    this.borderColorView.render();
 
     return this;
   },

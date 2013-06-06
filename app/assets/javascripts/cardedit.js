@@ -39,26 +39,39 @@ App.ColorPickerView=Backbone.View.extend(
 {
   tag:"span",
 
-  initialize:function(){
-// take argument to change a property name
-    _.bindAll(this,'render');
-    this.listenTo(this.model,'change',this.render);
+  initialize:function()
+  {
+    _.bindAll(this,'render','changeColor');
+   this.listenTo(this.model,'change',this.render);
   },
 
-  render:function(){
-    console.log(this.model.get("border_color") );
-       this.$el.jPicker({
-          window:{
-            expandable: true
-          },
-          color:
-          {
-            alphaSupport: false,
-            active: new $.jPicker.Color({ hex: this.model.get("border_color") })
-          }
+  render:function()
+  {
+    if(!$.jPicker.List[0])
+    {
+      this.$el.jPicker(
+      {
+            window:
+            {
+              expandable: true,
+              position:{ x:100 }
+            },
+            color:
+            {
+              alphaSupport: false,
+              active: new $.jPicker.Color({ hex: this.model.get(this.options.atrib)})
+            }
+        },
 
-      });
-   }
+        this.changeColor, this.changeColor, this.changeColor
+      );
+    }
+  },
+
+  changeColor:function(color, context)
+  {
+    this.model.set("border_color",'#'+$.jPicker.List[0].color.active.val('hex'))
+  }
 });
 
 /////////////////////////////
@@ -82,6 +95,8 @@ App.CardEditView=Backbone.View.extend(
     _.bindAll(this,'render','save','changeImage','enableSave','disableSave',
               'nextCard', 'prevCard','updateCardDescription','updateCardName',
               'updateBorderColor','updateBorderStyle','updateBorderWidth');
+
+   this.listenTo(this.model,'change',this.enableSave);
   },
 
   render:function()
@@ -106,14 +121,14 @@ App.CardEditView=Backbone.View.extend(
     this.images = new App.Images();
     this.images.fetch();
     this.imagesView = new App.ImagesView({collection:this.images,image_id:this.model.get("image_id")});
-    this.imagesView.$el.appendTo(this.$el.find(".images-holder"));
+    this.imagesView.$el.appendTo(this.$(".images-holder"));
     this.imagesView.render();
 
     this.cardPreview = new App.CardPreviewView({model:this.model});
-    this.cardPreview.$el.appendTo(this.$el.find("#card-preview-parent"));
+    this.cardPreview.$el.appendTo(this.$("#card-preview-parent"));
     this.cardPreview.render();
 
-    this.borderColorView = new App.ColorPickerView({model:this.model});
+    this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
     this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
     this.borderColorView.render();
 
@@ -126,44 +141,32 @@ App.CardEditView=Backbone.View.extend(
 
       if(imageId){
         this.model.set("image_id",imageId);
-        this.enableSave();
       }
-  },
-
-  selectCardsImage:function(r)
-  {
-    this.imagesView.selectImageWithID(this.model.get("image_id"));
-    this.enableSave();
   },
 
   updateCardDescription:function()
   {
     this.model.set("description",$("#description-input").val());
-    this.enableSave();
   },
 
   updateCardName:function()
   {
     this.model.set("name",$("#name-input").val());
-    this.enableSave();
   },
 
   updateBorderStyle:function()
   {
     this.model.set("border_style",$("#border-style-select").val());
-    this.enableSave();
   },
 
   updateBorderWidth:function()
   {
     this.model.set("border_width",$("#border-width-slider").val());
-    this.enableSave();
   },
 
   updateBorderColor:function()
   {
     this.model.set("border_color",$("#border-color-picker").val());
-    this.enableSave();
   },
 
   save:function()

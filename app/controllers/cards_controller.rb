@@ -6,6 +6,7 @@ class CardsController < ApplicationController
   # GET /games/:game_id/decks/:deck_id/cards(.:format)
   def index
     @cards = Card.where(:deck_id => params[:deck_id]).order(:created_at)
+@backgrounds =Background.all;
 
     if @cards.any?
       render :json => @cards.to_json(:include => {:style => {:only => :template_name }})

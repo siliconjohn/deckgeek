@@ -223,7 +223,11 @@ App.CardEditView=Backbone.View.extend(
       var imageId=$(e.target).data("id");
 
       if(imageId)
+      {
+        var bg = this.backgroundsCollection.get(imageId);
+        this.model.set({background:{url:bg.get("url")}});
         this.model.set("background_id",imageId);
+      }
   },
 
   updateCardDescription:function()

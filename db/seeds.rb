@@ -24,10 +24,10 @@ backgrounds=Background.create(
   ])
 
 styles=Style.create(
-   [{ name: 'Title Here', description:'Description 1 goes here, this can be a whole paragraph.', template_name:'style-1', image_id:images[0].id },
-   { name: 'Title Here', description:'Description 2 goes here, this can be a whole paragraph.', template_name:'style-2', image_id:images[1].id },
-   { name: 'Title Here', description:'Description 3 goes here, this can be a whole paragraph.', template_name:'style-3', image_id:images[2].id },
-   { name: 'Title Here', description:'Description 4 goes here, this can be a whole paragraph.', template_name:'style-4', image_id:images[3].id }
+   [{name: 'Title Here', description:'Description 1 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-1', image_id:images[0].id },
+   { name: 'Title Here', description:'Description 2 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-2', image_id:images[1].id },
+   { name: 'Title Here', description:'Description 3 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-3', image_id:images[2].id },
+   { name: 'Title Here', description:'Description 4 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-4', image_id:images[3].id }
    ])
 
 games=Game.create(
@@ -42,10 +42,10 @@ decks=Deck.create(
   ])
 
 cards=Card.create(
-  [{ name: 'Card 1:1', description:'Card description 1:1', style_id:styles[0].id, deck_id:games[0].id, image_id:images[0].id},
-   { name: 'Card 1:2', description:'Card description 1:2', style_id:styles[0].id, deck_id:games[0].id, image_id:images[1].id},
-   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[0].id, deck_id:games[0].id, image_id:images[2].id},
-   { name: 'Card 2:1', description:'Card description 2:1', style_id:styles[1].id, deck_id:games[1].id, image_id:images[3].id},
-   { name: 'Card 2:2', description:'Card description 2:2', style_id:styles[1].id, deck_id:games[1].id, image_id:images[4].id},
-   { name: 'Card 2:3', description:'Card description 2:3', style_id:styles[1].id, deck_id:games[1].id, image_id:images[5].id}
+  [{ name: 'Card 1:1', description:'Card description 1:1', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id, image_id:images[0].id},
+   { name: 'Card 1:2', description:'Card description 1:2', style_id:styles[0].id, background_id:backgrounds[1].id, deck_id:games[0].id, image_id:images[1].id},
+   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id, image_id:images[2].id},
+   { name: 'Card 2:1', description:'Card description 2:1', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id, image_id:images[3].id},
+   { name: 'Card 2:2', description:'Card description 2:2', style_id:styles[1].id, background_id:backgrounds[0].id, deck_id:games[1].id, image_id:images[4].id},
+   { name: 'Card 2:3', description:'Card description 2:3', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id, image_id:images[5].id}
   ])

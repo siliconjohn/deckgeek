@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.integer  "border_radius",                               :default => 10
     t.decimal  "border_width",  :precision => 2, :scale => 2, :default => 0.2
     t.integer  "image_id"
+    t.integer  "background_id"
     t.datetime "created_at",                                                         :null => false
     t.datetime "updated_at",                                                         :null => false
   end

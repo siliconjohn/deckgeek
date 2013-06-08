@@ -142,6 +142,69 @@ App.BackgroundsView = Backbone.View.extend(
 });
 
 /////////////////////////////
+// ArtWork Images          //
+/////////////////////////////
+
+App.ArtWorksCollection = Backbone.Collection.extend(
+{
+  model: Backbone.Model
+});
+
+App.ArtWorkView = Backbone.View.extend(
+{
+  tag: "div",
+  className: "item",
+  template: JST['templates/artwork/artworkview'],
+
+  initialize:function()
+  {
+    _.bindAll(this, 'render', 'remove');
+    this.listenTo(this.model, 'change', this.render);
+  },
+
+  render:function()
+  {
+    this.$el.html(this.template(this.model.attributes));
+    return this;
+  }
+});
+
+App.ArtWorksView = Backbone.View.extend(
+{
+  tag:"div",
+  className:"artworks-view",
+  template: JST['templates/artwork/artworksview'],
+
+  initialize:function()
+  {
+    _.bindAll(this, 'render', 'addArtWorkView');
+  },
+
+  render:function()
+  {
+    this.$el.html(this.template());
+    this.collection.each(this.addArtWorkView);
+
+    // show the first image if none is active
+    if(this.options.image_id == null)
+      this.$('.carousel-inner').find('.item').first().addClass("active");
+
+    return this;
+  },
+
+  addArtWorkView:function(ArtWorkModel)
+  {
+    var ArtWorkView = new App.ArtWorkView({model:ArtWorkModel});
+    ArtWorkView.$el.appendTo(this.$('.carousel-inner'))
+
+    if(ArtWorkModel.id == this.options.image_id)
+       ArtWorkView.$el.addClass("item active");
+
+    ArtWorkView.render();
+  }
+});
+
+/////////////////////////////
 // Card Edit View          //
 /////////////////////////////
 
@@ -151,7 +214,7 @@ App.CardEditView=Backbone.View.extend(
   className:"card-edit-view",
   template: JST['templates/cards/cardedit'],
   events: {
-    'click .use-image-btn': 'changeImage',
+    'click .artwork-view-btn': 'changeImage',
     'click .background-view-btn': 'changeBackgroundImage',
     'click .save-changes-btn': 'save',
     'click #next-card-btn': 'nextCard',
@@ -187,11 +250,11 @@ App.CardEditView=Backbone.View.extend(
     else
       $("#prev-card-btn").removeClass("disabled");
 
-    this.images = new App.Images();
-    this.images.fetch();
-    this.imagesView = new App.ImagesView({collection:this.images,image_id:this.model.get("image_id")});
-    this.imagesView.$el.appendTo(this.$(".images-parent"));
-    this.imagesView.render();
+    this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
+    this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
+                                                    image_id:this.model.get("image_id")})
+    this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
+    this.artworksView.render();
 
     this.cardPreview = new App.CardPreviewView({model:this.model});
     this.cardPreview.$el.appendTo(this.$("#card-preview-parent"));
@@ -215,7 +278,11 @@ App.CardEditView=Backbone.View.extend(
       var imageId=$(e.target).data("id");
 
       if(imageId)
+      {
+        var bg = this.artworksCollection.get(imageId);
+        this.model.set({image:{url:bg.get("url")}});
         this.model.set("image_id",imageId);
+      }
   },
 
   changeBackgroundImage:function(e)
@@ -284,11 +351,11 @@ App.CardEditView=Backbone.View.extend(
   }
 });
 
-function getCardEdit(container,json,next,prev,bkgds)
+function getCardEdit(container,json,next,prev,bkgds,artworks)
 {
   window.cardModel = new App.CardModel(json);
   window.cardEditView = new App.CardEditView({model: cardModel, nextCard:next,
-                                              prevCard:prev, backgrounds:bkgds});
+                                              prevCard:prev, backgrounds:bkgds, artworks:artworks});
   window.cardEditView.$el.appendTo(container);
   window.cardEditView.render();
 }

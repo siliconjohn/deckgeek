@@ -1,18 +1,29 @@
 .card-edit-view-parent {
 
-  #card-preview-view {
 
-    .center {
-      position:relative;
-      margin:0 auto;
-      margin-top:20px;
-    }
+  .accordion{
+    margin-bottom:5px;
   }
 
-  .label-left-might-NOTNEED {
-    float: left;clear: left;
-    margin-top:5px;
-    width:100px;
+  .accordion-group {
+    border: 0px;
+  }
+
+  .accordion-inner {
+    border-top: 0px;
+  }
+
+  .btn-wide {
+    width:100%;
+  }
+
+  input {
+    width:96%;
+  }
+
+  textarea {
+    width:96%;
+    height:150px;
   }
 
   .border-control {
@@ -21,6 +32,15 @@
 
   .color-control {
     width:420px;
+  }
+
+  #card-preview-view {
+
+    .center {
+      position:relative;
+      margin:0 auto;
+      margin-top:20px;
+    }
   }
 
   ////////////////////////////////////////////////
@@ -53,4 +73,36 @@
       bottom: 0;
     }
   }
+
+  ////////////////////////////////////////////////
+  // artwork image carosel
+  ///////////////////////////////////////////////
+
+  #artworks-carosel {
+    margin-top: 10px;
+    height: 240px;
+    margin-bottom: 2px;
+
+    .artwork-view {
+      width: 280px;
+      height: 240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .artwork-view-image {
+      display: block;
+      margin: 0 auto;
+      max-height: 200px;
+      -webkit-box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .5);
+      box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .5);
+    }
+
+    .artwork-view-btn {
+      width: 280px;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
 }

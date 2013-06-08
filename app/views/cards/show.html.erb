@@ -9,7 +9,8 @@
 
       }).to_s.html_safe %>,
       <%= @nextCardIndex %>,<%= @prevCardIndex %>,
-      <%= @backgrounds.to_json.to_s.html_safe %>);
+      <%= @backgrounds.to_json.to_s.html_safe %>,
+      <%= @images.to_json.to_s.html_safe %>);
 });
 
 </script>

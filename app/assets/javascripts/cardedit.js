@@ -82,13 +82,9 @@ App.ColorPickerView=Backbone.View.extend(
 // Background Image        //
 /////////////////////////////
 
-App.BackgroundModel = Backbone.Model.extend(
-{
-});
-
 App.BackgroundsCollection = Backbone.Collection.extend(
 {
-  model: App.BackgroundModel
+  model: Backbone.Model
 });
 
 App.BackgroundView = Backbone.View.extend(

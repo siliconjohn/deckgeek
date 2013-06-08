@@ -1,11 +1,13 @@
 <div class="card-view-base style-4"
-  style="box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;
-        border: <%= border_width %>em <%= border_style %> <%= border_color %>;
-        border-radius:<%= border_radius %>px;
-        background:#ffffff url('/assets/backgrounds/<%= background.url %>') repeat;">
+  style="background:#efefef url('/assets/backgrounds/<%= background.url %>') repeat;">
 
-  <div class="title"><%= image.url  %></div>
-  <div><%= background.url %></div>
-  <div class="description"><%= description %></div>
+  <div class="card-view-border-view"
+       style="box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;
+              border: <%= border_width %>em <%= border_style %> <%= border_color %>;
+              border-radius:<%= border_radius %>px;">
 
+    <div class="title"><%= image.url  %></div>
+    <div><%= background.url %></div>
+    <div class="description"><%= description %></div>
+  </div>
 </div>

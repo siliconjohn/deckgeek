@@ -26,8 +26,8 @@
         <div id="collapseOne" class="accordion-body collapse out">
           <div class="accordion-inner">
 
-            <!-- images-holder -->
-            <div class="images-holder"></div>
+            <!-- images-parent -->
+            <div class="images-parent"></div>
 
           </div>
         </div>
@@ -55,15 +55,13 @@
       </div>
     </div>
 
-
-
     <!-- border accordian -->
     <div class="accordion" id="accordionborder">
       <div class="accordion-group">
         <div class="accordion-heading">
           <button class="btn btn-wide " data-toggle="collapse" data-parent="#accordionborder" href="#collapseaccordionborder">Border</button>
         </div>
-        <div id="collapseaccordionborder" class="accordion-body collapse in">
+        <div id="collapseaccordionborder" class="accordion-body collapse out">
           <div class="accordion-inner">
 
           <!-- border inputs -->
@@ -85,6 +83,23 @@
           <!-- border color -->
           <label>Border Color:</label>
           <div id="border-color-picker"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- background accordian -->
+    <div class="accordion" id="accordion-background">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+           <button class="btn btn-wide " data-toggle="collapse" data-parent="#accordion-background" href="#collapseFour">Background</button>
+        </div>
+        <div id="collapseFour" class="accordion-body collapse in">
+          <div class="accordion-inner">
+
+            <!-- background images view -->
+            <div id="backgrounds-view-parent"></div>
 
           </div>
         </div>

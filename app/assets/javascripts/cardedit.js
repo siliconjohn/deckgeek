@@ -28,6 +28,7 @@ App.CardPreviewView=Backbone.View.extend(
     this.template = JST['templates/styles/'+this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
     this.$el.find(".card-view-base").addClass('card-view-shadow center');
+    return this;
   }
 });
 
@@ -35,6 +36,8 @@ App.CardPreviewView=Backbone.View.extend(
 // Color Picker View       //
 /////////////////////////////
 
+// TODO: this can only have one instace on a page
+// TODO: add better css styles, change startup position
 App.ColorPickerView=Backbone.View.extend(
 {
   tag:"span",
@@ -54,7 +57,7 @@ App.ColorPickerView=Backbone.View.extend(
             window:
             {
               expandable: true,
-              position:{ x:100 }
+              position:{ x:-50 }
             },
             color:
             {
@@ -66,11 +69,79 @@ App.ColorPickerView=Backbone.View.extend(
         this.changeColor, this.changeColor, this.changeColor
       );
     }
+    return this;
   },
 
   changeColor:function(color, context)
   {
     this.model.set("border_color",'#'+$.jPicker.List[0].color.active.val('hex'))
+  }
+});
+
+/////////////////////////////
+// Background Image        //
+/////////////////////////////
+
+App.BackgroundModel = Backbone.Model.extend(
+{
+});
+
+App.BackgroundsCollection = Backbone.Collection.extend(
+{
+  model: App.BackgroundModel
+});
+
+App.BackgroundView = Backbone.View.extend(
+{
+  tag: "div",
+  className: "item",
+  template: JST['templates/backgrounds/backgroundview'],
+
+  initialize:function()
+  {
+    _.bindAll(this, 'render', 'remove');
+    this.listenTo(this.model, 'change', this.render);
+  },
+
+  render:function()
+  {
+    this.$el.html(this.template(this.model.attributes));
+    return this;
+  }
+});
+
+App.BackgroundsView = Backbone.View.extend(
+{
+  tag:"div",
+  className:"backgrounds-view",
+  template: JST['templates/backgrounds/backgroundsview'],
+
+  initialize:function()
+  {
+    _.bindAll(this, 'render', 'addBackgroundView');
+  },
+
+  render:function()
+  {
+    this.$el.html(this.template());
+    this.collection.each(this.addBackgroundView);
+
+    // show the first image if none is active
+    if(this.options.image_id == null)
+      this.$('.carousel-inner').find('.item').first().addClass("active");
+
+    return this;
+  },
+
+  addBackgroundView:function(backgroundModel)
+  {
+    var backgroundView = new App.BackgroundView({model:backgroundModel});
+    backgroundView.$el.appendTo(this.$('.carousel-inner'))
+
+    if(backgroundModel.id == this.options.image_id)
+       backgroundView.$el.addClass("item active");
+
+    backgroundView.render();
   }
 });
 
@@ -85,6 +156,7 @@ App.CardEditView=Backbone.View.extend(
   template: JST['templates/cards/cardedit'],
   events: {
     'click .use-image-btn': 'changeImage',
+    'click .background-view-btn': 'changeBackgroundImage',
     'click .save-changes-btn': 'save',
     'click #next-card-btn': 'nextCard',
     'click #prev-card-btn': 'prevCard'
@@ -94,9 +166,10 @@ App.CardEditView=Backbone.View.extend(
   {
     _.bindAll(this,'render','save','changeImage','enableSave','disableSave',
               'nextCard', 'prevCard','updateCardDescription','updateCardName',
-              'updateBorderColor','updateBorderStyle','updateBorderWidth');
+              'updateBorderColor','updateBorderStyle','updateBorderWidth',
+              'changeBackgroundImage');
 
-   this.listenTo(this.model,'change',this.enableSave);
+    this.listenTo(this.model,'change',this.enableSave);
   },
 
   render:function()
@@ -121,7 +194,7 @@ App.CardEditView=Backbone.View.extend(
     this.images = new App.Images();
     this.images.fetch();
     this.imagesView = new App.ImagesView({collection:this.images,image_id:this.model.get("image_id")});
-    this.imagesView.$el.appendTo(this.$(".images-holder"));
+    this.imagesView.$el.appendTo(this.$(".images-parent"));
     this.imagesView.render();
 
     this.cardPreview = new App.CardPreviewView({model:this.model});
@@ -132,6 +205,12 @@ App.CardEditView=Backbone.View.extend(
     this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
     this.borderColorView.render();
 
+    this.backgroundsCollection = new App.BackgroundsCollection(this.options.backgrounds);
+    this.backgroundsView = new App.BackgroundsView({collection:this.backgroundsCollection,
+                                                    image_id:this.model.get("background_id")})
+    this.backgroundsView.$el.appendTo(this.$("#backgrounds-view-parent"));
+    this.backgroundsView.render();
+
     return this;
   },
 
@@ -139,9 +218,16 @@ App.CardEditView=Backbone.View.extend(
   {
       var imageId=$(e.target).data("id");
 
-      if(imageId){
+      if(imageId)
         this.model.set("image_id",imageId);
-      }
+  },
+
+  changeBackgroundImage:function(e)
+  {
+      var imageId=$(e.target).data("id");
+
+      if(imageId)
+        this.model.set("background_id",imageId);
   },
 
   updateCardDescription:function()
@@ -198,10 +284,11 @@ App.CardEditView=Backbone.View.extend(
   }
 });
 
-function getCardEdit(container,json,next,prev)
+function getCardEdit(container,json,next,prev,bkgds)
 {
   window.cardModel = new App.CardModel(json);
-  window.cardEditView = new App.CardEditView({model: cardModel, nextCard:next, prevCard:prev});
+  window.cardEditView = new App.CardEditView({model: cardModel, nextCard:next,
+                                              prevCard:prev, backgrounds:bkgds});
   window.cardEditView.$el.appendTo(container);
   window.cardEditView.render();
 }

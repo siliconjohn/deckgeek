@@ -38,8 +38,8 @@ App.CardPreviewView=Backbone.View.extend(
   id:"card-preview-view",
 
   initialize:function(){
-    _.bindAll(this,'render');
-    this.listenTo(this.model,'change',this.render);
+    _.bindAll(this, 'render');
+    this.listenTo(this.model, 'change', this.render);
   },
 
   render:function(){
@@ -62,8 +62,8 @@ App.ColorPickerView = Backbone.View.extend(
 
   initialize:function()
   {
-    _.bindAll(this,'render','changeColor');
-   this.listenTo(this.model,'change',this.render);
+    _.bindAll(this, 'render', 'changeColor');
+   this.listenTo(this.model, 'change', this.render);
   },
 
   render:function()
@@ -74,13 +74,13 @@ App.ColorPickerView = Backbone.View.extend(
       {
             window:
             {
-              expandable: true,
-              position:{ x:-50 }
+              expandable:true,
+              position:{x:-50}
             },
             color:
             {
-              alphaSupport: false,
-              active: new $.jPicker.Color({ hex: this.model.get(this.options.atrib)})
+              alphaSupport:false,
+              active:new $.jPicker.Color({hex: this.model.get(this.options.atrib)})
             }
         },
 
@@ -92,7 +92,7 @@ App.ColorPickerView = Backbone.View.extend(
 
   changeColor:function(color, context)
   {
-    this.model.set("border_color",'#'+$.jPicker.List[0].color.active.val('hex'))
+    this.model.set("border_color", '#'+$.jPicker.List[0].color.active.val('hex'))
   }
 });
 
@@ -241,22 +241,22 @@ App.CardEditView = Backbone.View.extend(
 
   initialize:function()
   {
-    _.bindAll(this,'render','save','changeImage','enableSave','disableSave',
-              'nextCard', 'prevCard','updateCardDescription','updateCardName',
-              'updateBorderColor','updateBorderStyle','updateBorderWidth',
+    _.bindAll(this, 'render', 'save', 'changeImage', 'enableSave', 'disableSave',
+              'nextCard', 'prevCard', 'updateCardDescription', 'updateCardName',
+              'updateBorderColor', 'updateBorderStyle', 'updateBorderWidth',
               'changeBackgroundImage');
 
-    this.listenTo(this.model,'change',this.enableSave);
+    this.listenTo(this.model, 'change', this.enableSave);
   },
 
   render:function()
   {
     this.$el.html(this.template(this.model.attributes));
-    $("#name-input").bind('keyup cut paste',this.updateCardName);
-    $("#description-input").bind('keyup cut paste',this.updateCardDescription);
-    $("#border-style-select").bind('change',this.updateBorderStyle);
-    $("#border-width-slider").bind('change',this.updateBorderWidth);
-    $("#border-color-picker").bind('change',this.updateBorderColor);
+    $("#name-input").bind('keyup cut paste', this.updateCardName);
+    $("#description-input").bind('keyup cut paste', this.updateCardDescription);
+    $("#border-style-select").bind('change', this.updateBorderStyle);
+    $("#border-width-slider").bind('change', this.updateBorderWidth);
+    $("#border-color-picker").bind('change', this.updateBorderColor);
 
     if(this.options.nextCard == -1)
       $("#next-card-btn").addClass('disabled')
@@ -299,7 +299,7 @@ App.CardEditView = Backbone.View.extend(
       {
         var bg = this.artworksCollection.get(imageId);
         this.model.set({image:{url:bg.get("url")}});
-        this.model.set("image_id",imageId);
+        this.model.set("image_id", imageId);
       }
   },
 
@@ -311,33 +311,33 @@ App.CardEditView = Backbone.View.extend(
       {
         var bg = this.backgroundsCollection.get(imageId);
         this.model.set({background:{url:bg.get("url")}});
-        this.model.set("background_id",imageId);
+        this.model.set("background_id", imageId);
       }
   },
 
   updateCardDescription:function()
   {
-    this.model.set("description",$("#description-input").val());
+    this.model.set("description", $("#description-input").val());
   },
 
   updateCardName:function()
   {
-    this.model.set("name",$("#name-input").val());
+    this.model.set("name", $("#name-input").val());
   },
 
   updateBorderStyle:function()
   {
-    this.model.set("border_style",$("#border-style-select").val());
+    this.model.set("border_style", $("#border-style-select").val());
   },
 
   updateBorderWidth:function()
   {
-    this.model.set("border_width",$("#border-width-slider").val());
+    this.model.set("border_width", $("#border-width-slider").val());
   },
 
   updateBorderColor:function()
   {
-    this.model.set("border_color",$("#border-color-picker").val());
+    this.model.set("border_color", $("#border-color-picker").val());
   },
 
   save:function(e)
@@ -369,7 +369,7 @@ App.CardEditView = Backbone.View.extend(
   }
 });
 
-function getCardEdit(container,json,next,prev,bkgds,artworks)
+function getCardEdit(container, json, next, prev, bkgds, artworks)
 {
   window.cardModel = new App.CardModel(json);
   window.cardEditView = new App.CardEditView({model: cardModel, nextCard:next,

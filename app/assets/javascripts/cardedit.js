@@ -9,6 +9,18 @@ App.CardModel=Backbone.Model.extend(
     return this.get("id");
   },
 
+  // this can be used to add a revert/undo function
+  // originalJSON:'',
+  // initialize:function(e)
+  // {
+  //   this.originalJSON = (true, {}, e);
+  // },
+
+  // revertToOriginal:function()
+  // {
+  //   this.set(this.originalJSON);
+  // },
+
   // override and return nothing so the model doesnt fire 'change' when getting
   // a response from a PUT at (CardsController#update)
   parse:function(resp, xhr)
@@ -336,8 +348,8 @@ App.CardEditView=Backbone.View.extend(
 
   nextCard:function()
   {
-    if(this.options.nextCard!=-1)
-      window.location=this.options.nextCard;
+     if(this.options.nextCard!=-1)
+       window.location=this.options.nextCard;
   },
 
   prevCard:function()

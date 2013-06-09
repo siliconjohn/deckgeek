@@ -1,8 +1,11 @@
 .card-edit-view-parent {
 
+  /////////////////
+  // Accordian
+  /////////////////
 
-  .accordion{
-    margin-bottom:5px;
+  .accordion {
+    margin-bottom: 5px;
   }
 
   .accordion-group {
@@ -13,39 +16,51 @@
     border-top: 0px;
   }
 
-  .btn-wide {
-    width:100%;
+  .accordion-heading .btn {
+    width: 100%;
   }
 
+  /////////////////
+  // Text Input
+  /////////////////
+
   input {
-    width:96%;
+    width: 96%;
   }
 
   textarea {
-    width:96%;
-    height:150px;
+    width: 96%;
+    height: 150px;
   }
 
+  /////////////////
+  // Border
+  /////////////////
+
   .border-control {
-    width:100%;
+    width: 100%;
   }
 
   .color-control {
-    width:420px;
+    width: 420px;
   }
+
+  /////////////////
+  // Card Preview
+  /////////////////
 
   #card-preview-view {
 
     .center {
-      position:relative;
-      margin:0 auto;
-      margin-top:20px;
+      position: relative;
+      margin: 0 auto;
+      margin-top: 20px;
     }
   }
 
-  ////////////////////////////////////////////////
-  // background image carosel
-  ///////////////////////////////////////////////
+  /////////////////////////////
+  // Background Image Carosel
+  /////////////////////////////
 
   #backgrounds-carosel {
     margin-top: 10px;
@@ -74,9 +89,9 @@
     }
   }
 
-  ////////////////////////////////////////////////
-  // artwork image carosel
-  ///////////////////////////////////////////////
+  /////////////////////////////
+  // Artwork Image Carosel
+  /////////////////////////////
 
   #artworks-carosel {
     margin-top: 10px;
@@ -104,5 +119,4 @@
       bottom: 0;
     }
   }
-
 }

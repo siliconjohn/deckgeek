@@ -7,6 +7,12 @@ App.CardModel=Backbone.Model.extend(
   url:function()
   {
     return this.get("id");
+  },
+
+  // override and return nothing so the model doesnt fire 'change' when getting
+  // a response from a PUT at (CardsController#update)
+  parse:function(resp, xhr)
+  {
   }
 });
 
@@ -322,10 +328,10 @@ App.CardEditView=Backbone.View.extend(
     this.model.set("border_color",$("#border-color-picker").val());
   },
 
-  save:function()
+  save:function(e)
   {
-    this.model.save();
     this.disableSave();
+    this.model.save();
   },
 
   nextCard:function()

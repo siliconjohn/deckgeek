@@ -2,7 +2,7 @@
 // Card Model              //
 /////////////////////////////
 
-App.CardModel=Backbone.Model.extend(
+App.CardModel = Backbone.Model.extend(
 {
   url:function()
   {
@@ -56,7 +56,7 @@ App.CardPreviewView=Backbone.View.extend(
 
 // TODO: this can only have one instace on a page
 // TODO: add better css styles, change startup position
-App.ColorPickerView=Backbone.View.extend(
+App.ColorPickerView = Backbone.View.extend(
 {
   tag:"span",
 
@@ -226,7 +226,7 @@ App.ArtWorksView = Backbone.View.extend(
 // Card Edit View          //
 /////////////////////////////
 
-App.CardEditView=Backbone.View.extend(
+App.CardEditView = Backbone.View.extend(
 {
   tag:"div",
   className:"card-edit-view",
@@ -258,12 +258,12 @@ App.CardEditView=Backbone.View.extend(
     $("#border-width-slider").bind('change',this.updateBorderWidth);
     $("#border-color-picker").bind('change',this.updateBorderColor);
 
-    if(this.options.nextCard==-1)
+    if(this.options.nextCard == -1)
       $("#next-card-btn").addClass('disabled')
     else
       $("#next-card-btn").removeClass("disabled");
 
-    if(this.options.prevCard==-1)
+    if(this.options.prevCard == -1)
       $("#prev-card-btn").addClass('disabled')
     else
       $("#prev-card-btn").removeClass("disabled");
@@ -293,7 +293,7 @@ App.CardEditView=Backbone.View.extend(
 
   changeImage:function(e)
   {
-      var imageId=$(e.target).data("id");
+      var imageId = $(e.target).data("id");
 
       if(imageId)
       {
@@ -305,7 +305,7 @@ App.CardEditView=Backbone.View.extend(
 
   changeBackgroundImage:function(e)
   {
-      var imageId=$(e.target).data("id");
+      var imageId = $(e.target).data("id");
 
       if(imageId)
       {
@@ -348,14 +348,14 @@ App.CardEditView=Backbone.View.extend(
 
   nextCard:function()
   {
-     if(this.options.nextCard!=-1)
+     if(this.options.nextCard != -1)
        window.location=this.options.nextCard;
   },
 
   prevCard:function()
   {
-    if(this.options.prevCard!=-1)
-      window.location=this.options.prevCard;
+    if(this.options.prevCard != -1)
+      window.location = this.options.prevCard;
   },
 
   enableSave:function()

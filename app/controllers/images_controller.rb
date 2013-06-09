@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
   before_filter :require_login
-  after_filter :add_no_cache_header
+  #after_filter :add_no_cache_header
   respond_to :json;
 
   # GET /images(.:format) images#index

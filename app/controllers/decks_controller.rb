@@ -1,7 +1,7 @@
 class DecksController < ApplicationController
 
   before_filter :require_login
-  after_filter :add_no_cache_header
+  #after_filter :add_no_cache_header
 
   # GET /games/:game_id/decks(.:format)
   def index

@@ -8,7 +8,10 @@
 
 <div class="styles-holder"></div>
 
-<div class="cards-holder"></div>
+<div class="cards-holder">
+<div class="line"></div>
+<br>
+</div>
 
 <script type="text/javascript">
 
@@ -18,8 +21,8 @@
     getDeckHero('.hero-holder', <%= @deck.to_json.to_s.html_safe %>);
     getStyles('.styles-holder', <%= @styles.to_json(:include => {:image => {:only => :url },
   :background => {:only => :url }}).to_s.html_safe %>);
-     getCards('.cards-holder', <%= @cards.to_json(:include => {:style => {:only => :template_name },:image => {:only => :url },
-     :background => {:only => :url }}).to_s.html_safe %>);
+     addCardsView('.cards-holder', <%= @cards.to_json(:include => {:style => {:only => :template_name },:image => {:only => :url },
+     :background => {:only => :url }}).to_s.html_safe %>,true);
   });
 
   $("#add-card-btn").bind("click", function(){

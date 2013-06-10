@@ -1,0 +1,10 @@
+<div class="cards-parent"></div>
+
+<script type="text/javascript">
+
+  $(function(){
+     addCardsView('.cards-parent', <%= @cards.to_json(:include => {:style => {:only => :template_name },:image => {:only => :url },
+       :background => {:only => :url }}).to_s.html_safe %>, false );
+  });
+
+</script>

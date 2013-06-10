@@ -20,7 +20,8 @@ App.CardView=Backbone.View.extend({
     this.$el.html(this.template(this.model.attributes));
     this.$el.addClass('card-view-positioning');
     this.$el.find(".card-view-base").addClass('card-view-shadow');
-    this.$el.append( JST['templates/cards/cardviewbuttons']);
+    if(this.options.addEditButtons)
+    this.$el.append( JST['templates/cards/editdeletebuttons']);
   },
 
   remove:function(){
@@ -33,7 +34,8 @@ App.CardView=Backbone.View.extend({
   },
 
   editCard: function(){
-    window.location=window.App.data.deck_id +"/cards/" + this.model.id ;
+    window.location=this.model.get("deck_id") +"/cards/" + this.model.id ;
+    //window.location=window.App.data.deck_id +"/cards/" + this.model.id ;
   }
 });
 
@@ -47,7 +49,6 @@ App.Cards=Backbone.Collection.extend({
 App.CardsView=Backbone.View.extend({
   tag:"div",
   className:"cards-view-container",
-  template: JST['templates/cards/cardsview'],
   events: {
     'click #add-card-btn' : 'newCard'
   },
@@ -59,13 +60,12 @@ App.CardsView=Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(this.template());
     this.collection.each(this.addCard);
   },
 
   addCard: function(cardModel){
-    var cardView=new App.CardView({model:cardModel});
-    cardView.$el.appendTo(this.$('.cards-list-container'))
+    var cardView=new App.CardView({model:cardModel,addEditButtons:this.options.addEditButtons});
+    cardView.$el.appendTo(this.$el)
     cardView.render();
   },
 
@@ -95,9 +95,9 @@ App.CardsView=Backbone.View.extend({
   }
 });
 
-function getCards(container,json){
+function addCardsView(container, json, addEditButtons){
   window.cards = new App.Cards();
-  window.cardsView = new App.CardsView({collection: cards});
+  window.cardsView = new App.CardsView({collection: cards, addEditButtons:addEditButtons});
   window.cardsView.$el.appendTo(container);
   window.cards.reset(json);
   window.cardsView.render();

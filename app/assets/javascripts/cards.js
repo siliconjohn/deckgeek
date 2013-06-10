@@ -65,7 +65,7 @@ App.CardView = Backbone.View.extend(
 App.CardsView = Backbone.View.extend(
 {
   tag: "div",
-    className: "cards-view",
+  className: "cards-view",
   events:
   {
     'click #add-card-btn' : 'newCard'

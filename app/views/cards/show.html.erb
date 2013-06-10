@@ -4,7 +4,7 @@
 <script type="text/javascript">
 
   $(function(){
-    getCardEdit('.card-edit-view-parent', <%= @card.to_json(:include => { :style => {:only => :template_name },:image => {:only => :url },
+    addCardEditView('.card-edit-view-parent', <%= @card.to_json(:include => { :style => {:only => :template_name },:image => {:only => :url },
       :background => {:only => :url },
 
       }).to_s.html_safe %>,

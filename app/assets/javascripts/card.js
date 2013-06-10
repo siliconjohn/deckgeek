@@ -9,20 +9,6 @@ App.CardModel = Backbone.Model.extend(
     return this.get("id");
   },
 
-  // this can be used to add a revert/undo function
-  // originalJSON:'',
-  // initialize:function(e)
-  // {
-  //   this.originalJSON = (true, {}, e);
-  // },
-
-  // revertToOriginal:function()
-  // {
-  //   this.set(this.originalJSON);
-  // },
-
-  // override and return nothing so the model doesnt fire 'change' when getting
-  // a response from a PUT at (CardsController#update)
   parse:function(resp, xhr)
   {
   }
@@ -109,7 +95,7 @@ App.BackgroundView = Backbone.View.extend(
 {
   tag: "div",
   className: "item",
-  template: JST['templates/backgrounds/backgroundview'],
+  template: JST['templates/card/backgroundview'],
 
   initialize:function()
   {
@@ -128,7 +114,7 @@ App.BackgroundsView = Backbone.View.extend(
 {
   tag:"div",
   className:"backgrounds-view",
-  template: JST['templates/backgrounds/backgroundsview'],
+  template: JST['templates/card/backgroundsview'],
 
   initialize:function()
   {
@@ -230,7 +216,7 @@ App.CardEditView = Backbone.View.extend(
 {
   tag:"div",
   className:"card-edit-view",
-  template: JST['templates/cards/cardedit'],
+  template: JST['templates/card/cardeditview'],
   events: {
     'click .artwork-view-btn': 'changeImage',
     'click .background-view-btn': 'changeBackgroundImage',
@@ -369,7 +355,7 @@ App.CardEditView = Backbone.View.extend(
   }
 });
 
-function getCardEdit(container, json, next, prev, bkgds, artworks)
+function addCardEditView(container, json, next, prev, bkgds, artworks)
 {
   window.cardModel = new App.CardModel(json);
   window.cardEditView = new App.CardEditView({model: cardModel, nextCard:next,

@@ -158,7 +158,7 @@ App.ArtWorkView = Backbone.View.extend(
 {
   tag: "div",
   className: "item",
-  template: JST['templates/artwork/artworkview'],
+  template: JST['templates/card/artworkview'],
 
   initialize:function()
   {
@@ -177,7 +177,7 @@ App.ArtWorksView = Backbone.View.extend(
 {
   tag:"div",
   className:"artworks-view",
-  template: JST['templates/artwork/artworksview'],
+  template: JST['templates/card/artworksview'],
 
   initialize:function()
   {

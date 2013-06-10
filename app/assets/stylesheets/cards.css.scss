@@ -1,52 +1,34 @@
-.cards-view-container {
-}
+/*****************************
+ * These should only be used
+ * cards.js
+ ****************************/
 
-.card-view-container {
-  width: 235px;
-  height: 335px;
-  float:left;
-  position:relative;
+ .cards-view {
 
-  .btn-group {
-    left:10px;
-    top:262px;
-    position:absolute;
+  .card-view {
+    width: 235px;
+    height: 335px;
+    float: left;
+    position: relative;
 
-    .edit-card-button {
-      width:65px;
-    }
+    .btn-group {
+      left: 10px;
+      top: 262px;
+      position: absolute;
 
-    .delete-card-btn {
-      width:65px;
+      .edit-card-btn {
+        width: 65px;
+      }
+
+      .delete-card-btn {
+        width: 65px;
+      }
     }
   }
+
+  .card-view-positioning {
+    left: 16px;
+    top: 0px;
+    float: left;
+  }
 }
-
-.card-view-base {
-  width: 200px;
-  height: 300px;
-  border:1px solid #d0d0d0;
-  border-radius:10px;
-  position:absolute;
-  background-color: #fafafa;
-  overflow:hidden;
-}
-
-.card-view-border-view {
-  width:100%;
-  height:100%;
-}
-
-.card-view-positioning {
-  left:16px;
-  top:0px;
-  float: left;
-}
-
-.card-view-shadow {
-  -webkit-box-shadow:2px 2px 4px 0px rgba(48, 48, 48, .3);
-  box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .3);
-}
-
-
-

@@ -1,8 +1,39 @@
+/*****************************
+ * This is for viewing a card
+ * anywhere these can be used
+ * anywhere
+ ****************************/
+
+.card-view-base {
+  width: 200px;
+  height: 300px;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  position: absolute;
+  background-color: #fafafa;
+  overflow: hidden;
+}
+
+.card-view-border-view {
+  width: 100%;
+  height: 100%;
+}
+
+.card-view-shadow {
+  -webkit-box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );
+  box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );
+}
+
+/****************************
+ * This is for the card view
+ * and edit stuff
+ ****************************/
+
 .card-edit-view-parent {
 
-  /////////////////
-  // Accordian
-  /////////////////
+ /****************************
+  * Accordian
+  ****************************/
 
   .accordion {
     margin-bottom: 5px;
@@ -20,9 +51,9 @@
     width: 100%;
   }
 
-  /////////////////
-  // Text Input
-  /////////////////
+  /****************************
+   * Text Input
+   ****************************/
 
   input {
     width: 96%;
@@ -33,9 +64,9 @@
     height: 150px;
   }
 
-  /////////////////
-  // Border
-  /////////////////
+ /****************************
+  * Border
+  ****************************/
 
   .border-control {
     width: 100%;
@@ -45,9 +76,9 @@
     width: 420px;
   }
 
-  /////////////////
-  // Card Preview
-  /////////////////
+ /****************************
+  * Card Preview
+  ****************************/
 
   #card-preview-view {
 
@@ -58,9 +89,9 @@
     }
   }
 
-  /////////////////////////////
-  // Background Image Carosel
-  /////////////////////////////
+ /****************************
+  * Background Image Carosel
+  ****************************/
 
   #backgrounds-carosel {
     margin-top: 10px;
@@ -89,9 +120,9 @@
     }
   }
 
-  /////////////////////////////
-  // Artwork Image Carosel
-  /////////////////////////////
+ /****************************
+  * Artwork Image Carosel
+  ****************************/
 
   #artworks-carosel {
     margin-top: 10px;

@@ -1,3 +1,8 @@
+/******************************************
+ * This is for displaying one card
+ * and all of the UI needed to edit it.
+ ******************************************/
+
 /////////////////////////////
 // Card Model              //
 /////////////////////////////
@@ -217,7 +222,8 @@ App.CardEditView = Backbone.View.extend(
   tag:"div",
   className:"card-edit-view",
   template: JST['templates/card/cardeditview'],
-  events: {
+  events:
+  {
     'click .artwork-view-btn': 'changeImage',
     'click .background-view-btn': 'changeBackgroundImage',
     'click .save-changes-btn': 'save',

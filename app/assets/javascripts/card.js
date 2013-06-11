@@ -352,7 +352,6 @@ App.CardEditView = Backbone.View.extend(
     this.cardCarouselsView = new App.CardCarouselsView({collection:this.cardCarouselCollection, selectID:this.model.id});
     this.cardCarouselsView.$el.appendTo(this.$("#card-carousels-parent"));
     this.cardCarouselsView.render();
-    this.cardCarouselsView.setActiveModel(this.model.get("id"));
 
     return this;
   },

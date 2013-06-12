@@ -19,6 +19,12 @@ App.CardModel = Backbone.Model.extend(
   }
 });
 
+
+App.CardCollection = Backbone.Collection.extend(
+{
+  model: App.CardModel
+});
+
 /////////////////////////////
 // Card Preview View
 /////////////////////////////
@@ -219,11 +225,6 @@ App.ArtWorksView = Backbone.View.extend(
 // Card Carousel
 /////////////////////////////
 
-App.CardCarouselCollection = Backbone.Collection.extend(
-{
-  model: Backbone.Model
-});
-
 App.CardCarouselView = Backbone.View.extend(
 {
   tag: "div",
@@ -237,6 +238,7 @@ App.CardCarouselView = Backbone.View.extend(
 
   render:function()
   {
+    console.log(this.model.attributes);
     this.template = JST['templates/styles/' + this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
     this.$el.find(".card-view-base").addClass("card-view-shadow center");
@@ -324,9 +326,9 @@ App.CardEditView = Backbone.View.extend(
     this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
     this.artworksView.render();
 
-    //this.cardPreview = new App.CardPreviewView({model:this.model});
-    //this.cardPreview.$el.appendTo(this.$("#card-preview-parent"));
-    //this.cardPreview.render();
+    this.cardPreview = new App.CardPreviewView({model:this.model});
+    this.cardPreview.$el.appendTo(this.$("#card-carousels-parent"));
+    this.cardPreview.render();
 
     this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
     this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
@@ -338,8 +340,8 @@ App.CardEditView = Backbone.View.extend(
     this.backgroundsView.$el.appendTo(this.$("#backgrounds-view-parent"));
     this.backgroundsView.render();
 
-    this.cardCarouselCollection = new App.CardCarouselCollection(this.options.cards);
-    this.cardCarouselsView = new App.CardCarouselsView({collection:this.cardCarouselCollection, selectID:this.model.id});
+    //this.CardCollection = new App.CardCollection(this.options.cards);
+    this.cardCarouselsView = new App.CardCarouselsView({collection:window.cardModels, selectID:this.model.id});
     this.cardCarouselsView.$el.appendTo(this.$("#card-carousels-parent"));
     this.cardCarouselsView.render();
 
@@ -350,10 +352,11 @@ App.CardEditView = Backbone.View.extend(
   {
     var modelId = $(e.target).data("id");
 
-    this.cardCarouselCollection.each(function(crd)
+    window.cardModels.each(function(crd)
     {
       if(crd.id==modelId)
       {
+        console.log(crd);
         this.model=crd;
         this.render();
       }
@@ -428,9 +431,9 @@ App.CardEditView = Backbone.View.extend(
 
 function addCardEditView(container, json, bkgds, artworks, cards)
 {
-  window.cardModel = new App.CardModel(json);
-  window.cardEditView = new App.CardEditView({model: cardModel, backgrounds: bkgds,
-                            artworks: artworks, cards: cards});
+  window.cardModels = new App.CardCollection(cards);
+  window.cardEditView = new App.CardEditView({model:window.cardModels.first(), backgrounds: bkgds,
+                            artworks: artworks, cards: window.cardModels});
   window.cardEditView.$el.appendTo(container);
   window.cardEditView.render();
 }

@@ -2,8 +2,8 @@
 
 <script type="text/javascript">
 
-  $(function(){
-    //@cards.map{ |c| c.get_json }.to_json.to_s.html_safe
+  $(function()
+  {
      addCardsView('.cards-parent',  <%= @cards.to_json.to_s.html_safe %>, false );
   });
 

@@ -240,6 +240,8 @@ App.CardCarouselView = Backbone.View.extend(
     this.template = JST['templates/styles/' + this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
     this.$el.find(".card-view-base").addClass("card-view-shadow center");
+    this.$el.append(JST['templates/card/cardcarouselvieweditbutton'](this.model.attributes));
+
     return this;
   }
 });
@@ -295,16 +297,14 @@ App.CardEditView = Backbone.View.extend(
     'click .artwork-view-btn': 'changeImage',
     'click .background-view-btn': 'changeBackgroundImage',
     'click .save-changes-btn': 'save',
-    'click #next-card-btn': 'nextCard',
-    'click #prev-card-btn': 'prevCard'
+    'click .edit-card-btn': 'changeModel'
   },
 
   initialize:function()
   {
     _.bindAll(this, 'render', 'save', 'changeImage', 'enableSave', 'disableSave',
-              'nextCard', 'prevCard', 'updateCardDescription', 'updateCardName',
-              'updateBorderColor', 'updateBorderStyle', 'updateBorderWidth',
-              'changeBackgroundImage');
+              'updateCardDescription', 'updateCardName','updateBorderColor', 'updateBorderStyle',
+              'updateBorderWidth', 'changeBackgroundImage', 'changeModel');
 
     this.listenTo(this.model, 'change', this.enableSave);
   },
@@ -318,25 +318,15 @@ App.CardEditView = Backbone.View.extend(
     $("#border-width-slider").bind('change', this.updateBorderWidth);
     $("#border-color-picker").bind('change', this.updateBorderColor);
 
-    if(this.options.nextCard == -1)
-      $("#next-card-btn").addClass('disabled')
-    else
-      $("#next-card-btn").removeClass("disabled");
-
-    if(this.options.prevCard == -1)
-      $("#prev-card-btn").addClass('disabled')
-    else
-      $("#prev-card-btn").removeClass("disabled");
-
     this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
     this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
                                                     image_id:this.model.get("image_id")})
     this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
     this.artworksView.render();
 
-    this.cardPreview = new App.CardPreviewView({model:this.model});
-    this.cardPreview.$el.appendTo(this.$("#card-preview-parent"));
-    this.cardPreview.render();
+    //this.cardPreview = new App.CardPreviewView({model:this.model});
+    //this.cardPreview.$el.appendTo(this.$("#card-preview-parent"));
+    //this.cardPreview.render();
 
     this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
     this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
@@ -354,6 +344,34 @@ App.CardEditView = Backbone.View.extend(
     this.cardCarouselsView.render();
 
     return this;
+  },
+
+  changeModel:function(e)
+  {
+
+//     var modelId = $(e.target).data("id");
+
+
+//     function(crd)
+//     {
+
+//     if(crd.id==modelId)
+//      {
+//         window.cardModel.set(crd);
+
+//       }
+//       // reload json from server? how to update everything
+
+// //console.log(this.cardCarouselCollection.last());
+
+// underscore bind
+//     this.model=this.cardCarouselCollection.last();
+
+// //     this.cardCarouselCollection.each(
+// //     })
+//  this.render();
+//       console.log(this.model.id);
+
   },
 
   changeImage:function(e)
@@ -409,18 +427,6 @@ App.CardEditView = Backbone.View.extend(
   {
     this.disableSave();
     this.model.save();
-  },
-
-  nextCard:function()
-  {
-     if(this.options.nextCard != -1)
-       window.location=this.options.nextCard;
-  },
-
-  prevCard:function()
-  {
-    if(this.options.prevCard != -1)
-      window.location = this.options.prevCard;
   },
 
   enableSave:function()

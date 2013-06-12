@@ -4,12 +4,10 @@
 <script type="text/javascript">
 
   $(function(){
-    addCardEditView('.card-edit-view-parent', <%= @card.to_json(:include => { :style => {:only => :template_name },:image => {:only => :url },
-      :background => {:only => :url }}).to_s.html_safe %>,
+    addCardEditView('.card-edit-view-parent', <%= @card.to_json.to_s.html_safe %>,
       <%= @backgrounds.to_json.to_s.html_safe %>,
       <%= @images.to_json.to_s.html_safe %>,
-      <%= @cards.to_json(:include => { :style => {:only => :template_name },:image => {:only => :url },
-      :background => {:only => :url }}).to_s.html_safe %>);
+      <%= @cards.to_json.to_s.html_safe %>);
 });
 
 </script>

@@ -1,18 +1,15 @@
 class CardsController < ApplicationController
 
   before_filter :require_login
-  #after_filter :add_no_cache_header
 
   # GET /games/:game_id/decks/:deck_id/cards(.:format)
   def index
     @cards = Card.where(:deck_id => params[:deck_id]).order(:created_at)
-    @images = Image.all
-    @backgrounds =Background.all;
 
     if @cards.any?
       respond_to do |format|
         format.html
-        format.json { render :json => @cards.to_json(:include => {:style => {:only => :template_name }})}
+        format.json { render :json => @cards }
       end
     else
       render_json_200
@@ -27,20 +24,6 @@ class CardsController < ApplicationController
       @images = Image.all
       @backgrounds =Background.all;
       @cards= Card.where(:deck_id => params[:deck_id]).order(:created_at)
-
-
-
-# @cards=temp.to_json(:include => { :style => {:only => :template_name },:image => {:only => :url },
-#     :background => {:only => :url }})
-
-
-# logger.info(@cards)
-
-
-
-
-
-
 
     rescue ActiveRecord::RecordNotFound => e
       render_404
@@ -60,7 +43,7 @@ class CardsController < ApplicationController
       render_404
     else
       if @card.update_attributes(params[:card])
-        render json:@card, status: :ok
+        render json: @card, status: :ok
       else
         render json: @card.errors, status: :unprocessable_entity
       end

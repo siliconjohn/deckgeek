@@ -1,10 +1,11 @@
+<!-- all card stuff-->
 <div class="cards-parent"></div>
 
 <script type="text/javascript">
 
   $(function()
   {
-     addCardsView('.cards-parent',  <%= @cards.to_json.to_s.html_safe %>, false );
+     addCardsView('.cards-parent', <%= @cards.to_json.to_s.html_safe %>, false);
   });
 
 </script>

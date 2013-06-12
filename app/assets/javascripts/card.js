@@ -26,30 +26,6 @@ App.CardCollection = Backbone.Collection.extend(
 });
 
 /////////////////////////////
-// Card Preview View
-/////////////////////////////
-
-App.CardPreviewView=Backbone.View.extend(
-{
-  tag:"div",
-  id:"card-preview-view",
-
-  initialize:function()
-  {
-    _.bindAll(this, 'render');
-    this.listenTo(this.model, 'change', this.render);
-  },
-
-  render:function()
-  {
-    this.template = JST['templates/styles/'+this.model.attributes.style.template_name];
-    this.$el.html(this.template(this.model.attributes));
-    this.$el.find(".card-view-base").addClass('card-view-shadow center');
-    return this;
-  }
-});
-
-/////////////////////////////
 // Color Picker View       //
 /////////////////////////////
 
@@ -238,7 +214,6 @@ App.CardCarouselView = Backbone.View.extend(
 
   render:function()
   {
-    console.log(this.model.attributes);
     this.template = JST['templates/styles/' + this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
     this.$el.find(".card-view-base").addClass("card-view-shadow center");
@@ -307,8 +282,6 @@ App.CardEditView = Backbone.View.extend(
     _.bindAll(this, 'render', 'save', 'changeImage', 'enableSave', 'disableSave',
               'updateCardDescription', 'updateCardName','updateBorderColor', 'updateBorderStyle',
               'updateBorderWidth', 'changeBackgroundImage', 'changeModel');
-
-    this.listenTo(this.model, 'change', this.enableSave);
   },
 
   render:function()
@@ -326,10 +299,6 @@ App.CardEditView = Backbone.View.extend(
     this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
     this.artworksView.render();
 
-    this.cardPreview = new App.CardPreviewView({model:this.model});
-    this.cardPreview.$el.appendTo(this.$("#card-carousels-parent"));
-    this.cardPreview.render();
-
     this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
     this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
     this.borderColorView.render();
@@ -340,10 +309,10 @@ App.CardEditView = Backbone.View.extend(
     this.backgroundsView.$el.appendTo(this.$("#backgrounds-view-parent"));
     this.backgroundsView.render();
 
-    //this.CardCollection = new App.CardCollection(this.options.cards);
-    this.cardCarouselsView = new App.CardCarouselsView({collection:window.cardModels, selectID:this.model.id});
+    this.cardCarouselsView = new App.CardCarouselsView({collection:window.App.data.cardModels, selectID:this.model.id});
     this.cardCarouselsView.$el.appendTo(this.$("#card-carousels-parent"));
     this.cardCarouselsView.render();
+      this.listenTo(this.model, 'change', this.enableSave);
 
     return this;
   },
@@ -352,11 +321,10 @@ App.CardEditView = Backbone.View.extend(
   {
     var modelId = $(e.target).data("id");
 
-    window.cardModels.each(function(crd)
+    window.App.data.cardModels.each(function(crd)
     {
       if(crd.id==modelId)
       {
-        console.log(crd);
         this.model=crd;
         this.render();
       }
@@ -429,11 +397,13 @@ App.CardEditView = Backbone.View.extend(
   }
 });
 
-function addCardEditView(container, json, bkgds, artworks, cards)
+function addCardEditView(container, id, bkgds, artworks, cards)
 {
-  window.cardModels = new App.CardCollection(cards);
-  window.cardEditView = new App.CardEditView({model:window.cardModels.first(), backgrounds: bkgds,
-                            artworks: artworks, cards: window.cardModels});
-  window.cardEditView.$el.appendTo(container);
-  window.cardEditView.render();
+  window.App.data.cardModels = new App.CardCollection(cards);
+  window.App.views.cardEditView = new App.CardEditView({model:window.App.data.cardModels.findWhere({id: id}),
+                                                        backgrounds: bkgds,
+                                                        artworks: artworks,
+                                                        cards: window.App.data.cardModels});
+  window.App.views.cardEditView.$el.appendTo(container);
+  window.App.views.cardEditView.render();
 }

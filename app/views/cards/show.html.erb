@@ -3,12 +3,13 @@
 
 <script type="text/javascript">
 
-  $(function(){
-    addCardEditView('.card-edit-view-parent', <%= @card.to_json.to_s.html_safe %>,
-      <%= @backgrounds.to_json.to_s.html_safe %>,
-      <%= @images.to_json.to_s.html_safe %>,
-      <%= @cards.to_json.to_s.html_safe %>);
-});
+  $(function()
+  {
+    addCardEditView('.card-edit-view-parent',
+                    <%= @card.id %>,
+                    <%= @backgrounds.to_json.to_s.html_safe %>,
+                    <%= @images.to_json.to_s.html_safe %>,
+                    <%= @cards.to_json.to_s.html_safe %>);
+  });
 
 </script>
-

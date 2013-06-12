@@ -348,30 +348,16 @@ App.CardEditView = Backbone.View.extend(
 
   changeModel:function(e)
   {
+    var modelId = $(e.target).data("id");
 
-//     var modelId = $(e.target).data("id");
-
-
-//     function(crd)
-//     {
-
-//     if(crd.id==modelId)
-//      {
-//         window.cardModel.set(crd);
-
-//       }
-//       // reload json from server? how to update everything
-
-// //console.log(this.cardCarouselCollection.last());
-
-// underscore bind
-//     this.model=this.cardCarouselCollection.last();
-
-// //     this.cardCarouselCollection.each(
-// //     })
-//  this.render();
-//       console.log(this.model.id);
-
+    this.cardCarouselCollection.each(function(crd)
+    {
+      if(crd.id==modelId)
+      {
+        this.model=crd;
+        this.render();
+      }
+    }.bind(this))
   },
 
   changeImage:function(e)

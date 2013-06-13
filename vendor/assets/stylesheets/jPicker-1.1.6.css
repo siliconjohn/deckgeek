@@ -3,7 +3,7 @@
   height: 24px; /* change this value if using a different sized color picker icon */
   position: relative; /* make this element an absolute positioning container */
   text-align: left; /* make the zero width children position to the left of container */
-  width: 25px; /* change this value if using a different sized color picker icon */
+  width: 24px; /* change this value if using a different sized color picker icon */
 }
 .jPicker .Icon span.Color, .jPicker .Icon span.Alpha {
   background-position: 2px 2px;
@@ -27,24 +27,27 @@
 .jPicker.Container {
   color: #000;
   z-index: 10;
+
 }
 table.jPicker {
   background-color: #efefef;
-  border: 1px outset #666;
-  font-family: Arial, Helvetica, Sans-Serif;
+  border: 1px solid #D0D0D0;
+  pfont-family: Arial, Helvetica, Sans-Serif;
   font-size: 12px !important;
   margin: 0px;
   padding: 5px;
   width: 545px;
   z-index: 20;
+  -webkit-box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );
+  box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );
 }
 .jPicker .Move {
-  background-color: #dddddd;
-  border-color: #fff #666 #666 #fff;
-  border-style: solid;
-  border-width: 1px;
+  dbackground-color: #e0e0e0;
+  dborder-color: #D0D0D0;
+  dborder-style: solid;
+  dborder-width: 1px;
   cursor: move;
-  height: 12px;
+  height: 0px;
   padding: 0px;
 }
 .jPicker .Title {

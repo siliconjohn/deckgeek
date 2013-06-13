@@ -46,6 +46,15 @@ App.ColorPickerView = Backbone.View.extend(
     {
       window:
       {
+         effects:
+          {
+            type: 'fade', /* effect used to show/hide an expandable picker. Acceptable values "slide", "show", "fade" */
+            speed:
+            {
+              show: 'fast', /* duration of "show" effect. Acceptable values are "fast", "slow", or time in ms */
+              hide: 'fast' /* duration of "hide" effect. Acceptable values are "fast", "slow", or time in ms */
+            }
+          },
         expandable:true,
         position:{x:-50}
       },

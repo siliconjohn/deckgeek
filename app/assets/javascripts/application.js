@@ -17,6 +17,7 @@
 //= require backbone
 //= require bootstrap
 //= require jpicker-1.1.6.min
+//= require html5slider
 //= require_tree ./templates
 //= require_tree .
 

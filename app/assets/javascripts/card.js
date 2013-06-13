@@ -38,36 +38,32 @@ App.ColorPickerView = Backbone.View.extend(
   initialize:function()
   {
     _.bindAll(this, 'render', 'changeColor');
-   this.listenTo(this.model, 'change', this.render);
   },
 
   render:function()
   {
-    if(!$.jPicker.List[0])
+    this.$el.jPicker(
     {
-      this.$el.jPicker(
+      window:
       {
-            window:
-            {
-              expandable:true,
-              position:{x:-50}
-            },
-            color:
-            {
-              alphaSupport:false,
-              active:new $.jPicker.Color({hex: this.model.get(this.options.atrib)})
-            }
-        },
+        expandable:true,
+        position:{x:-50}
+      },
+      color:
+      {
+        alphaSupport:false,
+        active:new $.jPicker.Color({hex: this.model.get(this.options.atrib)})
+      }
+    },
 
-        this.changeColor, this.changeColor, this.changeColor
-      );
-    }
+    this.changeColor, this.changeColor, this.changeColor);
+
     return this;
   },
 
   changeColor:function(color, context)
   {
-    this.model.set("border_color", '#'+$.jPicker.List[0].color.active.val('hex'))
+    this.model.set("border_color", '#'+color.val('hex'))
   }
 });
 
@@ -312,7 +308,8 @@ App.CardEditView = Backbone.View.extend(
     this.cardCarouselsView = new App.CardCarouselsView({collection:window.App.data.cardModels, selectID:this.model.id});
     this.cardCarouselsView.$el.appendTo(this.$("#card-carousels-parent"));
     this.cardCarouselsView.render();
-      this.listenTo(this.model, 'change', this.enableSave);
+
+    this.listenTo(this.model, 'change', this.enableSave);
 
     return this;
   },

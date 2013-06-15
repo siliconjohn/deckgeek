@@ -9,4 +9,9 @@ class Style < ActiveRecord::Base
 
   validates_length_of :description, :maximum => 255
   validates_length_of :name, :maximum => 255
+
+  def as_json(a)
+    super( :include => [:image, :background ])
+  end
+
 end

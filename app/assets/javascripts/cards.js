@@ -51,7 +51,6 @@ App.CardView = Backbone.View.extend(
   {
     this.template = JST['templates/styles/' + this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
-    this.$el.addClass('card-view-positioning');
     this.$el.find(".card-view-base").addClass('card-view-shadow');
     if(this.options.addEditButtons)
       this.$el.append( JST['templates/cards/editdeletebuttons']);
@@ -105,16 +104,18 @@ App.CardsView = Backbone.View.extend(
 
   newCard:function()
   {
-    // give the new card the style of the last in collection
-    lastCard=this.collection.last();
+    // TODO FIX NEW CARD ID FUCKED
+    // // give the new card the style of the last in collection
+    // lastCard=this.collection.last();
 
-    if(lastCard)
-      card=new App.Card({name:'New Card', description:'', style_id:lastCard.get("style_id"), style:lastCard.get("style"), image:lastCard.get("image"), background: {url:"bg1.jpg"}});
-    else
-      card=new App.Card({name:'New Card', description:'', style_id:1, style:{template_name:"style-1"}, image_id:1, image: {url:"image1.jpeg"}, background: {url:"bg1.jpg"}});
+    // if(lastCard)
+    //   card=new App.Card({name:'New Card', description:'', style_id:lastCard.get("style_id"),background_id:0,
+    //    style:lastCard.get("style"), image:lastCard.get("image"), background: {url:"bg1.jpg"}});
+    // else
+    //   card=new App.Card({name:'New Card', description:'', style_id:1, style:{template_name:"style-1"}, image_id:1, image: {url:"image1.jpeg"}, background_id:0, background: {url:"bg1.jpg"}});
 
-    this.collection.add(card);
-    card.save();
+    // this.collection.add(card);
+    // card.save();
   },
 
   setStyle:function( style_id )

@@ -25,9 +25,9 @@ backgrounds=Background.create(
 
 styles=Style.create(
    [{name: 'Title Here', description:'Description 1.',background_id:backgrounds[0].id, template_name:'style-1', image_id:images[0].id },
-   { name: 'Title Here', description:'Description 2.',background_id:backgrounds[1].id, template_name:'style-2', image_id:images[1].id },
-   { name: 'Title Here', description:'Description 3.',background_id:backgrounds[0].id, template_name:'style-3', image_id:images[2].id },
-   { name: 'Title Here', description:'Description 4.',background_id:backgrounds[1].id, template_name:'style-4', image_id:images[3].id }
+   { name: 'Title Here', description:'Description 2.',background_id:backgrounds[1].id, template_name:'style-2', image_id:images[1].id, width:350, height: 250},
+   { name: 'Title Here', description:'Description 3.',background_id:backgrounds[0].id, template_name:'style-3', image_id:images[2].id, width:200, height: 200},
+   { name: 'Title Here', description:'Description 4.',background_id:backgrounds[1].id, template_name:'style-4', image_id:images[3].id, width:100, height: 100}
    ])
 
 games=Game.create(

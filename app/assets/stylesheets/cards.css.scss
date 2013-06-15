@@ -6,29 +6,22 @@
  .cards-view {
 
   .card-view {
-    width: 235px;
-    height: 335px;
+    margin: 20px;
     float: left;
     position: relative;
 
     .btn-group {
-      left: 10px;
-      top: 262px;
-      position: absolute;
+      margin-right: -8px;
+      margin-top: -20px;
+      float:right;
 
       .edit-card-btn {
-        width: 65px;
+        width: 50px;
       }
 
       .delete-card-btn {
-        width: 65px;
+        width: 50px;
       }
     }
-  }
-
-  .card-view-positioning {
-    left: 16px;
-    top: 0px;
-    float: left;
   }
 }

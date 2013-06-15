@@ -66,9 +66,9 @@ App.StylesView=Backbone.View.extend({
 });
 
 function getStyles(container,json){
-  window.styles = new App.Styles();
-  window.stylesView = new App.StylesView({collection: styles});
-  window.stylesView.$el.appendTo(container);
-  window.styles.reset(json);
-  window.stylesView.render();
+  // window.styles = new App.Styles();
+  // window.stylesView = new App.StylesView({collection: styles});
+  // window.stylesView.$el.appendTo(container);
+  // window.styles.reset(json);
+  // window.stylesView.render();
 }

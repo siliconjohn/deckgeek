@@ -2,7 +2,9 @@
 	"folders":
 	[
 		{
-			"path": "/Users/johndoerfler/Dropbox/Projects/gamegen"
+      "path": "/Users/johndoerfler/Dropbox/Projects/gamegen",
+      "folder_exclude_patterns": ["tmp"],
+      "file_exclude_patterns": ["*.sublime-workspace", "*.sublime-project"]
 		}
 	]
 }

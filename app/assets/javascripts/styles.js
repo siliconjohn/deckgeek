@@ -23,11 +23,7 @@ App.StyleView=Backbone.View.extend({
 
     var h=this.model.get("height");
     var ph=(355-h)/2;
-    console.log(ph);
-      this.$el.attr("style","margin-top:"+ph+"px");
-
-
-
+    this.$el.attr("style","margin-top:"+ph+"px");
   },
 
   remove:function(){

@@ -53,8 +53,12 @@ App.StylesView=Backbone.View.extend({
     this.collection.each(this.addStyle);
   },
 
-  addStyle: function(styleModel){
+  addStyle: function(styleModel)
+  {
+    // needs ref to itself to render the template properly!
+    styleModel.set("style",styleModel.attributes);
     var styleView=new App.StyleView({model:styleModel});
+
     styleView.$el.appendTo(this.$('.carousel-inner'))
 
     // set first style card to active
@@ -65,10 +69,11 @@ App.StylesView=Backbone.View.extend({
   }
 });
 
-function getStyles(container,json){
-  // window.styles = new App.Styles();
-  // window.stylesView = new App.StylesView({collection: styles});
-  // window.stylesView.$el.appendTo(container);
-  // window.styles.reset(json);
-  // window.stylesView.render();
+function getStyles(container,json)
+{
+  window.styles = new App.Styles();
+  window.stylesView = new App.StylesView({collection: styles});
+  window.stylesView.$el.appendTo(container);
+  window.styles.reset(json);
+  window.stylesView.render();
 }

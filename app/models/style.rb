@@ -4,7 +4,8 @@ class Style < ActiveRecord::Base
   belongs_to :background, :inverse_of => :styles
 
   attr_accessible :description, :name, :template_name, :image_id, :background_id,
-                  :border_width, :border_style, :border_color, :border_radius
+                  :border_width, :border_style, :border_color, :border_radius,
+                  :width, :height
 
   validates_length_of :description, :maximum => 255
   validates_length_of :name, :maximum => 255

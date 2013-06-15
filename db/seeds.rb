@@ -19,15 +19,15 @@ images=Image.create(
   ])
 
 backgrounds=Background.create(
-  [{ name: 'background 1', url:'bg1.jpg'},
-   { name: 'background 2', url:'bg2.jpg'}
+  [{ name: 'background 1', url:'1.jpg'},
+   { name: 'background 2', url:'2.jpg'}
   ])
 
 styles=Style.create(
-   [{name: 'Title Here', description:'Description 1 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-1', image_id:images[0].id },
-   { name: 'Title Here', description:'Description 2 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-2', image_id:images[1].id },
-   { name: 'Title Here', description:'Description 3 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-3', image_id:images[2].id },
-   { name: 'Title Here', description:'Description 4 goes here, this can be a whole paragraph.',background_id:backgrounds[0].id, template_name:'style-4', image_id:images[3].id }
+   [{name: 'Title Here', description:'Description 1.',background_id:backgrounds[0].id, template_name:'style-1', image_id:images[0].id },
+   { name: 'Title Here', description:'Description 2.',background_id:backgrounds[1].id, template_name:'style-2', image_id:images[1].id },
+   { name: 'Title Here', description:'Description 3.',background_id:backgrounds[0].id, template_name:'style-3', image_id:images[2].id },
+   { name: 'Title Here', description:'Description 4.',background_id:backgrounds[1].id, template_name:'style-4', image_id:images[3].id }
    ])
 
 games=Game.create(

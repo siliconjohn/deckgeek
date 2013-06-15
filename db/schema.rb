@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.string   "name"
     t.string   "description"
     t.string   "template_name"
+    t.integer  "width",                                       :default => 250
+    t.integer  "height",                                      :default => 350
     t.string   "border_style",                                :default => "solid"
     t.string   "border_color",                                :default => "#808080"
     t.integer  "border_radius",                               :default => 10

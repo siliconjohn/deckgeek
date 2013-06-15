@@ -17,10 +17,17 @@ App.StyleView=Backbone.View.extend({
 
   render:function(){
     this.$el.html(this.template(this.model.attributes));
-
     this.$el.find(".carosel-card").prepend(JST['templates/styles/'+
       this.model.attributes.template_name](this.model.attributes));
     this.$el.find(".card-view-base").addClass('card-view-shadow');
+
+    var h=this.model.get("height");
+    var ph=(355-h)/2;
+    console.log(ph);
+      this.$el.attr("style","margin-top:"+ph+"px");
+
+
+
   },
 
   remove:function(){
@@ -55,7 +62,7 @@ App.StylesView=Backbone.View.extend({
 
   addStyle: function(styleModel)
   {
-    // needs ref to itself to render the template properly!
+    // needs ref to itself to render the template properly
     styleModel.set("style",styleModel.attributes);
     var styleView=new App.StyleView({model:styleModel});
 

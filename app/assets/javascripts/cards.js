@@ -43,8 +43,15 @@ App.CardView = Backbone.View.extend(
     this.template = JST['templates/styles/' + this.model.attributes.style.template_name];
     this.$el.html(this.template(this.model.attributes));
     this.$el.find(".card-view-base").addClass('card-view-shadow');
+
     if(this.options.addEditButtons)
+    {
+      // TODO: you can see the buttons move when the margin is added, fix
+      var w=this.model.attributes.style.width;
+      var ph=(w-152)/2;
       this.$el.append( JST['templates/cards/editdeletebuttons']);
+      this.$el.find('.edit-delete-buttons').attr( "style", "margin-left:"+ph+"px");
+    }
   },
 
   remove:function()

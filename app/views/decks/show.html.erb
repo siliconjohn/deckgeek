@@ -18,8 +18,12 @@
   App.data.deck_id = <%= @deck.id %>;
 
   $(function(){
-    getDeckHero('.hero-holder', <%= @deck.to_json.to_s.html_safe %>);
-    getStyles('.styles-holder', <%= @styles.to_json.to_s.html_safe %>);
+
+
+   getDeckHero('.hero-holder', <%= @deck.to_json.to_s.html_safe %>);
+    getStyles('.styles-holder', <%= @styles.to_json.to_s.html_safe %>,
+                                  <%= @cards.first.to_json.to_s.html_safe %>  ,
+                                  <%= @defaultCard.to_json.to_s.html_safe %> );
      addCardsView('.cards-holder', <%= @cards.to_json.to_s.html_safe %>,true);
   });
 

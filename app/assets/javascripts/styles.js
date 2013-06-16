@@ -63,6 +63,9 @@ App.StylesView=Backbone.View.extend(
   {
     // needs ref to itself to render the template properly
     styleModel.set( "style", styleModel.attributes );
+    styleModel.set( "background", this.options.sampleCard.background );
+
+    console.log(styleModel);
     var styleView=new App.StyleView({ model: styleModel });
 
     styleView.$el.appendTo(this.$( '.carousel-inner' ))
@@ -74,9 +77,11 @@ App.StylesView=Backbone.View.extend(
   }
 });
 
-function getStyles(container, json)
+function getStyles(container, json, cards, sampleCard)
 {
-  window.App.views.stylesView = new App.StylesView({ collection: new App.Styles( json ) });
+  cards ? sample=cards : sample=sampleCard;
+
+  window.App.views.stylesView = new App.StylesView({ collection: new App.Styles( json ), sampleCard:sample });
   window.App.views.stylesView.$el.appendTo( container );
   window.App.views.stylesView.render();
 }

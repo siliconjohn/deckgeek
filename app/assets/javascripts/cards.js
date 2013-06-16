@@ -83,7 +83,7 @@ App.CardsView = Backbone.View.extend(
 
   initialize:function()
   {
-    _.bindAll(this, 'addCard', 'render', 'newCard', 'setStyle');
+    _.bindAll(this, 'addCard', 'render', 'newCard', 'setStyle', 'center');
     this.listenTo(this.collection, 'add', this.addCard);
     this.listenTo(this.collection, 'remove', this.render);
   },
@@ -91,6 +91,7 @@ App.CardsView = Backbone.View.extend(
   render:function()
   {
     this.collection.each(this.addCard);
+    this.center();
   },
 
   addCard:function(cardModel)
@@ -124,6 +125,19 @@ App.CardsView = Backbone.View.extend(
       card.set( 'style', { template_name: "style-"+style_id } );
       card.save();
     });
+
+    this.center();
+  },
+
+  center: function()
+  {
+    var cardWidth=this.$el.find('.card-view').first().width();
+    var m=10;//this.$el.find('.card-view').first().css("margin-right")
+    var pw=940;//this.$el.width();
+    var cw=cardWidth+m;
+    var cardsPerRow=Math.floor((pw+m)/cw);
+    var margin=(pw-((cardsPerRow*cw)-m))/2;
+    this.$el.attr("style", "margin-left: "+margin +"px");
   }
 });
 
@@ -132,4 +146,5 @@ function addCardsView( container, json, addEditButtons )
   window.App.views.cardsView = new App.CardsView( { collection: new App.Cards( json ), addEditButtons: addEditButtons });
   window.App.views.cardsView.$el.appendTo( container );
   window.App.views.cardsView.render();
+
 }

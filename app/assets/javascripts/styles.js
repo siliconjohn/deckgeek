@@ -44,7 +44,7 @@ App.Styles = Backbone.Collection.extend(
 App.StylesView=Backbone.View.extend(
 {
   tag: "div",
-  className: "collapse out",
+  className: "collapse in",
   id: "card-style-carosel-parent",
   template: JST['templates/styles/stylesview'],
 

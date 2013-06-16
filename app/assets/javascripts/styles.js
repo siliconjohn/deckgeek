@@ -1,82 +1,82 @@
+/******************************************
+ * This is for displaying all of the style
+ ******************************************/
 
-App.Style=Backbone.Model.extend({
-});
-
-App.StyleView=Backbone.View.extend({
-  tag:"div",
-  className:"item",
+App.StyleView = Backbone.View.extend(
+{
+  tag: "div",
+  className: "item",
   template: JST['templates/styles/styleview'],
-  events: {
+  events:
+  {
     "click .card-style-btn": "click"
   },
 
-  initialize:function(){
-    _.bindAll(this,'render', 'remove', 'click');
-    this.listenTo(this.model,'change',this.render);
+  initialize: function()
+  {
+    _.bindAll( this, 'click');
   },
 
-  render:function(){
-    this.$el.html(this.template(this.model.attributes));
-    this.$el.find(".carosel-card").prepend(JST['templates/styles/'+
-      this.model.attributes.template_name](this.model.attributes));
-    this.$el.find(".card-view-base").addClass('card-view-shadow');
+  render: function()
+  {
+    this.$el.html( this.template( this.model.attributes ));
+    this.$el.find( ".carosel-card-parent" ).prepend( JST['templates/styles/'+
+        this.model.attributes.template_name]( this.model.attributes ));
+    this.$el.find( ".card-view-base" ).addClass( 'card-view-shadow' );
 
-    var h=this.model.get("height");
+    var h=this.model.get( "height" );
     var ph=(355-h)/2;
-    this.$el.attr("style","margin-top:"+ph+"px");
+    this.$el.attr( "style", "margin-top:"+ph+"px");
   },
 
-  remove:function(){
-    this.model.destroy();
-  },
-
-  click:function(){
-    window.cardsView.setStyle(this.model.id);
+  click: function()
+  {
+    window.App.views.cardsView.setStyle(this.model.id);
   }
 });
 
-App.Styles=Backbone.Collection.extend({
-  model:App.Style,
+App.Styles = Backbone.Collection.extend(
+{
+  model: Backbone.Model,
   url: "/styles.json"
 });
 
-App.StylesView=Backbone.View.extend({
-  tag:"div",
-  className:"collapse out",
-  id:"card-style-carosel-parent",
+App.StylesView=Backbone.View.extend(
+{
+  tag: "div",
+  className: "collapse out",
+  id: "card-style-carosel-parent",
   template: JST['templates/styles/stylesview'],
 
-  initialize:function(){
-    _.bindAll(this,'addStyle','render');
-    this.listenTo(this.collection, 'add', this.addStyle);
+  initialize: function()
+  {
+    _.bindAll( this, 'addStyle', 'render');
   },
 
-  render: function(){
-    this.$el.html(this.template());
-    this.collection.each(this.addStyle);
+  render: function()
+  {
+    this.$el.html( this.template());
+    this.collection.each( this.addStyle );
   },
 
   addStyle: function(styleModel)
   {
     // needs ref to itself to render the template properly
-    styleModel.set("style",styleModel.attributes);
-    var styleView=new App.StyleView({model:styleModel});
+    styleModel.set( "style", styleModel.attributes );
+    var styleView=new App.StyleView({ model: styleModel });
 
-    styleView.$el.appendTo(this.$('.carousel-inner'))
+    styleView.$el.appendTo(this.$( '.carousel-inner' ))
 
-    // set first style card to active
-    if(this.$('.carousel-inner').children().size()==1)
-      styleView.$el.addClass("item active");
+    if(this.$( '.carousel-inner' ).children().size()==1)
+      styleView.$el.addClass( "item active" );
 
     styleView.render();
   }
 });
 
-function getStyles(container,json)
+function getStyles(container, json)
 {
-  window.styles = new App.Styles();
-  window.stylesView = new App.StylesView({collection: styles});
-  window.stylesView.$el.appendTo(container);
-  window.styles.reset(json);
-  window.stylesView.render();
+  window.App.views.stylesView = new App.StylesView({ collection: new App.Styles( json ) });
+  window.App.views.stylesView.$el.appendTo( container );
+  window.App.views.stylesView.render();
 }

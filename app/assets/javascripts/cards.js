@@ -122,9 +122,7 @@ App.CardsView = Backbone.View.extend(
 
 function addCardsView( container, json, addEditButtons )
 {
-  window.cards = new App.Cards();
-  window.cardsView = new App.CardsView( { collection: cards, addEditButtons: addEditButtons });
-  window.cardsView.$el.appendTo( container );
-  window.cards.reset( json );
-  window.cardsView.render();
+  window.App.views.cardsView = new App.CardsView( { collection: new App.Cards( json ), addEditButtons: addEditButtons });
+  window.App.views.cardsView.$el.appendTo( container );
+  window.App.views.cardsView.render();
 }

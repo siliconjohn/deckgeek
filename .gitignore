@@ -10,6 +10,7 @@
 /log/*.log
 /tmp
 /public/assets
+/zunk
 
 # OS generated files #
 .DS_Store

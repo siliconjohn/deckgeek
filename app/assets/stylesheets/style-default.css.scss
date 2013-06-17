@@ -5,10 +5,16 @@
  *************************************/
 
  .style-default {
-  width:250px;
-  height:350px;
+
   background-color: #808080;
   border-radius: 10px; // should match value in card-border-outlay
+  overflow:hidden;
+
+  .card-bg-image {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+  }
 
   .card-border {
     border: 10px solid rgba(128, 128, 128, 0.5);

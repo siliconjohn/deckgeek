@@ -61,18 +61,15 @@ App.StylesView=Backbone.View.extend(
 
   addStyle: function(styleModel)
   {
-    // needs ref to itself to render the template properly
-    //styleModel.set( "background", this.options.sampleCard.background );
+    // set attribs of sample card
+    var temp=styleModel.attributes.id;
     styleModel.set(this.options.sampleCard );
-    styleModel.set( "style", styleModel.attributes );
+    styleModel.set("id",temp);
 
     var styleView=new App.StyleView({ model: styleModel });
-
     styleView.$el.appendTo(this.$( '.carousel-inner' ))
-
     if(this.$( '.carousel-inner' ).children().size()==1)
       styleView.$el.addClass( "item active" );
-
     styleView.render();
   }
 });

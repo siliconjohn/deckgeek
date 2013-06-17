@@ -298,11 +298,11 @@ App.CardEditView = Backbone.View.extend(
     $("#border-width-slider").bind('change', this.updateBorderWidth);
     $("#border-color-picker").bind('change', this.updateBorderColor);
 
-    this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
-    this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
-                                                    image_id:this.model.get("image_id")})
-    this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
-    this.artworksView.render();
+    //this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
+    //this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
+    //                                            image_id:this.model.get("image_id")})
+    //this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
+    //this.artworksView.render();
 
     this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
     this.borderColorView.$el.appendTo(this.$("#border-color-picker"));

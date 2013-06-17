@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.decimal  "border_width",  :precision => 2, :scale => 2, :default => 0.2
     t.integer  "deck_id"
     t.integer  "style_id"
-    t.integer  "image_id"
     t.integer  "background_id"
     t.datetime "created_at",                                                                         :null => false
     t.datetime "updated_at",                                                                         :null => false
@@ -74,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.string   "border_color",                                :default => "#808080"
     t.integer  "border_radius",                               :default => 10
     t.decimal  "border_width",  :precision => 2, :scale => 2, :default => 0.2
-    t.integer  "image_id"
     t.integer  "background_id"
     t.datetime "created_at",                                                         :null => false
     t.datetime "updated_at",                                                         :null => false

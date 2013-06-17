@@ -9,7 +9,6 @@ class CreateCards < ActiveRecord::Migration
       t.decimal :border_width, :precision => 2, :scale => 2 , :default => 0.2
       t.references :deck
       t.references :style
-      t.references :image
       t.references :background
       t.timestamps
     end

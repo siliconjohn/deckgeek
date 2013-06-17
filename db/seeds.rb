@@ -46,11 +46,11 @@ cards=Card.create(
   [{ name: 'Awesome Card', description:'Man, this is awesome! More awesome please, with some cheese!', style_id:styles[0].id,
     background_id:backgrounds[0].id},
    { name: 'Card 1:1', description:'Card description 1:1', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id},
-   { name: 'Card 1:2', description:'Card description 1:2', style_id:styles[0].id, background_id:backgrounds[1].id, deck_id:games[0].id},
-   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[0].id, deck_id:games[0].id},
-   { name: 'Card 1:4', description:'Card description 1:4', style_id:styles[0].id, background_id:backgrounds[1].id, deck_id:games[0].id},
-   { name: 'Card 1:5', description:'Card description 1:5', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id},
-   { name: 'Card 2:1', description:'Card description 2:3', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id},
+   { name: 'Card 1:2', description:'Card description 1:2', style_id:styles[0].id, border_outline:false, background_id:backgrounds[1].id, deck_id:games[0].id},
+   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[0].id, border_visible:false, deck_id:games[0].id},
+   { name: 'Card 1:4', description:'Card description 1:4', style_id:styles[0].id, border_width:25, background_id:backgrounds[1].id, deck_id:games[0].id},
+   { name: 'Card 1:5', description:'Card description 1:5', style_id:styles[0].id, border_color: '#ff0000', background_id:backgrounds[0].id, deck_id:games[0].id},
+   { name: 'Card 2:1', description:'Card description 2:3', style_id:styles[1].id, border_inline: false, background_id:backgrounds[1].id, deck_id:games[1].id},
    { name: 'Card 2:2', description:'Card description 2:3', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id},
    { name: 'Card 2:3', description:'Card description 2:3', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id}
    ])

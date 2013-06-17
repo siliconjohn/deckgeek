@@ -1,14 +1,35 @@
-
-<% var s=''; if(background_id&&background.url){ s="background: url('/assets/backgrounds/" + background.url +"')" } %>
+<% var s='' %>
+<% if(background_id&&background.url){ s="background: url('/assets/backgrounds/" + background.url +"')" } %>
 <% if(s!=''){s=' style="'+s+'"'} %>
-<% console.log(border_visible) %>
+
 <div class="card-view-base style-default style-1"<%= s %>>
 
+<%  var bdrBegining='', bdrEnding='' %>
+<%  if( border_visible){ %>
+<%    if( border_outline ){  %>
+<%        bdrBegining='<div class="card-border-outline">' %>
+<%        bdrEnding='</div>' %>
+<%    } %>
 
+<%    var bdrStyle='' %>
+<%    if( border_width ){ %>
+<%       bdrStyle = "border-width:" + border_width + "px;" } %>
+<%    if( border_color ) { %>
+<%       bdrStyle += "border-color:" + border_color } %>
 
-  <div class="card-border-outline">
-    <div class="card-border">
-      <div class="card-border-inline"><div>
-    </div>
-  </div>
+<%    if ( bdrStyle != '' ) { %>
+<%       bdrStyle = ' style="' + bdrStyle +'"' } %>
+<%    bdrBegining+='<div class="card-border"' + bdrStyle +'>' %>
+<%    bdrEnding+='</div>' %>
+
+<%    if( border_inline ){ %>
+<%        bdrBegining+='<div class="card-border-inline">' %>
+<%        bdrEnding+='</div>' %>
+<%    } %>
+
+<%= bdrBegining %>
+<%= bdrEnding %>
+
+<% } %>
+
 </div>

@@ -4,14 +4,12 @@
  * should override these
  *************************************/
 
- .card-default {
-  width: 250px;
-  height: 350px;
+ .style-default {
   background-color: #808080;
   border-radius: 10px; // should match value in card-border-outlay
 
   .card-border {
-    border: 10.5px solid rgba(128, 128, 128, 0.5);
+    border: 22px solid rgba(128, 128, 128, 0.5);
     width: 100%;
     height: 100%;
     padding: 0px;

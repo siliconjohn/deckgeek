@@ -1,5 +1,8 @@
 <div class="card-view-base style-default style-4"
- style="background: url('/assets/backgrounds/<%= background.url %>')">
+
+  <% if(background_id&&background.url){ s="background: url('/assets/backgrounds/" + background.url +"')" } else {s=''} %>
+  style="<%= s %>">
+
   <div class="card-border-outlay">
     <div class="card-border">
       <div class="card-border-inlay"><div>

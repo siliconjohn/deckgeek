@@ -47,7 +47,7 @@ cards=Card.create(
     background_id:backgrounds[0].id},
    { name: 'Card 1:1', description:'Card description 1:1', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id, image_id:images[0].id},
    { name: 'Card 1:2', description:'Card description 1:2', style_id:styles[0].id, background_id:backgrounds[1].id, deck_id:games[0].id, image_id:images[1].id},
-   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id, image_id:images[2].id},
+   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[0].id, deck_id:games[0].id, image_id:images[2].id},
    { name: 'Card 1:4', description:'Card description 1:4', style_id:styles[0].id, background_id:backgrounds[1].id, deck_id:games[0].id, image_id:images[3].id},
    { name: 'Card 1:5', description:'Card description 1:5', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id, image_id:images[4].id},
    { name: 'Card 2:1', description:'Card description 2:3', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id, image_id:images[5].id},

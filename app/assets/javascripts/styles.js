@@ -62,9 +62,9 @@ App.StylesView=Backbone.View.extend(
   addStyle: function(styleModel)
   {
     // needs ref to itself to render the template properly
+    //styleModel.set( "background", this.options.sampleCard.background );
+    styleModel.set(this.options.sampleCard );
     styleModel.set( "style", styleModel.attributes );
-    styleModel.set( "background", this.options.sampleCard.background );
-    styleModel.set( "background_id", this.options.sampleCard.background.id );
 
     console.log(styleModel);
     var styleView=new App.StyleView({ model: styleModel });

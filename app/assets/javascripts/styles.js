@@ -66,7 +66,6 @@ App.StylesView=Backbone.View.extend(
     styleModel.set(this.options.sampleCard );
     styleModel.set( "style", styleModel.attributes );
 
-    console.log(styleModel);
     var styleView=new App.StyleView({ model: styleModel });
 
     styleView.$el.appendTo(this.$( '.carousel-inner' ))

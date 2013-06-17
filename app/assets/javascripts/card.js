@@ -285,7 +285,7 @@ App.CardEditView = Backbone.View.extend(
   initialize:function()
   {
     _.bindAll(this, 'render', 'save', 'changeImage', 'enableSave', 'disableSave',
-              'updateCardDescription', 'updateCardName','updateBorderColor', 'updateBorderStyle',
+              'updateCardDescription', 'updateCardName','updateBorderColor',
               'updateBorderWidth', 'changeBackgroundImage', 'changeModel');
   },
 
@@ -294,7 +294,6 @@ App.CardEditView = Backbone.View.extend(
     this.$el.html(this.template(this.model.attributes));
     $("#name-input").bind('keyup cut paste', this.updateCardName);
     $("#description-input").bind('keyup cut paste', this.updateCardDescription);
-    $("#border-style-select").bind('change', this.updateBorderStyle);
     $("#border-width-slider").bind('change', this.updateBorderWidth);
     $("#border-color-picker").bind('change', this.updateBorderColor);
 
@@ -369,11 +368,6 @@ App.CardEditView = Backbone.View.extend(
   updateCardName:function()
   {
     this.model.set("name", $("#name-input").val());
-  },
-
-  updateBorderStyle:function()
-  {
-    this.model.set("border_style", $("#border-style-select").val());
   },
 
   updateBorderWidth:function()

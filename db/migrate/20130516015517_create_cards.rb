@@ -3,10 +3,11 @@ class CreateCards < ActiveRecord::Migration
     create_table :cards do |t|
       t.string :name, :default => "My Card"
       t.string :description, :default => "Describe your card here"
-      t.string :border_style, :default => "solid"
-      t.string :border_color, :default => "#808080"
-      t.integer :border_radius, :default => 10
-      t.decimal :border_width, :precision => 2, :scale => 2 , :default => 0.2
+      t.string :border_color
+      t.integer :border_width
+      t.boolean :border_visible, :default => true
+      t.boolean :border_inline, :default => true
+      t.boolean :border_outline, :default => true
       t.references :deck
       t.references :style
       t.references :background

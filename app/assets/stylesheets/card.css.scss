@@ -87,7 +87,7 @@
 
   #cards-carosel {
     margin-top: 30px;
-    height: 400px;
+    width: 100%;
 
     .carousel-inner {
       height: 100%;
@@ -111,7 +111,7 @@
       left: 0;
       right: 0;
       top: auto;
-      bottom: 15px;
+      bottom: -21px;
       text-align: center;
     }
 
@@ -119,6 +119,16 @@
     {
       float: none;
       display: inline-block;
+    }
+
+    #cards-carosel-left-button {
+      left: 0px;
+      top: 45%;
+    }
+
+    #cards-carosel-right-button {
+      right: 0px;
+      top: 45%;
     }
 
     .edit-card-btn

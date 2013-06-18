@@ -377,6 +377,13 @@ App.CardEditView = Backbone.View.extend(
   updateBorderWidth:function()
   {
     this.model.set("border_width", $("#border-width-slider").val());
+
+    var enabled=$("#border-toggle-btn").hasClass("active");
+    if ( !enabled )
+    {
+      this.updateBorderVisible();
+      $("#border-toggle-btn").addClass("active");
+    }
   },
 
   updateBorderColor:function()

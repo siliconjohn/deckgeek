@@ -63,12 +63,14 @@
 
             <!-- toggle buttons -->
             <div class="bdr-toggle-btns">
-              <% if( border_visible ) { bv =' active'; db = ''; } else { bv = ''; db = ' disabled';} %>
-              <button id="border-toggle-btn" class="btn btn-success<%= bv %> bdr-btn" data-toggle="button">Border</button>
-              <% if( border_outline ) { bo =' active'} else { bo = ''} %>
-              <button id="outline-toggle-btn" class="btn btn-success<%= bo %><%= db %> bdr-btn" data-toggle="button">Outline</button>
-              <% if( border_inline ) { bi =' active'} else { bi = ''} %>
-              <button id="inline-toggle-btn" class="btn btn-success<%= bi %><%= db %> bdr-btn" data-toggle="button">Inline</button>
+              <div class="btn-group">
+                <% if( border_visible ) { bv =' active'; db = ''; } else { bv = ''; db = ' disabled';} %>
+                <button id="border-toggle-btn" class="btn btn-success<%= bv %> bdr-btn" data-toggle="button">Border</button>
+                <% if( border_outline ) { bo =' active'} else { bo = ''} %>
+                <button id="outline-toggle-btn" class="btn btn-success<%= bo %><%= db %> bdr-btn" data-toggle="button">Outline</button>
+                <% if( border_inline ) { bi =' active'} else { bi = ''} %>
+                <button id="inline-toggle-btn" class="btn btn-success<%= bi %><%= db %> bdr-btn" data-toggle="button">Inline</button>
+              </div>
             </div>
 
             <!-- border width  -->

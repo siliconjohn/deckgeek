@@ -23,6 +23,8 @@
 
 // Override spectrum color picker colors
 .sp-container {
+  background-color:  rgba( 236, 236, 236, 0.94 );
+  border-radius: 3px;
   border-color: #CCC;
   -webkit-box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );
   box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );

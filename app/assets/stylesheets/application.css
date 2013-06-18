@@ -11,7 +11,7 @@
  *= require_self
  *= require bootstrap
  *= require defaults
- *= require jPicker-1.1.6
+ *= require spectrum
  *= require style-default
  *= require_tree .
 */

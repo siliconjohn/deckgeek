@@ -16,8 +16,8 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
-//= require jpicker-1.1.6
 //= require html5slider
+//= require spectrum
 //= require_tree ./templates
 //= require_tree .
 

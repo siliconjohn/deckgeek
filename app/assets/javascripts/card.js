@@ -26,57 +26,6 @@ App.CardCollection = Backbone.Collection.extend(
 });
 
 /////////////////////////////
-// Color Picker View       //
-/////////////////////////////
-
-// TODO: this can only have one instace on a page
-// TODO: add better css styles, change startup position
-App.ColorPickerView = Backbone.View.extend(
-{
-  tag:"span",
-
-  initialize:function()
-  {
-    _.bindAll(this, 'render', 'changeColor');
-  },
-
-  render:function()
-  {
-    this.$el.jPicker(
-    {
-      window:
-      {
-         effects:
-          {
-            type: 'fade', /* effect used to show/hide an expandable picker. Acceptable values "slide", "show", "fade" */
-            speed:
-            {
-              show: 'fast', /* duration of "show" effect. Acceptable values are "fast", "slow", or time in ms */
-              hide: 'fast' /* duration of "hide" effect. Acceptable values are "fast", "slow", or time in ms */
-            }
-          },
-        expandable:true,
-        position:{x:-50}
-      },
-      color:
-      {
-        alphaSupport:false,
-        active:new $.jPicker.Color({hex: this.model.get(this.options.atrib)})
-      }
-    },
-
-    this.changeColor, this.changeColor, this.changeColor);
-
-    return this;
-  },
-
-  changeColor:function(color, context)
-  {
-    this.model.set("border_color", '#'+color.val('hex'))
-  }
-});
-
-/////////////////////////////
 // Background Image
 /////////////////////////////
 
@@ -307,10 +256,6 @@ App.CardEditView = Backbone.View.extend(
     //this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
     //this.artworksView.render();
 
-    // this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
-    // this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
-    // this.borderColorView.render();
-
     this.backgroundsCollection = new App.BackgroundsCollection(this.options.backgrounds);
     this.backgroundsView = new App.BackgroundsView({collection:this.backgroundsCollection,
                                                     image_id:this.model.get("background_id")})
@@ -388,7 +333,14 @@ App.CardEditView = Backbone.View.extend(
 
   updateBorderColor:function()
   {
-    this.model.set("border_color", $("#border-color-picker").val());
+    var enabled=$("#border-toggle-btn").hasClass("active");
+    if ( !enabled )
+    {
+      this.updateBorderVisible();
+      $("#border-toggle-btn").addClass("active");
+    }
+
+    this.model.set("border_color",$("#border-color-picker").spectrum("get").toRgbString());
   },
 
   updateBorderVisible:function()

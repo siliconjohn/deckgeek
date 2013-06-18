@@ -21,6 +21,13 @@
  * and edit stuff
  ****************************/
 
+// Override spectrum color picker colors
+.sp-container {
+  border-color: #CCC;
+  -webkit-box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );
+  box-shadow: 2px 2px 4px 0px rgba( 48, 48, 48, .3 );
+}
+
 .card-edit-view-parent {
 
  /****************************
@@ -62,15 +69,26 @@
 
   #accordion-border {
 
-    #border-width-slider {
-      width: 200px;
-      margin-top: 5px;
-      margin-left: 6px;
+    #border-width {
+      margin-left: 60px;
+      margin-top: 16px;
+
+      #border-width-slider {
+        width: 200px;
+        margin-top: 4px;
+        margin-left: 6px;
+      }
     }
 
-    .border-width {
+    #border-color {
       margin-left: 60px;
       margin-top: 10px;
+
+      .sp-replacer {
+        margin-left: 8px;
+        border-width: 0px;
+      }
+
     }
 
     .bdr-btn {
@@ -79,6 +97,7 @@
 
     .bdr-toggle-btns {
       margin-left: 60px;
+      margin-top: 6px;
     }
   }
 

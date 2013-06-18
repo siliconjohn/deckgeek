@@ -72,14 +72,37 @@
             </div>
 
             <!-- border width  -->
-            <div class="border-width">
-            Border Width:
-            <input id="border-width-slider" class="border-control" type="range" name="points" min="0" max="40" step="1" value="<%= border_width %>">
-          </div>
-            <!-- border color
-            <label>Border Color:</label>
-            <div id="border-color-picker"></div>-->
+            <div id="border-width">
+              Border Width:
+              <input id="border-width-slider" class="border-control" type="range" name="points" min="0" max="40" step="1" value="<%= border_width %>">
+            </div>
 
+            <!-- border color -->
+            <div id="border-color">
+              Border Color:
+              <input type='text' id="border-color-picker" />
+              <script>
+                $("#border-color-picker").spectrum({
+                    color: "<%= border_color %>",
+                    showAlpha: true,
+                    showInput: true,
+                    showPalette: true,
+                    preferredFormat: "hex6",
+                    //showSelectionPalette: true,
+                    //localStorageKey: "spectrum.gamegen",
+                    move: function(tinycolor)
+                    {
+                      $("#border-color-picker").trigger('change');
+                    },
+
+                    hide: function(tinycolor)
+                    {
+                      $("#border-color-picker").trigger('change');
+                    },
+
+                });
+              </script>
+            </div>
           </div>
         </div>
       </div>

@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"remo",
+				"removeClass"
+			],
+			[
+				"sty",
+				"style_id"
+			],
+			[
+				"sample",
+				"sampleCard"
+			],
+			[
+				"att",
+				"attr"
+			],
+			[
+				"card",
+				"cardsPerRow"
+			],
+			[
+				"attr",
+				"attributes"
+			],
+			[
 				"bo",
 				"border_width"
 			],
@@ -42,10 +78,6 @@
 			[
 				"Card",
 				"CardCarouselsView"
-			],
-			[
-				"card",
-				"cardCarouselCollection"
 			],
 			[
 				"templ",
@@ -91,38 +123,11 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/assets/javascripts/card.js",
-			"settings":
-			{
-				"buffer_size": 10299,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/cards_controller.rb",
-			"settings":
-			{
-				"buffer_size": 1813,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<div id=\"cards-carosel\" class=\"carousel slide\" data-interval=\"false\">\n  <ol class=\"carousel-indicators middle\"></ol>\n  <div class=\"carousel-inner\"></div>\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \n</div>\n\n<script type=\"text/javascript\">\n// $(function()\n// {\n//   $(\"#cards-carosel-left-button\").animate({ opacity: 0.0 }, 0)\n//   $(\"#cards-carosel-right-button\").animate({ opacity: 0.0 }, 0)\n\n//   $(\"#cards-carosel\").hover(\n//     function(){\n//       $(\"#cards-carosel-left-button\").animate({ opacity: 1.0 }, 100)\n//       $(\"#cards-carosel-right-button\").animate({ opacity: 1.0 }, 100)\n//     },\n//     function(){\n//       $(\"#cards-carosel-left-button\").animate({ opacity: 0.0 }, 100)\n//       $(\"#cards-carosel-right-button\").animate({ opacity: 0.0 }, 100)\n//     }\n//   );\n// });\n</script>\n",
-			"file": "app/assets/javascripts/templates/card/cardcarouselsview.jst.ejs",
-			"file_size": 993,
-			"file_write_time": 1371081934000000,
-			"settings":
-			{
-				"buffer_size": 1958,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 287.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -151,27 +156,55 @@
 	},
 	"file_history":
 	[
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/card.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardeditview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/card.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/card.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/environments/development.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/application.css",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/application.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/games/gamesview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/styles.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/decks/show.html.erb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-default.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-1.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-2.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-3.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-4.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/seeds.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-1.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cards.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015517_create_cards.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/style.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130521165926_create_style.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/image.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/routes.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/deck.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/TODO.txt",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/.gitignore",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-2.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-3.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-4.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/decks_controller.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/cards_controller.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/cards/editdeletebuttons.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/cards.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/styles.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/background.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/styleview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/decks.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardcarouselsview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/show.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/index.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/app.js",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/cards_controller.rb",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/card.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/helpers/cards_helper.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardeditview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardcarouselsview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardcarouselvieweditbutton.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/card.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/gamegen.sublime-workspace",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/backgroundsview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/artworksview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cards.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/cards.css.scss",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/cards/editdeletebuttons.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/decks/show.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/cards/cardsview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/card.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/cards/cardviewbuttons.jst.ejs",
@@ -181,41 +214,26 @@
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/cards/cardedit.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cardedit.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cardhero.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/TODO.txt",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/application.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/backgrounds_controller.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/decks_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/games_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/images_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/styles_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/application_controller.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-1.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-4.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/images/imagesview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/images.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/images/imageview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/backgrounds/backgroundsview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/backgrounds/backgroundview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-2.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-3.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/seeds.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130521165926_create_style.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/background.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/style.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/images.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/image.rb",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/consolelog.sublime-snippit",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/test.sublime-snippit",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/background/backgroundview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/routes.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015517_create_cards.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015511_create_decks.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130529032456_create_images.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/schema.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130606213120_create_background.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/images/glyphicons-halflings-white.png",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/console.log",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/application.css",
 		"/Users/johndoerfler/Desktop/card/style.scss.css",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/layouts/application.html.erb",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Browser Refresh/Default (OSX).sublime-keymap",
@@ -242,6 +260,67 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"accordionborder",
+			"collapse-accordion-border",
+			"collapseaccordionborder",
+			"outline",
+			"primary",
+			"styple",
+			";",
+			"border",
+			"style",
+			"border_style",
+			"-inlay",
+			"outlay",
+			"btn btn-large btn-danger",
+			"artworks-view-parent",
+			"image_id",
+			":image",
+			".carousel-control",
+			"cards-carosel",
+			"card-carousels-view",
+			"card-carousels-view'",
+			"base",
+			"card-view-base card-default sty",
+			"card-view-base sty",
+			"defaultCard",
+			"getStyles",
+			"collapse",
+			"attr",
+			"$el",
+			"auto;",
+			"cards-view",
+			",back",
+			", im",
+			",back",
+			"back",
+			"template_name",
+			"editdeletebuttons",
+			"cardsView",
+			"window.cardsView",
+			"window.",
+			",",
+			":",
+			"carosel-card",
+			"4",
+			"card-style-btn",
+			"****************************/\n",
+			"card-style-carosel",
+			"to_json",
+			".center",
+			"card-view",
+			"card-view-positioning",
+			"card-view card-view-positioning",
+			"styles/'+\n      this.model.attributes.template_name](this.model.attributes));\n    this.$el.find(\".card-view-base\").addClass('card-view-shadow');",
+			":include",
+			":style",
+			"card-view-border-view",
+			"card-view-base ",
+			"}",
+			".id",
+			" in",
+			"in",
+			"ph.",
 			"data",
 			"con",
 			"cardPreview",
@@ -308,68 +387,7 @@
 			"card-view-container",
 			"deck_id",
 			"getCards",
-			"cards-list-container",
-			"getCards",
-			"/artwork",
-			"templates",
-			"backgr",
-			"getCardEdit",
-			"getCards",
-			"cardsview",
-			"cardviewbuttons",
-			"cardsview",
-			"cardview",
-			"cardedit",
-			"cardview",
-			"cardheroview",
-			"cards.js",
-			"getCards",
-			":",
-			" btn-wide ",
-			"btn-wide",
-			",",
-			"==",
-			"=",
-			"getCardEdit",
-			"after_filter :add_no_cache_header",
-			"cache",
-			"getcardedit",
-			"include",
-			"CardsController",
-			"enableSave",
-			"save",
-			"repeat",
-			"backgrounds-carosel",
-			"backgroundsView",
-			"BackgroundsView",
-			"backgroundsView",
-			"backgroundsCollection",
-			"BackgroundsCollection",
-			"backgroundsCollection",
-			"BackgroundsCollection",
-			"backgroundsCollection",
-			"btn-wide ",
-			"image",
-			"image-style-carosel",
-			"background-view-image",
-			"background",
-			"Background",
-			"background",
-			"Background",
-			"background",
-			"Background",
-			"background",
-			"Background",
-			"images",
-			"getCardEdit",
-			"card-view-base ",
-			".01",
-			"url ",
-			"image.url ",
-			":image",
-			", ",
-			"image_id",
-			"image."
+			"cards-list-container"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -377,6 +395,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"-inline",
+			"outline",
+			"card-view-base style-default sty",
+			"card-view-base card-default sty",
+			", ",
+			": ",
+			"carosel-card-parent",
 			"edit-card-btn",
 			"edit",
 			"card-view",
@@ -401,104 +426,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/assets/javascripts/card.js",
-					"settings":
-					{
-						"buffer_size": 10299,
-						"regions":
-						{
-							"bookmarks":
-							{
-								"flags": 144,
-								"icon": "bookmark",
-								"regions":
-								[
-									[
-										9627,
-										9627
-									]
-								],
-								"scope": "bookmarks"
-							}
-						},
-						"selection":
-						[
-							[
-								8304,
-								8304
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4258.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/controllers/cards_controller.rb",
-					"settings":
-					{
-						"buffer_size": 1813,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								473,
-								473
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/assets/javascripts/templates/card/cardcarouselsview.jst.ejs",
-					"settings":
-					{
-						"buffer_size": 1958,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1358,
-								1358
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -544,6 +473,118 @@
 		"selected_items":
 		[
 			[
+				"card",
+				"app/assets/stylesheets/card.css.scss"
+			],
+			[
+				"applica",
+				"app/assets/stylesheets/application.css"
+			],
+			[
+				"app",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"style-1",
+				"app/assets/stylesheets/style-1.css.scss"
+			],
+			[
+				"card.js",
+				"app/assets/javascripts/card.js"
+			],
+			[
+				"",
+				"app/models/card.rb"
+			],
+			[
+				"cards",
+				"app/assets/javascripts/cards.js"
+			],
+			[
+				"se",
+				"db/seeds.rb"
+			],
+			[
+				"st",
+				"app/models/style.rb"
+			],
+			[
+				"see",
+				"db/seeds.rb"
+			],
+			[
+				"cre",
+				"db/migrate/20130516015517_create_cards.rb"
+			],
+			[
+				"edit",
+				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
+			],
+			[
+				"dec",
+				"app/models/deck.rb"
+			],
+			[
+				"image",
+				"app/models/image.rb"
+			],
+			[
+				"to",
+				"TODO.txt"
+			],
+			[
+				"seed",
+				"db/seeds.rb"
+			],
+			[
+				"ed",
+				"app/assets/javascripts/templates/cards/editdeletebuttons.jst.ejs"
+			],
+			[
+				"ba",
+				"app/models/background.rb"
+			],
+			[
+				"imag",
+				"app/models/image.rb"
+			],
+			[
+				"editdeletebuttons",
+				"app/assets/javascripts/templates/cards/editdeletebuttons.jst.ejs"
+			],
+			[
+				"route",
+				"config/routes.rb"
+			],
+			[
+				"cards.js",
+				"app/assets/javascripts/cards.js"
+			],
+			[
+				"style-2",
+				"app/assets/stylesheets/style-2.css.scss"
+			],
+			[
+				"style",
+				"app/assets/stylesheets/style-3.css.scss"
+			],
+			[
+				"style.r",
+				"app/models/style.rb"
+			],
+			[
+				"tod",
+				"TODO.txt"
+			],
+			[
+				"caede",
+				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
+			],
+			[
+				"create_s",
+				"db/migrate/20130521165926_create_style.rb"
+			],
+			[
 				"carde",
 				"app/assets/javascripts/templates/card/cardcarouselsview.jst.ejs"
 			],
@@ -552,16 +593,8 @@
 				"app/models/card.rb"
 			],
 			[
-				"app",
-				"app/assets/javascripts/app.js"
-			],
-			[
 				"show",
 				"app/views/cards/show.html.erb"
-			],
-			[
-				"card.js",
-				"app/assets/javascripts/card.js"
 			],
 			[
 				"ca",
@@ -570,10 +603,6 @@
 			[
 				"card_",
 				"app/helpers/cards_helper.rb"
-			],
-			[
-				"card",
-				"app/models/card.rb"
 			],
 			[
 				"cardeditview",
@@ -586,10 +615,6 @@
 			[
 				"backgroundsv",
 				"app/assets/javascripts/templates/card/backgroundsview.jst.ejs"
-			],
-			[
-				"cards",
-				"app/controllers/cards_controller.rb"
 			],
 			[
 				"appl",
@@ -616,20 +641,8 @@
 				"db/migrate/20130521165926_create_style.rb"
 			],
 			[
-				"see",
-				"db/seeds.rb"
-			],
-			[
-				"seed",
-				"db/seeds.rb"
-			],
-			[
 				"jst",
 				"app/assets/javascripts/templates/images/imageview.jst.ejs"
-			],
-			[
-				"imag",
-				"app/assets/javascripts/images.js"
 			],
 			[
 				"backgr",
@@ -648,10 +661,6 @@
 				"app/assets/javascripts/templates/images/imageview.jst.ejs"
 			],
 			[
-				"route",
-				"config/routes.rb"
-			],
-			[
 				"crea",
 				"db/migrate/20130516015511_create_decks.rb"
 			],
@@ -660,16 +669,8 @@
 				"db/migrate/20130516015517_create_cards.rb"
 			],
 			[
-				"cre",
-				"db/migrate/20130606213120_create_background.rb"
-			],
-			[
 				"application",
 				"app/assets/stylesheets/application.css"
-			],
-			[
-				"st",
-				"app/models/style.rb"
 			],
 			[
 				"create",
@@ -686,10 +687,10 @@
 		],
 		"width": 380.0
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 220.0,
+	"side_bar_visible": false,
+	"side_bar_width": 276.0,
 	"status_bar_visible": false
 }

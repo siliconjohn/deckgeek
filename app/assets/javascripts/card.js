@@ -286,7 +286,8 @@ App.CardEditView = Backbone.View.extend(
   {
     _.bindAll(this, 'render', 'save', 'changeImage', 'enableSave', 'disableSave',
               'updateCardDescription', 'updateCardName','updateBorderColor',
-              'updateBorderWidth', 'changeBackgroundImage', 'changeModel');
+              'updateBorderWidth', 'changeBackgroundImage', 'changeModel',
+              'updateBorderVisible', 'updateBorderOutline', 'updateBorderInline');
   },
 
   render:function()
@@ -296,6 +297,9 @@ App.CardEditView = Backbone.View.extend(
     $("#description-input").bind('keyup cut paste', this.updateCardDescription);
     $("#border-width-slider").bind('change', this.updateBorderWidth);
     $("#border-color-picker").bind('change', this.updateBorderColor);
+    $("#border-toggle-btn").bind('click', this.updateBorderVisible);
+    $("#outline-toggle-btn").bind('click', this.updateBorderOutline);
+    $("#inline-toggle-btn").bind('click', this.updateBorderInline);
 
     //this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
     //this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
@@ -303,9 +307,9 @@ App.CardEditView = Backbone.View.extend(
     //this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
     //this.artworksView.render();
 
-    this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
-    this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
-    this.borderColorView.render();
+    // this.borderColorView = new App.ColorPickerView({model:this.model, atrib:"border_color"});
+    // this.borderColorView.$el.appendTo(this.$("#border-color-picker"));
+    // this.borderColorView.render();
 
     this.backgroundsCollection = new App.BackgroundsCollection(this.options.backgrounds);
     this.backgroundsView = new App.BackgroundsView({collection:this.backgroundsCollection,
@@ -378,6 +382,34 @@ App.CardEditView = Backbone.View.extend(
   updateBorderColor:function()
   {
     this.model.set("border_color", $("#border-color-picker").val());
+  },
+
+  updateBorderVisible:function()
+  {
+    var enabled=!$("#border-toggle-btn").hasClass("active");
+
+    this.model.set("border_visible",enabled);
+
+    if( enabled )
+    {
+      $("#outline-toggle-btn").removeClass('disabled');
+      $("#inline-toggle-btn").removeClass('disabled');
+    }
+    else
+    {
+      $("#outline-toggle-btn").addClass('disabled');
+      $("#inline-toggle-btn").addClass('disabled');
+    }
+  },
+
+  updateBorderOutline:function()
+  {
+    this.model.set("border_outline",!$("#outline-toggle-btn").hasClass("active"));
+  },
+
+  updateBorderInline:function()
+  {
+    this.model.set("border_inline",!$("#inline-toggle-btn").hasClass("active"));
   },
 
   save:function(e)

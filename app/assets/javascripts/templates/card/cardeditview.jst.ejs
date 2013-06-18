@@ -53,16 +53,16 @@
     </div>
 
     <!-- border accordian -->
-    <div class="accordion" id="accordionborder">
+    <div class="accordion" id="accordion-border">
       <div class="accordion-group">
         <div class="accordion-heading">
-          <button class="btn" data-toggle="collapse" data-parent="#accordionborder" href="#collapseaccordionborder">Border</button>
+          <button class="btn" data-toggle="collapse" data-parent="#accordion-border" href="#collapse-accordion-border">Border</button>
         </div>
-        <div id="collapseaccordionborder" class="accordion-body collapse in">
+        <div id="collapse-accordion-border" class="accordion-body collapse in">
           <div class="accordion-inner">
 
             <!-- toggle buttons -->
-            <div>
+            <div class="bdr-toggle-btns">
               <% if( border_visible ) { bv =' active'; db = ''; } else { bv = ''; db = ' disabled';} %>
               <button id="border-toggle-btn" class="btn btn-success<%= bv %> bdr-btn" data-toggle="button">Border</button>
               <% if( border_outline ) { bo =' active'} else { bo = ''} %>
@@ -73,7 +73,7 @@
 
             <!-- border width
             <label>Border Width:</label>
-            <input id="border-width-slider" class="border-control" type="range" name="points" min="0" max="4" step="0.1" value="<%= border_width %>">
+            <input id="border-width-slider" class="border-control" type="range" name="points" min="0" max="4" step="0.1" value="">
 
             <!-- border color
             <label>Border Color:</label>

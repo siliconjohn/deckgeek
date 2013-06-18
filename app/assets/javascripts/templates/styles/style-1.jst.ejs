@@ -6,9 +6,15 @@
 
 <%  var bdrBegining='', bdrEnding='' %>
 <%  if( border_visible){ %>
+
 <%    if( border_outline ){  %>
-<%        bdrBegining='<div class="card-border-outline">' %>
-<%        bdrEnding='</div>' %>
+
+<%      var bdrOutlineStyle=''; %>
+<%      if( border_color ) { %>
+<%        bdrOutlineStyle = ' style="border-color:' + border_color +'"' } %>
+
+<%      bdrBegining='<div class="card-border-outline"' + bdrOutlineStyle +'>' %>
+<%      bdrEnding='</div>' %>
 <%    } %>
 
 <%    var bdrStyle='' %>
@@ -23,7 +29,12 @@
 <%    bdrEnding+='</div>' %>
 
 <%    if( border_inline ){ %>
-<%        bdrBegining+='<div class="card-border-inline">' %>
+
+<%      var bdrInlineStyle=''; %>
+<%      if( border_color ) { %>
+<%        bdrInlineStyle = ' style="border-color:' + border_color +'"' } %>
+
+<%        bdrBegining+='<div class="card-border-inline"' + bdrOutlineStyle +'>' %>
 <%        bdrEnding+='</div>' %>
 <%    } %>
 

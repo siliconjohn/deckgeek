@@ -41,9 +41,9 @@ App.CardView = Backbone.View.extend(
   render:function()
   {
     this.template = JST['templates/styles/' + this.model.attributes.style.template_name];
-    this.$el.html(this.template(this.model.attributes));
+    this.$el.html(this.template(this.model.attributes,{model: this.model}));
     this.$el.find(".card-view-base").addClass('card-view-shadow');
-
+    console.log(this.model);
     if(this.options.addEditButtons)
     {
       // TODO: you can see the buttons move when the margin is added, fix

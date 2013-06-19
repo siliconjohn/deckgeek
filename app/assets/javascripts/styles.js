@@ -20,8 +20,9 @@ App.StyleView = Backbone.View.extend(
   render: function()
   {
     this.$el.html( this.template( this.model.attributes ));
-    this.$el.find( ".carosel-card-parent" ).prepend( JST['templates/styles/'+
-        this.model.attributes.template_name]( this.model.attributes ));
+    this.template = JST['templates/styles/' + this.model.attributes.template_name];
+    var r=this.template(this.model.attributes, { model: this.model });
+    this.$el.find( ".carosel-card-parent" ).prepend( r );
     this.$el.find( ".card-view-base" ).addClass( 'card-view-shadow' );
 
     var h=this.model.get( "height" );

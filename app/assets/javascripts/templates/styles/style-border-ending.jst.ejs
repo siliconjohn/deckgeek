@@ -1,0 +1,11 @@
+<%
+var bdrEnding='';
+
+if( border_visible)
+{
+  bdrEnding='</div>';
+  if( border_outline ) bdrEnding+='</div>';
+  if( border_inline ) bdrEnding+='</div>';
+}
+%>
+<%= bdrEnding %>

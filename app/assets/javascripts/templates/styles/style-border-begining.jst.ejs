@@ -1,0 +1,25 @@
+<%
+var bdrBegining=''
+if( border_visible){
+  if( border_outline ){
+    var bdrOutlineStyle='';
+    if( border_color ) {
+      bdrOutlineStyle = ' style="border-color:' + border_color +'"' }
+    bdrBegining='<div class="card-border-outline"' + bdrOutlineStyle +'>';}
+  var bdrStyle='';
+  if( border_width ){
+     bdrStyle = "border-width:" + border_width + "px;" }
+  if( border_color ) {
+     bdrStyle += "border-color:" + border_color; }
+  if ( bdrStyle != '' ) {
+     bdrStyle = ' style="' + bdrStyle +'"'; }
+  bdrBegining+='<div class="card-border"' + bdrStyle +'>';
+  if( border_inline ){
+    var bdrInlineStyle='';
+    if( border_color ) {
+      bdrInlineStyle = ' style="border-color:' + border_color +'"'; }
+      bdrBegining+='<div class="card-border-inline"' + bdrInlineStyle +'>';
+  }
+}
+%>
+<%= bdrBegining %>

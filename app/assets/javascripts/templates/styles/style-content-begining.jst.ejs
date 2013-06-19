@@ -1,0 +1,12 @@
+<%
+var pad=0;
+if( border_visible){
+  pad+= border_width;
+  if( border_outline ) pad++;
+  if( border_inline ) pad++;
+}
+var w=style.width - pad - pad;
+var h=style.height - pad - pad;
+var contentStyle=' style="left:0px;top:0px;width:' + w  + 'px;height:' + h  + 'px;"'
+%>
+<div class="content" <%= contentStyle %>>

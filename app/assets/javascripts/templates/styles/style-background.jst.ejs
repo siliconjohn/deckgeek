@@ -1,0 +1,8 @@
+<%
+var s='';
+if( background_id && background.url )
+  s="background: url('/assets/backgrounds/" + background.url +"')";
+
+if( s!='' ) s=' style="' + s + '"';
+%>
+<%= s %>

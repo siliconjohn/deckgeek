@@ -12,3 +12,39 @@ console.log("s " +border_width);
 var contentStyle=' style="left:0px;top:0px;width:' + w  + 'px;height:' + h  + 'px;"'
 %>
 <div class="content" <%= contentStyle %>>
+
+
+<%
+  var el='';
+
+  if( title_visible )
+  {
+      // size
+      var textBoxStyle=' style="width:' + (title_width-title_horz_margin-title_horz_margin) + "%;" +
+                       "height:" + title_height + "px;" +
+                       "border-radius:" + title_border_radius + "px;" +
+                       "margin-top:" + title_top_margin + "px;"+
+                       "margin-left:" + title_horz_margin + '%;';
+
+      // border
+      if( title_border_outline )
+      {
+        textBoxStyle+="border: 1px outset"
+
+        if ( title_bg_color )
+          textBoxStyle+=" " + title_bg_color;
+
+        textBoxStyle+=";"
+      }
+
+      // bg color
+      if( title_bg_color )
+        textBoxStyle+="background-color:" + title_bg_color + ";";
+
+      textBoxStyle+='"';
+
+      // finish element
+      el='<div class="text-box"' + textBoxStyle +'></div>';
+   }
+%>
+<%= el %>

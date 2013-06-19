@@ -5,7 +5,9 @@ class Card < ActiveRecord::Base
 
   attr_accessible :description, :name, :deck_id, :style_id,  :background_id,
                   :border_width, :border_visible, :border_color, :border_inline,
-                  :border_outline
+                  :border_outline, :title_width, :title_horz_margin, :title_top_margin,
+                  :title_height, :title_border_outline, :title_visible, :title_bg_color,
+                  :title_border_radius
 
   validates_length_of :description, :maximum => 255
   validates_length_of :name, :maximum => 255

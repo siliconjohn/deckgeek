@@ -21,26 +21,34 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
   end
 
   create_table "cards", :force => true do |t|
-    t.string   "name",                 :default => "My Card"
-    t.string   "description",          :default => "Describe your card here"
+    t.string   "name",                       :default => "My Card"
+    t.string   "description",                :default => "Describe your card here"
     t.string   "border_color"
-    t.integer  "border_width",         :default => 10
-    t.boolean  "border_visible",       :default => true
-    t.boolean  "border_inline",        :default => true
-    t.boolean  "border_outline",       :default => true
+    t.integer  "border_width",               :default => 10
+    t.boolean  "border_visible",             :default => true
+    t.boolean  "border_inline",              :default => true
+    t.boolean  "border_outline",             :default => true
     t.integer  "deck_id"
     t.integer  "style_id"
     t.integer  "background_id"
-    t.integer  "title_width",          :default => 100
-    t.integer  "title_horz_margin",    :default => 0
-    t.integer  "title_top_margin",     :default => 0
-    t.integer  "title_height",         :default => 40
-    t.boolean  "title_border_outline", :default => false
-    t.boolean  "title_visible",        :default => true
-    t.string   "title_bg_color",       :default => "rgba(248,248,248, 0.7)"
-    t.integer  "title_border_radius",  :default => 3
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.integer  "title_width",                :default => 100
+    t.integer  "title_horz_margin",          :default => 0
+    t.integer  "title_top_margin",           :default => 0
+    t.integer  "title_height",               :default => 40
+    t.boolean  "title_border_outline",       :default => false
+    t.boolean  "title_visible",              :default => true
+    t.string   "title_bg_color",             :default => "rgba(248,248,248, 0.7)"
+    t.integer  "title_border_radius",        :default => 0
+    t.integer  "description_width",          :default => 100
+    t.integer  "description_horz_margin",    :default => 0
+    t.integer  "description_top_margin",     :default => 0
+    t.integer  "description_height",         :default => 40
+    t.boolean  "description_border_outline", :default => false
+    t.boolean  "description_visible",        :default => true
+    t.string   "description_bg_color",       :default => "rgba(248,248,248, 0.7)"
+    t.integer  "description_border_radius",  :default => 0
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
   end
 
   add_index "cards", ["deck_id"], :name => "index_cards_on_deck_id"

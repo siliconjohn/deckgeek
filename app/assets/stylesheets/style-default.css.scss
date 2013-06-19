@@ -50,17 +50,16 @@
     position:relative;
   }
 
-  .text-box {
+  .title-box {
     width:100%;
-    emargin-left:2%;
-    emargin-top:2%;
-    emargin-right:4%;
     background-color: rgba(248,248,248, 0.7);
-    height:10%;
-    border: 0px inset rgba(255,255,255, 0.3);
     -webkit-box-shadow:  0px 5px 5px 0px rgba(0, 0, 0, 0.3);
     box-shadow:  0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  }
 
+  .description-box {
+    width:100%;
+    background-color: rgba(248,248,248, 0.7);
   }
 
   .bottom-left-gradient {

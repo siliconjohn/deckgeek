@@ -1,20 +1,30 @@
 <%
-var pad=0;
-if( border_visible ){
-  pad+= border_width;
-  if( border_outline ) pad++;
-  if( border_inline ) pad++;
-}
-var w=style.width - pad - pad;
-var h=style.height - pad - pad;
-console.log("s " +border_width);
+  /**************************************
+  *  'Content' parent box               *
+  **************************************/
 
-var contentStyle=' style="left:0px;top:0px;width:' + w  + 'px;height:' + h  + 'px;"'
+  var pad=0;
+
+  if( border_visible )
+  {
+    pad+= border_width;
+    if( border_outline ) pad++;
+    if( border_inline ) pad++;
+  }
+
+  var w=style.width - pad - pad;
+  var h=style.height - pad - pad;
+
+  var contentStyle=' style="left:0px;top:0px;width:' + w  + 'px;height:' + h  + 'px;"'
 %>
+
 <div class="content" <%= contentStyle %>>
 
-
 <%
+  /**************************************
+  *  Title Box                    *
+  **************************************/
+
   var el='';
 
   if( title_visible )
@@ -44,7 +54,49 @@ var contentStyle=' style="left:0px;top:0px;width:' + w  + 'px;height:' + h  + 'p
       textBoxStyle+='"';
 
       // finish element
-      el='<div class="text-box"' + textBoxStyle +'></div>';
+      el='<div class="title-box"' + textBoxStyle +'></div>';
    }
 %>
 <%= el %>
+
+<%
+  /**************************************
+  *  Description Box                    *
+  **************************************/
+
+  var desc='';
+
+  if( description_visible )
+  {
+    description_top_margin=10;
+      // size
+      var descriptionBoxStyle=' style="width:' + (description_width-description_horz_margin-description_horz_margin) + "%;" +
+                       "height:" + description_height + "px;" +
+                       "border-radius:" + description_border_radius + "px;" +
+                       "bottom:" + description_top_margin + "px;"+
+                       "position: absolute;" +
+                       "margin-left:" + description_horz_margin + '%;';
+
+      // border
+      if( description_border_outline )
+      {
+        descriptionBoxStyle+="border: 1px outset"
+
+        if ( description_bg_color )
+          descriptionBoxStyle+=" " + description_bg_color;
+
+        descriptionBoxStyle+=";"
+      }
+
+      // bg color
+      if( description_bg_color )
+        descriptionBoxStyle+="background-color:" + description_bg_color + ";";
+
+      descriptionBoxStyle+='"';
+
+      // finish element
+      desc='<div class="description-box"' + descriptionBoxStyle +'></div>';
+   }
+%>
+<%= desc %>
+

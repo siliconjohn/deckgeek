@@ -23,7 +23,7 @@ class CreateCards < ActiveRecord::Migration
 
       t.integer :description_width,       :default => 100
       t.integer :description_horz_margin, :default => 0
-      t.integer :description_top_margin,  :default => 0
+      t.integer :description_bottom,  :default => 0
       t.integer :description_height,      :default => 40
       t.boolean :description_border_outline, :default => false
       t.boolean :description_visible, :default => true

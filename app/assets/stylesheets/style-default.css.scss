@@ -50,16 +50,16 @@
     position:relative;
   }
 
-  .description {
+  .text-box {
     width:100%;
-    dmargin-left:5%;
-    dmargin-top:5%;
-    background-color: rgba(48,48,48, 0.7);
-    height:15%;
+    emargin-left:2%;
+    margin-top:2%;
+    margin-right:2%;
+    background-color: rgba(248,248,248, 0.7);
+    height:10%;
     border: 0px inset rgba(255,255,255, 0.3);
     -webkit-box-shadow:  0px 5px 5px 0px rgba(0, 0, 0, 0.3);
-
-        box-shadow:  0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow:  0px 5px 5px 0px rgba(0, 0, 0, 0.3);
 
   }
 

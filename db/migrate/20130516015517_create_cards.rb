@@ -4,9 +4,9 @@ class CreateCards < ActiveRecord::Migration
       t.string :name, :default => "My Card"
       t.string :description, :default => "Describe your card here"
       t.string :border_color
-      t.integer :border_width
+      t.integer :border_width,   :default => 10
       t.boolean :border_visible, :default => true
-      t.boolean :border_inline, :default => true
+      t.boolean :border_inline,  :default => true
       t.boolean :border_outline, :default => true
       t.references :deck
       t.references :style

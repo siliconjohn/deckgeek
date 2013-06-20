@@ -68,6 +68,28 @@
               <input id="title-height-slider" class="border-control slider" type="range" name="points" min="10" max="100" step="1" value="<%= title_height %>">
             </div>
 
+            <div id="title-bg-color">Color:
+              <input type='text' id="title-bg-color-picker" />
+              <script>
+                $("#title-bg-color-picker").spectrum({
+                    color: "<%= title_bg_color %>",
+                    showAlpha: true,
+                    showInput: true,
+                    showPalette: true,
+                    preferredFormat: "hex6",
+
+                    move: function(tinycolor)
+                    {
+                      $("#title-bg-color-picker").trigger('change');
+                    },
+
+                    hide: function(tinycolor)
+                    {
+                      $("#title-bg-color-picker").trigger('change');
+                    },
+                });
+              </script>
+            </div>
 <!--
 
 

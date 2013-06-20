@@ -3,9 +3,9 @@
  * and all of the UI needed to edit it.
  ******************************************/
 
-/////////////////////////////
-// Card Model
-/////////////////////////////
+/******************************************
+ * Card Model
+ ******************************************/
 
 App.CardModel = Backbone.Model.extend(
 {
@@ -25,9 +25,9 @@ App.CardCollection = Backbone.Collection.extend(
   model: App.CardModel
 });
 
-/////////////////////////////
-// Background Image
-/////////////////////////////
+/******************************************
+ * Background Image
+ ******************************************/
 
 App.BackgroundsCollection = Backbone.Collection.extend(
 {
@@ -88,9 +88,9 @@ App.BackgroundsView = Backbone.View.extend(
   }
 });
 
-/////////////////////////////
-// ArtWork Images
-/////////////////////////////
+/******************************************
+ * ArtWork Images
+ ******************************************/
 
 App.ArtWorksCollection = Backbone.Collection.extend(
 {
@@ -151,9 +151,9 @@ App.ArtWorksView = Backbone.View.extend(
   }
 });
 
-/////////////////////////////
-// Card Carousel
-/////////////////////////////
+/******************************************
+ * Card Carousel
+ ******************************************/
 
 App.CardCarouselView = Backbone.View.extend(
 {
@@ -215,9 +215,9 @@ App.CardCarouselsView = Backbone.View.extend(
   },
 });
 
-/////////////////////////////
-// Card Edit View
-/////////////////////////////
+/******************************************
+ * Card Edit View
+ ******************************************/
 
 App.CardEditView = Backbone.View.extend(
 {
@@ -438,6 +438,10 @@ App.CardEditView = Backbone.View.extend(
     $(".save-changes-btn").addClass("disabled");
   }
 });
+
+/******************************************
+ * Add the Card Edit View to the DOM
+ ******************************************/
 
 function addCardEditView(container, id, bkgds, artworks, cards)
 {

@@ -69,6 +69,39 @@
   * Border
   ****************************/
 
+  #accordion-text {
+
+    .slider-label {
+      margin-left: 60px;
+      margin-top: 16px;
+
+      .slider {
+        width: 100px;
+        margin-top: 4px;
+        margin-left: 6px;
+      }
+
+      .btn-group {
+        margin-left: 20px;
+
+        .btn {
+          width:60px;
+        }
+      }
+    }
+
+    #border-color {
+      margin-left: 60px;
+      margin-top: 10px;
+
+      .sp-replacer {
+        margin-left: 8px;
+        border-width: 0px;
+      }
+
+    }
+  }
+
   #accordion-border {
 
     #border-width {

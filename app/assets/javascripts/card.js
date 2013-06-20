@@ -237,7 +237,8 @@ App.CardEditView = Backbone.View.extend(
     _.bindAll(this, 'render', 'save', 'changeImage', 'enableSave', 'disableSave',
               'updateCardDescription', 'updateCardName','updateBorderColor',
               'updateBorderWidth', 'changeBackgroundImage', 'changeModel',
-              'updateBorderVisible', 'updateBorderOutline', 'updateBorderInline');
+              'updateBorderVisible', 'updateBorderOutline', 'updateBorderInline',
+              'updateTitleWidth', 'updateTitleAlignment');
   },
 
   render:function()
@@ -250,6 +251,10 @@ App.CardEditView = Backbone.View.extend(
     $("#border-toggle-btn").bind('click', this.updateBorderVisible);
     $("#outline-toggle-btn").bind('click', this.updateBorderOutline);
     $("#inline-toggle-btn").bind('click', this.updateBorderInline);
+    $("#title-width-slider").bind('change', this.updateTitleWidth);
+    $("#title-align-left-btn").bind('click', this.updateTitleAlignment);
+    $("#title-align-center-btn").bind('click', this.updateTitleAlignment);
+    $("#title-align-right-btn").bind('click', this.updateTitleAlignment);
 
     //this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
     //this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
@@ -308,6 +313,18 @@ App.CardEditView = Backbone.View.extend(
         this.model.set({background:{url:bg.get("url")}});
         this.model.set("background_id", imageId);
       }
+  },
+
+  updateTitleWidth: function()
+  {
+    this.model.set("title_width", $("#title-width-slider").val());
+  },
+
+  updateTitleAlignment: function(el)
+  {
+    if(el.target.id=="title-align-left-btn") { this.model.set("title_alignment","left")} else
+      if(el.target.id=="title-align-center-btn") {this.model.set("title_alignment","center")} else
+        if(el.target.id=="title-align-right-btn") {this.model.set("title_alignment","right");}
   },
 
   updateCardDescription:function()

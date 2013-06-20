@@ -94,6 +94,9 @@
             <% if( title_border_outline ) {bv=' active'} else  {bv = ''} %>
             <button id="title-border-btn" type="button" class="btn btn-success<%= bv %>" data-toggle="button">Border</button>
 
+            <div class="slider-label">Corners:
+              <input id="title-border-radius-slider" class="border-control slider" type="range" name="points" min="0" max="20" step="1" value="<%= title_border_radius %>">
+            </div>
 <!--
 
 

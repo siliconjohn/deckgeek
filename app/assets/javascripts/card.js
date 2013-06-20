@@ -239,7 +239,8 @@ App.CardEditView = Backbone.View.extend(
               'updateBorderWidth', 'changeBackgroundImage', 'changeModel',
               'updateBorderVisible', 'updateBorderOutline', 'updateBorderInline',
               'updateTitleWidth', 'updateTitleAlignment', 'updateTitleTop',
-              'updateTitleHeight', 'updateTitleBgColor', 'updateTitleBorder');
+              'updateTitleHeight', 'updateTitleBgColor', 'updateTitleBorder',
+              'updateTitleBorderRadius');
   },
 
   render:function()
@@ -260,7 +261,7 @@ App.CardEditView = Backbone.View.extend(
     $("#title-height-slider").bind('change',this.updateTitleHeight);
     $("#title-bg-color-picker").bind('change',this.updateTitleBgColor);
     $("#title-border-btn").bind('click', this.updateTitleBorder);
-
+    $("#title-border-radius-slider").bind('change',this.updateTitleBorderRadius);
 
     //this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
     //this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
@@ -319,6 +320,11 @@ App.CardEditView = Backbone.View.extend(
         this.model.set({background:{url:bg.get("url")}});
         this.model.set("background_id", imageId);
       }
+  },
+
+  updateTitleBorderRadius:function()
+  {
+    this.model.set("title_border_radius",$("#title-border-radius-slider").val());
   },
 
   updateTitleBorder:function()

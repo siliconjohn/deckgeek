@@ -1,4 +1,23 @@
-  <!-- button toolbar-->
+<script>
+  function addColorPicker( id, attrib ){
+    $(id).spectrum({
+        color: attrib,
+        showAlpha: true,
+        showInput: true,
+        showPalette: true,
+        preferredFormat: "hex6",
+        localStorageKey: "spectrum.gamegen",
+        move: function(tinycolor){
+          $(id).trigger('change');
+        },
+        hide: function(tinycolor){
+          $(id).trigger('change');
+        },
+    });
+  }
+</script>
+
+<!-- button toolbar-->
 <div class="btn-toolbar">
   <div class="btn-group">
     <button class="btn btn-large btn-success disabled save-changes-btn" style="width:154px">Save Changes</button>
@@ -31,79 +50,67 @@
       </div>
     </div>-->
 
-    <!-- edit text accordian -->
-    <div class="accordion" id="accordion-text">
+
+
+
+    <!-- title accordian -->
+
+    <div class="accordion" id="accordion-title">
       <div class="accordion-group">
         <div class="accordion-heading">
-           <button class="btn" data-toggle="collapse" data-parent="#accordion-text" href="#collapseTwo">Text</button>
+           <button class="btn" data-toggle="collapse" data-parent="#accordion-title" href="#accordion-title-body">Title</button>
         </div>
-        <div id="collapseTwo" class="accordion-body collapse in">
+        <div id="accordion-title-body" class="accordion-body collapse in">
           <div class="accordion-inner">
-            <div class="card-edit-view-parent">
 
+            <!-- title text input -->
 
-            <div class="title-align-btns">
-              <div class="slider-label">Width:
-                <input id="title-width-slider" class="border-control slider" type="range" name="points" min="10" max="100" step="1" value="<%= title_width %>">
-                <div class="btn-group" data-toggle="buttons-radio">
-                  <% if( title_alignment == "left" ){ bv =' active'} else {bv = ''} %>
-                  <button id="title-align-left-btn" class="btn btn-success btn-small<%= bv %>">Left</button>
+            <input id="name-input" type="text" placeholder="Heading" value="<%= name %>"></input>
 
-                  <% if( title_alignment == "center" ){ bv =' active'} else {bv = ''} %>
-                  <button id="title-align-center-btn" class="btn btn-small btn-success<%= bv %>">Center</button>
+            <!-- title width -->
 
-                  <% if( title_alignment == "right" ){ bv =' active'} else {bv = ''} %>
-                  <button id="title-align-right-btn" class="btn btn-success btn-small<%= bv %>">Right</button>
-
-                </div>
-              </div>
+            <div class="slider-group"><p>Width</p>
+              <div class="btn-group" data-toggle="buttons-radio">
+                <% if( title_alignment == "left" ){ btnActive =' active' } else { btnActive = '' } %>
+                <button id="title-align-left-btn" class="btn btn-success btn-mini<%= btnActive %>">Left</button>
+                <% if( title_alignment == "center" ){ btnActive =' active' } else { btnActive = '' } %>
+                <button id="title-align-center-btn" class="btn btn-success btn-mini<%= btnActive %>">Center</button>
+                <% if( title_alignment == "right" ){ btnActive =' active' } else { btnActive = '' } %>
+                <button id="title-align-right-btn" class="btn btn-success btn-mini<%= btnActive %>">Right</button>
+              </div><input id="title-width-slider" class="slider-control" type="range" name="points" min="10" max="100" step="1" value="<%= title_width %>">
             </div>
 
+            <!-- title top -->
 
-            <div class="slider-label">Top:
-              <input id="title-top-margin-slider" class="border-control slider" type="range" name="points" min="0" max="100" step="1" value="<%= title_top_margin %>">
+            <div class="slider-group"><p>Top</p>
+              <input id="title-top-margin-slider" class="slider-control" type="range" name="points" min="0" max="100" step="1" value="<%= title_top_margin %>">
             </div>
 
-            <div class="slider-label">Height:
-              <input id="title-height-slider" class="border-control slider" type="range" name="points" min="10" max="100" step="1" value="<%= title_height %>">
+            <!-- title height -->
+
+            <div class="slider-group"><p>Height</p>
+              <input id="title-height-slider" class="slider-control" type="range" name="points" min="10" max="100" step="1" value="<%= title_height %>">
             </div>
 
-            <div id="title-bg-color">Color:
-              <input type='text' id="title-bg-color-picker" />
-              <script>
-                $("#title-bg-color-picker").spectrum({
-                    color: "<%= title_bg_color %>",
-                    showAlpha: true,
-                    showInput: true,
-                    showPalette: true,
-                    preferredFormat: "hex6",
+            <!-- title border -->
 
-                    move: function(tinycolor)
-                    {
-                      $("#title-bg-color-picker").trigger('change');
-                    },
-
-                    hide: function(tinycolor)
-                    {
-                      $("#title-bg-color-picker").trigger('change');
-                    },
-                });
-              </script>
+            <div class="slider-group"><p>Border</p>
+              <% if( title_border_outline ) { active=' active' } else { active = '' } %>
+              <button id="title-border-btn" type="button" class="btn btn-mini btn-success<%= active %>" data-toggle="button">Border</button>
+              <div id="title-bg-color-picker-parent"><input type='text' id="title-bg-color-picker"/></div>
+              <input id="title-border-radius-slider" class="slider-control" type="range" name="points" min="0" max="20" step="1" value="<%= title_border_radius %>">
+              <script>addColorPicker( "#title-bg-color-picker", "<%= title_bg_color %>")</script>
             </div>
-
-            <% if( title_border_outline ) {bv=' active'} else  {bv = ''} %>
-            <button id="title-border-btn" type="button" class="btn btn-success<%= bv %>" data-toggle="button">Border</button>
-
-            <div class="slider-label">Corners:
-              <input id="title-border-radius-slider" class="border-control slider" type="range" name="points" min="0" max="20" step="1" value="<%= title_border_radius %>">
-            </div>
-<!--
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-                  :title_width, :title_horz_margin, :title_top_margin,
-                  :title_height, :title_border_outline, :title_visible, :title_bg_color,
-                  :title_border_radius,
- -->
+
+
+
+
 
 
 
@@ -112,15 +119,17 @@
 
 
               <!-- text-inputs -->
-              <!-- <input id="name-input" type="text" placeholder="Heading" value="<%= name %>"></input>
+              <!--
               <input id="misc-input" type="text" placeholder="Misc" ></input>
               <textarea id="description-input" type="text" placeholder="Description"><%= description %></textarea>
- -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              -->
+
+
+
+
+
+
+
 
     <!-- border accordian -->
     <div class="accordion" id="accordion-border">
@@ -153,27 +162,9 @@
             <div id="border-color">
               Border Color:
               <input type='text' id="border-color-picker" />
-              <script>
-                $("#border-color-picker").spectrum({
-                    color: "<%= border_color %>",
-                    showAlpha: true,
-                    showInput: true,
-                    showPalette: true,
-                    preferredFormat: "hex6",
-                    //showSelectionPalette: true,
-                    //localStorageKey: "spectrum.gamegen",
-                    move: function(tinycolor)
-                    {
-                      $("#border-color-picker").trigger('change');
-                    },
 
-                    hide: function(tinycolor)
-                    {
-                      $("#border-color-picker").trigger('change');
-                    },
+              <script>addColorPicker( "#border-color-picker", "<%= border_color %>")</script>
 
-                });
-              </script>
             </div>
           </div>
         </div>

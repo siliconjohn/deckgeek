@@ -66,39 +66,71 @@
   }
 
  /****************************
-  * Border
+  * Title
   ****************************/
 
-  #accordion-text {
+  #accordion-title-body {
 
-    .slider-label {
-      margin-left: 60px;
-      margin-top: 16px;
+    .slider-group {
 
-      .slider {
-        width: 100px;
-        margin-top: 4px;
-        margin-left: 6px;
+      p {
+        display: inline;
+        vertical-align: middle;
+      }
+
+      .slider-control {
+        width: 100%;
       }
 
       .btn-group {
-        margin-left: 20px;
+        float: right;
 
         .btn {
-          width:60px;
+          width: 50px;
         }
       }
-    }
 
-    #border-color {
-      margin-left: 60px;
-      margin-top: 10px;
-
-      .sp-replacer {
-        margin-left: 8px;
-        border-width: 0px;
+      #title-border-btn {
+        float: right;
+        width: 96px;
       }
 
+      #title-bg-color-picker-parent {
+        float: right;
+        margin-right: 4px;
+      }
+
+      .sp-replacer {
+        height: 18px;
+        width: 40px;
+        border-width: 0px;
+        padding-top: 1px;
+      }
+
+      .sp-preview {
+        width: 40px;
+        height: 18px;
+        border-color: #C0C0C0;
+        border-radius: 4px;
+      }
+
+      .sp-dd {
+        display: none;
+      }
+    }
+  }
+
+ /****************************
+  * Border
+  ****************************/
+
+  #border-color {
+    margin-left: 60px;
+    margin-top: 10px;
+
+    .sp-replacer {
+      margin-left: 8px;
+      border-width: 0px;
     }
   }
 
@@ -123,7 +155,6 @@
         margin-left: 8px;
         border-width: 0px;
       }
-
     }
 
     .bdr-btn {
@@ -183,8 +214,7 @@
       text-align: center;
     }
 
-    .carousel-indicators.middle li
-    {
+    .carousel-indicators.middle li {
       float: none;
       display: inline-block;
     }
@@ -199,8 +229,7 @@
       top: 45%;
     }
 
-    .edit-card-btn
-    {
+    .edit-card-btn{
       display: block;
       margin: 0 auto;
       margin-top: 8px;

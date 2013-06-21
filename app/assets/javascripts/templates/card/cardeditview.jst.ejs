@@ -58,7 +58,10 @@
                 <button id="title-align-center-btn" class="btn btn-success btn-mini<%= btnActive %>">Center</button>
                 <% if( title_alignment == "right" ){ btnActive =' active' } else { btnActive = '' } %>
                 <button id="title-align-right-btn" class="btn btn-success btn-mini<%= btnActive %>">Right</button>
-              </div><input id="title-width-slider" class="slider-control" type="range" name="points" min="10" max="100" step="1" value="<%= title_width %>">
+              </div>
+              <div class="text-bg-color-picker-parent"><input type='text' id="title-bg-color-picker"/></div>
+              <script>addColorPicker( "#title-bg-color-picker", "<%= title_bg_color %>")</script>
+              <input id="title-width-slider" class="slider-control" type="range" name="points" min="10" max="100" step="1" value="<%= title_width %>">
             </div>
 
             <!-- title top -->
@@ -78,9 +81,7 @@
             <div class="slider-group"><p>Border</p>
               <% if( title_border_outline ) { active=' active' } else { active = '' } %>
               <button id="title-border-btn" type="button" class="btn btn-mini btn-success<%= active %> text-border-btn" data-toggle="button">Border</button>
-              <div class="text-bg-color-picker-parent"><input type='text' id="title-bg-color-picker"/></div>
               <input id="title-border-radius-slider" class="slider-control" type="range" name="points" min="0" max="20" step="1" value="<%= title_border_radius %>">
-              <script>addColorPicker( "#title-bg-color-picker", "<%= title_bg_color %>")</script>
             </div>
           </div>
         </div>
@@ -111,7 +112,10 @@
                 <button id="description-align-center-btn" class="btn btn-success btn-mini<%= btnActive %>">Center</button>
                 <% if( description_alignment == "right" ){ btnActive =' active' } else { btnActive = '' } %>
                 <button id="description-align-right-btn" class="btn btn-success btn-mini<%= btnActive %>">Right</button>
-              </div><input id="description-width-slider" class="slider-control" type="range" name="points" min="10" max="100" step="1" value="<%= description_width %>">
+              </div>
+              <div class="text-bg-color-picker-parent"><input type='text' id="description-bg-color-picker"/></div>
+              <script>addColorPicker( "#description-bg-color-picker", "<%= description_bg_color %>")</script>
+              <input id="description-width-slider" class="slider-control" type="range" name="points" min="10" max="100" step="1" value="<%= description_width %>">
             </div>
 
             <!-- description top -->
@@ -131,9 +135,7 @@
             <div class="slider-group"><p>Border</p>
               <% if( description_border_outline ) { active=' active' } else { active = '' } %>
               <button id="description-border-btn" type="button" class="btn btn-mini btn-success<%= active %> text-border-btn" data-toggle="button">Border</button>
-              <div class="text-bg-color-picker-parent"><input type='text' id="description-bg-color-picker"/></div>
               <input id="description-border-radius-slider" class="slider-control" type="range" name="points" min="0" max="20" step="1" value="<%= description_border_radius %>">
-              <script>addColorPicker( "#description-bg-color-picker", "<%= description_bg_color %>")</script>
             </div>
           </div>
         </div>

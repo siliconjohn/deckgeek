@@ -11,6 +11,7 @@ class CreateCards < ActiveRecord::Migration
       t.references :deck
       t.references :style
       t.references :background
+
       t.integer :title_width,       :default => 100
       t.string  :title_alignment, :default => "center"
       t.integer :title_top_margin,  :default => 0
@@ -20,16 +21,14 @@ class CreateCards < ActiveRecord::Migration
       t.string :title_bg_color, :default => "rgba(248,248,248, 0.7)"
       t.integer :title_border_radius,  :default => 0
 
-
       t.integer :description_width,       :default => 100
-      t.integer :description_horz_margin, :default => 0
+      t.string  :description_alignment, :default => "center"
       t.integer :description_bottom,  :default => 0
       t.integer :description_height,      :default => 40
       t.boolean :description_border_outline, :default => false
       t.boolean :description_visible, :default => true
       t.string :description_bg_color, :default => "rgba(248,248,248, 0.7)"
       t.integer :description_border_radius,  :default => 0
-
 
       t.timestamps
     end

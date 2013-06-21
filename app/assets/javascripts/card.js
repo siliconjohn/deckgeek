@@ -240,7 +240,9 @@ App.CardEditView = Backbone.View.extend(
               'updateBorderVisible', 'updateBorderOutline', 'updateBorderInline',
               'updateTitleWidth', 'updateTitleAlignment', 'updateTitleTop',
               'updateTitleHeight', 'updateTitleBgColor', 'updateTitleBorder',
-              'updateTitleBorderRadius');
+              'updateTitleBorderRadius', 'updateDescriptionBorderRadius',
+              'updateDescriptionWidth', 'updateDescriptionAlignment', 'updateDescriptionBottom',
+              'updateDescriptionHeight', 'updateDescriptionBgColor', 'updateDescriptionBorder');
   },
 
   render:function()
@@ -262,6 +264,15 @@ App.CardEditView = Backbone.View.extend(
     $("#title-bg-color-picker").bind('change',this.updateTitleBgColor);
     $("#title-border-btn").bind('click', this.updateTitleBorder);
     $("#title-border-radius-slider").bind('change',this.updateTitleBorderRadius);
+    $("#description-width-slider").bind('change', this.updateDescriptionWidth);
+    $("#description-align-left-btn").bind('click', this.updateDescriptionAlignment);
+    $("#description-align-center-btn").bind('click', this.updateDescriptionAlignment);
+    $("#description-align-right-btn").bind('click', this.updateDescriptionAlignment);
+    $("#description-bottom-slider").bind('change',this.updateDescriptionBottom);
+    $("#description-height-slider").bind('change',this.updateDescriptionHeight);
+    $("#description-bg-color-picker").bind('change',this.updateDescriptionBgColor);
+    $("#description-border-btn").bind('click', this.updateDescriptionBorder);
+    $("#description-border-radius-slider").bind('change',this.updateDescriptionBorderRadius);
 
     //this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
     //this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
@@ -329,7 +340,7 @@ App.CardEditView = Backbone.View.extend(
 
   updateTitleBorder:function()
   {
-    var enabled=!$("#title-border-btn").hasClass("active");
+    var enabled=!$("#text-border-btn").hasClass("active");
     this.model.set("title_border_outline",enabled);
   },
 
@@ -358,6 +369,49 @@ App.CardEditView = Backbone.View.extend(
     if(el.target.id=="title-align-left-btn") { this.model.set("title_alignment","left")} else
       if(el.target.id=="title-align-center-btn") {this.model.set("title_alignment","center")} else
         if(el.target.id=="title-align-right-btn") {this.model.set("title_alignment","right");}
+  },
+
+  updateDescriptionBottom: function()
+  {
+    this.model.set("description_bottom", $("#description-bottom-slider").val());
+  },
+
+  updateDescriptionBorderRadius:function()
+  {
+    this.model.set("description_border_radius",$("#description-border-radius-slider").val());
+  },
+
+  updateDescriptionBorder:function()
+  {
+    var enabled=!$("#description-border-btn").hasClass("active");
+    this.model.set("description_border_outline",enabled);
+  },
+
+  updateDescriptionBgColor:function()
+  {
+    this.model.set("description_bg_color",$("#description-bg-color-picker").spectrum("get").toRgbString());
+  },
+
+  updateDescriptionHeight: function()
+  {
+    this.model.set("description_height", $("#description-height-slider").val());
+  },
+
+  updateDescriptionTop: function()
+  {
+    this.model.set("description_top_margin", $("#description-top-margin-slider").val());
+  },
+
+  updateDescriptionWidth: function()
+  {
+    this.model.set("description_width", $("#description-width-slider").val());
+  },
+
+  updateDescriptionAlignment: function(el)
+  {
+    if(el.target.id=="description-align-left-btn") { this.model.set("description_alignment","left")} else
+      if(el.target.id=="description-align-center-btn") {this.model.set("description_alignment","center")} else
+        if(el.target.id=="description-align-right-btn") {this.model.set("description_alignment","right");}
   },
 
   updateCardDescription:function()

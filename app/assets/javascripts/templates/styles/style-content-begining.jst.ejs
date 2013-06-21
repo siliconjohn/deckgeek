@@ -15,7 +15,7 @@
   var w=style.width - pad - pad;
   var h=style.height - pad - pad;
 
-  var contentStyle=' style="left:0px;top:0px;width:' + w  + 'px;height:' + h  + 'px;"'
+  var contentStyle=' style="left:' + pad +'px;top:' + pad +'px;width:' + w  + 'px;height:' + h  + 'px;"'
 %>
 
 <div class="content" <%= contentStyle %>>
@@ -83,14 +83,28 @@
 
   if( description_visible )
   {
-    description_bottom=10;
+    var align=0;
+
+    if( description_alignment == "left" )
+      align=0;
+    else
+      if( description_alignment == "right" )
+        align=100-description_width
+      else
+      {
+        if( description_width > 99)
+          align=0;
+        else
+          align=(100-description_width)/2;
+      }
+
       // size
-      var descriptionBoxStyle=' style="width:' + (description_width-description_horz_margin-description_horz_margin) + "%;" +
+      var descriptionBoxStyle=' style="width:' + description_width + "%;" +
                        "height:" + description_height + "px;" +
                        "border-radius:" + description_border_radius + "px;" +
                        "bottom:" + description_bottom + "px;"+
                        "position: absolute;" +
-                       "margin-left:" + description_horz_margin + '%;';
+                       "margin-left:" + align + '%;';
 
       // border
       if( description_border_outline )

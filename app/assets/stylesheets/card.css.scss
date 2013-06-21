@@ -21,7 +21,7 @@
  * and edit stuff
  ****************************/
 
-// Override spectrum color picker colors
+// overriding spectrum color picker colors
 .sp-container {
   background-color:  rgba( 236, 236, 236, 0.94 );
   border-radius: 3px;
@@ -52,24 +52,20 @@
     width: 100%;
   }
 
-  /****************************
-   * Text Input
-   ****************************/
-
-  input {
-    width: 96%;
-  }
-
-  textarea {
-    width: 96%;
-    height: 150px;
-  }
-
  /****************************
-  * Title
+  * Text Input
   ****************************/
 
-  #accordion-title-body {
+  #accordion-title-body, #accordion-description-body, #accordion-border-body {
+
+    input {
+      width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
 
     .slider-group {
 
@@ -89,34 +85,38 @@
           width: 50px;
         }
       }
+    }
 
-      #title-border-btn {
-        float: right;
-        width: 96px;
-      }
+    .text-border-btn {
+      float: right;
+      width: 96px;
+    }
 
-      #title-bg-color-picker-parent {
-        float: right;
-        margin-right: 4px;
-      }
+    .text-bg-color-picker-parent {
+      float: right;
+      margin-right: 4px;
+    }
 
-      .sp-replacer {
-        height: 18px;
-        width: 40px;
-        border-width: 0px;
-        padding-top: 1px;
-      }
+    .border-color-picker-parent {
+      float: right;
+    }
 
-      .sp-preview {
-        width: 40px;
-        height: 18px;
-        border-color: #C0C0C0;
-        border-radius: 4px;
-      }
+    .sp-replacer {
+      height: 18px;
+      width: 40px;
+      border-width: 0px;
+      padding-top: 1px;
+    }
 
-      .sp-dd {
-        display: none;
-      }
+    .sp-preview {
+      width: 40px;
+      height: 18px;
+      border-color: #C0C0C0;
+      border-radius: 4px;
+    }
+
+    .sp-dd {
+      display: none;
     }
   }
 
@@ -124,38 +124,7 @@
   * Border
   ****************************/
 
-  #border-color {
-    margin-left: 60px;
-    margin-top: 10px;
-
-    .sp-replacer {
-      margin-left: 8px;
-      border-width: 0px;
-    }
-  }
-
   #accordion-border {
-
-    #border-width {
-      margin-left: 60px;
-      margin-top: 16px;
-
-      #border-width-slider {
-        width: 200px;
-        margin-top: 4px;
-        margin-left: 6px;
-      }
-    }
-
-    #border-color {
-      margin-left: 60px;
-      margin-top: 10px;
-
-      .sp-replacer {
-        margin-left: 8px;
-        border-width: 0px;
-      }
-    }
 
     .bdr-btn {
       width: 100px;
@@ -262,37 +231,6 @@
     }
 
     .background-view-btn {
-      width: 280px;
-      position: absolute;
-      bottom: 0;
-    }
-  }
-
- /****************************
-  * Artwork Image Carosel
-  ****************************/
-
-  #artworks-carosel {
-    margin-top: 10px;
-    height: 240px;
-    margin-bottom: 2px;
-
-    .artwork-view {
-      width: 280px;
-      height: 240px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .artwork-view-image {
-      display: block;
-      margin: 0 auto;
-      max-height: 200px;
-      -webkit-box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .5);
-      box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, .5);
-    }
-
-    .artwork-view-btn {
       width: 280px;
       position: absolute;
       bottom: 0;

@@ -20,7 +20,9 @@ images=Image.create(
 
 backgrounds=Background.create(
   [{ name: 'background 1', url:'1.jpg'},
-   { name: 'background 2', url:'2.jpg'}
+   { name: 'background 2', url:'2.jpg'},
+   { name: 'background 3', url:'3.jpg'},
+   { name: 'background 4', url:'4.jpg'}
   ])
 
 styles=Style.create(
@@ -36,21 +38,129 @@ games=Game.create(
   ])
 
 decks=Deck.create(
-  [{ name: 'Deck 1:1', description:'Deck description 1:1', game_id:games[0].id},
-   { name: 'Deck 1:2', description:'Deck description 1:2', game_id:games[0].id},
-   { name: 'Deck 2:1', description:'Deck description 2:1', game_id:games[1].id}
+  [{ name: 'Deck 1', description:'Deck description 1', game_id:games[0].id},
+   { name: 'Deck 2', description:'Deck description 2', game_id:games[0].id},
+   { name: 'Deck 3', description:'Deck description 3', game_id:games[1].id}
   ])
 
-# The first card is the sample default card and in needed!!
+# The first card is the sample default card and is needed!!
 cards=Card.create(
-  [{ name: 'Awesome Card', description:'Man, this is awesome! More awesome please, with some cheese!', style_id:styles[0].id,
-    background_id:backgrounds[0].id},
-   { name: 'Card 1:1', description:'Card description 1:1', style_id:styles[0].id, background_id:backgrounds[0].id, deck_id:games[0].id},
-   { name: 'Card 1:2', description:'Card description 1:2', style_id:styles[0].id, border_outline:false, background_id:backgrounds[1].id, deck_id:games[0].id},
-   { name: 'Card 1:3', description:'Card description 1:3', style_id:styles[0].id, border_visible:false, deck_id:games[0].id},
-   { name: 'Card 1:4', description:'Card description 1:4', style_id:styles[0].id, border_width:25, background_id:backgrounds[1].id, deck_id:games[0].id},
-   { name: 'Card 1:5', description:'Card description 1:5', style_id:styles[0].id, border_color: '#ff0000', background_id:backgrounds[0].id, deck_id:games[0].id},
-   { name: 'Card 2:1', description:'Card description 2:3', style_id:styles[1].id, border_inline: false, background_id:backgrounds[1].id, deck_id:games[1].id},
-   { name: 'Card 2:2', description:'Card description 2:3', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id},
-   { name: 'Card 2:3', description:'Card description 2:3', style_id:styles[1].id, background_id:backgrounds[1].id, deck_id:games[1].id}
-   ])
+
+
+
+
+
+
+[{
+  name: "Sample Card 1",
+  description: "Sample Card Description",
+  border_color: "rgba(0, 0, 0, 0.45)",
+  border_inline: true,
+  border_outline: true,
+  border_visible: true,
+  border_width: 9,
+  description_alignment: "center",
+  description_bg_color: "rgba(103, 116, 50, 0.38)",
+  description_border_outline: false,
+  description_border_radius: 0,
+  description_bottom: 0,
+  description_height: 97,
+  description_visible: true,
+  description_width: 100,
+  title_alignment: "center",
+  title_bg_color: "rgba(103, 116, 50, 0.38)",
+  title_border_outline: false,
+  title_border_radius: 0,
+  title_height: 39,
+  title_top_margin: 0,
+  title_visible: true,
+  title_width: 100,
+  style_id: styles[0].id,
+  deck_id: decks[0].id,
+  background_id: backgrounds[0].id,
+},
+{
+  name: "Sample Card 2",
+  description: "Sample Card Description",
+  border_color: "rgba(0, 0, 0, 0.45)",
+  border_inline: true,
+  border_outline: true,
+  border_visible: true,
+  border_width: 9,
+  description_alignment: "center",
+  description_bg_color: "rgba(103, 116, 50, 0.38)",
+  description_border_outline: false,
+  description_border_radius: 0,
+  description_bottom: 0,
+  description_height: 97,
+  description_visible: true,
+  description_width: 100,
+  title_alignment: "center",
+  title_bg_color: "rgba(103, 116, 50, 0.38)",
+  title_border_outline: false,
+  title_border_radius: 0,
+  title_height: 39,
+  title_top_margin: 0,
+  title_visible: true,
+  title_width: 100,
+  style_id: styles[0].id,
+  deck_id: decks[0].id,
+  background_id: backgrounds[1].id,
+},
+{
+  name: "Sample Card 3",
+  description: "Sample Card Description",
+  border_color: "rgba(152, 142, 72, 0.45)",
+  border_inline: true,
+  border_outline: true,
+  border_visible: true,
+  border_width: 9,
+  description_alignment: "center",
+  description_bg_color: "rgba(94, 26, 71, 0.45)",
+  description_border_outline: false,
+  description_border_radius: 0,
+  description_bottom: 0,
+  description_height: 97,
+  description_visible: true,
+  description_width: 100,
+  title_alignment: "center",
+  title_bg_color: "rgba(236, 238, 59, 0.14)",
+  title_border_outline: false,
+  title_border_radius: 0,
+  title_height: 39,
+  title_top_margin: 0,
+  title_visible: true,
+  title_width: 100,
+  style_id: styles[0].id,
+  deck_id: decks[0].id,
+  background_id: backgrounds[2].id,
+},
+{
+  name: "Sample Card 4",
+  description: "Sample Card Description",
+  border_color: "rgba(0, 0, 0, 0.45)",
+  border_inline: true,
+  border_outline: true,
+  border_visible: true,
+  border_width: 9,
+  description_alignment: "center",
+  description_bg_color: "rgba(95, 49, 49, 0.41)",
+  description_border_outline: false,
+  description_border_radius: 0,
+  description_bottom: 0,
+  description_height: 97,
+  description_visible: true,
+  description_width: 100,
+  title_alignment: "center",
+  title_bg_color: "rgba(0, 0, 0, 0.45)",
+  title_border_outline: false,
+  title_border_radius: 0,
+  title_height: 39,
+  title_top_margin: 0,
+  title_visible: true,
+  title_width: 100,
+  style_id: styles[0].id,
+  deck_id: decks[0].id,
+  background_id: backgrounds[3].id,
+}]
+)

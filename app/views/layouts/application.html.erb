@@ -8,12 +8,12 @@
 </head>
 <body>
 
-<div class="navbar navbar-fixed-top navbar-inverse">
+<div class="navbar navbar-fixed-top ">
   <div class="navbar-inner">
     <ul class="nav">
     <% if user_signed_in? %>
       <li><%= gravatar_for(current_user.email, size:30, class: 'avatar-small', alt: 'avatar') %></li>
-      <li><a class="brand" href="/">Game Genisis</a></li>
+      <li><a class="brand" href="/">CARD GENISIS</a></li>
       <li><%= link_to "#{current_user.email}", edit_user_registration_path %></li>
     </ul>
     <ul class="nav pull-right">

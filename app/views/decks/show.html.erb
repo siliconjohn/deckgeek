@@ -1,8 +1,8 @@
 <div class="hero-holder"></div>
 
 <div class="btn-toolbar ">
-  <button id="add-card-btn" class="btn btn-large btn-primary">Add a New Card</button>
-  <button id="change-style-btn" class="btn btn-large  btn-primary" data-toggle="collapse" data-target="#card-style-carosel-parent">Change Card Style</button>
+  <button id="add-card-btn" class="btn btn-large btn-blue">Add a New Card</button>
+  <button id="change-style-btn" class="btn btn-large  btn-blue" data-toggle="collapse" data-target="#card-style-carosel-parent">Change Card Style</button>
   <button class="btn btn-large pull-right" onclick="window.history.back();">Back</button>
 </div>
 
@@ -24,7 +24,7 @@
     getStyles('.styles-holder', <%= @styles.to_json.to_s.html_safe %>,
                                   <%= @cards.first.to_json.to_s.html_safe %>  ,
                                   <%= @defaultCard.to_json.to_s.html_safe %> );
-     addCardsView('.cards-holder', <%= @cards.to_json.to_s.html_safe %>,true);
+     addCardsView('.cards-holder', <%= @cards.to_json.to_s.html_safe %>,true,true);
   });
 
   $("#add-card-btn").bind("click", function(){

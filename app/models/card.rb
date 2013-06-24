@@ -1,5 +1,6 @@
 class Card < ActiveRecord::Base
   belongs_to :deck, :inverse_of => :cards
+  belongs_to :game, :inverse_of => :cards
   belongs_to :style, :inverse_of => :cards
   belongs_to :background, :inverse_of => :cards
 

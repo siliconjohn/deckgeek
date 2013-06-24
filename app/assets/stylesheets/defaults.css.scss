@@ -1,16 +1,35 @@
 /***************************
  * bootstrap overrides
  ***************************/
+
 body {
-  padding-top: 70px; /* to make the container go all the way to the bottom of the topbar for bootstrap*/
+  padding-top: 66px; /* to make the container go all the way to the bottom of the topbar for bootstrap*/
   background-color: #F5F5F5;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
+
+code,
+pre {
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+
+}
+
+.navbar-search .search-query {
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 
 .navbar-inner {
   background-color: rgba(255, 255, 255, 0.95);
   background-image: none;
   min-height: 50px;
-  border-bottom:0px;
+  border-bottom: 0px;
 }
 
 .nav {
@@ -18,7 +37,7 @@ body {
 }
 
 .navbar .nav li a {
-  color: #333;
+  color: #111;
 }
 
 .navbar .brand {
@@ -34,10 +53,96 @@ body {
 }
 
 .hero-unit {
-  margin-bottom:15px;
+  margin-bottom: 15px;
   background-color: #fff;
-  border-radius:10px;
-  border:1px solid #d0d0d0;
+  border-radius: 8px;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.3),
+              0px 0px 1px rgba(0,0,0, 0.9);
+}
+
+.hero-unit h1
+{
+  color: #2A3975;
+}
+
+.lead
+{
+  color: #2A3975;
+}
+
+#card-genisis {
+  color: #334400;
+  font-size: 20px;
+  padding-right: 10px;
+  padding-left: 16px;
+}
+
+#user-email {
+  padding-left: 0px;
+  color: #666;
+  font-size: 12px;
+  padding-top: 12px;
+}
+
+#sign-out {
+  color: #334400;
+
+}
+
+.btn-toolbar {
+    margin-left:16px;
+}
+
+.btn-blue {
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #3E78A8;
+  *background-color: #3E78A8;
+  background-image: -moz-linear-gradient(top, #36A5FF, #3E78A8);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#36A5FF), to(#3E78A8));
+  background-image: -webkit-linear-gradient(top, #36A5FF, #3E78A8);
+  background-image: -o-linear-gradient(top, #36A5FF, #3E78A8);
+  background-image: linear-gradient(to bottom, #36A5FF, #3E78A8);
+  background-repeat: repeat-x;
+  border-color: #3E78A8;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36A5FF', endColorstr='#3E78A8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue.active,
+.btn-blue.disabled,
+.btn-blue[disabled] {
+  color: #FFFFFF;
+  background-color: #3E78A8;
+  *background-color: #003bb3;
+}
+
+ .btn-green {
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #629962;
+  *background-color: #629962;
+  background-image: -moz-linear-gradient(top, #64D464, #629962);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#64D464), to(#629962));
+  background-image: -webkit-linear-gradient(top, #64D464, #629962);
+  background-image: -o-linear-gradient(top, #64D464, #629962);
+  background-image: linear-gradient(to bottom, #64D464, #629962);
+  background-repeat: repeat-x;
+  border-color: #629962;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#64D464', endColorstr='#629962', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-green:hover,
+.btn-green:active,
+.btn-green.active,
+.btn-green.disabled,
+.btn-green[disabled] {
+  color: #FFFFFF;
+  background-color: #629962;
+  *background-color: #003bb3;
 }
 
 /***************************
@@ -63,9 +168,9 @@ body {
 }
 
 .line {
-  border-top: 1px solid #d0d0d0;
-  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid #ddd;
+  //border-bottom: 1px solid #ffffff;
   height:0px;
-  margin-top: 9px;
+  margin-top: 14px;
   width:100%;
 }

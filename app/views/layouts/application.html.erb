@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>GG</title>
+  <title>Card Genisis</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,11 +13,11 @@
     <ul class="nav">
     <% if user_signed_in? %>
       <li><%= gravatar_for(current_user.email, size:30, class: 'avatar-small', alt: 'avatar') %></li>
-      <li><a class="brand" href="/">CARD GENISIS</a></li>
-      <li><%= link_to "#{current_user.email}", edit_user_registration_path %></li>
+      <li><a id="card-genisis" class="brand" href="/">CARD GENISIS</a></li>
+      <li><%= link_to "#{current_user.email}", edit_user_registration_path,  {:id => "user-email"} %></li>
     </ul>
     <ul class="nav pull-right">
-      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to "Sign Out", destroy_user_session_path, {:id => "sign-out"} %></li>
     </ul>
     <% else %>
       <% if params[:controller]!="devise/registrations" || %>

@@ -3,39 +3,53 @@
   .game-view {
     margin-left:16px;
     width:907px;
-    height: 224px;
-    border:1px solid #d0d0d0;
-    background-color: #fafafa;
-
-    border-radius:10px;
-    margin-top:19px;
-    // background-image: -moz-linear-gradient(top, #ffffff, #f0f0f0);
-    // background-image: -ms-linear-gradient(top, #ffffff, #f0f0f0);
-    // background-image: -o-linear-gradient(top, #ffffff, #f0f0f0);
-    // background-image: -webkit-linear-gradient(top, #ffffff, #f0f0f0);
-    // background-image: linear-gradient(top, #ffffff, #f0f0f0);
-    // background-clip: padding-box;
-    // /*Use "background-clip: padding-box" when using rounded corners to avoid the gradient bleeding through the corners*/
-    // /*--IE9 DOES NOT SUPPORT CSS3 GRADIENT BACKGROUNDS--*/
-    // opacity:1;
-
-
+    height: 220px;
+    background-color: #FBFBFB;
+    border-radius:8px;
+    margin-top:15px;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.3),
+              0px 0px 1px rgba(0,0,0, 0.9);
+    position:relative;
+    overflow:hidden;
 
     .edit-game-button {
       width:150px;
-      position:relative;
-      left:651px;
-      top:136px;
+      position:absolute;
+      right:7px;
+      bottom:7px;
     }
 
     .delete-game-btn {
-      position:relative;
+      position:absolute;
       left:7px;
-      top:136px;
+      bottom:7px;
     }
 
     .game-name {
-      margin:10px;
+      padding:10px;
+      padding-left:14px;
+      padding-top:7px;
+      overflow:hidden;
+      margin:0px;
+      height:25px;
+      color:#333;
+    }
+
+    .game-description {
+      color:#666;
+      overflow:hidden;
+      height:20px;
+      margin-top: 6px;
+      margin-left: 25px;
+      font-size: 14px;
+    }
+
+    .game-bottom {
+      border-top: 1px solid #eee;
+      height:200px;
+      margin-top: 0px;
+      width:100%;
+      background-color: #fff;
     }
   }
 }

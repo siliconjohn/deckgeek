@@ -130,11 +130,12 @@ App.CardsView = Backbone.View.extend(
       card.save();
     });
 
-    this.center();
+     this.center();
   },
 
   center: function()
   {
+    if(!this.options.center) return;
     var cardWidth=this.$el.find('.card-view').first().width();
     var m=10;//this.$el.find('.card-view').first().css("margin-right")
     var pw=940;//this.$el.width();
@@ -145,10 +146,9 @@ App.CardsView = Backbone.View.extend(
   }
 });
 
-function addCardsView( container, json, addEditButtons )
+function addCardsView( container, json, addEditButtons, center )
 {
-  window.App.views.cardsView = new App.CardsView( { collection: new App.Cards( json ), addEditButtons: addEditButtons });
+  window.App.views.cardsView = new App.CardsView( { collection: new App.Cards( json ), addEditButtons: addEditButtons, center:center });
   window.App.views.cardsView.$el.appendTo( container );
   window.App.views.cardsView.render();
-
 }

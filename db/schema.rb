@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
   add_index "decks", ["game_id"], :name => "index_decks_on_game_id"
 
   create_table "games", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
+    t.string   "name",        :default => "My Sweet Game!"
+    t.string   "description", :default => "This game will impress all the girls."
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
   end
 
   add_index "games", ["user_id"], :name => "index_games_on_user_id"

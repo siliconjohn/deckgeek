@@ -344,7 +344,7 @@ App.CardEditView = Backbone.View.extend(
     this.model.set("title_border_outline",enabled);
   },
 
-  updateTitleBgColor:function()
+  updateTitleBgColor:function(e)
   {
     this.model.set("title_bg_color",$("#title-bg-color-picker").spectrum("get").toRgbString());
   },

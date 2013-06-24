@@ -4,16 +4,44 @@
 		"selected_items":
 		[
 			[
-				"mar",
+				"margin",
 				"margin-top"
 			],
 			[
-				"margin",
-				"margin-left"
+				"title",
+				"title_alignment"
+			],
+			[
+				"up",
+				"updateTitleWidth"
+			],
+			[
+				"te",
+				"textBoxStyle"
+			],
+			[
+				"at",
+				"attributes"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"bo",
+				"border-width"
 			],
 			[
 				"marg",
-				"margin-right"
+				"margin-left"
+			],
+			[
+				"mar",
+				"margin-top"
 			],
 			[
 				"remo",
@@ -38,10 +66,6 @@
 			[
 				"attr",
 				"attributes"
-			],
-			[
-				"bo",
-				"border_width"
 			],
 			[
 				"to",
@@ -123,6 +147,145 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "/******************************************\n * This is for displaying one card\n * and all of the UI needed to edit it.\n ******************************************/\n\n/******************************************\n * Card Model\n ******************************************/\n\nApp.CardModel = Backbone.Model.extend(\n{\n  url:function()\n  {\n    return this.get(\"id\");\n  },\n\n  parse:function(resp, xhr)\n  {\n  }\n});\n\n\nApp.CardCollection = Backbone.Collection.extend(\n{\n  model: App.CardModel\n});\n\n/******************************************\n * Background Image\n ******************************************/\n\nApp.BackgroundsCollection = Backbone.Collection.extend(\n{\n  model: Backbone.Model\n});\n\nApp.BackgroundView = Backbone.View.extend(\n{\n  tag: \"div\",\n  className: \"item\",\n  template: JST['templates/card/backgroundview'],\n\n  initialize:function()\n  {\n    _.bindAll(this, 'render', 'remove');\n    this.listenTo(this.model, 'change', this.render);\n  },\n\n  render:function()\n  {\n    this.$el.html(this.template(this.model.attributes));\n    return this;\n  }\n});\n\nApp.BackgroundsView = Backbone.View.extend(\n{\n  tag:\"div\",\n  className:\"backgrounds-view\",\n  template: JST['templates/card/backgroundsview'],\n\n  initialize:function()\n  {\n    _.bindAll(this, 'render', 'addBackgroundView');\n  },\n\n  render:function()\n  {\n    this.$el.html(this.template());\n    this.collection.each(this.addBackgroundView);\n\n    // show the first image if none is active\n    if(this.options.image_id == null)\n      this.$('.carousel-inner').find('.item').first().addClass(\"active\");\n\n    return this;\n  },\n\n  addBackgroundView:function(backgroundModel)\n  {\n    var backgroundView = new App.BackgroundView({model:backgroundModel});\n    backgroundView.$el.appendTo(this.$('.carousel-inner'))\n\n    if(backgroundModel.id == this.options.image_id)\n       backgroundView.$el.addClass(\"item active\");\n\n    backgroundView.render();\n  }\n});\n\n/******************************************\n * ArtWork Images\n ******************************************/\n\nApp.ArtWorksCollection = Backbone.Collection.extend(\n{\n  model: Backbone.Model\n});\n\nApp.ArtWorkView = Backbone.View.extend(\n{\n  tag: \"div\",\n  className: \"item\",\n  template: JST['templates/card/artworkview'],\n\n  initialize:function()\n  {\n    _.bindAll(this, 'render', 'remove');\n    this.listenTo(this.model, 'change', this.render);\n  },\n\n  render:function()\n  {\n    this.$el.html(this.template(this.model.attributes));\n    return this;\n  }\n});\n\nApp.ArtWorksView = Backbone.View.extend(\n{\n  tag:\"div\",\n  className:\"artworks-view\",\n  template: JST['templates/card/artworksview'],\n\n  initialize:function()\n  {\n    _.bindAll(this, 'render', 'addArtWorkView');\n  },\n\n  render:function()\n  {\n    this.$el.html(this.template());\n    this.collection.each(this.addArtWorkView);\n\n    // show the first image if none is active\n    if(this.options.image_id == null)\n      this.$('.carousel-inner').find('.item').first().addClass(\"active\");\n\n    return this;\n  },\n\n  addArtWorkView:function(artWorkModel)\n  {\n    var artWorkView = new App.ArtWorkView({model:artWorkModel});\n    artWorkView.$el.appendTo(this.$('.carousel-inner'))\n\n    if(artWorkModel.id == this.options.image_id)\n       artWorkView.$el.addClass(\"item active\");\n\n    artWorkView.render();\n  }\n});\n\n/******************************************\n * Card Carousel\n ******************************************/\n\nApp.CardCarouselView = Backbone.View.extend(\n{\n  tag: \"div\",\n  className: \"item\",\n\n  initialize: function()\n  {\n    _.bindAll(this, 'render');\n    this.listenTo(this.model, 'change', this.render);\n  },\n\n  render:function()\n  {\n    this.template = JST['templates/styles/' + this.model.attributes.style.template_name]\n\n    this.$el.html(this.template(this.model.attributes,{model: this.model}));\n    this.$el.find(\".card-view-base\").addClass(\"card-view-shadow center\");\n    this.$el.append(JST['templates/card/cardcarouselvieweditbutton'](this.model.attributes));\n\n    return this;\n  }\n});\n\nApp.CardCarouselsView = Backbone.View.extend(\n{\n  tag: \"div\",\n  className:\"card-carousels-view\",\n  template: JST['templates/card/cardcarouselsview'],\n\n  initialize: function()\n  {\n    _.bindAll(this, 'render', 'addCarouselView');\n  },\n\n  render: function()\n  {\n    this.$el.html(this.template());\n    this.collection.each(this.addCarouselView);\n    return this;\n  },\n\n  addCarouselView: function(model)\n  {\n    var modelView = new App.CardCarouselView({model:model});\n    modelView.$el.appendTo(this.$('.carousel-inner'));\n    modelView.render();\n\n    if( this.options.selectID == model.id )\n    {\n      modelView.$el.addClass('active');\n      active='class=\"active\"';\n    }\n    else\n      active='';\n\n    this.$(\".carousel-indicators\").append('<li data-target=\"#cards-carosel\" data-slide-to=\"' +\n                                           this.collection.indexOf(model) + '\"' + active +'></li>');\n  },\n});\n\n/******************************************\n * Card Edit View\n ******************************************/\n\nApp.CardEditView = Backbone.View.extend(\n{\n  tag:\"div\",\n  className:\"card-edit-view\",\n  template: JST['templates/card/cardeditview'],\n  events:\n  {\n    'click .artwork-view-btn': 'changeImage',\n    'click .background-view-btn': 'changeBackgroundImage',\n    'click .save-changes-btn': 'save',\n    'click .edit-card-btn': 'changeModel'\n  },\n\n  initialize:function()\n  {\n    _.bindAll(this, 'render', 'save', 'changeImage', 'enableSave', 'disableSave',\n              'updateCardDescription', 'updateCardName','updateBorderColor',\n              'updateBorderWidth', 'changeBackgroundImage', 'changeModel',\n              'updateBorderVisible', 'updateBorderOutline', 'updateBorderInline',\n              'updateTitleWidth', 'updateTitleAlignment', 'updateTitleTop',\n              'updateTitleHeight', 'updateTitleBgColor', 'updateTitleBorder',\n              'updateTitleBorderRadius', 'updateDescriptionBorderRadius',\n              'updateDescriptionWidth', 'updateDescriptionAlignment', 'updateDescriptionBottom',\n              'updateDescriptionHeight', 'updateDescriptionBgColor', 'updateDescriptionBorder');\n  },\n\n  render:function()\n  {\n    this.$el.html(this.template(this.model.attributes));\n    $(\"#name-input\").bind('keyup cut paste', this.updateCardName);\n    $(\"#description-input\").bind('keyup cut paste', this.updateCardDescription);\n    $(\"#border-width-slider\").bind('change', this.updateBorderWidth);\n    $(\"#border-color-picker\").bind('change', this.updateBorderColor);\n    $(\"#border-toggle-btn\").bind('click', this.updateBorderVisible);\n    $(\"#outline-toggle-btn\").bind('click', this.updateBorderOutline);\n    $(\"#inline-toggle-btn\").bind('click', this.updateBorderInline);\n    $(\"#title-width-slider\").bind('change', this.updateTitleWidth);\n    $(\"#title-align-left-btn\").bind('click', this.updateTitleAlignment);\n    $(\"#title-align-center-btn\").bind('click', this.updateTitleAlignment);\n    $(\"#title-align-right-btn\").bind('click', this.updateTitleAlignment);\n    $(\"#title-top-margin-slider\").bind('change',this.updateTitleTop);\n    $(\"#title-height-slider\").bind('change',this.updateTitleHeight);\n    $(\"#title-bg-color-picker\").bind('change',this.updateTitleBgColor);\n    $(\"#title-border-btn\").bind('click', this.updateTitleBorder);\n    $(\"#title-border-radius-slider\").bind('change',this.updateTitleBorderRadius);\n    $(\"#description-width-slider\").bind('change', this.updateDescriptionWidth);\n    $(\"#description-align-left-btn\").bind('click', this.updateDescriptionAlignment);\n    $(\"#description-align-center-btn\").bind('click', this.updateDescriptionAlignment);\n    $(\"#description-align-right-btn\").bind('click', this.updateDescriptionAlignment);\n    $(\"#description-bottom-slider\").bind('change',this.updateDescriptionBottom);\n    $(\"#description-height-slider\").bind('change',this.updateDescriptionHeight);\n    $(\"#description-bg-color-picker\").bind('change',this.updateDescriptionBgColor);\n    $(\"#description-border-btn\").bind('click', this.updateDescriptionBorder);\n    $(\"#description-border-radius-slider\").bind('change',this.updateDescriptionBorderRadius);\n    \n    this.backgroundsCollection = new App.BackgroundsCollection(this.options.backgrounds);\n    this.backgroundsView = new App.BackgroundsView({collection:this.backgroundsCollection,\n                                                    image_id:this.model.get(\"background_id\")})\n    this.backgroundsView.$el.appendTo(this.$(\"#backgrounds-view-parent\"));\n    this.backgroundsView.render();\n\n    this.cardCarouselsView = new App.CardCarouselsView({collection:window.App.data.cardModels, selectID:this.model.id});\n    this.cardCarouselsView.$el.appendTo(this.$(\"#card-carousels-parent\"));\n    this.cardCarouselsView.render();\n\n    this.listenTo(this.model, 'change', this.enableSave);\n\n    return this;\n  },\n\n  changeModel:function(e)\n  {\n    var modelId = $(e.target).data(\"id\");\n\n    window.App.data.cardModels.each(function(crd)\n    {\n      if(crd.id==modelId)\n      {\n        this.model=crd;\n        this.render();\n      }\n    }.bind(this))\n  },\n\n  changeImage:function(e)\n  {\n      var imageId = $(e.target).data(\"id\");\n\n      if(imageId)\n      {\n        var bg = this.artworksCollection.get(imageId);\n        this.model.set({image:{url:bg.get(\"url\")}});\n        this.model.set(\"image_id\", imageId);\n      }\n  },\n\n  changeBackgroundImage:function(e)\n  {\n      var imageId = $(e.target).data(\"id\");\n\n      if(imageId)\n      {\n        var bg = this.backgroundsCollection.get(imageId);\n        this.model.set({background:{url:bg.get(\"url\")}});\n        this.model.set(\"background_id\", imageId);\n      }\n  },\n\n  updateTitleBorderRadius:function()\n  {\n    this.model.set(\"title_border_radius\",$(\"#title-border-radius-slider\").val());\n  },\n\n  updateTitleBorder:function()\n  {\n    var enabled=!$(\"#text-border-btn\").hasClass(\"active\");\n    this.model.set(\"title_border_outline\",enabled);\n  },\n\n  updateTitleBgColor:function()\n  {\n    this.model.set(\"title_bg_color\",$(\"#title-bg-color-picker\").spectrum(\"get\").toRgbString());\n  },\n\n  updateTitleHeight: function()\n  {\n    this.model.set(\"title_height\", $(\"#title-height-slider\").val());\n  },\n\n  updateTitleTop: function()\n  {\n    this.model.set(\"title_top_margin\", $(\"#title-top-margin-slider\").val());\n  },\n\n  updateTitleWidth: function()\n  {\n    this.model.set(\"title_width\", $(\"#title-width-slider\").val());\n  },\n\n  updateTitleAlignment: function(el)\n  {\n    if(el.target.id==\"title-align-left-btn\") { this.model.set(\"title_alignment\",\"left\")} else\n      if(el.target.id==\"title-align-center-btn\") {this.model.set(\"title_alignment\",\"center\")} else\n        if(el.target.id==\"title-align-right-btn\") {this.model.set(\"title_alignment\",\"right\");}\n  },\n\n  updateDescriptionBottom: function()\n  {\n    this.model.set(\"description_bottom\", $(\"#description-bottom-slider\").val());\n  },\n\n  updateDescriptionBorderRadius:function()\n  {\n    this.model.set(\"description_border_radius\",$(\"#description-border-radius-slider\").val());\n  },\n\n  updateDescriptionBorder:function()\n  {\n    var enabled=!$(\"#description-border-btn\").hasClass(\"active\");\n    this.model.set(\"description_border_outline\",enabled);\n  },\n\n  updateDescriptionBgColor:function()\n  {\n    this.model.set(\"description_bg_color\",$(\"#description-bg-color-picker\").spectrum(\"get\").toRgbString());\n  },\n\n  updateDescriptionHeight: function()\n  {\n    this.model.set(\"description_height\", $(\"#description-height-slider\").val());\n  },\n\n  updateDescriptionTop: function()\n  {\n    this.model.set(\"description_top_margin\", $(\"#description-top-margin-slider\").val());\n  },\n\n  updateDescriptionWidth: function()\n  {\n    this.model.set(\"description_width\", $(\"#description-width-slider\").val());\n  },\n\n  updateDescriptionAlignment: function(el)\n  {\n    if(el.target.id==\"description-align-left-btn\") { this.model.set(\"description_alignment\",\"left\")} else\n      if(el.target.id==\"description-align-center-btn\") {this.model.set(\"description_alignment\",\"center\")} else\n        if(el.target.id==\"description-align-right-btn\") {this.model.set(\"description_alignment\",\"right\");}\n  },\n\n  updateCardDescription:function()\n  {\n    this.model.set(\"description\", $(\"#description-input\").val());\n  },\n\n  updateCardName:function()\n  {\n    this.model.set(\"name\", $(\"#name-input\").val());\n  },\n\n  updateBorderWidth:function()\n  {\n    this.model.set(\"border_width\", $(\"#border-width-slider\").val());\n\n    var enabled=$(\"#border-toggle-btn\").hasClass(\"active\");\n    if ( !enabled )\n    {\n      this.updateBorderVisible();\n      $(\"#border-toggle-btn\").addClass(\"active\");\n    }\n  },\n\n  updateBorderColor:function()\n  {\n    var enabled=$(\"#border-toggle-btn\").hasClass(\"active\");\n    if ( !enabled )\n    {\n      this.updateBorderVisible();\n      $(\"#border-toggle-btn\").addClass(\"active\");\n    }\n\n    this.model.set(\"border_color\",$(\"#border-color-picker\").spectrum(\"get\").toRgbString());\n  },\n\n  updateBorderVisible:function()\n  {\n    var enabled=!$(\"#border-toggle-btn\").hasClass(\"active\");\n\n    this.model.set(\"border_visible\",enabled);\n\n    if( enabled )\n    {\n      $(\"#outline-toggle-btn\").removeClass('disabled');\n      $(\"#inline-toggle-btn\").removeClass('disabled');\n    }\n    else\n    {\n      $(\"#outline-toggle-btn\").addClass('disabled');\n      $(\"#inline-toggle-btn\").addClass('disabled');\n    }\n  },\n\n  updateBorderOutline:function()\n  {\n    this.model.set(\"border_outline\",!$(\"#outline-toggle-btn\").hasClass(\"active\"));\n  },\n\n  updateBorderInline:function()\n  {\n    this.model.set(\"border_inline\",!$(\"#inline-toggle-btn\").hasClass(\"active\"));\n  },\n\n  save:function(e)\n  {\n    this.disableSave();\n    this.model.save();\n  },\n\n  enableSave:function()\n  {\n    $(\".save-changes-btn\").removeClass(\"disabled\");\n  },\n\n  disableSave:function()\n  {\n    $(\".save-changes-btn\").addClass(\"disabled\");\n  }\n});\n\n/******************************************\n * Add the Card Edit View to the DOM\n ******************************************/\n\nfunction addCardEditView(container, id, bkgds, artworks, cards)\n{\n  window.App.data.cardModels = new App.CardCollection(cards);\n  window.App.views.cardEditView = new App.CardEditView({model:window.App.data.cardModels.findWhere({id: id}),\n                                                        backgrounds: bkgds,\n                                                        artworks: artworks,\n                                                        cards: window.App.data.cardModels});\n  window.App.views.cardEditView.$el.appendTo(container);\n  window.App.views.cardEditView.render();\n}\n",
+			"file": "app/assets/javascripts/card.js",
+			"file_size": 14811,
+			"file_write_time": 1371776162000000,
+			"settings":
+			{
+				"buffer_size": 14454,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<script>\n  function addColorPicker( id, attrib ){\n    $(id).spectrum({\n        color: attrib,\n        showAlpha: true,\n        showInput: true,\n        showPalette: true,\n        preferredFormat: \"hex6\",\n        localStorageKey: \"spectrum.gamegen\",\n        move: function(tinycolor){\n          $(id).trigger('change');\n        },\n        hide: function(tinycolor){\n          $(id).trigger('change');\n        },\n    });\n  }\n</script>\n\n<!-- button toolbar-->\n<div class=\"btn-toolbar\">\n  <div class=\"btn-group\">\n    <button class=\"btn btn-large btn-success disabled save-changes-btn\" style=\"width:154px\">Save Changes</button>\n  </div>\n  <button class=\"btn btn-large pull-right\" onclick=\"window.history.back();\">Back</button>\n</div>\n\n<!-- line for fools-->\n<div class=\"line\"></div><br/>\n\n<!-- divide into two columns-->\n<div class=\"row-fluid\">\n\n  <!-- left column -->\n  <div class=\"span6\">\n\n    <!-- title accordian -->\n\n    <div class=\"accordion\" id=\"accordion-title\">\n      <div class=\"accordion-group\">\n        <div class=\"accordion-heading\">\n           <button class=\"btn\" data-toggle=\"collapse\" data-parent=\"#accordion-title\" href=\"#accordion-title-body\">Title</button>\n        </div>\n        <div id=\"accordion-title-body\" class=\"accordion-body collapse in\">\n          <div class=\"accordion-inner\">\n\n            <!-- title text input -->\n\n            <input id=\"name-input\" type=\"text\" placeholder=\"Heading\" value=\"<%= name %>\"></input>\n\n            <!-- title width -->\n\n            <div class=\"slider-group\"><p>Width</p>\n              <div class=\"btn-group\" data-toggle=\"buttons-radio\">\n                <% if( title_alignment == \"left\" ){ btnActive =' active' } else { btnActive = '' } %>\n                <button id=\"title-align-left-btn\" class=\"btn btn-success btn-mini<%= btnActive %>\">Left</button>\n                <% if( title_alignment == \"center\" ){ btnActive =' active' } else { btnActive = '' } %>\n                <button id=\"title-align-center-btn\" class=\"btn btn-success btn-mini<%= btnActive %>\">Center</button>\n                <% if( title_alignment == \"right\" ){ btnActive =' active' } else { btnActive = '' } %>\n                <button id=\"title-align-right-btn\" class=\"btn btn-success btn-mini<%= btnActive %>\">Right</button>\n              </div>\n              <div class=\"text-bg-color-picker-parent\"><input type='text' id=\"title-bg-color-picker\"/></div>\n              <script>addColorPicker( \"#title-bg-color-picker\", \"<%= title_bg_color %>\")</script>\n              <input id=\"title-width-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"10\" max=\"100\" step=\"1\" value=\"<%= title_width %>\">\n            </div>\n\n            <!-- title top -->\n\n            <div class=\"slider-group\"><p>Position</p>\n              <input id=\"title-top-margin-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"0\" max=\"100\" step=\"1\" value=\"<%= title_top_margin %>\">\n            </div>\n\n            <!-- title height -->\n\n            <div class=\"slider-group\"><p>Height</p>\n              <input id=\"title-height-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"10\" max=\"100\" step=\"1\" value=\"<%= title_height %>\">\n            </div>\n\n            <!-- title border -->\n\n            <div class=\"slider-group\"><p>Border</p>\n              <% if( title_border_outline ) { active=' active' } else { active = '' } %>\n              <button id=\"title-border-btn\" type=\"button\" class=\"btn btn-mini btn-success<%= active %> text-border-btn\" data-toggle=\"button\">Border</button>\n              <input id=\"title-border-radius-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"0\" max=\"20\" step=\"1\" value=\"<%= title_border_radius %>\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <!-- description accordian -->\n\n    <div class=\"accordion\" id=\"accordion-description\">\n      <div class=\"accordion-group\">\n        <div class=\"accordion-heading\">\n           <button class=\"btn\" data-toggle=\"collapse\" data-parent=\"#accordion-description\" href=\"#accordion-description-body\">Description</button>\n        </div>\n        <div id=\"accordion-description-body\" class=\"accordion-body collapse in\">\n          <div class=\"accordion-inner\">\n\n            <!-- description text input -->\n\n            <textarea id=\"description-input\" type=\"text\" placeholder=\"Description\"><%= description %></textarea>\n\n            <!-- description width -->\n\n            <div class=\"slider-group\"><p>Width</p>\n              <div class=\"btn-group\" data-toggle=\"buttons-radio\">\n                <% if( description_alignment == \"left\" ){ btnActive =' active' } else { btnActive = '' } %>\n                <button id=\"description-align-left-btn\" class=\"btn btn-success btn-mini<%= btnActive %>\">Left</button>\n                <% if( description_alignment == \"center\" ){ btnActive =' active' } else { btnActive = '' } %>\n                <button id=\"description-align-center-btn\" class=\"btn btn-success btn-mini<%= btnActive %>\">Center</button>\n                <% if( description_alignment == \"right\" ){ btnActive =' active' } else { btnActive = '' } %>\n                <button id=\"description-align-right-btn\" class=\"btn btn-success btn-mini<%= btnActive %>\">Right</button>\n              </div>\n              <div class=\"text-bg-color-picker-parent\"><input type='text' id=\"description-bg-color-picker\"/></div>\n              <script>addColorPicker( \"#description-bg-color-picker\", \"<%= description_bg_color %>\")</script>\n              <input id=\"description-width-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"10\" max=\"100\" step=\"1\" value=\"<%= description_width %>\">\n            </div>\n\n            <!-- description top -->\n\n            <div class=\"slider-group\"><p>Position</p>\n              <input id=\"description-bottom-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"0\" max=\"100\" step=\"1\" value=\"<%= description_bottom %>\">\n            </div>\n\n            <!-- description height -->\n\n            <div class=\"slider-group\"><p>Height</p>\n              <input id=\"description-height-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"10\" max=\"100\" step=\"1\" value=\"<%= description_height %>\">\n            </div>\n\n            <!-- description border -->\n\n            <div class=\"slider-group\"><p>Border</p>\n              <% if( description_border_outline ) { active=' active' } else { active = '' } %>\n              <button id=\"description-border-btn\" type=\"button\" class=\"btn btn-mini btn-success<%= active %> text-border-btn\" data-toggle=\"button\">Border</button>\n              <input id=\"description-border-radius-slider\" class=\"slider-control\" type=\"range\" name=\"points\" min=\"0\" max=\"20\" step=\"1\" value=\"<%= description_border_radius %>\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <!-- border accordian -->\n\n    <div class=\"accordion\" id=\"accordion-border\">\n      <div class=\"accordion-group\">\n        <div class=\"accordion-heading\">\n          <button class=\"btn\" data-toggle=\"collapse\" data-parent=\"#accordion-border\" href=\"#accordion-border-body\">Border</button>\n        </div>\n        <div id=\"accordion-border-body\" class=\"accordion-body collapse in\">\n          <div class=\"accordion-inner\">\n\n            <!-- border stuff -->\n\n            <div class=\"slider-group\"><p>Border Width</p>\n              <div class=\"border-color-picker-parent\"><input type='text' id=\"border-color-picker\"/></div>\n              <input id=\"border-width-slider\" class=\"border-control\" type=\"range\" name=\"points\" min=\"0\" max=\"40\" step=\"1\" value=\"<%= border_width %>\">\n               <script>addColorPicker( \"#border-color-picker\", \"<%= border_color %>\")</script>\n            </div>\n\n            <!-- toggle buttons -->\n\n            <div class=\"bdr-toggle-btns\">\n              <div class=\"btn-group\">\n                <% if( border_visible ) { bv =' active'; db = ''; } else { bv = ''; db = ' disabled';} %>\n                <button id=\"border-toggle-btn\" class=\"btn btn-mini btn-success<%= bv %> bdr-btn\" data-toggle=\"button\">Border</button>\n                <% if( border_outline ) { bo =' active'} else { bo = ''} %>\n                <button id=\"outline-toggle-btn\" class=\"btn btn-mini btn-success<%= bo %><%= db %> bdr-btn\" data-toggle=\"button\">Outline</button>\n                <% if( border_inline ) { bi =' active'} else { bi = ''} %>\n                <button id=\"inline-toggle-btn\" class=\"btn btn-mini btn-success<%= bi %><%= db %> bdr-btn\" data-toggle=\"button\">Inline</button>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <!-- background accordian -->\n\n    <div class=\"accordion\" id=\"accordion-background\">\n      <div class=\"accordion-group\">\n        <div class=\"accordion-heading\">\n           <button class=\"btn\" data-toggle=\"collapse\" data-parent=\"#accordion-background\" href=\"#collapseFour\">Background</button>\n        </div>\n        <div id=\"collapseFour\" class=\"accordion-body collapse in\">\n          <div class=\"accordion-inner\">\n\n            <!-- background images view -->\n            <div id=\"backgrounds-view-parent\"></div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- right column -->\n  <div class=\"span6\">\n\n    <!-- card carousel view -->\n    <div id=\"card-carousels-parent\"></div>\n\n  </div>\n\n</div>\n",
+			"file": "app/assets/javascripts/templates/card/cardeditview.jst.ejs",
+			"file_size": 9289,
+			"file_write_time": 1371776721000000,
+			"settings":
+			{
+				"buffer_size": 9289,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 182 files for \".carosel-card-parent\"\n\n/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/styles.js:\n   23      this.template = JST['templates/styles/' + this.model.attributes.template_name];\n   24      var r=this.template(this.model.attributes, { model: this.model });\n   25:     this.$el.find( \".carosel-card-parent\" ).prepend( r );\n   26      this.$el.find( \".card-view-base\" ).addClass( 'card-view-shadow' );\n   27  \n\n/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/styles.css.scss:\n    4  }\n    5  \n    6: .carosel-card-parent {\n    7    width: 355px;\n    8    height: 365px;\n\n2 matches across 2 files\n\n\nSearching 182 files for \"change-style-btn\"\n\n/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/decks/show.html.erb:\n    3  <div class=\"btn-toolbar \">\n    4    <button id=\"add-card-btn\" class=\"btn btn-large btn-success\">Add a New Card</button>\n    5:   <button id=\"change-style-btn\" class=\"btn btn-large  btn-success\" data-toggle=\"collapse\" data-target=\"#card-style-carosel-parent\">Change Card Style</button>\n    6    <button class=\"btn btn-large pull-right\" onclick=\"window.history.back();\">Back</button>\n    7  </div>\n\n1 match in 1 file\n\n\nSearching 182 files for \"new game\"\n\n/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/games/gamesview.jst.ejs:\n    5  \n    6  <div class=\"btn-toolbar\">\n    7:    <button id=\"new-game-button\" class=\"btn btn-large btn-success\">Add a new game</button>\n    8  </div>\n    9  \n\n1 match in 1 file\n\n\nSearching 182 files for \"new game\"\n\n/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/games/gamesview.jst.ejs:\n    5  \n    6  <div class=\"btn-toolbar\">\n    7:    <button id=\"new-game-button\" class=\"btn btn-large btn-success\">Add a new game</button>\n    8  </div>\n    9  \n\n1 match in 1 file\n\n\nSearching 182 files for \"game-view\"\n\n/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/games.js:\n    5  App.GameView=Backbone.View.extend({\n    6    tag:\"div\",\n    7:   className:\"game-view\",\n    8    template: JST['templates/games/gameview'],\n    9    events: {\n\n/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/games.css.scss:\n    1  .games-view {\n    2  \n    3:   .game-view {\n    4      margin-left:16px;\n    5      width:907px;\n\n2 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 2335,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/games.css.scss",
+			"settings":
+			{
+				"buffer_size": 1030,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/templates/games/gamesview.jst.ejs",
+			"settings":
+			{
+				"buffer_size": 277,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/decks/show.html.erb",
+			"settings":
+			{
+				"buffer_size": 1074,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/styles.css.scss",
+			"settings":
+			{
+				"buffer_size": 261,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/card.css.scss",
+			"settings":
+			{
+				"buffer_size": 4039,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vendor/assets/stylesheets/spectrum.css",
+			"settings":
+			{
+				"buffer_size": 12548,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/migrate/20130516015517_create_cards.rb",
+			"settings":
+			{
+				"buffer_size": 1495,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/style-default.css.scss",
+			"settings":
+			{
+				"buffer_size": 3233,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<%\n  /**************************************\n  *  'Content' parent box               *\n  **************************************/\n\n  var pad=0;\n\n  if( border_visible )\n  {\n    pad+= border_width;\n    if( border_outline ) pad++;\n    if( border_inline ) pad++;\n  }\n\n  var w=style.width - pad - pad;\n  var h=style.height - pad - pad;\n\n  var contentStyle=' style=\"left:' + pad +'px;top:' + pad +'px;width:' + w  + 'px;height:' + h  + 'px;\"'\n%>\n\n<div class=\"content\" <%= contentStyle %>>\n\n<%\n  /**************************************\n  *  Title Box                    *\n  **************************************/\n\n  var el='';\n\n  if( title_visible )\n  {\n      var align=0;\n\n      if( title_alignment == \"left\" )\n        align=0;\n      else\n        if( title_alignment == \"right\" )\n          align=100-title_width\n        else\n        {\n          if( title_width > 99)\n            align=0;\n          else\n            align=(100-title_width)/2;\n        }\n\n      // size\n      var textBoxStyle=' style=\"width:' + title_width + \"%;\" +\n                       \"height:\" + title_height + \"px;\" +\n                       \"border-radius:\" + title_border_radius + \"px;\" +\n                       \"margin-top:\" + title_top_margin + \"px;\"+\n                       \"margin-left:\" + align + '%;';\n\n      // border\n      if( title_border_outline )\n      {\n        textBoxStyle+=\"border: 1px outset\"\n\n        if ( title_bg_color )\n          textBoxStyle+=\" \" + title_bg_color;\n\n        textBoxStyle+=\";\"\n      }\n\n      // bg color\n      if( title_bg_color )\n        textBoxStyle+=\"background-color:\" + title_bg_color + \";\";\n\n      textBoxStyle+='\"';\n\n      // finish element\n      el='<div class=\"title-box\"' + textBoxStyle +'></div>';\n   }\n%>\n<%= el %>\n\n<%\n  /**************************************\n  *  Description Box                    *\n  **************************************/\n\n  var desc='';\n\n  if( description_visible )\n  {\n    var align=0;\n\n    if( description_alignment == \"left\" )\n      align=0;\n    else\n      if( description_alignment == \"right\" )\n        align=100-description_width\n      else\n      {\n        if( description_width > 99)\n          align=0;\n        else\n          align=(100-description_width)/2;\n      }\n\n      // size\n      var descriptionBoxStyle=' style=\"width:' + description_width + \"%;\" +\n                       \"height:\" + description_height + \"px;\" +\n                       \"border-radius:\" + description_border_radius + \"px;\" +\n                       \"bottom:\" + description_bottom + \"px;\"+\n                       \"position: absolute;\" +\n                       \"margin-left:\" + align + '%;';\n\n      // border\n      if( description_border_outline )\n      {\n        descriptionBoxStyle+=\"border: 1px outset\"\n\n        if ( description_bg_color )\n          descriptionBoxStyle+=\" \" + description_bg_color;\n\n        descriptionBoxStyle+=\";\"\n      }\n\n      // bg color\n      if( description_bg_color )\n        descriptionBoxStyle+=\"background-color:\" + description_bg_color + \";\";\n\n      descriptionBoxStyle+='\"';\n\n      // finish element\n      desc='<div class=\"description-box\"' + descriptionBoxStyle +'></div>';\n   }\n%>\n<%= desc %>\n",
+			"file": "app/assets/javascripts/templates/styles/style-content-begining.jst.ejs",
+			"file_size": 3144,
+			"file_write_time": 1371776090000000,
+			"settings":
+			{
+				"buffer_size": 3144,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/seeds.rb",
+			"settings":
+			{
+				"buffer_size": 5209,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/styles.js",
+			"settings":
+			{
+				"buffer_size": 2294,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/games/show.html.erb",
+			"settings":
+			{
+				"buffer_size": 626,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "TODO.txt",
+			"settings":
+			{
+				"buffer_size": 854,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -151,36 +314,52 @@
 		"show_minimap": false,
 		"show_open_files": false,
 		"show_tabs": false,
-		"side_bar_visible": false,
+		"side_bar_visible": true,
 		"status_bar_visible": false
 	},
 	"file_history":
 	[
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/card.css.scss",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardeditview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/card.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-content-begining.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015517_create_cards.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/card.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/environments/development.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/application.css",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/application.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/games/gamesview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/styles.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/decks/show.html.erb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/TODO.txt",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/vendor/assets/javascripts/html5slider.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/schema.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/show.html.erb",
+		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Distraction Free.sublime-settings",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardeditview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/card.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-default.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-1.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/seeds.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-2.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/style.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/card.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/styles.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-1.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/stylesview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-border-ending.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-border-begining.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-background.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-3.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-4.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/seeds.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-1.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/styleview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/styles.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cards.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015517_create_cards.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/style.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-content-ending.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/log/production.log",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-border.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/application.css",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/application.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/vendor/assets/javascripts/spectrum.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/environments/development.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/games/gamesview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/decks/show.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130521165926_create_style.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/image.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/routes.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/deck.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/TODO.txt",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/.gitignore",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-2.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-3.css.scss",
@@ -189,17 +368,13 @@
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/cards_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/cards/editdeletebuttons.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/cards.css.scss",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/styles.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/background.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/styleview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/decks.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardcarouselsview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/show.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/index.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/app.js",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/helpers/cards_helper.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardcarouselvieweditbutton.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/gamegen.sublime-workspace",
@@ -230,7 +405,6 @@
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/background/backgroundview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015511_create_decks.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130529032456_create_images.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/schema.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130606213120_create_background.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/images/glyphicons-halflings-white.png",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/console.log",
@@ -260,134 +434,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"accordionborder",
-			"collapse-accordion-border",
-			"collapseaccordionborder",
-			"outline",
-			"primary",
-			"styple",
-			";",
-			"border",
-			"style",
-			"border_style",
-			"-inlay",
-			"outlay",
-			"btn btn-large btn-danger",
-			"artworks-view-parent",
-			"image_id",
-			":image",
-			".carousel-control",
-			"cards-carosel",
-			"card-carousels-view",
-			"card-carousels-view'",
-			"base",
-			"card-view-base card-default sty",
-			"card-view-base sty",
-			"defaultCard",
-			"getStyles",
-			"collapse",
-			"attr",
-			"$el",
-			"auto;",
-			"cards-view",
-			",back",
-			", im",
-			",back",
-			"back",
-			"template_name",
-			"editdeletebuttons",
-			"cardsView",
-			"window.cardsView",
-			"window.",
-			",",
+			"e0e0e0",
+			"c0c0c0",
+			"game-view",
+			"new game",
+			"change-style-btn",
 			":",
-			"carosel-card",
-			"4",
-			"card-style-btn",
-			"****************************/\n",
-			"card-style-carosel",
-			"to_json",
-			".center",
-			"card-view",
-			"card-view-positioning",
-			"card-view card-view-positioning",
-			"styles/'+\n      this.model.attributes.template_name](this.model.attributes));\n    this.$el.find(\".card-view-base\").addClass('card-view-shadow');",
-			":include",
-			":style",
-			"card-view-border-view",
-			"card-view-base ",
-			"}",
-			".id",
-			" in",
-			"in",
-			"ph.",
-			"data",
-			"con",
-			"cardPreview",
-			"<%=",
-			"cardEditView",
-			"data",
-			"cardModels",
-			"CardCarouselCollection",
-			"cardCarouselCollection",
-			"CardCarouselCollection",
-			"App.CardModel",
-			"get_json",
-			"to_json",
-			"get_json",
-			"getJSON",
-			"cardeditview",
-			":include",
-			"model",
-			"changeModel",
-			"model.",
-			"prevCard",
-			"nextCard",
-			"backgroundview",
-			"}\n",
-			"CardCarouselView",
-			"CardCarouselsView",
-			"myCarousel",
-			"carousel-inner",
-			"240",
-			"@cards",
-			"addCarouselView",
-			"card-carousels-view",
-			"backgrounds-carosel",
-			"card-preview-view",
-			"ArtWorkView",
-			"artworkview",
-			"ArtWorkView",
-			"ArtWorksCollection",
-			"nextCard",
+			"\"",
+			",",
+			".carosel-card-parent",
+			"updateDescriptionBottom",
+			"description_bottom",
+			"content",
+			".content",
+			"title",
+			"title_width",
+			"description_width",
+			"updateDescriptionBottom",
+			"updateDescriptionBorder",
+			"updateDescriptionBorderRadius",
+			"updateDescriptionBgColor",
+			"updateDescriptionHeight",
+			"updateDescriptionBottom\nupdateDescriptionBottom",
+			"updateDescriptionBottom",
+			"updateDescriptionAlignment",
+			"updateDescriptionHeight",
+			"updateDescriptionBottom",
+			"updateDescriptionAlignment",
+			"updateDescriptionWidth",
+			"updateDescriptionBorderRadius",
+			"updateTitleBorderRadius",
+			"description_bg_color",
+			"description_border_radius",
+			"description_visible",
+			"description_border_outline",
+			"description_height",
+			"description_bottom",
+			"description_alignment",
+			"description_width",
 			"addCardEditView",
-			"prevCardIndex",
-			"nextCardIndex",
-			"card-view-positioning",
-			"/{",
-			"\\{{",
-			"\\{",
-			"/{",
-			"{",
-			"{\\b",
-			" {\\n",
-			"card-view-positioning",
-			"card-view",
-			"card-view\"",
-			"card-view\\b",
-			"edit-card-button",
-			"card-view",
-			"cards-view",
-			"JST",
-			"editCard",
-			"events",
-			"card-view-parent",
-			"cards-view-parent",
-			"cards-view-container",
-			"card-view-container",
-			"deck_id",
-			"getCards",
-			"cards-list-container"
+			"text-border-btn",
+			"title-border-btn",
+			"text-border-btn",
+			"title",
+			"eTitle",
+			"Title",
+			"title",
+			"Title",
+			"DescriptionTop",
+			"Title",
+			"TitleW",
+			"Title",
+			"#title",
+			"bdr-toggle-btns",
+			"\"btn",
+			"\"",
+			"btn",
+			"Searching",
+			"text-bg-color-picker-parent",
+			"collapse-accordion-border",
+			"collapse",
+			"collapse-accordion-border",
+			"track",
+			"#",
+			"title-bg-color-picker-parent",
+			"title-border-btn",
+			"text-border-btn",
+			"title-border-btn",
+			"description_top_margin",
+			"description_horz_margin",
+			"title",
+			"Title",
+			"title",
+			"name-input",
+			"sp-dd",
+			"22",
+			"32",
+			"height",
+			"active",
+			"bv",
+			":",
+			"border-control",
+			"border",
+			"border-control",
+			"roup\">",
+			"bv",
+			"border-control",
+			"slider-label",
+			"title-align-btns",
+			"card-edit-view-parent\"",
+			"collapseTwo",
+			"accordion-text",
+			"// ",
+			"/////////////////////////////",
+			"act",
+			"border-toggle-btn",
+			" data-toggle=\"buttons-radio\"",
+			"inline-toggle-btn",
+			"title_horz_margin",
+			"title_width",
+			"accordion2",
+			"#border-width",
+			"description_top_margin",
+			"el",
+			"textBoxStyle",
+			"title",
+			"radius",
+			"border_width",
+			"10px",
+			"['",
+			"slide=\"prev\"",
+			".content",
+			"%>",
+			"<%",
+			"templates/styles",
+			"s",
+			"l",
+			"s",
+			"%>",
+			"<%",
+			"%>",
+			"<%",
+			"%>",
+			"<%",
+			"JST['templates/styles/",
+			"border_visible",
+			"border",
+			"JST['template",
+			"JST['templates/styles"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -395,6 +569,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"text-border-btn",
+			"description_bottom",
+			"description_alignment",
+			"accordion-title",
+			"title_alignment",
+			"description_bottom",
+			"this.model.border",
 			"-inline",
 			"outline",
 			"card-view-base style-default sty",
@@ -426,8 +607,493 @@
 	"groups":
 	[
 		{
+			"selected": 15,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/assets/javascripts/card.js",
+					"settings":
+					{
+						"buffer_size": 14454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8065,
+								8065
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4807.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/assets/javascripts/templates/card/cardeditview.jst.ejs",
+					"settings":
+					{
+						"buffer_size": 9289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5461,
+								5461
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4767.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"settings":
+					{
+						"buffer_size": 2335,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										323,
+										343
+									],
+									[
+										557,
+										577
+									],
+									[
+										923,
+										939
+									],
+									[
+										1458,
+										1466
+									],
+									[
+										1778,
+										1786
+									],
+									[
+										2037,
+										2046
+									],
+									[
+										2244,
+										2253
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								2251,
+								2251
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 5,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1155.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/assets/stylesheets/games.css.scss",
+					"settings":
+					{
+						"buffer_size": 1030,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								227,
+								227
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SASS/Syntaxes/SASS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/assets/javascripts/templates/games/gamesview.jst.ejs",
+					"settings":
+					{
+						"buffer_size": 277,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								277,
+								277
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/views/decks/show.html.erb",
+					"settings":
+					{
+						"buffer_size": 1074,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								591,
+								591
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/assets/stylesheets/styles.css.scss",
+					"settings":
+					{
+						"buffer_size": 261,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								261,
+								261
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SASS/Syntaxes/SASS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/assets/stylesheets/card.css.scss",
+					"settings":
+					{
+						"buffer_size": 4039,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								494,
+								494
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SASS/Syntaxes/SASS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2089.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "vendor/assets/stylesheets/spectrum.css",
+					"settings":
+					{
+						"buffer_size": 12548,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8538,
+								8543
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7408.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "db/migrate/20130516015517_create_cards.rb",
+					"settings":
+					{
+						"buffer_size": 1495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								963,
+								980
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "app/assets/stylesheets/style-default.css.scss",
+					"settings":
+					{
+						"buffer_size": 3233,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1121,
+								1121
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SASS/Syntaxes/SASS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 568.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "app/assets/javascripts/templates/styles/style-content-begining.jst.ejs",
+					"settings":
+					{
+						"buffer_size": 3144,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2478,
+								2496
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1738.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "db/seeds.rb",
+					"settings":
+					{
+						"buffer_size": 5209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4212,
+								4212
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "app/assets/javascripts/styles.js",
+					"settings":
+					{
+						"buffer_size": 2294,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								310,
+								310
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "app/views/games/show.html.erb",
+					"settings":
+					{
+						"buffer_size": 626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								127,
+								127
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "TODO.txt",
+					"settings":
+					{
+						"buffer_size": 854,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								227,
+								227
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -462,6 +1128,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 136.0
+	},
 	"replace":
 	{
 		"height": 70.0
@@ -473,20 +1143,92 @@
 		"selected_items":
 		[
 			[
+				"st",
+				"app/assets/javascripts/styles.js"
+			],
+			[
+				"see",
+				"db/seeds.rb"
+			],
+			[
+				"cret",
+				"db/migrate/20130516015517_create_cards.rb"
+			],
+			[
+				"c",
+				"app/models/card.rb"
+			],
+			[
+				"create",
+				"db/migrate/20130516015517_create_cards.rb"
+			],
+			[
+				"creae",
+				"db/migrate/20130516015517_create_cards.rb"
+			],
+			[
 				"card",
+				"app/models/card.rb"
+			],
+			[
+				"spe",
+				"vendor/assets/stylesheets/spectrum.css"
+			],
+			[
+				"carde",
+				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
+			],
+			[
+				"to",
+				"TODO.txt"
+			],
+			[
+				"card.j",
+				"app/assets/javascripts/card.js"
+			],
+			[
+				"car",
+				"app/models/card.rb"
+			],
+			[
+				"edit",
+				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
+			],
+			[
+				"style",
+				"app/models/style.rb"
+			],
+			[
+				"se",
+				"db/seeds.rb"
+			],
+			[
+				"sch",
+				"db/schema.rb"
+			],
+			[
+				"style-b",
+				"app/assets/javascripts/templates/styles/style-border-ending.jst.ejs"
+			],
+			[
+				"card.cs",
 				"app/assets/stylesheets/card.css.scss"
 			],
 			[
-				"applica",
+				"style-1",
+				"app/assets/javascripts/templates/styles/style-1.jst.ejs"
+			],
+			[
+				"appl",
 				"app/assets/stylesheets/application.css"
 			],
 			[
 				"app",
-				"app/assets/javascripts/application.js"
+				"app/assets/stylesheets/application.css"
 			],
 			[
-				"style-1",
-				"app/assets/stylesheets/style-1.css.scss"
+				"applica",
+				"app/assets/stylesheets/application.css"
 			],
 			[
 				"card.js",
@@ -501,24 +1243,8 @@
 				"app/assets/javascripts/cards.js"
 			],
 			[
-				"se",
-				"db/seeds.rb"
-			],
-			[
-				"st",
-				"app/models/style.rb"
-			],
-			[
-				"see",
-				"db/seeds.rb"
-			],
-			[
 				"cre",
 				"db/migrate/20130516015517_create_cards.rb"
-			],
-			[
-				"edit",
-				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
 			],
 			[
 				"dec",
@@ -527,10 +1253,6 @@
 			[
 				"image",
 				"app/models/image.rb"
-			],
-			[
-				"to",
-				"TODO.txt"
 			],
 			[
 				"seed",
@@ -565,10 +1287,6 @@
 				"app/assets/stylesheets/style-2.css.scss"
 			],
 			[
-				"style",
-				"app/assets/stylesheets/style-3.css.scss"
-			],
-			[
 				"style.r",
 				"app/models/style.rb"
 			],
@@ -583,14 +1301,6 @@
 			[
 				"create_s",
 				"db/migrate/20130521165926_create_style.rb"
-			],
-			[
-				"carde",
-				"app/assets/javascripts/templates/card/cardcarouselsview.jst.ejs"
-			],
-			[
-				"car",
-				"app/models/card.rb"
 			],
 			[
 				"show",
@@ -615,10 +1325,6 @@
 			[
 				"backgroundsv",
 				"app/assets/javascripts/templates/card/backgroundsview.jst.ejs"
-			],
-			[
-				"appl",
-				"app/assets/javascripts/application.js"
 			],
 			[
 				"appli",
@@ -671,10 +1377,6 @@
 			[
 				"application",
 				"app/assets/stylesheets/application.css"
-			],
-			[
-				"create",
-				"db/migrate/20130516015517_create_cards.rb"
 			]
 		],
 		"width": 0.0

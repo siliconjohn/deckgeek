@@ -3,25 +3,35 @@
   .game-view {
     margin-left:16px;
     width:907px;
-    height: 212px;
+    height: 224px;
     border:1px solid #d0d0d0;
     background-color: #fafafa;
-    -webkit-box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
-    box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+
     border-radius:10px;
     margin-top:19px;
+    // background-image: -moz-linear-gradient(top, #ffffff, #f0f0f0);
+    // background-image: -ms-linear-gradient(top, #ffffff, #f0f0f0);
+    // background-image: -o-linear-gradient(top, #ffffff, #f0f0f0);
+    // background-image: -webkit-linear-gradient(top, #ffffff, #f0f0f0);
+    // background-image: linear-gradient(top, #ffffff, #f0f0f0);
+    // background-clip: padding-box;
+    // /*Use "background-clip: padding-box" when using rounded corners to avoid the gradient bleeding through the corners*/
+    // /*--IE9 DOES NOT SUPPORT CSS3 GRADIENT BACKGROUNDS--*/
+    // opacity:1;
+
+
 
     .edit-game-button {
       width:150px;
       position:relative;
       left:651px;
-      top:124px;
+      top:136px;
     }
 
     .delete-game-btn {
       position:relative;
       left:7px;
-      top:124px;
+      top:136px;
     }
 
     .game-name {

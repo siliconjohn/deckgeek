@@ -1,3 +1,10 @@
+/******************************************
+ * This is for displaying all of the decks
+ ******************************************/
+
+/******************************************
+ * Deck Model
+ ******************************************/
 
 App.Deck = Backbone.Model.extend(
 {
@@ -8,6 +15,10 @@ App.Deck = Backbone.Model.extend(
     return id ? "/games/" + gid + "/decks/" + id : "/games/" + gid + "/decks/";
   }
 });
+
+/******************************************
+ * Decks Collection
+ ******************************************/
 
 App.Decks = Backbone.Collection.extend(
 {
@@ -24,6 +35,10 @@ App.Decks = Backbone.Collection.extend(
     return "/games/" + gameId + "/decks" ;
   }
 });
+
+/******************************************
+ * Deck View
+ ******************************************/
 
 App.DeckView = Backbone.View.extend(
 {
@@ -82,6 +97,10 @@ App.DeckView = Backbone.View.extend(
   }
 });
 
+/******************************************
+ * Decks View
+ ******************************************/
+
 App.DecksView = Backbone.View.extend(
 {
   tag: "div",
@@ -124,6 +143,10 @@ App.DecksView = Backbone.View.extend(
     }
   }
 });
+
+/******************************************
+ * Gets and adds the decks to a el
+ ******************************************/
 
 function getDecks( container, game_id )
 {

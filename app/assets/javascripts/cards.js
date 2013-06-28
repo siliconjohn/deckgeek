@@ -7,7 +7,9 @@ App.Card = Backbone.Model.extend(
 {
   url: function()
   {
-    return window.App.data.deck_id + "/cards/" + this.get("id");
+    var id=this.get("id");
+
+    return id ? window.App.data.deck_id + "/cards/" + id : window.App.data.deck_id + "/cards/";
   }
 
 });
@@ -107,18 +109,26 @@ App.CardsView = Backbone.View.extend(
 
   newCard:function()
   {
-    // TODO FIX NEW CARD ID FUCKED
-    // // give the new card the style of the last in collection
-    // lastCard=this.collection.last();
+    var card;
 
-    // if(lastCard)
-    //   card=new App.Card({name:'New Card', description:'', style_id:lastCard.get("style_id"),background_id:0,
-    //    style:lastCard.get("style"), image:lastCard.get("image"), background: {url:"bg1.jpg"}});
-    // else
-    //   card=new App.Card({name:'New Card', description:'', style_id:1, style:{template_name:"style-1"}, image_id:1, image: {url:"image1.jpeg"}, background_id:0, background: {url:"bg1.jpg"}});
+    // give the new card the style of the last in collection
+    lastCard=this.collection.last();
 
-    // this.collection.add(card);
-    // card.save();
+    if(lastCard)
+    {
+      card=lastCard.clone();
+      card.set('name','New Card');
+      card.set('description','');
+      card.set('id',null);
+      card.set('created_at',null);
+      card.set('updated_at',null);
+    }
+    else
+      card=new App.Card({name:'New Card', style_id:1,background_id:0 });
+
+    card.save({ name: 'test'},
+            { success: function(){ this.collection.add( card ) }.bind( this )});
+
   },
 
   setStyle:function( style_id )

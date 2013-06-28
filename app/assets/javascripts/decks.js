@@ -38,7 +38,7 @@ App.DeckView = Backbone.View.extend(
 
   initialize: function()
   {
-    _.bindAll( this, 'render', 'remove', 'delete', 'editDeck' );
+    _.bindAll( this, 'render', 'remove', 'delete', 'editDeck', 'alignCardsViews' );
     this.listenTo( this.model, 'change', this.render );
   },
 
@@ -46,6 +46,23 @@ App.DeckView = Backbone.View.extend(
   {
     this.$el.html( this.template( this.model.attributes ));
     addCardsView( this.$el.find( ".card-1" ), this.model.attributes.cards, false, false );
+    this.alignCardsViews();
+  },
+
+  alignCardsViews: function()
+  {
+    var a=0;
+    var opacity=1.0;
+
+    this.$el.find('.card-view').each(function(card){
+        $(this).attr("style",'left:'+ a + 'px;top:' + a + "px;opacity:" +opacity +";" );
+      a+=40;
+      opacity-=0.3;
+    });
+
+    var parent=this.$el.find('.cards-view');
+    parent.children().each(function(i,li){parent.prepend(li)})
+
   },
 
   remove: function()

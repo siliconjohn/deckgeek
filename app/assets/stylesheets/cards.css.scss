@@ -56,25 +56,26 @@
 
 
 .card-1 .cards-view {
-  width: 390%;
-  opacity: 0.85;
-  margin-top: 8px;
-  margin-left: 8px;
+  width: 434px;
+  margin-top: 2px;
+  margin-left: 14px;
   margin-right: 20px;
   overflow: hidden;
 
-  height:900px;
-  transform: scale(0.24,0.24);
-  -ms-transform: scale(0.24,0.24);
-  -webkit-transform: scale(0.24,0.24);
+  height:550px;
 
+  transform: scale(0.40,0.40);
+  -ms-transform: scale(0.40,0.40);
+  -webkit-transform: scale(0.40,0.40);
   transform-origin: 0% 0%;
   -ms-transform-origin: 0% 0%;
   -webkit-transform-origin: 0% 0%;
 
   .card-view {
-    margin-right: 10px;
-    margin-top: 10px;
-    float: left;
+    margin-right: 0px;
+    margin-top: 0px;
+    left:0px;
+    top:0px;
+    position:absolute;
   }
 }

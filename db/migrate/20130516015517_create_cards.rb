@@ -11,7 +11,6 @@ class CreateCards < ActiveRecord::Migration
       t.references :deck
       t.references :style
       t.references :background
-
       t.integer :title_width,       :default => 100
       t.string  :title_alignment, :default => "center"
       t.integer :title_top_margin,  :default => 0

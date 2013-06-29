@@ -61,7 +61,7 @@ App.DeckView = Backbone.View.extend(
   render: function()
   {
     this.$el.html( this.template( this.model.attributes ));
-    addCardsView( this.$el.find( ".card-1" ), this.model.attributes.cards, false, false );
+    addCardsViewForJson( this.$el.find( ".card-1" ), this.model.attributes.cards, false, false );
     this.alignCardsViews();
   },
 

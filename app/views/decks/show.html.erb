@@ -15,17 +15,17 @@
 
 <script type="text/javascript">
 
-  App.data.deck_id = <%= @deck.id %>;
-
-  $(function(){
+  $(function()
+  {
     getDeckHero('.hero-holder', <%= @deck.to_json.to_s.html_safe %>);
     getStyles('.styles-holder', <%= @styles.to_json.to_s.html_safe %>,
                                   <%= @cards.first.to_json.to_s.html_safe %>  ,
                                   <%= @defaultCard.to_json.to_s.html_safe %> );
-    addCardsView ('.cards-holder', <%= @cards.to_json.to_s.html_safe %>,true,true);
+    addCardsView ('.cards-holder',<%= @deck.id %>,true,true);
   });
 
-  $("#add-card-btn").bind("click", function(){
+  $("#add-card-btn").bind("click", function()
+  {
     window.App.views.cardsView.newCard();
   });
 

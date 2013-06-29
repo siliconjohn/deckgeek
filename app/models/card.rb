@@ -20,7 +20,7 @@ class Card < ActiveRecord::Base
   validates_length_of :name, :maximum => 255
 
   def as_json(a)
-    super( :include => [:style, :background ])
+    super( :include => [:style, :background, { :deck => { :only => :game_id}} ])
   end
 
 end

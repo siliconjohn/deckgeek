@@ -44,7 +44,7 @@ App.GameView = Backbone.View.extend(
         this.model.attributes.cards[j] = temp;
     }
 
-    addCardsView( this.$el.find( ".game-bottom" ), this.model.attributes.cards, false, false);
+    addCardsViewForJson( this.$el.find( ".game-bottom" ), this.model.attributes.cards, false, false);
   },
 
   remove: function()

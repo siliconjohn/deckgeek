@@ -13,8 +13,8 @@
 
   $(function()
   {
-    getGameHero( '.hero-holder', <%= @game.to_json.to_s.html_safe %> );
-    getDecks( '.decks-holder' , <%= @game.id %> );
+    addGameHero( '.hero-holder', <%= @game.to_json.to_s.html_safe %> );
+    addDecks( '.decks-holder' , <%= @game.id %> );
   });
 
   $( "#add-deck-btn" ).bind( "click", function()

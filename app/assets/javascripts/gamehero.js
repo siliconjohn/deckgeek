@@ -29,7 +29,7 @@ App.GameHeroView=Backbone.View.extend({
   }
 });
 
-function getGameHero(container,json){
+function addGameHero(container,json){
   window.gameHero = new App.GameHero();
   window.gameHeroView = new App.GameHeroView({model: gameHero});
   window.gameHeroView.$el.appendTo(container);

@@ -1,5 +1,6 @@
 /******************************************
  * This is for displaying all of the decks
+ * for a game
  ******************************************/
 
 /******************************************
@@ -105,7 +106,6 @@ App.DecksView = Backbone.View.extend(
 {
   tag: "div",
   className: "decks-view",
-  template: JST[ 'templates/decks/decksview' ],
   events:
   {
     'click #add-deck-btn' : 'newDeck'
@@ -120,14 +120,14 @@ App.DecksView = Backbone.View.extend(
 
   render: function()
   {
-    this.$el.html( this.template() );
+    this.$el.empty();
     this.collection.each( this.addDeck );
   },
 
   addDeck: function( deckModel )
   {
     var deckView = new App.DeckView({ model: deckModel });
-    deckView.$el.appendTo( this.$( '.decks-list' ))
+    deckView.$el.appendTo( this.$el );
     deckView.render();
   },
 

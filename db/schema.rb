@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.integer  "deck_id"
     t.integer  "style_id"
     t.integer  "background_id"
-    t.integer  "game_id"
     t.integer  "title_width",                :default => 100
     t.string   "title_alignment",            :default => "center"
     t.integer  "title_top_margin",           :default => 0

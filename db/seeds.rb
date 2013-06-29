@@ -71,9 +71,10 @@ cards=Card.create(
   title_visible: true,
   title_width: 100,
   style_id: styles[0].id,
-  deck_id: decks[0].id,
   background_id: backgrounds[0].id,
 },
+
+
 {
   name: "Sample Card 2",
   description: "Sample Card Description",

@@ -1,12 +1,12 @@
 /******************************************
- * This is for displaying all of the style
+ * This is for displaying all of the styles
  ******************************************/
 
 App.StyleView = Backbone.View.extend(
 {
   tag: "div",
   className: "item",
-  template: JST['templates/styles/styleview'],
+  template: JST[ 'templates/styles/styleview' ],
   events:
   {
     "click .card-style-btn": "click"
@@ -62,6 +62,12 @@ App.StylesView=Backbone.View.extend(
 
   addStyle: function(styleModel)
   {
+    // get the style for the deck from the sample card
+    // this is used to select the current style
+    var deckStyleID = this.options.sampleCard.style_id;
+    if (!deckStyleID) deckStyleID = 0;
+    deckStyleID == styleModel.attributes.id ? doSelect = true : doSelect = false;
+
     // set attribs of sample card
     var temp=styleModel.attributes.id;
     styleModel.set(this.options.sampleCard );
@@ -71,15 +77,16 @@ App.StylesView=Backbone.View.extend(
 
     var styleView=new App.StyleView({ model: styleModel });
     styleView.$el.appendTo(this.$( '.carousel-inner' ))
-    if(this.$( '.carousel-inner' ).children().size()==1)
-      styleView.$el.addClass( "item active" );
+
+    if ( doSelect ) styleView.$el.addClass( "item active" );
+
     styleView.render();
   }
 });
 
 function getStyles(container, json, cards, sampleCard)
 {
-  cards ? sample=cards : sample=sampleCard;
+  cards ? sample = cards : sample = sampleCard;
 
   window.App.views.stylesView = new App.StylesView({ collection: new App.Styles( json ), sampleCard:sample });
   window.App.views.stylesView.$el.appendTo( container );

@@ -11,4 +11,5 @@ describe Game do
 
   it{should have_many(:decks).dependent(:destroy)}
   it{should belong_to(:user)}
+  it{should have_many(:cards)}
 end

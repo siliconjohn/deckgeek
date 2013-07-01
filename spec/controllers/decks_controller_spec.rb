@@ -1,10 +1,7 @@
 require 'spec_helper'
 
 def signIn
-  # prep
   $user = User.create(:email => "test@gmail.com", :password => "111111")
-
-  # tests
   sign_in $user
 end
 

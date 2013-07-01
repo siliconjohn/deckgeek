@@ -70,23 +70,50 @@ describe GamesController do
   end
 
   #**********************************
-  # # PUT /games/:id(.:format) (show)
+  # PUT /games/:id(.:format)
   #**********************************
 
-  describe "PUT a game as json" do
-    it "with 8 items" do
+  describe "PUT/change a game as json" do
+    it "should change game name" do
       signIn
       @game=Game.create( :user_id => $user.id );
-      @game.name="test"
-      @newJson = @game.to_json
-      put :show, :id => @game.id, :game => {"description"=>"My awesome game description.2", "name"=>"test", "user_id"=>1}, :format => :json
+      put :update, :id => @game.id, :game => { :name => "test" }, :format => :json
 
       expect(response.status).to eq(200)
       response.header['Content-Type'].should include 'application/json'
       json = JSON.parse(response.body)
       json.should have(8).items
-      puts json json["name"].should == "test"
+      json["name"].should == "test"
+    end
+  end
 
+  #**********************************
+  # POST to create /games/(.:format)
+  #**********************************
+
+  describe "POST a game as json" do
+    it "should create a game with the name test" do
+      signIn
+      put :create, :game => { :name => "test" }, :format => :json
+      expect(response.status).to eq(201)
+      response.header['Content-Type'].should include 'application/json'
+      json = JSON.parse(response.body)
+      json.should have(8).items
+      json["name"].should == "test"
+    end
+  end
+
+  #**********************************
+  # DELETE /games/:id(.:format)
+  #**********************************
+
+  describe "DELETE a game as json" do
+    it "should delete a game" do
+      signIn
+      @game=Game.create( :user_id => $user.id );
+      put :destroy, :id => @game.id, :format => :json
+      expect(response.status).to eq(200)
+      response.header['Content-Type'].should include 'application/json'
     end
   end
 end

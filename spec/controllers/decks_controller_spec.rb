@@ -11,7 +11,7 @@ end
 describe DecksController do
 
   #************************************
-  # GET: INDEX
+  # GET: index
   # /games/:game_id/decks(.:format)
   #************************************
 
@@ -35,7 +35,7 @@ describe DecksController do
   end
 
   #**********************************
-  # GET: SHOW
+  # GET: show
   # /games/:game_id/decks/:id(.:format)
   #**********************************
 
@@ -108,7 +108,7 @@ describe DecksController do
   end
 
   #**********************************
-  # PUT: UPDATE
+  # PUT: update
   # /games/:game_id/decks/:id(.:format)
   #**********************************
 
@@ -133,7 +133,7 @@ describe DecksController do
   end
 
   #**********************************
-  # POST: CREATE
+  # POST: create
   # /games/:game_id/decks/:id(.:format)
   #**********************************
 

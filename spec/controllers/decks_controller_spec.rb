@@ -143,6 +143,7 @@ describe DecksController do
       # prep
       signIn
       @game=Game.create( :user_id => $user.id );
+
       # request as json
       post :create, :deck => { :name => "New Name" }, :game_id => @game.id, :format => :json
 
@@ -166,7 +167,6 @@ describe DecksController do
       signIn
       @game=Game.create( :user_id => $user.id );
       @deck=Deck.create( :game_id => @game.id );
-      #@card=Card.create( :deck_id => @deck.id );
 
       # request as json
       post :destroy, :id => @deck.id, :game_id => @game.id, :format => :json

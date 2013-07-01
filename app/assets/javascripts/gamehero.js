@@ -1,7 +1,7 @@
 
 App.GameHero=Backbone.Model.extend({
   url:function(){
-        return window.App.data.game_id;
+        return "/games/" + this.attributes.id;
       }
 });
 

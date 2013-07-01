@@ -76,7 +76,7 @@ describe DecksController do
       # tests
       expect( response.status ).to eq( 200 )
       json = JSON.parse( response.body )
-      json.should have(7).items
+      json.should have( 7 ).items
     end
   end
 

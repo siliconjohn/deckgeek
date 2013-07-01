@@ -94,7 +94,7 @@ describe GamesController do
   describe "POST a game as json" do
     it "should create a game with the name test" do
       signIn
-      put :create, :game => { :name => "test" }, :format => :json
+      post :create, :game => { :name => "test" }, :format => :json
       expect(response.status).to eq(201)
       response.header['Content-Type'].should include 'application/json'
       json = JSON.parse(response.body)

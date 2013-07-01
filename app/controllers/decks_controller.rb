@@ -46,7 +46,7 @@ class DecksController < ApplicationController
     end
   end
 
-  # POST /games(.:format)
+  # POST /games/:game_id/(.:format)
   def create
     @deck = Deck.new(params[:deck])
     @deck.game_id = params[:game_id];

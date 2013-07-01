@@ -1,10 +1,5 @@
 require 'spec_helper'
 
-def signIn
-  $user = User.create( :email => "test@gmail.com", :password => "111111" )
-  sign_in $user
-end
-
 describe DecksController do
 
   #************************************
@@ -17,8 +12,8 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      @deck=Deck.create( :game_id => @game.id );
+      @game = Game.create( :user_id => $user.id );
+      @deck = Deck.create( :game_id => @game.id );
 
       # request as json
       get :index, :game_id => @game.id, :format => :json
@@ -41,7 +36,7 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
+      @game = Game.create( :user_id => $user.id );
 
       # request as json
       get :show,  :id => '1', :game_id => @game.id, :format => :json
@@ -56,7 +51,7 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
+      @game = Game.create( :user_id => $user.id );
 
       # request as json
       get :show,  :id => '1', :game_id => @game.id, :format => :html
@@ -71,9 +66,9 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      @deck=Deck.create( :game_id => @game.id );
-      @card=Card.create( :deck_id => @deck.id );
+      @game = Game.create( :user_id => $user.id );
+      @deck = Deck.create( :game_id => @game.id );
+      @card = Card.create( :deck_id => @deck.id );
 
       # request as json
       get :show, :id => @deck.id, :game_id => @game.id, :format => :json
@@ -90,9 +85,9 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      @deck=Deck.create( :game_id => @game.id );
-      @card=Card.create( :deck_id => @deck.id );
+      @game = Game.create( :user_id => $user.id );
+      @deck = Deck.create( :game_id => @game.id );
+      @card = Card.create( :deck_id => @deck.id );
 
       # request as html
       get :show, :id => @deck.id, :game_id => @game.id, :format => :html
@@ -114,9 +109,9 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      @deck=Deck.create( :game_id => @game.id );
-      @card=Card.create( :deck_id => @deck.id );
+      @game = Game.create( :user_id => $user.id );
+      @deck = Deck.create( :game_id => @game.id );
+      @card = Card.create( :deck_id => @deck.id );
 
       # request as json
       put :update, :deck => { :name => "New Name" }, :id => @deck.id, :game_id => @game.id, :format => :json
@@ -139,7 +134,7 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
+      @game = Game.create( :user_id => $user.id );
 
       # request as json
       post :create, :deck => { :name => "New Name" }, :game_id => @game.id, :format => :json
@@ -162,8 +157,8 @@ describe DecksController do
 
       # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      @deck=Deck.create( :game_id => @game.id );
+      @game = Game.create( :user_id => $user.id );
+      @deck = Deck.create( :game_id => @game.id );
 
       # request as json
       post :destroy, :id => @deck.id, :game_id => @game.id, :format => :json

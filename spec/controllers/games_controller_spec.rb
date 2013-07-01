@@ -1,10 +1,5 @@
 require 'spec_helper'
 
-def signIn
-  $user = User.create(:email => "dedee33zz@gmail.com", :password => "111111")
-  sign_in $user
-end
-
 describe GamesController do
 
   describe "Login" do

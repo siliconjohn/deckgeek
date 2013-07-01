@@ -37,3 +37,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+def signIn
+  $user = User.create( :email => "test@gmail.com", :password => "111111" )
+  sign_in $user
+end

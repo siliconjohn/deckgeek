@@ -1,4 +1,8 @@
 
+/******************************************
+ * Game Model
+ ******************************************/
+
 App.Game = Backbone.Model.extend(
 {
   url: function()
@@ -8,11 +12,20 @@ App.Game = Backbone.Model.extend(
   }
 });
 
+
+/******************************************
+ * Game Collection
+ ******************************************/
+
 App.Games = Backbone.Collection.extend(
 {
   model: App.Game,
   url: "/games"
 });
+
+/******************************************
+ * Game View
+ ******************************************/
 
 App.GameView = Backbone.View.extend(
 {
@@ -63,6 +76,10 @@ App.GameView = Backbone.View.extend(
     window.location="/games/" + this.model.id ;
   }
 });
+
+/******************************************
+ * Games View
+ ******************************************/
 
 App.GamesView = Backbone.View.extend(
 {

@@ -1,44 +1,64 @@
+/******************************************
+ * Game Hero Model
+ ******************************************/
 
-App.GameHero=Backbone.Model.extend({
-  url:function(){
-        return "/games/" + this.attributes.id;
-      }
+App.GameHeroModel = Backbone.Model.extend(
+{
+  url:function()
+  {
+    return "/games/" + this.attributes.id;
+  }
 });
 
-App.GameHeroView=Backbone.View.extend({
-  tag:"div",
-  className:"hero-unit game-hero-unit",
-  template: JST['templates/games/gameheroview'],
-  events: {
+/******************************************
+ * Game Hero View
+ ******************************************/
+
+App.GameHeroView = Backbone.View.extend(
+{
+  tag: "div",
+  className: "hero-unit game-hero-unit",
+  template: JST[ 'templates/games/gameheroview' ],
+  events:
+  {
     'click #hero-save-btn': 'save',
   },
 
-  initialize:function(){
-    _.bindAll(this,'render', 'save');
-    this.listenTo(this.model,'change',this.render);
+  initialize: function()
+  {
+    _.bindAll( this, 'render', 'save' );
+    this.listenTo( this.model, 'change', this.render );
   },
 
-  render:function(){
-    this.$el.html(this.template(this.model.attributes));
+  render: function()
+  {
+    this.$el.html( this.template( this.model.attributes ));
   },
 
-  save: function(){
-    this.model.set("name",$("#input-name").val());
-    this.model.set("description",$("#input-description").val());
+  save: function()
+  {
+    this.model.set( "name", $( "#input-name" ).val() );
+    this.model.set( "description", $("#input-description").val() );
     this.model.save();
   }
 });
 
-function addGameHero(container,json){
-  window.gameHero = new App.GameHero();
-  window.gameHeroView = new App.GameHeroView({model: gameHero});
-  window.gameHeroView.$el.appendTo(container);
-  window.gameHero.set(json);
+/******************************************
+ * Add Game Hero to a container
+ ******************************************/
+
+function addGameHero( container, json )
+{
+  window.App.data.gameHeroModel = new App.GameHeroModel();
+  window.App.views.gameHeroView = new App.GameHeroView({ model: window.App.data.gameHeroModel });
+  window.App.views.gameHeroView.$el.appendTo( container );
+  window.App.data.gameHeroModel.set( json );
 
   $(".hero-unit").hover(
-    function(){
+    function()
+    {
       $("#edit-btn").animate({ opacity: 1.0 }, 100)
-       },
+    },
     // mouse out
     function(){
       $("#edit-btn").animate({ opacity: 0.0 }, 100)

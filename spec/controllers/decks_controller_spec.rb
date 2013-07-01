@@ -22,7 +22,7 @@ describe DecksController do
       expect( response.status ).to eq( 200 )
       response.header[ 'Content-Type' ].should include 'application/json'
       json = JSON.parse( response.body )
-      json.should have(1).items
+      json.should have( 1 ).items
     end
   end
 

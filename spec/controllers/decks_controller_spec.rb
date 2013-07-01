@@ -24,7 +24,7 @@ describe DecksController do
       get :index, :game_id => @game.id, :format => :json
 
       # tests
-      expect( response.status ).to eq(200)
+      expect( response.status ).to eq( 200 )
       response.header[ 'Content-Type' ].should include 'application/json'
       json = JSON.parse( response.body )
       json.should have(1).items
@@ -47,7 +47,7 @@ describe DecksController do
       get :show,  :id => '1', :game_id => @game.id, :format => :json
 
       # tests
-      expect( response.status ).to eq(404)
+      expect( response.status ).to eq( 404 )
     end
   end
 
@@ -62,7 +62,7 @@ describe DecksController do
       get :show,  :id => '1', :game_id => @game.id, :format => :html
 
       # tests
-      expect( response.status ).to eq(404)
+      expect( response.status ).to eq( 404 )
     end
   end
 
@@ -79,7 +79,7 @@ describe DecksController do
       get :show, :id => @deck.id, :game_id => @game.id, :format => :json
 
       # tests
-      expect( response.status ).to eq(200)
+      expect( response.status ).to eq( 200 )
       json = JSON.parse( response.body )
       json.should have(7).items
     end
@@ -98,7 +98,7 @@ describe DecksController do
       get :show, :id => @deck.id, :game_id => @game.id, :format => :html
 
       # tests
-      expect( response.status ).to eq(200)
+      expect( response.status ).to eq( 200 )
       response.header[ 'Content-Type' ].should include 'text/html'
       response.should render_template( "decks/show" )
     end
@@ -122,7 +122,7 @@ describe DecksController do
       put :update, :deck => { :name => "New Name" }, :id => @deck.id, :game_id => @game.id, :format => :json
 
       # tests
-      expect( response.status ).to eq(200)
+      expect( response.status ).to eq( 200 )
       response.header[ 'Content-Type' ].should include 'application/json'
       json = JSON.parse( response.body )
       json[ "name" ].should == "New Name"
@@ -145,7 +145,7 @@ describe DecksController do
       post :create, :deck => { :name => "New Name" }, :game_id => @game.id, :format => :json
 
       # tests
-      expect( response.status ).to eq(201)
+      expect( response.status ).to eq( 201 )
       response.header[ 'Content-Type' ].should include 'application/json'
       json = JSON.parse( response.body )
       json[ "name" ].should == "New Name"
@@ -169,7 +169,7 @@ describe DecksController do
       post :destroy, :id => @deck.id, :game_id => @game.id, :format => :json
 
       # tests
-      expect( response.status ).to eq(200)
+      expect( response.status ).to eq( 200 )
       response.header[ 'Content-Type' ].should include 'application/json'
     end
   end

@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe DecksController do
 
+  numberOfJsonItemsInDeckJson=7
+
   #************************************
   # GET: index
   # /games/:game_id/decks(.:format)
@@ -62,7 +64,7 @@ describe DecksController do
   end
 
   describe "Get deck json" do
-    it "should return json with 7 items" do
+    it "should return json with #{numberOfJsonItemsInDeckJson} items" do
 
       # prep
       signIn
@@ -76,7 +78,7 @@ describe DecksController do
       # tests
       expect( response.status ).to eq( 200 )
       json = JSON.parse( response.body )
-      json.should have( 7 ).items
+      json.should have( numberOfJsonItemsInDeckJson ).items
     end
   end
 
@@ -105,7 +107,7 @@ describe DecksController do
   #**********************************
 
   describe "PUT deck json" do
-    it "should return json with 7 items" do
+    it "should return json with #{numberOfJsonItemsInDeckJson} items" do
 
       # prep
       signIn
@@ -121,6 +123,7 @@ describe DecksController do
       response.header[ 'Content-Type' ].should include 'application/json'
       json = JSON.parse( response.body )
       json[ "name" ].should == "New Name"
+      json.should have( numberOfJsonItemsInDeckJson ).items
     end
   end
 
@@ -168,5 +171,4 @@ describe DecksController do
       response.header[ 'Content-Type' ].should include 'application/json'
     end
   end
-
 end

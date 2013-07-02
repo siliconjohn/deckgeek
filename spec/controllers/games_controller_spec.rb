@@ -2,113 +2,173 @@ require 'spec_helper'
 
 describe GamesController do
 
-  describe "Login" do
-    it "response should be 200" do
-      signIn
-      get :index
-      expect(response.status).to eq(200)
-    end
-  end
+  numberOfJsonItemsInGameJson=8
+
+  # describe "Login" do
+  #   it "response should be 200" do
+  #     signIn
+  #     get :index
+  #     expect(response.status).to eq(200)
+  #    end
+  # end
 
   #************************************
-  # GET /games/ || /games.json (index)
+  # GET: index
+  # /games/ || /games.json (index)
   #************************************
 
-  describe "Get all games as json" do
-    it "should return json/200 with 8 json items" do
+  describe "Get game" do
+    it "should return 1 item as json" do
+
+      # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      @game2=Game.create( :user_id => $user.id );
-      get :index, :format => :html
-      expect(response.status).to eq(200)
-      response.header['Content-Type'].should include 'application/json'
-      json = JSON.parse(response.body)
-      json.should have(2).items
+      @game = Game.create( :user_id => $user.id );
+
+      # request as json
+      get :index, :format => :json
+
+      # tests
+      expect( response.status ).to eq( 200 )
+      response.header[ 'Content-Type' ].should include 'application/json'
+      json = JSON.parse( response.body )
+      json.should have( 1 ).items
     end
   end
 
   #**********************************
-  # GET /games/:id  (show)
+  # GET: show
+  # /games/:id(.:format)
   #**********************************
 
-  describe "Non-existant game as html and JSON" do
-    it "should return 404" do
+  describe "Non-existant game" do
+    it "should return 404 from HTML request" do
+
+      # prep
       signIn
-      get :show,  :id => '1', :format => :json
-      expect(response.status).to eq(404)
-      get :show,  :id => '1', :format => :html
-      expect(response.status).to eq(404)
+
+      # request as json
+      get :show,  :id => '2', :format => :json
+
+      # tests
+      expect( response.status ).to eq( 404 )
     end
   end
 
-  describe "Get a game as json" do
-    it "should return json, 200 with 8 items" do
+  describe "Non-existant game" do
+    it "should return 404 from HTML request" do
+
+      # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
+
+      # request as json
+      get :show,  :id => '2', :format => :html
+
+      # tests
+      expect( response.status ).to eq( 404 )
+    end
+  end
+
+  describe "Get game json" do
+    it "should return json with 8 items" do
+
+      # prep
+      signIn
+      @game = Game.create( :user_id => $user.id );
+
+      # request as json
       get :show, :id => @game.id, :format => :json
-      expect(response.status).to eq(200)
-      response.header['Content-Type'].should include 'application/json'
-      json = JSON.parse(response.body)
-      json.should have(8).items
+
+      # tests
+      expect( response.status ).to eq( 200 )
+      json = JSON.parse( response.body )
+      json.should have( numberOfJsonItemsInGameJson ).items
     end
   end
 
-  describe "Get a game as html" do
-    it "should return games/show html" do
+  describe "Get game as html" do
+    it "should return html from proper template" do
+
+      # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
+      @game = Game.create( :user_id => $user.id );
+
+      # request as html
       get :show, :id => @game.id, :format => :html
-      expect(response.status).to eq(200)
-      response.header['Content-Type'].should include 'text/html'
-      response.should render_template("games/show")
+
+      # tests
+      expect( response.status ).to eq( 200 )
+      response.header[ 'Content-Type' ].should include 'text/html'
+      response.should render_template( "games/show" )
     end
   end
 
   #**********************************
-  # PUT /games/:id(.:format)
+  # PUT: update
+  # /games/:id(.:format)
   #**********************************
 
-  describe "PUT/change a game as json" do
-    it "should change game name" do
+  describe "PUT game json" do
+    it "should return json with #{numberOfJsonItemsInGameJson} items and: 'Name: New Name'" do
+
+      # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      put :update, :id => @game.id, :game => { :name => "test" }, :format => :json
+      @game = Game.create( :user_id => $user.id );
 
-      expect(response.status).to eq(200)
-      response.header['Content-Type'].should include 'application/json'
-      json = JSON.parse(response.body)
-      json.should have(8).items
-      json["name"].should == "test"
+      # request as json
+      put :update, :game => { :name => "New Name" }, :id => @game.id, :format => :json
+
+      # tests
+      expect( response.status ).to eq( 200 )
+      response.header[ 'Content-Type' ].should include 'application/json'
+      json = JSON.parse( response.body )
+      json[ "name" ].should == "New Name"
+      json.should have( numberOfJsonItemsInGameJson ).items
     end
   end
 
   #**********************************
-  # POST to create /games/(.:format)
+  # POST: create
+  # /games/:id(.:format)
   #**********************************
 
-  describe "POST a game as json" do
-    it "should create a game with the name test" do
+  describe "POST to create a game from json" do
+    it "should return json with the posted game name" do
+
+      # prep
       signIn
-      post :create, :game => { :name => "test" }, :format => :json
-      expect(response.status).to eq(201)
-      response.header['Content-Type'].should include 'application/json'
-      json = JSON.parse(response.body)
-      json.should have(8).items
-      json["name"].should == "test"
+      @game = Game.create( :user_id => $user.id );
+
+      # request as json
+      post :create, :game => { :name => "New Name" }, :id => @game.id, :format => :json
+
+      # tests
+      expect( response.status ).to eq( 201 )
+      response.header[ 'Content-Type' ].should include 'application/json'
+      json = JSON.parse( response.body )
+      json[ "name" ].should == "New Name"
+      json.should have( numberOfJsonItemsInGameJson ).items
     end
   end
 
   #**********************************
-  # DELETE /games/:id(.:format)
+  # DELETE: destroy
+  # /games/:id(.:format)
   #**********************************
 
-  describe "DELETE a game as json" do
-    it "should delete a game" do
+  describe "DELETE a game from json" do
+    it "should responde with 200 as json" do
+
+      # prep
       signIn
-      @game=Game.create( :user_id => $user.id );
-      put :destroy, :id => @game.id, :format => :json
-      expect(response.status).to eq(200)
-      response.header['Content-Type'].should include 'application/json'
+      @game = Game.create( :user_id => $user.id );
+
+      # request as json
+      post :destroy, :id => @game.id, :format => :json
+
+      # tests
+      expect( response.status ).to eq( 200 )
+      response.header[ 'Content-Type' ].should include 'application/json'
     end
   end
+
 end

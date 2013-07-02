@@ -4,14 +4,6 @@ describe GamesController do
 
   numberOfJsonItemsInGameJson=8
 
-  # describe "Login" do
-  #   it "response should be 200" do
-  #     signIn
-  #     get :index
-  #     expect(response.status).to eq(200)
-  #    end
-  # end
-
   #************************************
   # GET: index
   # /games/ || /games.json (index)

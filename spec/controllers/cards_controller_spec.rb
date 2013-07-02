@@ -28,6 +28,25 @@ describe CardsController do
     end
   end
 
+  describe "Get cards as html" do
+    it "should return html page" do
+
+      # prep
+      signIn
+      @game = Game.create( :user_id => $user.id );
+      @deck = Deck.create( :game_id => @game.id );
+      @card = Card.create( :deck_id => @deck.id );
+
+      # request as json
+      get :index, :deck_id => @deck.id, :game_id => @game.id, :format => :html
+
+      # tests
+      expect( response.status ).to eq( 200 )
+      response.header[ 'Content-Type' ].should include 'text/html'
+      response.should render_template( "cards/index" )
+    end
+  end
+
   #**********************************
   # GET: show
   #**********************************

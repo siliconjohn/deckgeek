@@ -7,5 +7,4 @@ class HomeController < ApplicationController
       #fix render :controller => "Devise::SessionsController", :action => "new"
     end
   end
-
 end

@@ -13,5 +13,4 @@ class StylesController < ApplicationController
       render_json_200
     end
   end
-
 end

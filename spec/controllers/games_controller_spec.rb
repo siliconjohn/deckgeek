@@ -170,5 +170,4 @@ describe GamesController do
       response.header[ 'Content-Type' ].should include 'application/json'
     end
   end
-
 end

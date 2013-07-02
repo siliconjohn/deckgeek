@@ -5,7 +5,7 @@
 
   $(function()
   {
-  //    addCardsView ('.cards-parent',<%= @deck.id %>,false,true);
+    addCardsViewForJson('.cards-parent', <%= @cards.to_json.to_s.html_safe %>,false,true);
   });
 
 </script>

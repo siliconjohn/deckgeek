@@ -1,7 +1,6 @@
 class BackgroundsController < ApplicationController
 
   before_filter :require_login
-  #after_filter :add_no_cache_header
   respond_to :json;
 
   # GET /backgrounds(.:format) backgrounds#index

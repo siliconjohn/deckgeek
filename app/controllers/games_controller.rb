@@ -1,11 +1,10 @@
 class GamesController < ApplicationController
 
   before_filter :require_login
-  #after_filter :add_no_cache_header
 
   # GET /games(.:format)
   def index
-    @games = Game.where(:user_id => current_user.id)
+    @games = Game.where( :user_id => current_user.id )
 
     if @games.any?
       render json: @games
@@ -17,11 +16,11 @@ class GamesController < ApplicationController
   # GET /games/:id(.:format)
   def show
     begin
-       @game = Game.find(params[:id],:conditions => {:user_id => current_user.id})
+       @game = Game.find( params[:id], :conditions => { :user_id => current_user.id })
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
-      @decks = Deck.where(:game_id => params[:id])
+      @decks = Deck.where( :game_id => params[:id] )
 
       respond_to do |format|
         format.html
@@ -33,11 +32,11 @@ class GamesController < ApplicationController
   # PUT /games/:id(.:format)
   def update
     begin
-       @game = Game.find(params[:id])
+       @game = Game.find( params[:id] )
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
-      if @game.update_attributes(params[:game])
+      if @game.update_attributes( params[:game] )
         render json:@game, status: :ok
       else
         render json: @game.errors, status: :unprocessable_entity
@@ -47,7 +46,7 @@ class GamesController < ApplicationController
 
   # POST /games(.:format)
   def create
-    @game = Game.new(params[:game])
+    @game = Game.new( params[:game] )
     @game.user_id = current_user.id;
 
     if @game.save
@@ -60,13 +59,12 @@ class GamesController < ApplicationController
   # DELETE /games/:id(.:format)
   def destroy
     begin
-       @game = Game.find(params[:id],:conditions => {:user_id => current_user.id})
+       @game = Game.find( params[:id], :conditions => { :user_id => current_user.id })
     rescue ActiveRecord::RecordNotFound => e
-      render_json_200
+      render_404
     else
       @game.destroy
       render_json_200
     end
   end
-
 end

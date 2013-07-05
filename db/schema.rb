@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.boolean  "border_visible",             :default => true
     t.boolean  "border_inline",              :default => true
     t.boolean  "border_outline",             :default => true
+    t.boolean  "background_visible",         :default => true
+    t.string   "background_color",           :default => "#ffffff"
     t.integer  "deck_id"
     t.integer  "style_id"
     t.integer  "background_id"

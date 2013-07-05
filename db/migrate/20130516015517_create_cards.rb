@@ -8,6 +8,8 @@ class CreateCards < ActiveRecord::Migration
       t.boolean :border_visible, :default => true
       t.boolean :border_inline,  :default => true
       t.boolean :border_outline, :default => true
+      t.boolean :background_visible, :default => true
+      t.string  :background_color, :default => "#ffffff"
       t.references :deck
       t.references :style
       t.references :background

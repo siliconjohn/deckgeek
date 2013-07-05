@@ -182,10 +182,17 @@
     <div class="accordion" id="accordion-background">
       <div class="accordion-group">
         <div class="accordion-heading">
-           <button class="btn" data-toggle="collapse" data-parent="#accordion-background" href="#collapseFour">Background</button>
+           <button class="btn" data-toggle="collapse" data-parent="#accordion-background" href="#accordion-bg-body">Background</button>
         </div>
-        <div id="collapseFour" class="accordion-body collapse in">
+        <div id="accordion-bg-body" class="accordion-body collapse in">
           <div class="accordion-inner">
+
+            <div class="slider-group"><p class="bg-color-p">Background Color</p>
+              <div class="bg-color-picker-parent"><input type='text' id="bg-color-picker"/></div>
+              <script>addColorPicker( "#bg-color-picker", "<%= background_color %>")</script>
+                <% if( background_visible ) { bv =' active'; db = ''; } else { bv = ''; db = ' disabled';} %>
+                <button id="bg-toggle-btn" class="btn btn-mini btn-green<%= bv %> bdr-btn" data-toggle="button">Hide Background Image</button>
+            </div>
 
             <!-- background images view -->
             <div id="backgrounds-view-parent"></div>

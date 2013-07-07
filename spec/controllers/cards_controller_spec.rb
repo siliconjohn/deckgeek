@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CardsController do
 
-  numberOfJsonItemsInCard=30
+  numberOfJsonItemsInCard=32
 
   #************************************
   # GET: index

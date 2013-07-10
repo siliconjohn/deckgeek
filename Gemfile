@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'ejs', '1.1.1'
 gem 'devise', '1.5.4'
 gem 'jquery-rails' 
@@ -17,6 +16,7 @@ group :assets do
 end
 
 group :development, :test do
+	gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', "~> 4.0"

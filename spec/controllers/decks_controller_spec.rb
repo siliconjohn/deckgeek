@@ -14,8 +14,7 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
-      @deck = Deck.create( :game_id => @game.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
       get :index, :game_id => @game.id, :format => :json
@@ -38,10 +37,10 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
-      get :show,  :id => '1', :game_id => @game.id, :format => :json
+      get :show,  :id => @game.decks.first.id+1, :game_id => @game.id, :format => :json
 
       # tests
       expect( response.status ).to eq( 404 )
@@ -53,10 +52,10 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
-      get :show,  :id => '1', :game_id => @game.id, :format => :html
+      get :show,  :id => @game.decks.first.id+1, :game_id => @game.id, :format => :html
 
       # tests
       expect( response.status ).to eq( 404 )
@@ -68,12 +67,10 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
-      @deck = Deck.create( :game_id => @game.id );
-      @card = Card.create( :deck_id => @deck.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
-      get :show, :id => @deck.id, :game_id => @game.id, :format => :json
+      get :show, :id => @game.decks.first.id, :game_id => @game.id, :format => :json
 
       # tests
       expect( response.status ).to eq( 200 )
@@ -87,12 +84,10 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
-      @deck = Deck.create( :game_id => @game.id );
-      @card = Card.create( :deck_id => @deck.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as html
-      get :show, :id => @deck.id, :game_id => @game.id, :format => :html
+      get :show, :id => @game.decks.first.id, :game_id => @game.id, :format => :html
 
       # tests
       expect( response.status ).to eq( 200 )
@@ -111,12 +106,10 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
-      @deck = Deck.create( :game_id => @game.id );
-      @card = Card.create( :deck_id => @deck.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
-      put :update, :deck => { :name => "New Name" }, :id => @deck.id, :game_id => @game.id, :format => :json
+      put :update, :deck => { :name => "New Name" }, :id => @game.decks.first.id, :game_id => @game.id, :format => :json
 
       # tests
       expect( response.status ).to eq( 200 )
@@ -137,7 +130,7 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
       post :create, :deck => { :name => "New Name" }, :game_id => @game.id, :format => :json
@@ -160,11 +153,10 @@ describe DecksController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
-      @deck = Deck.create( :game_id => @game.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
-      post :destroy, :id => @deck.id, :game_id => @game.id, :format => :json
+      post :destroy, :id => @game.decks.first.id, :game_id => @game.id, :format => :json
 
       # tests
       expect( response.status ).to eq( 200 )

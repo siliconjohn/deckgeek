@@ -14,7 +14,7 @@ describe GamesController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
       get :index, :format => :json
@@ -65,7 +65,7 @@ describe GamesController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
       get :show, :id => @game.id, :format => :json
@@ -82,7 +82,7 @@ describe GamesController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as html
       get :show, :id => @game.id, :format => :html
@@ -104,7 +104,7 @@ describe GamesController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
       put :update, :game => { :name => "New Name" }, :id => @game.id, :format => :json
@@ -128,7 +128,7 @@ describe GamesController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
       post :create, :game => { :name => "New Name" }, :id => @game.id, :format => :json
@@ -152,7 +152,7 @@ describe GamesController do
 
       # prep
       signIn
-      @game = Game.create( :user_id => $user.id );
+      @game = FactoryGirl.create( :game, :user_id => $user.id );
 
       # request as json
       post :destroy, :id => @game.id, :format => :json

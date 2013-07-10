@@ -5,7 +5,6 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 # Ignore bundler config
-/.bundle
 /db/*.sqlite3
 /log/*.log
 /tmp
@@ -24,3 +23,4 @@ Thumbs.db
 
 # John's custom
 TODO.txt
+*.dat

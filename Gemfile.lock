@@ -137,7 +137,7 @@ DEPENDENCIES
   devise (= 1.5.4)
   ejs (= 1.1.1)
   factory_girl_rails (~> 4.0)
-  jquery-rails (= 2.2.1)
+  jquery-rails
   pg
   rails (= 3.2.3)
   rspec-rails (= 2.13.1)

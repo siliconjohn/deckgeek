@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'ejs', '1.1.1'
 gem 'devise', '1.5.4'
-gem 'jquery-rails', '2.2.1'
+gem 'jquery-rails' 
 
 # Gems used only for assets and not required
 # in production environments by default.

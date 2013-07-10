@@ -57,6 +57,6 @@ module Gg
     config.assets.version = '1.0'
 
     # you might need this for devise on heroku
-    # config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = false
   end
 end

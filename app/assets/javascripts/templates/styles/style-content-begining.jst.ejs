@@ -66,10 +66,13 @@
       if( title_bg_color )
         textBoxStyle+="background-color:" + title_bg_color + ";";
 
+      // center text, this will be changed later to allow more options
+      textBoxStyle+='text-align:center;';
+
       textBoxStyle+='"';
 
       // finish element
-      el='<div class="title-box"' + textBoxStyle +'></div>';
+      el='<div class="title-box"' + textBoxStyle +'><div class="title-text">' + name + '</div></div>';
    }
 %>
 <%= el %>
@@ -121,10 +124,13 @@
       if( description_bg_color )
         descriptionBoxStyle+="background-color:" + description_bg_color + ";";
 
+      // center text, this will be changed later to allow more options
+      descriptionBoxStyle+='text-align:center;';
+      
       descriptionBoxStyle+='"';
 
       // finish element
-      desc='<div class="description-box"' + descriptionBoxStyle +'></div>';
+      desc='<div class="description-box"' + descriptionBoxStyle +'>' + description + '</div>';
    }
 %>
 <%= desc %>

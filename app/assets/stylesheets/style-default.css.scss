@@ -55,11 +55,21 @@
     background-color: rgba(248,248,248, 0.7);
     -webkit-box-shadow:  0px 5px 5px 0px rgba(0, 0, 0, 0.3);
     box-shadow:  0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    overflow:hidden;
+    color:#ddd;
+    font-size: 18px;
+
+    .title-text {
+      text-align:center;
+      margin-top:10px;
+    }
   }
 
   .description-box {
     width:100%;
     background-color: rgba(248,248,248, 0.7);
+    overflow:hidden;
+    color:#ddd;
   }
 
   .bottom-left-gradient {

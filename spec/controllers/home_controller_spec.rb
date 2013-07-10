@@ -7,6 +7,7 @@ describe HomeController do
       get :index
       expect(response.status).to eq(302)
       response.header[ 'Content-Type' ].should include 'text/html'
+      response.should redirect_to( new_user_session_path )
     end
   end
 

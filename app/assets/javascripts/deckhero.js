@@ -1,40 +1,54 @@
+/******************************************
+ * Deck Hero Model
+ ******************************************/
 
-
-App.DeckHero=Backbone.Model.extend({
-  url:function(){
-        return window.App.data.deck_id;
-      }
+App.DeckHero = Backbone.Model.extend(
+{
+  url:function()
+  {
+    return this.attributes.id;
+  }
 });
+ 
+/******************************************
+ * Deck Hero View
+ ******************************************/
 
-App.DeckHeroView=Backbone.View.extend({
-  tag:"div",
-  className:"hero-unit deck-hero-unit",
+App.DeckHeroView = Backbone.View.extend(
+{
+  tag: "div",
+  className: "hero-unit deck-hero-unit",
   template: JST['templates/decks/deckheroview'],
-  events: {
+  events: 
+  {
     'click #hero-save-btn': 'save',
   },
 
-  initialize:function(){
-    _.bindAll(this,'render', 'save');
-    this.listenTo(this.model,'change',this.render);
+  initialize:function()
+  {
+    _.bindAll( this, 'render', 'save' );
+    this.listenTo( this.model, 'change', this.render );
   },
 
-  render:function(){
-    this.$el.html(this.template(this.model.attributes));
+  render:function()
+  {
+    this.$el.html( this.template( this.model.attributes ));
   },
 
-  save: function(){
-    this.model.set("name",$("#input-name").val());
-    this.model.set("description",$("#input-description").val());
+  save:function()
+  {
+    this.model.set( "name", $( "#input-name" ).val() );
+    this.model.set( "description", $( "#input-description" ).val() );
     this.model.save();
   }
 });
 
-function getDeckHero(container,json){
-  window.deckHero = new App.DeckHero();
-  window.deckHeroView =new App.DeckHeroView({model: deckHero});
-  window.deckHeroView.$el.appendTo(container);
-  window.deckHero.set(json);
+function getDeckHero( container, json )
+{
+  window.App.data.deckHero = new App.DeckHero();
+  window.App.views.deckHeroView = new App.DeckHeroView({ model: window.App.data.deckHero });
+  window.App.views.deckHeroView.$el.appendTo( container );
+  window.App.data.deckHero.set( json );
 
   $(".hero-unit").hover(
     function(){

@@ -3,7 +3,7 @@ class CreateCards < ActiveRecord::Migration
     create_table :cards do |t|
       t.string :name, :default => "My Card"
       t.string :description, :default => "Describe your card here"
-      t.string :border_color
+      t.string :border_color, :default => "#000000"
       t.integer :border_width,   :default => 10
       t.boolean :border_visible, :default => true
       t.boolean :border_inline,  :default => true
@@ -11,8 +11,8 @@ class CreateCards < ActiveRecord::Migration
       t.boolean :background_visible, :default => true
       t.string  :background_color, :default => "#ffffff"
       t.references :deck
-      t.references :style
-      t.references :background
+      t.references :style, :default => 1
+      t.references :background, :default => 1
       t.integer :title_width,       :default => 100
       t.string  :title_alignment, :default => "center"
       t.integer :title_top_margin,  :default => 0

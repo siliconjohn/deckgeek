@@ -50,7 +50,15 @@ class GamesController < ApplicationController
     @game.user_id = current_user.id;
 
     if @game.save
+      @deck = Deck.new({game_id: @game.id})
+      @deck.save
+      @card = Card.new({deck_id: @deck.id})
+      @card.save
+
       render json: @game, status: :created, location: @game
+
+
+
     else
       format.json { render json: @game.errors, status: :unprocessable_entity }
     end

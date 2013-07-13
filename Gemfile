@@ -21,6 +21,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', "~> 4.0"
   gem 'webrick', '~> 1.3.1'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :production do 

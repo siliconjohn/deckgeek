@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
   create_table "cards", :force => true do |t|
     t.string   "name",                       :default => "My Card"
     t.string   "description",                :default => "Describe your card here"
-    t.string   "border_color"
+    t.string   "border_color",               :default => "#000000"
     t.integer  "border_width",               :default => 10
     t.boolean  "border_visible",             :default => true
     t.boolean  "border_inline",              :default => true
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(:version => 20130606213120) do
     t.boolean  "background_visible",         :default => true
     t.string   "background_color",           :default => "#ffffff"
     t.integer  "deck_id"
-    t.integer  "style_id"
-    t.integer  "background_id"
+    t.integer  "style_id",                   :default => 1
+    t.integer  "background_id",              :default => 1
     t.integer  "title_width",                :default => 100
     t.string   "title_alignment",            :default => "center"
     t.integer  "title_top_margin",           :default => 0

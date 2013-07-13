@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"over",
+				"overflow"
+			],
+			[
+				"ba",
+				"backgrounds"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
 				"ad",
 				"addEditButtons"
 			],
@@ -156,10 +168,6 @@
 				"Backbone"
 			],
 			[
-				"ba",
-				"backgroundsView"
-			],
-			[
 				"Bac",
 				"Backgrounds"
 			],
@@ -172,34 +180,43 @@
 	"buffers":
 	[
 		{
-			"file": "spec/controllers/decks_controller_spec.rb",
-			"settings":
-			{
-				"buffer_size": 4572,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "spec/controllers/games_controller_spec.rb",
-			"settings":
-			{
-				"buffer_size": 3409,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/decks_controller.rb",
-			"settings":
-			{
-				"buffer_size": 1693,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "spec/spec_helper.rb",
 			"settings":
 			{
-				"buffer_size": 1615,
+				"buffer_size": 1665,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/features/home.rb",
+			"settings":
+			{
+				"buffer_size": 389,
+				"line_ending": "Unix",
+				"name": "require 'spec_helper'"
+			}
+		},
+		{
+			"file": "Gemfile",
+			"settings":
+			{
+				"buffer_size": 580,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/devise/sessions/new.html.erb",
+			"settings":
+			{
+				"buffer_size": 1543,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/controllers/home_controller_spec.rb",
+			"settings":
+			{
+				"buffer_size": 590,
 				"line_ending": "Unix"
 			}
 		}
@@ -231,62 +248,85 @@
 		"show_minimap": false,
 		"show_open_files": false,
 		"show_tabs": false,
-		"side_bar_visible": false,
+		"side_bar_visible": true,
 		"status_bar_visible": false
 	},
 	"file_history":
 	[
-		"/Users/johndoerfler/Downloads/solarized-xcode-master/README.markdown",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/decks_controller.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/controllers/games_controller_spec.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/games.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/gamehero.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/Gemfile",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/spec_helper.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/decks.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/decks/show.html.erb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cards.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/application.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/index.html.erb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/games.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/deckhero.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/gamehero.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/gamegen.sublime-workspace",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/application.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/.rspec",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-1.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/card.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardeditview.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/TODO.txt",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/database.yml",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/home_controller.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/layouts/application.html.erb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/Gemfile.lock",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-content-begining.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-default.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/card.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/styles.js",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/seeds.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/decks_controller.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/controllers/decks_controller_spec.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/dotests.sh",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/.gitignore",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/delseed.sh",
+		"/Users/johndoerfler/.bash_login",
+		"/etc/sysctl.conf,",
+		"/private/etc/sysctl.conf",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/controllers/games_controller_spec.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/factories/factories.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/controllers/cards_controller_spec.rb",
+		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/public/assets/manifest.yml",
+		"/Users/johndoerfler/Dropbox/Projects/gg_id_rsa.pub",
+		"/etc/hosts",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/card.css.scss",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-background.jst.ejs",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015517_create_cards.rb",
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/models/style_spec.rb",
+		"/Users/johndoerfler/Downloads/solarized-xcode-master/README.markdown",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/games_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/game.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/application_controller.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/delseed.sh",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/support/devise.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/test/test_helper.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/spec_helper.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/user.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/support/auth_helper.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/gistfile1.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/support",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/spec/models/game_spec.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/seeds.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/styles.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/decks/show.html.erb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/TODO.txt",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-1.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-1.css.scss",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/card.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/cardeditview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/cards_controller.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cards.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015517_create_cards.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130511030656_create_games.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/card.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/schema.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130516015511_create_decks.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/deck.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/index.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/games/show.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/decks.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/decks/decksview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/cards/show.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/cards.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/devise/registrations/edit.html.erb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/layouts/application.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/initializers/devise.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/application.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/routes.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/games.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/games/gameview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/views/home/home.html.erb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/cardsscaled.js",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/home_controller.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/card.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/styles.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/games/gamesview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/artworkview.jst.ejs",
@@ -299,30 +339,24 @@
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/styleview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/defaults.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/vendor/assets/stylesheets/bootstrap.css",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-content-begining.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-default.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/vendor/assets/stylesheets/spectrum.css",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/vendor/assets/javascripts/html5slider.js",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Distraction Free.sublime-settings",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-2.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/style.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/stylesview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-border-ending.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-border-begining.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-background.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-3.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-4.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-content-ending.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/log/production.log",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/styles/style-border.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/application.css",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/application.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/vendor/assets/javascripts/spectrum.js",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/config/environments/development.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130521165926_create_style.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/models/image.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/.gitignore",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-2.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-3.css.scss",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/style-4.css.scss",
@@ -332,7 +366,6 @@
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/helpers/cards_helper.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/gamegen.sublime-workspace",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/backgroundsview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/card/artworksview.jst.ejs",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/cards/cardsview.jst.ejs",
@@ -347,23 +380,7 @@
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/backgrounds_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/images_controller.rb",
 		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/controllers/styles_controller.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/images/imagesview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/stylesheets/images.css.scss",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/images/imageview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/backgrounds/backgroundsview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/backgrounds/backgroundview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/images.js",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/consolelog.sublime-snippit",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/test.sublime-snippit",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/background/backgroundview.jst.ejs",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130529032456_create_images.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/db/migrate/20130606213120_create_background.rb",
-		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/images/glyphicons-halflings-white.png",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/console.log",
-		"/Users/johndoerfler/Desktop/card/style.scss.css",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Browser Refresh/Default (OSX).sublime-keymap",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings",
-		"/Users/johndoerfler/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+		"/Users/johndoerfler/Dropbox/Projects/gamegen/app/assets/javascripts/templates/images/imagesview.jst.ejs"
 	],
 	"find":
 	{
@@ -381,9 +398,37 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"commit",
+			"addCardsView",
+			"change deck style",
+			"addCardsViewForJson",
+			"getDeckHero",
+			"initialize_on_precompile",
+			"new_user_session",
+			"redirect",
+			"devise",
+			"sql",
+			"sqlite3",
+			".description-box",
+			"card-view-base",
+			"updateCardName",
+			"precompil",
+			"collapse",
+			"carosel",
+			"@card.id",
+			"@deck.id",
+			"create(:game",
+			"@game = Game.create( :user_id => $user.id );",
+			"@game =FactoryGirl.create(:game, :user_id => $user.id );\n@game =FactoryGirl.create(:game, :user_id => $user.id );\n@game = Game.create( :user_id => $user.id );\n\n@game = Game.create( :user_id => $user.id );",
+			"RUBY_VERSION",
+			"background_visible",
+			"card-view-base",
+			"270",
+			"backgrounds-view-parent",
+			"collapseFour",
 			"=C",
 			"k=",
 			"e=",
@@ -483,35 +528,7 @@
 			"card-view-base",
 			".card-view-base",
 			"}}",
-			"[01",
-			"decks[0]",
-			"20% 40%",
-			"game-view-scale",
-			"include:",
-			":include",
-			"getGames",
-			"card",
-			"carosel-card-parent",
-			"style",
-			"cards-view",
-			"CardsScaledView",
-			"CardView",
-			"Cards",
-			"Card",
-			"2",
-			"addCardsView",
-			"family",
-			"famil",
-			"btn-primary",
-			"btn-blue-green",
-			"btn-sample",
-			"family:",
-			"decks-list ",
-			"new deck",
-			"family",
-			"deck-name",
-			"btn-success",
-			"New Deck"
+			"[01"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -519,6 +536,11 @@
 		"regex": false,
 		"replace_history":
 		[
+			"@game.decks.first.cards.first.id",
+			"@game.decks.first.id",
+			"create( :game",
+			"@game = FactoryGirl.create(:game, :user_id => $user.id );",
+			"@game =FactoryGirl.create(:game, :user_id => $user.id );\n@game =FactoryGirl.create(:game, :user_id => $user.id );\n@game = FactoryGirl.create(:game, :user_id => $user.id );",
 			"addGameHero",
 			"addDecks",
 			"addGameView",
@@ -560,31 +582,31 @@
 			"images-parent"
 		],
 		"reverse": false,
-		"show_context": true,
-		"use_buffer2": true,
-		"whole_word": true,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "spec/controllers/decks_controller_spec.rb",
+					"file": "spec/spec_helper.rb",
 					"settings":
 					{
-						"buffer_size": 4572,
+						"buffer_size": 1665,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3964,
-								3964
+								1580,
+								1591
 							]
 						],
 						"settings":
@@ -594,25 +616,54 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 806.0,
+						"translation.y": 167.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "spec/controllers/games_controller_spec.rb",
+					"file": "spec/features/home.rb",
 					"settings":
 					{
-						"buffer_size": 3409,
+						"buffer_size": 389,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								22,
-								22
+								378,
+								378
+							]
+						],
+						"settings":
+						{
+							"auto_name": "require 'spec_helper'",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Gemfile",
+					"settings":
+					{
+						"buffer_size": 580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								518,
+								518
 							]
 						],
 						"settings":
@@ -628,47 +679,47 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/controllers/decks_controller.rb",
+					"buffer": 3,
+					"file": "app/views/devise/sessions/new.html.erb",
 					"settings":
 					{
-						"buffer_size": 1693,
+						"buffer_size": 1543,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1150,
-								1150
+								1024,
+								1024
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 345.0,
+						"translation.y": 127.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "spec/spec_helper.rb",
+					"buffer": 4,
+					"file": "spec/controllers/home_controller_spec.rb",
 					"settings":
 					{
-						"buffer_size": 1615,
+						"buffer_size": 590,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1614,
-								1614
+								571,
+								410
 							]
 						],
 						"settings":
@@ -721,6 +772,10 @@
 	{
 		"height": 136.0
 	},
+	"output.find_results":
+	{
+		"height": 136.0
+	},
 	"replace":
 	{
 		"height": 70.0
@@ -732,24 +787,100 @@
 		"selected_items":
 		[
 			[
+				"home_c",
+				"spec/controllers/home_controller_spec.rb"
+			],
+			[
+				"app",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"cards",
+				"app/assets/javascripts/cards.js"
+			],
+			[
+				"deck",
+				"app/assets/javascripts/decks.js"
+			],
+			[
+				"game",
+				"app/assets/javascripts/gamehero.js"
+			],
+			[
+				"appl",
+				"app/assets/javascripts/application.js"
+			],
+			[
+				"da",
+				"config/database.yml"
+			],
+			[
+				"card",
+				"app/models/card.rb"
+			],
+			[
+				"carded",
+				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
+			],
+			[
+				"decks",
+				"spec/controllers/decks_controller_spec.rb"
+			],
+			[
 				"dec",
 				"app/controllers/decks_controller.rb"
+			],
+			[
+				"see",
+				"db/seeds.rb"
+			],
+			[
+				"del",
+				"delseed.sh"
+			],
+			[
+				"se",
+				"db/seeds.rb"
+			],
+			[
+				"decl",
+				"app/controllers/decks_controller.rb"
+			],
+			[
+				"",
+				"Gemfile"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"card.c",
+				"app/assets/stylesheets/card.css.scss"
+			],
+			[
+				"carde",
+				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
+			],
+			[
+				"crea",
+				"db/migrate/20130516015517_create_cards.rb"
+			],
+			[
+				"card.",
+				"app/models/card.rb"
+			],
+			[
+				"card.js",
+				"app/assets/javascripts/card.js"
 			],
 			[
 				"games",
 				"spec/controllers/games_controller_spec.rb"
 			],
 			[
-				"deck",
-				"app/controllers/decks_controller.rb"
-			],
-			[
 				"game_",
 				"spec/controllers/games_controller_spec.rb"
-			],
-			[
-				"game",
-				"app/assets/javascripts/gamehero.js"
 			],
 			[
 				"de",
@@ -758,10 +889,6 @@
 			[
 				"gar",
 				"app/models/game.rb"
-			],
-			[
-				"del",
-				"delseed.sh"
 			],
 			[
 				"appli",
@@ -776,24 +903,12 @@
 				"app/controllers/application_controller.rb"
 			],
 			[
-				"see",
-				"db/seeds.rb"
-			],
-			[
 				"styl",
 				"app/assets/stylesheets/style-1.css.scss"
 			],
 			[
 				"style-",
 				"app/assets/javascripts/templates/styles/style-1.jst.ejs"
-			],
-			[
-				"carde",
-				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
-			],
-			[
-				"cards",
-				"app/controllers/cards_controller.rb"
 			],
 			[
 				"show",
@@ -808,20 +923,8 @@
 				"db/migrate/20130516015517_create_cards.rb"
 			],
 			[
-				"crea",
-				"db/migrate/20130516015511_create_decks.rb"
-			],
-			[
-				"card",
-				"app/models/card.rb"
-			],
-			[
 				"sch",
 				"db/schema.rb"
-			],
-			[
-				"se",
-				"db/seeds.rb"
 			],
 			[
 				"create",
@@ -854,10 +957,6 @@
 			[
 				"a",
 				"app/views/layouts/application.html.erb"
-			],
-			[
-				"appl",
-				"config/application.rb"
 			],
 			[
 				"config/de",
@@ -956,20 +1055,8 @@
 				"app/assets/javascripts/templates/styles/style-1.jst.ejs"
 			],
 			[
-				"app",
-				"app/assets/stylesheets/application.css"
-			],
-			[
 				"applica",
 				"app/assets/stylesheets/application.css"
-			],
-			[
-				"card.js",
-				"app/assets/javascripts/card.js"
-			],
-			[
-				"",
-				"app/models/card.rb"
 			],
 			[
 				"image",
@@ -1028,20 +1115,12 @@
 				"app/assets/javascripts/templates/card/cardeditview.jst.ejs"
 			],
 			[
-				"card.c",
-				"app/assets/stylesheets/card.css.scss"
-			],
-			[
 				"backgroundsv",
 				"app/assets/javascripts/templates/card/backgroundsview.jst.ejs"
 			],
 			[
 				"imagev",
 				"app/assets/javascripts/templates/images/imageview.jst.ejs"
-			],
-			[
-				"carded",
-				"app/assets/javascripts/cardedit.js"
 			],
 			[
 				"stylr",
@@ -1089,7 +1168,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 263.0,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
 	"status_bar_visible": false
 }

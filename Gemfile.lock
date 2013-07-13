@@ -31,6 +31,14 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -52,6 +60,7 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    ffi (1.9.0)
     hike (1.2.2)
     i18n (0.6.4)
     journey (1.0.4)
@@ -64,7 +73,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
+    mini_portile (0.5.1)
     multi_json (1.7.4)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.0.7)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -104,11 +116,17 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    rubyzip (0.9.9)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    selenium-webdriver (2.33.0)
+      childprocess (>= 0.2.5)
+      multi_json (~> 1.0)
+      rubyzip
+      websocket (~> 1.0.4)
     shoulda-matchers (2.1.0)
       activesupport (>= 3.0.0)
     sprockets (2.1.3)
@@ -128,11 +146,15 @@ GEM
     warden (1.2.1)
       rack (>= 1.0)
     webrick (1.3.1)
+    websocket (1.0.7)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  capybara
   coffee-rails (~> 3.2.1)
   devise (= 1.5.4)
   ejs (= 1.1.1)
@@ -142,6 +164,7 @@ DEPENDENCIES
   rails (= 3.2.3)
   rspec-rails (= 2.13.1)
   sass-rails (~> 3.2.3)
+  selenium-webdriver
   shoulda-matchers
   sqlite3
   uglifier (>= 1.0.3)

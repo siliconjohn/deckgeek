@@ -23,4 +23,11 @@ class Card < ActiveRecord::Base
     super( :include => [:style, :background, { :deck => { :only => :game_id}} ])
   end
 
+  # after_initialize :set_defaults
+  # def set_defaults
+  #   if self.new_record?
+  #     logger.info self.description
+  #     self.border_color="#ff0000" if self.border_color.blank? 
+  #   end
+  # end
 end

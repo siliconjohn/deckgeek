@@ -8,5 +8,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :admin, :created_at
   # attr_accessible :title, :body
 
-  has_many :games, :inverse_of => :users, :dependent => :destroy
+  has_many :games, :inverse_of => :user, :dependent => :destroy
+
+	def as_json(a)
+		super( :only => [ :email, :id, :created_at, :admin ], :include => [{:games => {:only => :id }}])
+	end
 end

@@ -1,7 +1,6 @@
 Gg::Application.routes.draw do
 
-  get "admin/index"
-
+  
   devise_for :users
   
   resources :games, :only => [:create, :show, :update, :destroy, :index] do

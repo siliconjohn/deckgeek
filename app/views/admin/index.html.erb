@@ -1,2 +1,12 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<h3>Users</h3>
+
+<div class="users-parent"></div>
+
+<script type="text/javascript">
+
+  $(function()
+  {
+    addUsersViewJson('.users-parent', <%= @users.to_json.to_s.html_safe %>);
+  });
+
+</script>

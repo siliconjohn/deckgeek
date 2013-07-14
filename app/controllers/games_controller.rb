@@ -16,7 +16,11 @@ class GamesController < ApplicationController
   # GET /games/:id(.:format)
   def show
     begin
+      if current_user.admin
+       @game = Game.find( params[:id])
+     else
        @game = Game.find( params[:id], :conditions => { :user_id => current_user.id })
+      end
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else

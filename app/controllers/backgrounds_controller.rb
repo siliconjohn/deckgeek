@@ -8,7 +8,7 @@ class BackgroundsController < ApplicationController
     @backgrounds = Background.all;
 
     if @backgrounds.any?
-     render :json => @backgrounds
+      render :json => @backgrounds
     else
       render_json_200
     end

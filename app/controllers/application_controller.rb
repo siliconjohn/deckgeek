@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin_login
+    unless current_user.try(:admin?)
+      redirect_to "/users/sign_in"
+    end
+  end
+
   def render_json_200
     render json:'[]', status: 200
   end

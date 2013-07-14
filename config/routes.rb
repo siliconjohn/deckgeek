@@ -1,7 +1,9 @@
 Gg::Application.routes.draw do
 
-  devise_for :users
+  get "admin/index"
 
+  devise_for :users
+  
   resources :games, :only => [:create, :show, :update, :destroy, :index] do
     resources :decks, :only => [:create, :show, :update, :destroy, :index] do
       resources :cards, :only => [:create, :show, :update, :destroy, :index]
@@ -10,6 +12,7 @@ Gg::Application.routes.draw do
 
   resources :styles, :only => :index
   resources :backgrounds, :only => :index
+  resources :admin , :only => [:index]
 
   root :to => "home#index"
 

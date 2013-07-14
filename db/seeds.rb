@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 users=User.create(
-  [{ email: 'johndoerfler@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true},
+  [{ email: 'johndoerfler@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true, admin:true },
    { email: '1@1.com', password:'111111', password_confirmation:'111111', remember_me:true},
    { email: '2@2.com', password:'111111', password_confirmation:'111111', remember_me:true},
    { email: 'charlie651@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true},

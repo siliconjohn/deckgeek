@@ -17,6 +17,9 @@
       <li><%= link_to "#{current_user.email}", edit_user_registration_path,  {:id => "user-email"} %></li>
     </ul>
     <ul class="nav pull-right">
+     <% if current_user.try(:admin?) %>
+          <li><a id="admin" href="/admin">Admin</a></li>
+       <% end %>
       <li><%= link_to "Sign Out", destroy_user_session_path, {:id => "sign-out"} %></li>
     </ul>
     <% else %>

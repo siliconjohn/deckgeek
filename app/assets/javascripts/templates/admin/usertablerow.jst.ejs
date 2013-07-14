@@ -1,7 +1,9 @@
-<td><%= id %></td><td><%= email %></td>
+<td><%= id %></td><td><a href="/admin/<%= id %>"><%= email %></a></td>
 <td>
 <% for(var i in games){ %>
 <a href="<%= "/games/"+games[i].id %>">G</a>
 <% } %>
 </td>
-<td><%= new Date(created_at).toLocaleDateString() %> <%= new Date(created_at).toLocaleTimeString() %></td><td><%= admin %></td>
+<td><%= new Date(created_at).toLocaleDateString() %> <%= new Date(created_at).toLocaleTimeString() %></td>
+<td><%= sign_in_count %></td>
+<td><%= admin %></td>

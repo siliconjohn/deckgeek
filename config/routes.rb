@@ -1,6 +1,8 @@
 Gg::Application.routes.draw do
 
   
+  get "admin/show"
+
   devise_for :users
   
   resources :games, :only => [:create, :show, :update, :destroy, :index] do
@@ -11,7 +13,7 @@ Gg::Application.routes.draw do
 
   resources :styles, :only => :index
   resources :backgrounds, :only => :index
-  resources :admin , :only => [:index]
+  resources :admin , :only => [:index, :show]
 
   root :to => "home#index"
 

@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   has_many :games, :inverse_of => :user, :dependent => :destroy
 
 	def as_json(a)
-		super( :only => [ :email, :id, :created_at, :admin ], :include => [{:games => {:only => :id }}])
+		super( :only => [ :email, :id, :created_at, :admin ], :include => [{ :games => { :only => :id }}])
 	end
 end

@@ -1,6 +1,5 @@
 Gg::Application.routes.draw do
 
-  
   get "admin/show"
 
   devise_for :users
@@ -16,6 +15,7 @@ Gg::Application.routes.draw do
   resources :admin , :only => [:index, :show]
 
   root :to => "home#index"
+  match 'guest' => 'home#guest'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

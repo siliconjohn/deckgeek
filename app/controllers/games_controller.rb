@@ -1,10 +1,11 @@
 class GamesController < ApplicationController
 
   before_filter :require_login
+  protect_from_forgery :except => :receive_guest
 
   # GET /games(.:format)
   def index
-    @games = Game.where( :user_id => current_user.id )
+    @games = Game.where( :user_id => current_or_guest_user.id )
 
     if @games.any?
       render json: @games
@@ -16,10 +17,10 @@ class GamesController < ApplicationController
   # GET /games/:id(.:format)
   def show
     begin
-      if current_user.admin
+      if current_or_guest_user.admin
        @game = Game.find( params[:id])
      else
-       @game = Game.find( params[:id], :conditions => { :user_id => current_user.id })
+       @game = Game.find( params[:id], :conditions => { :user_id => current_or_guest_user.id })
       end
     rescue ActiveRecord::RecordNotFound => e
       render_404
@@ -51,7 +52,7 @@ class GamesController < ApplicationController
   # POST /games(.:format)
   def create
     @game = Game.new( params[:game] )
-    @game.user_id = current_user.id;
+    @game.user_id = current_or_guest_user.id;
 
     if @game.save
       deck = Deck.new({ game_id: @game.id })
@@ -71,7 +72,7 @@ class GamesController < ApplicationController
   # DELETE /games/:id(.:format)
   def destroy
     begin
-       @game = Game.find( params[:id], :conditions => { :user_id => current_user.id })
+       @game = Game.find( params[:id], :conditions => { :user_id => current_or_guest_user.id })
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else

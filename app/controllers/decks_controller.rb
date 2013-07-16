@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
 
   before_filter :require_login
+  protect_from_forgery :except => :receive_guest
 
   # GET /games/:game_id/decks(.:format)
   def index

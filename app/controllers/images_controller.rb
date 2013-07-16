@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
 
+  protect_from_forgery :except => :receive_guest
   before_filter :require_login
   respond_to :json;
 

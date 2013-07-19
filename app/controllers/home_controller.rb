@@ -4,15 +4,15 @@ class HomeController < ApplicationController
 	respond_to :html;
 
   def index
-    if current_user
+    if get_current_or_guest_user
       render "home"
     else
-    	render "index" # redirect_to new_user_session_path
+    	render "index" 
     end
   end
 
   def guest
-  	if current_or_guest_user
+  	if get_current_user_or_create_guest_user
       render "home"
     else
     	render "index"  

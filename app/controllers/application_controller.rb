@@ -1,15 +1,14 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery
-
+  
   def require_login
-    unless current_or_guest_user
+    unless get_current_or_guest_user  
       redirect_to "/users/sign_in"
     end
   end
 
   def require_admin_login
     unless current_user.try(:admin?)
-      render_404
+      render_404  
     end
   end
 
@@ -34,51 +33,54 @@ class ApplicationController < ActionController::Base
   # Guest user/user stuff
   ########################################
 
-  helper_method :current_or_guest_user
+  helper_method :get_current_or_guest_user
 
-  def current_or_guest_user
+  def get_current_or_guest_user
     if current_user
-      if session[:guest_user_id]
-        logging_in
-        guest_user.destroy
-        session[:guest_user_id] = nil
+      if session[ :guest_user_id ]
+        transfer_guest_games_to_user
+        destroy_guest_user
       end
       current_user
     else
-      guest_user
+      get_guest_user
     end
   end
 
-  # find guest_user object associated with the current session,
-  # creating one as needed
-  def guest_user
-    # Cache the value the first time it's gotten.
-    @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
+  def get_current_user_or_create_guest_user
+    if current_user
+      current_user
+    else
+      get_or_create_guest_user
+    end
+  end
 
-  rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
-     session[:guest_user_id] = nil
-     guest_user
+  def get_guest_user
+    @guest_user = User.find( session[ :guest_user_id ] )
+  rescue ActiveRecord::RecordNotFound 
+    session[:guest_user_id] = nil
+  end
+
+  def get_or_create_guest_user
+    @cached_guest_user ||= User.find( session[ :guest_user_id ] ||= create_guest_user.id )
+  rescue ActiveRecord::RecordNotFound 
+     session[ :guest_user_id ] = nil 
+  end
+
+  def destroy_guest_user
+    get_guest_user.destroy
+    session[ :guest_user_id ] = nil
   end
 
   private
-
-  # called (once) when the user logs in, insert any code your application needs
-  # to hand off from guest_user to current_user.
-  def logging_in
-    # if request.env['HTTP_REFERER'].match(new_user_session_path)
-    #   log "qqqq"
-    # else
-    #   log "eeee"
-    #  end 
-   # users/sign_up
-    #http://localhost:3000/users/sign_up
-
-    # For example:
-    # guest_comments = guest_user.comments.all
-    # guest_comments.each do |comment|
-      # comment.user_id = current_user.id
-      # comment.save!
-    # end
+ 
+  def transfer_guest_games_to_user
+    # transfer guest games to user games
+    guest_games = get_guest_user.games.all
+      guest_games.each do |game|
+        game.user_id = current_user.id
+      game.save!
+    end
   end
 
   def create_guest_user
@@ -88,9 +90,4 @@ class ApplicationController < ActionController::Base
     u
   end
 
-  #def add_no_cache_header
-    # response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
-    # response.headers["Pragma"] = "no-cache"
-    # response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-  #end
 end

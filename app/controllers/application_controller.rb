@@ -36,15 +36,7 @@ class ApplicationController < ActionController::Base
   helper_method :get_current_or_guest_user
 
   def get_current_or_guest_user
-    if current_user
-      if session[ :guest_user_id ]
-        transfer_guest_games_to_user
-        destroy_guest_user
-      end
-      current_user
-    else
-      get_guest_user
-    end
+    current_user || get_guest_user
   end
 
   def get_current_user_or_create_guest_user
@@ -104,7 +96,7 @@ class ApplicationController < ActionController::Base
     add_example_game_to_user( u )
     u
   end
-
+ 
   ########################################
   # Default game, deck and card stuff
   ########################################

@@ -58,5 +58,7 @@ module Gg
 
     # you might need this for devise on heroku
     config.assets.initialize_on_precompile = false
+
+    config.paths['app/views'] << "app/views/devise"
   end
 end

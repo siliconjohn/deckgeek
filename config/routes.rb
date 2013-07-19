@@ -2,7 +2,7 @@ Gg::Application.routes.draw do
 
   get "admin/show"
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "users/registrations" }
   
   resources :games, :only => [:create, :show, :update, :destroy, :index] do
     resources :decks, :only => [:create, :show, :update, :destroy, :index] do

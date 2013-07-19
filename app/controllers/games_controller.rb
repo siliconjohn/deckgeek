@@ -55,14 +55,8 @@ class GamesController < ApplicationController
     @game.user_id = get_current_or_guest_user.id;
 
     if @game.save
-      deck = Deck.new({ game_id: @game.id })
-      deck.save
-      card = Card.new({ deck_id: deck.id })
-      card.save
-      card = Card.new({ deck_id: deck.id })
-      card.save
-      card.update_attributes(getBlankCardAttributes)
-      
+      add_example_deck_to_user( @game )
+
       render json: @game, status: :created, location: @games
     else
       format.json { render json: @game.errors, status: :unprocessable_entity }
@@ -81,8 +75,5 @@ class GamesController < ApplicationController
     end
   end
 
-  def getBlankCardAttributes
-    { background_visible: "false", name: "Blank Card", 
-      title_bg_color: "rgba(9, 10, 12, 0.2)", description_bg_color: "rgba(9, 10, 12, 0.2)" }
-  end    
+  
 end

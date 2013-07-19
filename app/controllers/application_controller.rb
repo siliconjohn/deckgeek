@@ -74,12 +74,26 @@ class ApplicationController < ActionController::Base
 
   private
  
-  def transfer_guest_games_to_user
-    # transfer guest games to user games
+  def transfer_guest_games_to_user 
     guest_games = get_guest_user.games.all
       guest_games.each do |game|
         game.user_id = current_user.id
       game.save!
+    end
+
+    # create a blank game if needed
+    user_games=current_user.games.all
+    if user_games.length==0
+      game = Game.new 
+      game.user_id = current_user.id;
+      game.save
+      deck = Deck.new({ game_id: game.id })
+      deck.save
+      card = Card.new({ deck_id: deck.id })
+      card.save
+      card = Card.new({ deck_id: deck.id })
+      card.save
+      card.update_attributes(getBlankCardAttributes)
     end
   end
 
@@ -87,7 +101,39 @@ class ApplicationController < ActionController::Base
     u = User.create(:email => "guest_#{Time.now.to_i}#{rand(99)}@guest.com")
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
+    add_example_game_to_user( u )
     u
   end
 
+  ########################################
+  # Default game, deck and card stuff
+  ########################################
+
+  def add_example_game_to_user( user )
+    game = Game.new 
+    game.user_id = user.id;
+    game.save
+    deck = Deck.new({ game_id: game.id })
+    deck.save
+    card = Card.new({ deck_id: deck.id })
+    card.save
+    card = Card.new({ deck_id: deck.id })
+    card.save
+    card.update_attributes(getBlankCardAttributes)
+  end
+
+  def add_example_deck_to_user( game )
+    deck = Deck.new({ game_id: game.id })
+    deck.save
+    card = Card.new({ deck_id: deck.id })
+    card.save
+    card = Card.new({ deck_id: deck.id })
+    card.save
+    card.update_attributes(getBlankCardAttributes)
+  end
+
+  def getBlankCardAttributes
+    { background_visible: "false", name: "Blank Card", 
+      title_bg_color: "rgba(9, 10, 12, 0.2)", description_bg_color: "rgba(9, 10, 12, 0.2)" }
+  end    
 end

@@ -177,3 +177,18 @@ textarea {
 #admin {
   color: #334400;
 }
+
+.home-page-forms {
+  margin-top: 40px;
+  
+  .form-horizontal .control-label {
+    width: 120px;font-size: 13px;
+  }
+
+  .form-horizontal .controls {
+    margin-left:140px; 
+  }
+  .btn {
+    width: 220px;
+  }
+}

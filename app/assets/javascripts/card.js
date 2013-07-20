@@ -36,7 +36,6 @@ App.BackgroundsCollection = Backbone.Collection.extend(
 
 App.BackgroundView = Backbone.View.extend(
 {
-  tag: "div",
   className: "item",
   template: JST['templates/card/backgroundview'],
 
@@ -55,7 +54,6 @@ App.BackgroundView = Backbone.View.extend(
 
 App.BackgroundsView = Backbone.View.extend(
 {
-  tag:"div",
   className:"backgrounds-view",
   template: JST['templates/card/backgroundsview'],
 
@@ -99,7 +97,6 @@ App.ArtWorksCollection = Backbone.Collection.extend(
 
 App.ArtWorkView = Backbone.View.extend(
 {
-  tag: "div",
   className: "item",
   template: JST['templates/card/artworkview'],
 
@@ -118,7 +115,6 @@ App.ArtWorkView = Backbone.View.extend(
 
 App.ArtWorksView = Backbone.View.extend(
 {
-  tag:"div",
   className:"artworks-view",
   template: JST['templates/card/artworksview'],
 
@@ -157,7 +153,6 @@ App.ArtWorksView = Backbone.View.extend(
 
 App.CardCarouselView = Backbone.View.extend(
 {
-  tag: "div",
   className: "item",
 
   initialize: function()
@@ -180,7 +175,6 @@ App.CardCarouselView = Backbone.View.extend(
 
 App.CardCarouselsView = Backbone.View.extend(
 {
-  tag: "div",
   className:"card-carousels-view",
   template: JST['templates/card/cardcarouselsview'],
 
@@ -221,7 +215,6 @@ App.CardCarouselsView = Backbone.View.extend(
 
 App.CardEditView = Backbone.View.extend(
 {
-  tag:"div",
   className:"card-edit-view",
   template: JST['templates/card/cardeditview'],
   events:

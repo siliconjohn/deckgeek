@@ -16,7 +16,6 @@ App.GameHeroModel = Backbone.Model.extend(
 
 App.GameHeroView = Backbone.View.extend(
 {
-  tag: "div",
   className: "hero-unit game-hero-unit",
   template: JST[ 'templates/games/gameheroview' ],
   events:

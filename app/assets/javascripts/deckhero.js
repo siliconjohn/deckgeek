@@ -16,7 +16,6 @@ App.DeckHero = Backbone.Model.extend(
 
 App.DeckHeroView = Backbone.View.extend(
 {
-  tag: "div",
   className: "hero-unit deck-hero-unit",
   template: JST['templates/decks/deckheroview'],
   events: 

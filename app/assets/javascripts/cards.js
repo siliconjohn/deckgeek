@@ -45,7 +45,6 @@ App.Cards = Backbone.Collection.extend(
 
 App.CardView = Backbone.View.extend(
 {
-  tag: "div",
   className: "card-view",
   events:
   {
@@ -97,7 +96,6 @@ App.CardView = Backbone.View.extend(
 
 App.CardsView = Backbone.View.extend(
 {
-  tag: "div",
   className: "cards-view",
   events:
   {

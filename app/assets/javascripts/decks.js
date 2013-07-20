@@ -43,7 +43,6 @@ App.Decks = Backbone.Collection.extend(
 
 App.DeckView = Backbone.View.extend(
 {
-  tag: "div",
   className: "deck-view",
   template: JST[ 'templates/decks/deckview' ],
   events:
@@ -104,7 +103,6 @@ App.DeckView = Backbone.View.extend(
 
 App.DecksView = Backbone.View.extend(
 {
-  tag: "div",
   className: "decks-view",
   events:
   {

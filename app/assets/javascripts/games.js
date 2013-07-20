@@ -29,7 +29,6 @@ App.Games = Backbone.Collection.extend(
 
 App.GameView = Backbone.View.extend(
 {
-  tag: "div",
   className: "game-view",
   template: JST[ 'templates/games/gameview' ],
   events:
@@ -83,7 +82,6 @@ App.GameView = Backbone.View.extend(
 
 App.GamesView = Backbone.View.extend(
 {
-  tag: "div",
   className: "games-view",
   template: JST[ 'templates/games/gamesview' ],
   events:

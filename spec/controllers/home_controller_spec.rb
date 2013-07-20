@@ -5,9 +5,9 @@ describe HomeController do
   describe "Not Logged in" do
     it "render non logged in home page" do
       get :index
-      expect(response.status).to eq(302)
+      expect(response.status).to eq(200)
       response.header[ 'Content-Type' ].should include 'text/html'
-      response.should redirect_to( new_user_session_path )
+      response.should render_template( "home/index" )
     end
   end
 
@@ -17,6 +17,16 @@ describe HomeController do
       get :index
       expect(response.status).to eq(200)
       response.header[ 'Content-Type' ].should include 'text/html'
+      response.should render_template( "home/home" )
+    end
+  end
+
+  describe "Admin user" do
+    it "should return 200" do
+      signInAdmin
+      get :index
+      expect(response.status).to eq(200)
+      response.header[ 'Content-Type' ].should include 'text/html' 
       response.should render_template( "home/home" )
     end
   end

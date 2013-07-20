@@ -41,6 +41,11 @@ RSpec.configure do |config|
 end
 
 def signIn
-  $user = User.create( :email => "test@gmail.com", :password => "111111" )
+  $user = User.create( :email => "test@gmail.com", :password => "111111", :admin => "false" )
+  sign_in $user
+end
+
+def signInAdmin
+  $user = User.create( :email => "admin@gmail.com", :password => "111111", :admin => "true" )
   sign_in $user
 end

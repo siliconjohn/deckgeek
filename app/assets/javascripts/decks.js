@@ -62,6 +62,8 @@ App.DeckView = Backbone.View.extend(
     this.$el.html( this.template( this.model.attributes ));
     addCardsViewForJson( this.$el.find( ".card-1" ), this.model.attributes.cards, false, false );
     this.alignCardsViews();
+    var v = $( JST[ 'templates/decks/editdeletebuttons' ]()); 
+    this.$el.find(".deck-name").append( v );
   },
 
   alignCardsViews: function()

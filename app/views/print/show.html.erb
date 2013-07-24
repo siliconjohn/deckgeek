@@ -1,0 +1,12 @@
+<h3>Choose the decks you want to print</h3>
+
+<div class="print-decks-holder"></div>
+
+<script type="text/javascript">
+
+  $(function()
+  {
+      addDecksForPrinting( '.print-decks-holder',  <%= @decks.to_json.to_s.html_safe %> );
+  });
+ 
+</script>

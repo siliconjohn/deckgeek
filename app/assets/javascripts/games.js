@@ -34,12 +34,13 @@ App.GameView = Backbone.View.extend(
   events:
   {
     'click .delete-game-btn': 'delete',
-    'click .edit-game-button' : 'editGame'
+    'click .edit-game-button' : 'editGame',
+    'click .print-game-button' : 'printGame'
   },
 
   initialize: function()
   {
-    _.bindAll( this, 'render', 'remove', 'delete', 'editGame');
+    _.bindAll( this, 'render', 'remove', 'delete', 'editGame', 'printGame');
     this.listenTo( this.model, 'change', this.render);
   },
 
@@ -73,6 +74,11 @@ App.GameView = Backbone.View.extend(
   editGame: function()
   {
     window.location="/games/" + this.model.id ;
+  },
+
+  printGame: function()
+  {
+    window.location="/print/" + this.model.id ;
   }
 });
 

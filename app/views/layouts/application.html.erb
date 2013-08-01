@@ -3,10 +3,18 @@
 <head>
   <title>Card Genesis</title>
   <% if Rails.env.production? %>
-  <%=  javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
+    <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
+    <%= javascript_include_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" %>
+    <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"   "application", :media => "all" %>
+  
   <% else %>
-  <%=  javascript_include_tag "jquery-1.10.2.min" %>
+    <%= javascript_include_tag "jquery-1.10.2" %>
+    <%= javascript_include_tag "bootstrap" %>
+    <%= stylesheet_link_tag "bootstrap", :media => "all" %>
   <% end %>
+  
+  
+
   <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>

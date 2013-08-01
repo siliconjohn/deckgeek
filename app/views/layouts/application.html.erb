@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
   <title>Card Genesis</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <% if Rails.env.production? %>
+  <%=  javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
+  <% else %>
+  <%=  javascript_include_tag "jquery-1.10.2.min" %>
+  <% end %>
   <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>

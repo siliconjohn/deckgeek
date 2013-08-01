@@ -4,8 +4,7 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.3'
 gem 'ejs', '1.1.1'
-gem 'devise', '1.5.4'
-gem 'jquery-rails' 
+gem 'devise', '1.5.4' 
 gem "pdfkit", "~> 0.5.2"
 
 # Gems used only for assets and not required

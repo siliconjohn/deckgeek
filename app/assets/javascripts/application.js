@@ -12,8 +12,7 @@
 //
 //= require app
 //= require underscore
-//= require backbone
-//= require bootstrap
+//= require backbone 
 //= require html5slider
 //= require spectrum
 //= require_tree ./templates

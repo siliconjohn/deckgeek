@@ -33,7 +33,7 @@ Gg::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = false
+  config.assets.debug = true
 
   # for devise gem - something similiar should be added to production and test
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

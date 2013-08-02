@@ -1,4 +1,13 @@
+<script type="text/javascript" src="<%= Rails.root %>/vendor/assets/javascripts/underscore.js"></script>
+<script type="text/javascript" src="<%= Rails.root %>/vendor/assets/javascripts/backbone.js"></script>
+<script type="text/javascript" src="<%= Rails.root %>/vendor/assets/javascripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="<%= Rails.root %>/app/assets/javascripts/cards.js"></script>
  
-<%= @cards %>
- 
- <div class="style-default style-1" >Hello</div>
+CARDS FOR PRINTING 
+
+<div class="card-print" ></div>
+
+<script type="text/javascript">
+	$( "<p>Test</p>" ).appendTo( ".card-print" );
+	//$(function(){  addCardsViewForJson(".card-print", <%= @cards.to_json.to_s.html_safe %>,false,false);});
+</script>

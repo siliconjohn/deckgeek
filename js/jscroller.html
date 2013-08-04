@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type='text/javascript' src='../vendor/assets/javascripts/jquery-1.10.2.js'></script>
+  <script type='text/javascript' src='jscroller.js'></script>
+  <link rel="stylesheet" type="text/css" href="jscroller.css">
+</head>
+<body>
+<div class="jscroller">
+    <ul id="tb" class="jscroller-ul toolbar">
+        <li>
+            <div class="test">eee</div>
+        </li>
+        <li>
+            <img src="https://icons.duckduckgo.com/i/e0b7902d.jpg" />
+        </li>
+        <li>
+            <div class="test">eee</div>
+        </li>
+        <li>
+            <div class="test">eee</div>
+        </li>
+        <li>
+            <div class="test">eee</div>
+        </li>
+        <li>
+            <div class="test">eee</div>
+        </li>
+        <li>
+            <div class="test">eee</div>
+        </li>
+        <li>
+            <div class="test">eee</div>
+        </li>
+    </ul>
+    <ul id="img"class="jscroller-ul">
+        <li>
+            <img src="http://ts2.mm.bing.net/th?id=H.4944904325760381&pid=1.7&w=186&h=180&c=7&rs=1" />
+        </li>
+        <li class="jselected">
+            <img src="http://ts1.mm.bing.net/th?id=H.4541735769997744&pid=1.7&w=247&h=180&c=7&rs=1" />
+        </li>
+        <li class="jselected">
+            <img src="http://ts2.mm.bing.net/th?id=H.4944904325760381&pid=1.7&w=186&h=180&c=7&rs=1" />
+        </li>
+        <li>
+            <img src="http://ts1.mm.bing.net/th?id=H.4541735769997744&pid=1.7&w=247&h=180&c=7&rs=1" />
+        </li>
+        <li>
+            <img src="http://ts2.mm.bing.net/th?id=H.4944904325760381&pid=1.7&w=186&h=180&c=7&rs=1" />
+        </li>
+        <li>
+            <img src="http://ts1.mm.bing.net/th?id=H.4541735769997744&pid=1.7&w=247&h=180&c=7&rs=1" />
+        </li>
+    </ul>
+</div>
+
+
+<script  type='text/javascript'>
+ $('#tb li').makeSelectable({multiple:true,canDeSelect:false});
+ $('#img li').makeSelectable({ casnDeSelect:false});
+</script>
+
+</body>

@@ -1,0 +1,29 @@
+jscroller {
+  font-size: 0;
+
+  .jscroller-ul {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    list-style: none;
+    list-style-type: none;
+    vertical-align: baseline;
+    border:0; 
+    margin:0;
+    padding:0;
+  }
+
+  .jscroller-ul li {
+    margin: 10px 0px 10px 10px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    padding:0;
+  }
+
+  .jselected {
+    outline: #53bd75 solid 4px;
+  }
+}

@@ -1,15 +1,79 @@
-<!-- all card edit stuff-->
-<div class="card-edit-view-parent"></div>
+
+  <ul id="images-scroller-ul" class="jscroller-ul"></ul>
+
+
+<div id="images-scroller" class="jscroller">
+</div>
 
 <script type="text/javascript">
 
+/******************************************
+ * Images Image
+ ******************************************/
+
+App.ImagesCollection = Backbone.Collection.extend(
+{
+  model: Backbone.Model
+});
+
+App.ImageView = Backbone.View.extend(
+{
+  tagName: "li",
+  template: JST['templates/card/image'],
+
+  initialize:function()
+  {
+    _.bindAll(this, 'render', 'remove');
+    this.listenTo(this.model, 'change', this.render);
+  },
+
+  render:function()
+  {
+    this.$el.html(this.template(this.model.attributes));
+    return this;
+  }
+});
+
+App.ImagesView = Backbone.View.extend(
+{
+  tagName: "ul",
+  className: "jscroller-ul",
+   
+  initialize:function()
+  {
+    _.bindAll(this, 'render', 'addImageView');
+  },
+
+  render:function()
+  {
+    //this.$el.html(this.template());
+    this.collection.each(this.addImageView);
+    return this;
+  },
+
+  addImageView:function(ImageModel)
+  {
+    var ImageView = new App.ImageView({model:ImageModel});
+    ImageView.$el.appendTo(this.$el);
+    ImageView.render();
+  }
+});
+
   $(function()
   {
-    addCardEditView('.card-edit-view-parent',
-                    <%= @card.id %>,
-                    <%= @backgrounds.to_json.to_s.html_safe %>,
-                    <%= @images.to_json.to_s.html_safe %>,
-                    <%= @cards.to_json.to_s.html_safe %>);
+   window.App.data.cards = new App.ImagesCollection(<%= @backgrounds.to_json.to_s.html_safe %>);
+  window.App.views.cardsView = new App.ImagesView( { collection: window.App.data.cards });
+  window.App.views.cardsView.$el.appendTo( $("#images-scroller") );
+  window.App.views.cardsView.render();
+ $('#images-scroller li').makeSelectable({ casnDeSelect:false});
+
+//<!-- all card edit stuff-->
+//<//div class="card-edit-view-parent"></div>
+    // addCardEditView('.card-edit-view-parent',
+    //                 <%= @card.id %>,
+    //                 <%= @backgrounds.to_json.to_s.html_safe %>,
+    //                 <%= @images.to_json.to_s.html_safe %>,
+    //                 <%= @cards.to_json.to_s.html_safe %>);
   });
 
 </script>

@@ -1,7 +1,10 @@
 jscroller {
   font-size: 0;
 
-  .jscroller-ul {
+  
+}
+
+.jscroller-ul {
     width: 100%;
     display: block;
     overflow-x: auto;
@@ -26,4 +29,3 @@ jscroller {
   .jselected {
     outline: #53bd75 solid 4px;
   }
-}

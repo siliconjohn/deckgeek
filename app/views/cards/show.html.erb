@@ -1,14 +1,16 @@
 
-
-<div id="images-scroller" class="navbar-fixed-bottom">
+<div class="navbar-fixed-bottom">
+<div id="tags-scroller"></div>
+<div id="images-scroller"> </div>
 </div>
-
 <script type="text/javascript">
  
-
   $(function()
   {
-    addImagesView("#images-scroller",<%= @backgrounds.to_json.to_s.html_safe %>,{multiple:false} );
+    addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
+
+    addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:true} );
+
     // $('#images-scroller').appendTo('body');
 
 //<!-- all card edit stuff-->

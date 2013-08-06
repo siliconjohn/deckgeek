@@ -1,17 +1,13 @@
 /******************************************
- * Images View
+ * Images View - shows a list of images in  
+ * a jscroller
  ******************************************/
-
-App.ImagesCollection = Backbone.Collection.extend(
-{
-  model: Backbone.Model
-});
 
 App.ImageView = Backbone.View.extend(
 {
   tagName: "li",
-  template: JST['templates/card/image'],
-
+  template: _.template("<img alt='<%= url %>' src='/assets/backgrounds/<%= url %>'/>"), 
+ 
   initialize:function()
   {
     _.bindAll(this, 'render');
@@ -29,8 +25,8 @@ App.ImageView = Backbone.View.extend(
 App.ImagesView = Backbone.View.extend(
 {
   className: "jscroller",
-  template: JST['templates/card/images'],
-
+  template: _.template("<ul class='jscroller-ul'></ul>"), 
+ 
   initialize:function()
   {
     _.bindAll(this, 'render', 'addImageView');
@@ -52,14 +48,18 @@ App.ImagesView = Backbone.View.extend(
 });
 
 /*****************************************
- * 
+ * Add to container
  ******************************************/
 
 function addImagesView( container, json, options )
 {
-  images = new App.ImagesCollection( json );
-  imagesView = new App.ImagesView( { collection: images, options: options });
+  imagesView = new App.ImagesView({ collection: new Backbone.Collection( json ),
+                                    options: options });
   imagesView.$el.appendTo( container );
   imagesView.render();
 }
 
+// App.ImagesCollection = Backbone.Collection.extend(
+// {
+//   model: Backbone.Model
+// });

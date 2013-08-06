@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713232647) do
+ActiveRecord::Schema.define(:version => 20130806152411) do
 
   create_table "backgrounds", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(:version => 20130713232647) do
 
   add_index "games", ["user_id"], :name => "index_games_on_user_id"
 
+  create_table "image_tags", :force => true do |t|
+    t.integer  "image_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "images", :force => true do |t|
     t.string   "name"
     t.string   "url"
@@ -90,6 +97,12 @@ ActiveRecord::Schema.define(:version => 20130713232647) do
     t.integer  "height",        :default => 350
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "title",      :default => "Image Tag"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "users", :force => true do |t|

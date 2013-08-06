@@ -8,21 +8,35 @@ users=User.create(
    { email: 'charlie651@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true},
   ])
 
-images=Image.create(
-  [{ name: 'Image 1', url:'image1.jpeg'},
-   { name: 'Image 2', url:'image2.jpeg'},
-   { name: 'Image 3', url:'image3.jpeg'},
-   { name: 'Image 4', url:'image4.jpeg'},
-   { name: 'Image 5', url:'image5.jpeg'},
-   { name: 'Image 6', url:'image6.jpeg'},
-   { name: 'Image 7', url:'image7.jpeg'}
-  ])
-
 backgrounds=Background.create(
   [{ name: 'background 1', url:'4.jpg'},
    { name: 'background 2', url:'2.jpg'},
    { name: 'background 3', url:'3.jpg'},
    { name: 'background 4', url:'1.jpg'}
+  ])
+
+images=Image.create(
+  [{ name: 'background 1', url:'4.jpg'},
+   { name: 'background 2', url:'2.jpg'},
+   { name: 'background 3', url:'3.jpg'},
+   { name: 'background 4', url:'1.jpg'}
+  ])
+
+
+tags=Tag.create(
+  [{ title: 'All' },
+   { title: '1 Images' },
+   { title: '2 Images' }
+  ])
+
+imageTags=ImageTag.create(
+  [ { image_id: images[0].id, tag_id: tags[0].id },
+    { image_id: images[1].id, tag_id: tags[0].id },
+    { image_id: images[2].id, tag_id: tags[0].id },
+    { image_id: images[3].id, tag_id: tags[0].id },
+    { image_id: images[1].id, tag_id: tags[1].id },
+    { image_id: images[2].id, tag_id: tags[2].id },
+    { image_id: images[2].id, tag_id: tags[2].id }
   ])
 
 styles=Style.create(

@@ -1,5 +1,7 @@
 Gg::Application.routes.draw do
 
+  get "tags/index"
+
   get "admin/show"
 
   devise_for :users, :controllers => { :registrations => "users/registrations" }
@@ -14,6 +16,8 @@ Gg::Application.routes.draw do
   resources :backgrounds, :only => :index
   resources :admin , :only => [:index, :show]
   resources :print , :only => [:show, :index]
+ resources :images, :only => :index
+ resources :tags, :only => :index
 
   root :to => "home#index"
   match 'guest' => 'home#guest'

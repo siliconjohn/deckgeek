@@ -16,12 +16,15 @@ backgrounds=Background.create(
   ])
 
 images=Image.create(
-  [{ name: 'background 1', url:'4.jpg'},
+  [{ name: 'background 4', url:'4.jpg'},
    { name: 'background 2', url:'2.jpg'},
    { name: 'background 3', url:'3.jpg'},
-   { name: 'background 4', url:'1.jpg'}
+   { name: 'background 1', url:'1.jpg'},
+   { name: 'background 5', url:'5.jpg'},
+   { name: 'background 6', url:'6.jpg'},
+   { name: 'background 7', url:'7.jpg'},
+   { name: 'background 8', url:'8.jpg'},
   ])
-
 
 tags=Tag.create(
   [{ title: 'All' },
@@ -34,6 +37,10 @@ imageTags=ImageTag.create(
     { image_id: images[1].id, tag_id: tags[0].id },
     { image_id: images[2].id, tag_id: tags[0].id },
     { image_id: images[3].id, tag_id: tags[0].id },
+    { image_id: images[4].id, tag_id: tags[0].id },
+    { image_id: images[5].id, tag_id: tags[0].id },
+    { image_id: images[6].id, tag_id: tags[0].id },
+    { image_id: images[7].id, tag_id: tags[0].id },
     { image_id: images[1].id, tag_id: tags[1].id },
     { image_id: images[2].id, tag_id: tags[2].id },
     { image_id: images[3].id, tag_id: tags[2].id }

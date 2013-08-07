@@ -6,7 +6,7 @@
 App.ImageView = Backbone.View.extend(
 {
   tagName: "li",
-  template: _.template("<img alt='<%= url %>' src='/assets/backgrounds/<%= url %>'/>"), 
+  template: _.template("<img alt='<%= url %>' src='/assets/images/thumbnails/<%= url %>'/>"), 
  
   initialize:function()
   {

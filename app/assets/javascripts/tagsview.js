@@ -57,8 +57,14 @@ App.TagsView = Backbone.View.extend(
   {
     this.$el.html(this.template());
     this.collection.each(this.addTagView);
-    this.firstTagView.addClass( 'jselected' ); 
-    this.firstTagView.trigger( 'becameSelected' );
+    
+    if(this.firstTagView!=false)
+    {
+      this.firstTagView.addClass( 'jselected' ); 
+      this.firstTagView.trigger( 'becameSelected' );
+      this.firstTagView = false;
+    }
+
     return this;
   },
 

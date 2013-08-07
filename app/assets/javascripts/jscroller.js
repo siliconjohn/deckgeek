@@ -31,13 +31,6 @@ jQuery.fn.makeSelectable = function( options )
     }); 
   }
       
-  jQuery.fn.selectElement = function() 
-  {     
-    var $t = $(this);
-    $t.addClass( 'jselected' ); 
-    $t.trigger( 'becameSelected' );
-  }
-  
   jQuery.fn.deSelectElements = function () 
   {    
     var $t = $(this);
@@ -72,6 +65,12 @@ jQuery.fn.makeSelectable = function( options )
   } 
 }  
 
- 
+jQuery.fn.selectElement = function() 
+{     
+  var $t = $(this);
+  $t.addClass( 'jselected' ); 
+  $t.trigger( 'becameSelected' );
+}
+
  
  

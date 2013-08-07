@@ -8,11 +8,16 @@ App.TagView = Backbone.View.extend(
   tagName: "li",
   className: "tag",
   template: _.template("<%= title %>"), 
+  events:
+  {
+    'becameSelected': 'becameSelected',
+    'becameDeSelected': 'becameDeSelected' 
+  },
 
   initialize:function()
   {
-    _.bindAll(this, 'render');
-    this.listenTo(this.model, 'change', this.render);
+    _.bindAll(this, 'render', 'becameSelected', 'becameDeSelected');
+    this.listenTo(this.model, 'change', this.render); 
   },
 
   render:function()
@@ -20,31 +25,48 @@ App.TagView = Backbone.View.extend(
     this.$el.html(this.template(this.model.attributes));
     this.$el.makeSelectable( this.options.options );
     return this;
+  },
+
+  becameSelected:function()
+  {
+    var event = jQuery.Event("addImageIds");
+    event.images = this.model.attributes.images; 
+    this.$el.trigger( event );;
+  },
+
+  becameDeSelected:function()
+  {
+    var event = jQuery.Event("removeImageIds");
+    event.images = this.model.attributes.images; 
+    this.$el.trigger( event );
   }
 });
 
 App.TagsView = Backbone.View.extend(
 {
+  firstTagView: false,
   className: "jscroller tags-view",
   template: _.template("<ul class='jscroller-ul'></ul>"), 
-
+ 
   initialize:function()
   {
-    _.bindAll(this, 'render', 'addTagView');
+    _.bindAll(this, 'render', 'addTagView' );
   },
 
   render:function()
   {
     this.$el.html(this.template());
     this.collection.each(this.addTagView);
+    this.firstTagView.selectElement();
     return this;
   },
 
-  addTagView:function(TagModel)
+  addTagView:function(model)
   {
-    var TagView = new App.TagView({ model:TagModel, options:this.options.options });
-    TagView.$el.appendTo(this.$el.find(".jscroller-ul"));
-    TagView.render();
+    var tagView = new App.TagView({ model:model, options:this.options.options });
+    tagView.$el.appendTo(this.$el.find(".jscroller-ul"));
+    tagView.render();
+    if(this.firstTagView==false)this.firstTagView=tagView.$el;
   }
 });
 
@@ -59,9 +81,3 @@ function addTagsView( container, json, options )
   tagsView.$el.appendTo( container );
   tagsView.render();
 }
-
-// App.TagsCollection = Backbone.Collection.extend(
-// {
-//   model: Backbone.Model
-// });
-

@@ -9,7 +9,7 @@
   {
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
 
-    addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:true} );
+    addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );
 
     // $('#images-scroller').appendTo('body');
 

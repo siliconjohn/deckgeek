@@ -24,12 +24,15 @@ App.ImageView = Backbone.View.extend(
 
 App.ImagesView = Backbone.View.extend(
 {
-  className: "jscroller",
+  imageViews:[],
+  className: "jscroller images-view",
   template: _.template("<ul class='jscroller-ul'></ul>"), 
  
   initialize:function()
   {
-    _.bindAll(this, 'render', 'addImageView');
+    _.bindAll(this, 'render', 'addImageView', 'addImageIds', 'removeImageIds');
+    $("body").delegate( ".tag", "addImageIds", this.addImageIds);
+    $("body").delegate( ".tag", "removeImageIds", this.removeImageIds);
   },
 
   render:function()
@@ -38,12 +41,30 @@ App.ImagesView = Backbone.View.extend(
     this.collection.each(this.addImageView);
     return this;
   },
-
-  addImageView:function(ImageModel)
+  
+  addImageIds:function(e)
   {
-    var ImageView = new App.ImageView({ model:ImageModel, options:this.options.options });
-    ImageView.$el.appendTo(this.$el.find(".jscroller-ul"));
-    ImageView.render();
+    $.each(e.images, function(index, value)
+    {
+      this.imageViews[value.id].$el.show(400);
+    }.bind(this));
+  },
+
+  removeImageIds: function (e)
+  {
+    $.each(e.images, function(index, value)
+    {
+      this.imageViews[value.id].$el.hide(400);
+    }.bind(this));
+  },
+
+  addImageView:function(model)
+  {
+    var imageView = new App.ImageView({ model:model, options:this.options.options });
+    imageView.$el.appendTo(this.$el.find(".jscroller-ul"));
+    imageView.render();
+    this.imageViews[model.id]=imageView;
+    imageView.$el.hide();
   }
 });
 
@@ -58,8 +79,3 @@ function addImagesView( container, json, options )
   imagesView.$el.appendTo( container );
   imagesView.render();
 }
-
-// App.ImagesCollection = Backbone.Collection.extend(
-// {
-//   model: Backbone.Model
-// });

@@ -85,68 +85,7 @@ App.BackgroundsView = Backbone.View.extend(
     backgroundView.render();
   }
 });
-
-/******************************************
- * ArtWork Images
- ******************************************/
-
-App.ArtWorksCollection = Backbone.Collection.extend(
-{
-  model: Backbone.Model
-});
-
-App.ArtWorkView = Backbone.View.extend(
-{
-  className: "item",
-  template: JST['templates/card/artworkview'],
-
-  initialize:function()
-  {
-    _.bindAll(this, 'render', 'remove');
-    this.listenTo(this.model, 'change', this.render);
-  },
-
-  render:function()
-  {
-    this.$el.html(this.template(this.model.attributes));
-    return this;
-  }
-});
-
-App.ArtWorksView = Backbone.View.extend(
-{
-  className:"artworks-view",
-  template: JST['templates/card/artworksview'],
-
-  initialize:function()
-  {
-    _.bindAll(this, 'render', 'addArtWorkView');
-  },
-
-  render:function()
-  {
-    this.$el.html(this.template());
-    this.collection.each(this.addArtWorkView);
-
-    // show the first image if none is active
-    if(this.options.image_id == null)
-      this.$('.carousel-inner').find('.item').first().addClass("active");
-
-    return this;
-  },
-
-  addArtWorkView:function(artWorkModel)
-  {
-    var artWorkView = new App.ArtWorkView({model:artWorkModel});
-    artWorkView.$el.appendTo(this.$('.carousel-inner'))
-
-    if(artWorkModel.id == this.options.image_id)
-       artWorkView.$el.addClass("item active");
-
-    artWorkView.render();
-  }
-});
-
+ 
 /******************************************
  * Card Carousel
  ******************************************/
@@ -218,8 +157,7 @@ App.CardEditView = Backbone.View.extend(
   className:"card-edit-view",
   template: JST['templates/card/cardeditview'],
   events:
-  {
-    'click .artwork-view-btn': 'changeImage',
+  { 
     'click .background-view-btn': 'changeBackgroundImage',
     'click .save-changes-btn': 'save',
     'click .edit-card-btn': 'changeModel'
@@ -269,12 +207,6 @@ App.CardEditView = Backbone.View.extend(
     $("#bg-color-picker").bind('change',this.updateBgColor);
     $("#bg-toggle-btn").bind('click',this.updateBgVisible);
 
-    //this.artworksCollection = new App.ArtWorksCollection(this.options.artworks);
-    //this.artworksView = new App.ArtWorksView({collection:this.artworksCollection,
-    //                                            image_id:this.model.get("image_id")})
-    //this.artworksView.$el.appendTo(this.$("#artworks-view-parent"));
-    //this.artworksView.render();
-
     this.backgroundsCollection = new App.BackgroundsCollection(this.options.backgrounds);
     this.backgroundsView = new App.BackgroundsView({collection:this.backgroundsCollection,
                                                     image_id:this.model.get("background_id")})
@@ -302,18 +234,6 @@ App.CardEditView = Backbone.View.extend(
         this.render();
       }
     }.bind(this))
-  },
-
-  changeImage:function(e)
-  {
-      var imageId = $(e.target).data("id");
-
-      if(imageId)
-      {
-        var bg = this.artworksCollection.get(imageId);
-        this.model.set({image:{url:bg.get("url")}});
-        this.model.set("image_id", imageId);
-      }
   },
 
   changeBackgroundImage:function(e)
@@ -502,12 +422,11 @@ App.CardEditView = Backbone.View.extend(
  * Add the Card Edit View to the DOM
  ******************************************/
 
-function addCardEditView(container, id, bkgds, artworks, cards)
+function addCardEditView(container, id, bkgds, cards)
 {
   window.App.data.cardModels = new App.CardCollection(cards);
   window.App.views.cardEditView = new App.CardEditView({model:window.App.data.cardModels.findWhere({id: id}),
-                                                        backgrounds: bkgds,
-                                                        artworks: artworks,
+                                                        backgrounds: bkgds, 
                                                         cards: window.App.data.cardModels});
   window.App.views.cardEditView.$el.appendTo(container);
   window.App.views.cardEditView.render();

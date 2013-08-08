@@ -33,15 +33,7 @@ tags=Tag.create(
   ])
 
 imageTags=ImageTag.create(
-  [ { image_id: images[0].id, tag_id: tags[0].id },
-    { image_id: images[1].id, tag_id: tags[0].id },
-    { image_id: images[2].id, tag_id: tags[0].id },
-    { image_id: images[3].id, tag_id: tags[0].id },
-    { image_id: images[4].id, tag_id: tags[0].id },
-    { image_id: images[5].id, tag_id: tags[0].id },
-    { image_id: images[6].id, tag_id: tags[0].id },
-    { image_id: images[7].id, tag_id: tags[0].id },
-    { image_id: images[1].id, tag_id: tags[1].id },
+  [ { image_id: images[1].id, tag_id: tags[1].id },
     { image_id: images[2].id, tag_id: tags[2].id },
     { image_id: images[3].id, tag_id: tags[2].id }
   ])

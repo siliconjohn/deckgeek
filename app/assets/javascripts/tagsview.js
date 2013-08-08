@@ -30,14 +30,24 @@ App.TagView = Backbone.View.extend(
   becameSelected:function()
   {
     var event = jQuery.Event("addImageIds");
-    event.images = this.model.attributes.images; 
+
+    if(this.model.attributes.title=='All')
+      event.images = 'All';
+    else
+      event.images = this.model.attributes.images; 
+    
     this.$el.trigger( event );;
   },
 
   becameDeSelected:function()
   {
     var event = jQuery.Event("removeImageIds");
-    event.images = this.model.attributes.images; 
+    
+    if(this.model.attributes.title=='All')
+      event.images = 'All';
+    else
+      event.images = this.model.attributes.images; 
+    
     this.$el.trigger( event );
   }
 });

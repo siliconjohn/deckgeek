@@ -44,18 +44,40 @@ App.ImagesView = Backbone.View.extend(
   
   addImageIds:function(e)
   {
-    $.each(e.images, function(index, value)
+    if(e.images=='All')
     {
-      this.imageViews[value.id].$el.show(400);
-    }.bind(this));
+      $.each(this.imageViews, function(index, value)
+      {
+        if(value!=undefined)
+          value.$el.show(400);
+      }.bind(this));
+    }
+    else
+    {
+      $.each(e.images, function(index, value)
+      {
+        this.imageViews[value.id].$el.show(400);
+      }.bind(this));
+    }
   },
 
   removeImageIds: function (e)
   {
-    $.each(e.images, function(index, value)
+    if(e.images=='All')
     {
-      this.imageViews[value.id].$el.hide(400);
-    }.bind(this));
+      $.each(this.imageViews, function(index, value)
+      {
+        if(value!=undefined)
+          value.$el.hide(400);
+      }.bind(this));
+    }
+    else
+    {
+      $.each(e.images, function(index, value)
+      {
+        this.imageViews[value.id].$el.hide(400);
+      }.bind(this));
+    }
   },
 
   addImageView:function(model)

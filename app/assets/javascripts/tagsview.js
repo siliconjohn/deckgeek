@@ -81,7 +81,7 @@ App.TagsView = Backbone.View.extend(
       this.firstTagView = false;
     } 
 
-    $('<div class="left-button"><a href="#" id="show-hide-tags-btn" class="btn btn-inverse btn-small"><i class="icon-white icon-chevron-down"></i></a></div>').prependTo(this.$el);
+    $('<div class="left-button"><a href="#" id="show-hide-tags-btn" class="btn btn-inverse btn-small"><i class="icon-white icon-chevron-down"></i></a></div><div class="left-label">Images</div>').prependTo(this.$el);
 
     return this;
   },
@@ -107,17 +107,20 @@ App.TagsView = Backbone.View.extend(
         this.busy=false;
         $('#show-hide-tags-btn i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
       }.bind(this));
-    }
+    
+      $('.jscroller-ul').animate({ opacity: 0 }, 400, 'swing');    }
     else
     {
       this.busy=true;
       this.open=true;
+        $('#show-hide-tags-btn i').addClass('icon-chevron-down').removeClass('icon-chevron-up');
       
       $('#images-scroller').show(400, 'swing', function(){
         this.busy=false;
-        $('#show-hide-tags-btn i').addClass('icon-chevron-down').removeClass('icon-chevron-up');
-      ;
       }.bind(this));
+
+      $('.jscroller-ul').animate({ opacity: 1 }, 400, 'swing');
+ 
     }
   }
 });

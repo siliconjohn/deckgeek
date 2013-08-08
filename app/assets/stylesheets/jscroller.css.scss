@@ -55,6 +55,19 @@
   background-color:rgba(0, 0, 0, 0.5);
 }
 
+.tags-view .jscroller-ul {
+    margin-left: 46px;
+}
+
+.tags-view .left-button {
+  position:absolute;
+  left:0;
+  display: inline-block;
+  font-size:12px;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
 /********************************
  * Customizations for imagesview
  *******************************/

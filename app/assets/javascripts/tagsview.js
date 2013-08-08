@@ -54,18 +54,24 @@ App.TagView = Backbone.View.extend(
 
 App.TagsView = Backbone.View.extend(
 {
+  open:true,
+  busy:false,
   firstTagView: false,
   className: "jscroller tags-view",
   template: _.template("<ul class='jscroller-ul'></ul>"), 
+  events: {
+    'click #show-hide-tags-btn' : 'toggle'
+  },
  
   initialize:function()
   {
-    _.bindAll(this, 'render', 'addTagView' );
+    _.bindAll(this, 'render', 'addTagView', 'toggle' );
   },
 
   render:function()
   {
     this.$el.html(this.template());
+    
     this.collection.each(this.addTagView);
     
     if(this.firstTagView!=false)
@@ -73,7 +79,9 @@ App.TagsView = Backbone.View.extend(
       this.firstTagView.addClass( 'jselected' ); 
       this.firstTagView.trigger( 'becameSelected' );
       this.firstTagView = false;
-    }
+    } 
+
+    $('<div class="left-button"><a href="#" id="show-hide-tags-btn" class="btn btn-inverse btn-small"><i class="icon-white icon-chevron-down"></i></a></div>').prependTo(this.$el);
 
     return this;
   },
@@ -84,6 +92,33 @@ App.TagsView = Backbone.View.extend(
     tagView.$el.appendTo(this.$el.find(".jscroller-ul"));
     tagView.render();
     if(this.firstTagView==false)this.firstTagView=tagView.$el;
+  },
+
+  toggle:function()
+  {
+    if(this.busy==true)return;
+ 
+    if(this.open==true)
+    {
+      this.busy=true;
+      this.open=false;
+
+      $('#images-scroller').hide(400, 'swing', function(){
+        this.busy=false;
+        $('#show-hide-tags-btn i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
+      }.bind(this));
+    }
+    else
+    {
+      this.busy=true;
+      this.open=true;
+      
+      $('#images-scroller').show(400, 'swing', function(){
+        this.busy=false;
+        $('#show-hide-tags-btn i').addClass('icon-chevron-down').removeClass('icon-chevron-up');
+      ;
+      }.bind(this));
+    }
   }
 });
 

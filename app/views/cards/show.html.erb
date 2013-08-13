@@ -1,25 +1,33 @@
-<div class="card-edit-view-parent"></div>
+<div class="row">
+  <div class="span4"></div>
+  
+  <div class="span4"> 
+    <div id="jcards-view"></div>
+    
+   
+  </div>
 
+  <div class="span4"></div>
+</div> 
+
+
+<!-- image toolbar -->
 <div class="navbar-fixed-bottom">
-<div id="tags-scroller"></div>
-<div id="images-scroller"> </div>
+  <div id="tags-scroller"></div>
+  <div id="images-scroller"></div>
 </div>
+
 <script type="text/javascript">
  
   $(function()
   {
+    $('body').attr('style','background-color:#414141;');
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
-
     addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );
 
-    // $('#images-scroller').appendTo('body');
-
-// <!-- all card edit stuff-->
-//     addCardEditView('.card-edit-view-parent',
-//                     <%= @card.id %>,
-//                     <%= @backgrounds.to_json.to_s.html_safe %>,
-                  
-//                     <%= @cards.to_json.to_s.html_safe %>);
+    $('.navbar-fixed-top').remove();  
+    addJCards("#jcards-view",  <%= @card.id %>, <%= @cards.to_json.to_s.html_safe %>);
    });
-
+// <i class="icon-black icon-chevron-right"></i>
+//<i class="icon-white icon-chevron-left"></i>
 </script>

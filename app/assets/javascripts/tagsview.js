@@ -36,7 +36,7 @@ App.TagView = Backbone.View.extend(
     else
       event.images = this.model.attributes.images; 
     
-    this.$el.trigger( event );;
+    this.$el.trigger( event );
   },
 
   becameDeSelected:function()
@@ -103,24 +103,24 @@ App.TagsView = Backbone.View.extend(
       this.busy=true;
       this.open=false;
 
-      $('#images-scroller').hide(400, 'swing', function(){
+      $('#images-scroller').hide(300, 'swing', function(){
         this.busy=false;
         $('#show-hide-tags-btn i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
       }.bind(this));
     
-      $('.jscroller-ul').animate({ opacity: 0 }, 400, 'swing');    }
+      $('.jscroller-ul').animate({ opacity: 0 }, 300, 'swing');    
+    }
     else
     {
       this.busy=true;
       this.open=true;
         $('#show-hide-tags-btn i').addClass('icon-chevron-down').removeClass('icon-chevron-up');
       
-      $('#images-scroller').show(400, 'swing', function(){
+      $('#images-scroller').show(300, 'swing', function(){
         this.busy=false;
       }.bind(this));
 
-      $('.jscroller-ul').animate({ opacity: 1 }, 400, 'swing');
- 
+      $('.jscroller-ul').animate({ opacity: 1 }, 300, 'swing');
     }
   }
 });

@@ -76,7 +76,8 @@ App.JCardsView = Backbone.View.extend(
       this.selectedIndex=a;
       this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
       this.selectedModel=_.indexOf(this.collection.models[a]);
-      this.$('.carousel').carousel(a); 
+      //this.$('.carousel').carousel('prev'); 
+ 
 
       if(this.selectedIndex==0)
         this.$('#prev-btn').addClass('disabled');
@@ -95,7 +96,8 @@ App.JCardsView = Backbone.View.extend(
       this.selectedIndex=a;
       this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
       this.selectedModel=_.indexOf(this.collection.models[a]);
-      this.$('.carousel').carousel(a);
+      //this.$('.carousel').carousel('next');
+ 
 
       if(this.selectedIndex==this.collection.length-1)
         this.$('#next-btn').addClass('disabled');
@@ -110,6 +112,18 @@ App.JCardsView = Backbone.View.extend(
     this.$el.html(this.template());
     this.collection.each(this.addJCardView);
 
+    // setup next prev buttons
+    if(this.selectedIndex==this.collection.length-1)
+      this.$('#next-btn').addClass('disabled');
+    else
+      this.$('#next-btn').removeClass('disabled');
+      
+    if(this.selectedIndex==0)
+      this.$('#prev-btn').addClass('disabled');
+    else
+      this.$('#prev-btn').removeClass('disabled');
+    
+    // remove if only one card
     if (this.collection.length<2)
       $('#next-prev-btns').css('display','none');
     else

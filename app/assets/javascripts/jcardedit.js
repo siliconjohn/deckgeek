@@ -65,15 +65,17 @@ App.JCardView = Backbone.View.extend(
   bgImageSmaller:function(e)
   {
     if(!this.$el.hasClass('active'))return;
+    if(this.$(".jcard-bg-image").attr("src")==undefined)return;
     this.saveForUndo();
-    this.$(".jcard-bg-image").animate({width: '-=10px'});
+    this.$(".jcard-bg-image").animate({width: '-=10px'}, {duration:250});
   },
 
   bgImageBigger:function(e)
   {
     if(!this.$el.hasClass('active'))return;
+    if(this.$(".jcard-bg-image").attr("src")==undefined)return;
     this.saveForUndo();  
-    this.$(".jcard-bg-image").animate({width: '+=10px'});
+    this.$(".jcard-bg-image").animate({width: '+=10px'}, {duration:250});
   },
 
   changeBgColor:function(e)

@@ -43,7 +43,8 @@ App.JCardView = Backbone.View.extend(
 
     _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'performUndo', 'performRedo', 
       'saveForRedo', 'performRevert', 'enableDragBg', 'disableDragBg', 'setupDrag',
-      'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard' );
+      'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
+      'bgImageSmaller', 'bgImageBigger' );
 
     this.listenTo(this.model, 'change', this.render); 
     
@@ -57,7 +58,33 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "disableBgDragGrid", this.disableBgDragGrid);
     $("body").delegate( "", "deleteBgImage", this.deleteBgImage);
     $("body").delegate( "", "changeBgColor", this.changeBgColor);
-    
+    $("body").delegate( "", "bgImageBigger", this.bgImageBigger);
+    $("body").delegate( "", "bgImageSmaller", this.bgImageSmaller);
+  },
+
+  bgImageSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    this.saveForUndo();
+    this.$(".jcard-bg-image").animate({width: '-=10px'});
+  },
+
+  bgImageBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    this.saveForUndo();  
+    this.$(".jcard-bg-image").animate({width: '+=10px'});
+  },
+
+  changeBgColor:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    if( e.color != this.$(".jcard").css('background-color'))
+    {
+      this.saveForUndo();
+      this.$(".jcard").css('background-color', e.color);
+    }
   },
 
   changeBgColor:function(e)

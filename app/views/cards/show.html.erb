@@ -62,6 +62,11 @@
       <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
     </a>
 
+    <div class="btn-group"> 
+      <a id="bg-smaller-btn" title="Make background image smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+      <a id="bg-bigger-btn" title="Make background image larger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a> 
+    </div>
+    
   </div>
 
   <div class="span4"> 
@@ -134,7 +139,13 @@
     });
     
  
+    $('#bg-smaller-btn').click( function(e){
+       $('body').trigger( jQuery.Event("bgImageSmaller"));
+    });
 
+    $('#bg-bigger-btn').click( function(e){
+       $('body').trigger( jQuery.Event("bgImageBigger"));
+    });
 
 
 

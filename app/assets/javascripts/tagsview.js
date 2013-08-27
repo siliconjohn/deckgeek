@@ -54,8 +54,8 @@ App.TagView = Backbone.View.extend(
 
 App.TagsView = Backbone.View.extend(
 {
-  open:true,
-  busy:false,
+  open: true,
+  busy: false,
   firstTagView: false,
   className: "jscroller tags-view",
   template: _.template("<ul class='jscroller-ul'></ul>"), 

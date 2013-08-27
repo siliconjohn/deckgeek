@@ -7,10 +7,14 @@ App.ImageView = Backbone.View.extend(
 {
   tagName: "li",
   template: _.template("<img alt='<%= url %>' src='/assets/images/thumbnails/<%= url %>'/>"), 
- 
+  events:
+  {
+    'becameSelected': 'becameSelected'
+  },
+
   initialize:function()
   {
-    _.bindAll(this, 'render');
+    _.bindAll(this, 'render', 'becameSelected');
     this.listenTo(this.model, 'change', this.render);
   },
 
@@ -19,6 +23,13 @@ App.ImageView = Backbone.View.extend(
     this.$el.html(this.template(this.model.attributes));
     this.$el.makeSelectable( this.options.options );
     return this;
+  },
+
+  becameSelected:function()
+  {
+    var event = jQuery.Event("selectedImage");
+    event.model = this.model;
+    this.$el.trigger( event );
   }
 });
 

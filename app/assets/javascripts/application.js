@@ -15,6 +15,7 @@
 //= require backbone 
 //= require html5slider
 //= require spectrum
+//= require jquery-ui-1.10.3.custom.min
 //= require app
 //= require_tree ./templates
 //= require_tree .

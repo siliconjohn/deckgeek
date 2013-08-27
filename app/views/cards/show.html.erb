@@ -1,15 +1,75 @@
-<div class="row">
-  <div class="span4"></div>
-  
-  <div class="span4"> 
-    <div id="jcards-view"></div>
-    
-   
+<script>
+
+  function addColorPickerWithAlpha( id, attrib ){
+    $(id).spectrum({
+        color: attrib,
+        showAlpha: true,
+        showInput: true,
+        showPalette: true,
+        preferredFormat: "hex6",
+        localStorageKey: "spectrum.gamegen",
+        hide: function(tinycolor){
+          $(id).trigger('change');
+        },
+    });
+  } 
+
+  function addColorPicker( id, attrib ){
+    $(id).spectrum({
+        color: attrib,
+        showAlpha: false,
+        showInput: true,
+        showPalette: true,
+        preferredFormat: "hex6",
+        localStorageKey: "spectrum.gamegen",
+        hide: function(tinycolor){
+          $(id).trigger('change');
+        },
+    });
+  } 
+
+</script>
+
+<!-- top toolbar -->
+<div id="top-toolbar">
+
+  <div class="btn-group">
+    <a id="save-btn" class="btn btn-green">Save</a>
   </div>
 
+  <div class="btn-group">
+    <a id="undo-btn" class="btn btn-small btn-inverse"><i class="icon-white icon-chevron-left"></i> Undo</a>
+    <a id="redo-btn" class="btn btn-small btn-inverse">Redo <i class="icon-white icon-chevron-right"></i></a>
+  </div>
+
+  <div class="btn-group "> 
+    <a id="revert-btn" class="btn btn-small btn-inverse"><i class="icon-white icon-trash"></i> Trash Changes</a> 
+  </div>
+
+</div>
+
+<!-- cards view toolbar -->
+<div class="row">
+  <div class="span4">
+
+    <div class="btn-group"> 
+      <a id="drag-bg-btn"  class="btn btn-inverse"><i class="icon-white icon-move"></i> Move</a>
+      <a id="drag-bg-grid-btn" data-toggle="buttons-radio" title="Snap to grid" class="btn btn-inverse"><i class="icon-white icon-th"></i></a>
+      <a id="drag-bg-delete-btn" title="Delete background image" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a> 
+    </div>
+    
+    <a id="bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
+      <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
+    </a>
+
+  </div>
+
+  <div class="span4"> 
+    <div id="jcards-view"></div> 
+  </div>
+  
   <div class="span4"></div>
 </div> 
-
 
 <!-- image toolbar -->
 <div class="navbar-fixed-bottom">
@@ -21,13 +81,80 @@
  
   $(function()
   {
+    // element adjustments
+    $('.navbar-fixed-top').remove();  
+    $('#top-toolbar').addClass('navbar-fixed-top');
     $('body').attr('style','background-color:#414141;');
+    
+    // toolbar events
+    $( '#undo-btn' ).click( function(){ 
+      $( '#jcards-view' ).trigger( jQuery.Event( "performUndo" ));
+    });
+
+    $( '#redo-btn' ).click( function(){ 
+      $( '#jcards-view' ).trigger( jQuery.Event( "performRedo" ));
+    });
+
+    $( '#revert-btn' ).click( function(){ 
+      $( '#jcards-view' ).trigger( jQuery.Event( "performRevert" ));
+    });
+
+    $( '#drag-bg-btn' ).click( function()
+    {
+      var el=$('#drag-bg-btn');
+
+      if(el.hasClass('active'))
+      {
+        $( '#jcards-view' ).trigger( jQuery.Event( "disableDragBg" ));
+        el.removeClass('active');
+      }
+      else
+      {
+        $( '#jcards-view' ).trigger( jQuery.Event( "enableDragBg" ));
+        el.addClass('active');
+      }
+    });
+
+    $( '#drag-bg-grid-btn').click( function(e)
+    {
+      if($('#drag-bg-grid-btn').hasClass('active'))
+        $('#drag-bg-grid-btn').trigger( jQuery.Event("disableBgDragGrid"));
+      else
+        $('#drag-bg-grid-btn').trigger( jQuery.Event("enableBgDragGrid"));
+    });
+
+    $('#drag-bg-delete-btn').click( function(e){
+       $('body').trigger( jQuery.Event("deleteBgImage"));
+    });
+
+    $("#bg-color-picker").bind('change', function(e){
+      var event=jQuery.Event("changeBgColor");
+      event.color=$("#bg-color-picker").spectrum("get").toRgbString();
+      $('body').trigger(event);
+    });
+    
+ 
+
+
+
+
+
+
+
+    $("body").delegate( "", "setBgColor", function(e){
+      $("#bg-color-picker").spectrum({color:e.color});
+    });
+
+
+
+
+
+
+     // add backbone stuff
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
     addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );
-
-    $('.navbar-fixed-top').remove();  
     addJCards("#jcards-view",  <%= @card.id %>, <%= @cards.to_json.to_s.html_safe %>);
-   });
-// <i class="icon-black icon-chevron-right"></i>
-//<i class="icon-white icon-chevron-left"></i>
+
+  });
+  
 </script>

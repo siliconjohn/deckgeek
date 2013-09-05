@@ -56,21 +56,31 @@
       <a id="drag-bg-btn"  class="btn btn-inverse"><i class="icon-white icon-move"></i> Move</a>
       <a id="drag-bg-grid-btn" data-toggle="buttons-radio" title="Snap to grid" class="btn btn-inverse"><i class="icon-white icon-th"></i></a>
     </div>
-
     <div class="btn-group">
       <a id="bg-smaller-btn" title="Make background image smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
       <a id="bg-bigger-btn" title="Make background image larger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
     </div>
-
+    <div class="btn-group">
+      <a id="bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
+        <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
+      </a>
+    </div>
     <div class="btn-group">
       <a id="drag-bg-delete-btn" title="Delete background image" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
     </div>
 
+    <div class="control-row">
+      <div class="control-row-title">Border:</div>
     <div class="btn-group">
-    <a id="bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
-      <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
-    </a>
-</div>
+      <a id="bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+      <a id="bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+    </div>
+    <div class="btn-group">
+      <a id="bdr-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bdr-color-picker"/>
+        <script>addColorPickerWithAlpha( "#bdr-color-picker", "0x808080")</script>
+      </a>
+    </div>
+    </div>
 
   </div>
 
@@ -143,13 +153,20 @@
       $('body').trigger(event);
     });
 
-
     $('#bg-smaller-btn').click( function(e){
        $('body').trigger( jQuery.Event("bgImageSmaller"));
     });
 
     $('#bg-bigger-btn').click( function(e){
        $('body').trigger( jQuery.Event("bgImageBigger"));
+    });
+
+    $('#bdr-smaller-btn').click( function(e){
+       $('body').trigger( jQuery.Event("bdrSmaller"));
+    });
+
+    $('#bdr-bigger-btn').click( function(e){
+       $('body').trigger( jQuery.Event("bdrBigger"));
     });
 
 

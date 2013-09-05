@@ -16,7 +16,7 @@ App.JCardModel = Backbone.Model.extend(
 });
 
 /******************************************
- * JCardCollection  
+ * JCardCollection
  ******************************************/
 
 App.JCardCollection = Backbone.Collection.extend(
@@ -25,7 +25,7 @@ App.JCardCollection = Backbone.Collection.extend(
 });
 
 /******************************************
- * JCardView  
+ * JCardView
  ******************************************/
 
 App.JCardView = Backbone.View.extend(
@@ -41,13 +41,13 @@ App.JCardView = Backbone.View.extend(
     this.undoStack = new Array;
     this.redoStack = new Array;
 
-    _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'performUndo', 'performRedo', 
+    _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'performUndo', 'performRedo',
       'saveForRedo', 'performRevert', 'enableDragBg', 'disableDragBg', 'setupDrag',
       'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
-      'bgImageSmaller', 'bgImageBigger' );
+      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger' );
 
-    this.listenTo(this.model, 'change', this.render); 
-    
+    this.listenTo(this.model, 'change', this.render);
+
     $("body").delegate( "", "selectedImage", this.selectedImage);
     $("body").delegate( "", "performUndo", this.performUndo);
     $("body").delegate( "", "performRedo", this.performRedo);
@@ -60,6 +60,47 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "changeBgColor", this.changeBgColor);
     $("body").delegate( "", "bgImageBigger", this.bgImageBigger);
     $("body").delegate( "", "bgImageSmaller", this.bgImageSmaller);
+    $("body").delegate( "", "bdrBigger", this.bdrBigger);
+    $("body").delegate( "", "bdrSmaller", this.bdrSmaller);
+
+  },
+
+  bdrSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    var target = this.$(".jcard-border");
+
+    var w=Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
+
+    var newWidth = w - 1;
+
+    if( newWidth != w && newWidth > -1 )
+    {
+      this.saveForUndo();
+      target.css( 'border-top-width', newWidth + 'px' );
+      target.css( 'border-bottom-width', newWidth + 'px' );
+      target.css( 'border-left-width', newWidth + 'px' );
+      target.css( 'border-right-width', newWidth + 'px' );
+    }
+  },
+
+  bdrBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    var target = this.$(".jcard-border");
+
+    var w=Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
+
+    var newWidth = w + 1;
+
+    if( newWidth != w && newWidth <150 )
+    {
+      this.saveForUndo();
+      target.css( 'border-top-width', newWidth + 'px' );
+      target.css( 'border-bottom-width', newWidth + 'px' );
+      target.css( 'border-left-width', newWidth + 'px' );
+      target.css( 'border-right-width', newWidth + 'px' );
+    }
   },
 
   bgImageSmaller:function(e)
@@ -74,7 +115,7 @@ App.JCardView = Backbone.View.extend(
   {
     if(!this.$el.hasClass('active'))return;
     if(this.$(".jcard-bg-image").attr("src")==undefined)return;
-    this.saveForUndo();  
+    this.saveForUndo();
     this.$(".jcard-bg-image").animate({width: '+=10px'}, {duration:250});
   },
 
@@ -137,12 +178,12 @@ App.JCardView = Backbone.View.extend(
   },
 
   setupDrag:function()
-  {    
+  {
     var el = this.$(".jcard-bg-image");
 
     el.draggable();
-    
-    el.on( "dragstart", function( event, ui ) 
+
+    el.on( "dragstart", function( event, ui )
     {
       this.saveForUndo();
     }.bind(this));
@@ -162,7 +203,7 @@ App.JCardView = Backbone.View.extend(
   {
     // if selected
     if(!this.$el.hasClass('active'))return;
-    
+
     this.saveForUndo();
 
     // set new image
@@ -176,7 +217,7 @@ App.JCardView = Backbone.View.extend(
     if(!this.$el.hasClass('active'))return;
     if(this.undoStack.length==0)return;
     this.saveForRedo();
-    this.$el.html(this.undoStack.pop()); 
+    this.$el.html(this.undoStack.pop());
     this.setupDrag();
     this.updatePageUIForCard();
   },
@@ -187,7 +228,7 @@ App.JCardView = Backbone.View.extend(
     if(this.redoStack.length==0)return;
     this.saveForUndo();
     this.$el.html(this.redoStack.pop());
-    this.setupDrag(); 
+    this.setupDrag();
     this.updatePageUIForCard();
   },
 
@@ -199,7 +240,7 @@ App.JCardView = Backbone.View.extend(
   },
 
   saveForRedo: function()
-  { 
+  {
     var html=this.$el.html();
     if(html != _.last(this.redoStack))
     this.redoStack.push(html);
@@ -213,7 +254,7 @@ App.JCardView = Backbone.View.extend(
 
   render:function()
   {
-    this.$el.html(this.model.attributes.html); 
+    this.$el.html(this.model.attributes.html);
     this.setupDrag();
     return this;
   },
@@ -227,7 +268,7 @@ App.JCardView = Backbone.View.extend(
 });
 
 /******************************************
- * JCardsView  
+ * JCardsView
  ******************************************/
 
 App.JCardsView = Backbone.View.extend(
@@ -243,7 +284,7 @@ App.JCardsView = Backbone.View.extend(
    "click #next-btn": 'nextBtnClick',
    "slid .carousel": 'slid'
   },
-  
+
   initialize: function()
   {
     _.bindAll(this, 'render', 'addJCardView', 'prevBtnClick', 'nextBtnClick', 'slid', 'updatePageUIForCard' );
@@ -258,11 +299,11 @@ App.JCardsView = Backbone.View.extend(
       this.selectedIndex=a;
       this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
       this.selectedModel=_.indexOf(this.collection.models[a]);
-      this.$('.carousel').carousel('prev'); 
+      this.$('.carousel').carousel('prev');
       if(this.selectedIndex==0)this.$('#prev-btn').addClass('disabled');
       if(this.selectedIndex==this.collection.length-2)this.$('#next-btn').removeClass('disabled');
       this.updatePageUIForCard();
-    }   
+    }
   },
 
   nextBtnClick:function()
@@ -292,12 +333,12 @@ App.JCardsView = Backbone.View.extend(
       this.$('#next-btn').addClass('disabled');
     else
       this.$('#next-btn').removeClass('disabled');
-      
+
     if(this.selectedIndex==0)
       this.$('#prev-btn').addClass('disabled');
     else
       this.$('#prev-btn').removeClass('disabled');
-    
+
     // remove if only one card
     if (this.collection.length<2)
       $('#next-prev-btns').css('display','none');

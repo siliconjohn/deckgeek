@@ -3,6 +3,17 @@
   margin-left: 25px;
 }
 
+.control-row {
+  margin-top: 10px;
+
+  .control-row-title {
+    color:#fff;
+    display: inline;
+    margin-right: 74px;
+  }
+
+}
+
 #prev-btn, #next-btn {
   width:100px;
 }
@@ -25,8 +36,6 @@
     padding-top: 5px;
   }
 }
-
-
 
 .color-picker-btn {
   padding-left:6px;

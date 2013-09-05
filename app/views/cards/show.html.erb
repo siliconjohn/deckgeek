@@ -12,7 +12,7 @@
           $(id).trigger('change');
         },
     });
-  } 
+  }
 
   function addColorPicker( id, attrib ){
     $(id).spectrum({
@@ -26,7 +26,7 @@
           $(id).trigger('change');
         },
     });
-  } 
+  }
 
 </script>
 
@@ -42,8 +42,8 @@
     <a id="redo-btn" class="btn btn-small btn-inverse">Redo <i class="icon-white icon-chevron-right"></i></a>
   </div>
 
-  <div class="btn-group "> 
-    <a id="revert-btn" class="btn btn-small btn-inverse"><i class="icon-white icon-trash"></i> Trash Changes</a> 
+  <div class="btn-group ">
+    <a id="revert-btn" class="btn btn-small btn-inverse"><i class="icon-white icon-trash"></i> Trash Changes</a>
   </div>
 
 </div>
@@ -52,29 +52,34 @@
 <div class="row">
   <div class="span4">
 
-    <div class="btn-group"> 
+    <div class="btn-group">
       <a id="drag-bg-btn"  class="btn btn-inverse"><i class="icon-white icon-move"></i> Move</a>
       <a id="drag-bg-grid-btn" data-toggle="buttons-radio" title="Snap to grid" class="btn btn-inverse"><i class="icon-white icon-th"></i></a>
-      <a id="drag-bg-delete-btn" title="Delete background image" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a> 
     </div>
-    
+
+    <div class="btn-group">
+      <a id="bg-smaller-btn" title="Make background image smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+      <a id="bg-bigger-btn" title="Make background image larger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+    </div>
+
+    <div class="btn-group">
+      <a id="drag-bg-delete-btn" title="Delete background image" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
+    </div>
+
+    <div class="btn-group">
     <a id="bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
       <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
     </a>
+</div>
 
-    <div class="btn-group"> 
-      <a id="bg-smaller-btn" title="Make background image smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-      <a id="bg-bigger-btn" title="Make background image larger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a> 
-    </div>
-    
   </div>
 
-  <div class="span4"> 
-    <div id="jcards-view"></div> 
+  <div class="span4">
+    <div id="jcards-view"></div>
   </div>
-  
+
   <div class="span4"></div>
-</div> 
+</div>
 
 <!-- image toolbar -->
 <div class="navbar-fixed-bottom">
@@ -83,24 +88,24 @@
 </div>
 
 <script type="text/javascript">
- 
+
   $(function()
   {
     // element adjustments
-    $('.navbar-fixed-top').remove();  
+    $('.navbar-fixed-top').remove();
     $('#top-toolbar').addClass('navbar-fixed-top');
     $('body').attr('style','background-color:#414141;');
-    
+
     // toolbar events
-    $( '#undo-btn' ).click( function(){ 
+    $( '#undo-btn' ).click( function(){
       $( '#jcards-view' ).trigger( jQuery.Event( "performUndo" ));
     });
 
-    $( '#redo-btn' ).click( function(){ 
+    $( '#redo-btn' ).click( function(){
       $( '#jcards-view' ).trigger( jQuery.Event( "performRedo" ));
     });
 
-    $( '#revert-btn' ).click( function(){ 
+    $( '#revert-btn' ).click( function(){
       $( '#jcards-view' ).trigger( jQuery.Event( "performRevert" ));
     });
 
@@ -137,8 +142,8 @@
       event.color=$("#bg-color-picker").spectrum("get").toRgbString();
       $('body').trigger(event);
     });
-    
- 
+
+
     $('#bg-smaller-btn').click( function(e){
        $('body').trigger( jQuery.Event("bgImageSmaller"));
     });
@@ -167,5 +172,5 @@
     addJCards("#jcards-view",  <%= @card.id %>, <%= @cards.to_json.to_s.html_safe %>);
 
   });
-  
+
 </script>

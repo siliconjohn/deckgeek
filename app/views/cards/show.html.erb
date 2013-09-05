@@ -169,15 +169,22 @@
        $('body').trigger( jQuery.Event("bdrBigger"));
     });
 
+    $("#bdr-color-picker").bind('change', function(e){
+      var event=jQuery.Event("changeBdrColor");
+      event.color=$("#bdr-color-picker").spectrum("get").toRgbString();
+      $('body').trigger(event);
+    });
 
 
 
-
-
+    // SETTERS
     $("body").delegate( "", "setBgColor", function(e){
       $("#bg-color-picker").spectrum({color:e.color});
     });
 
+    $("body").delegate( "", "setBdrColor", function(e){
+      $("#bdr-color-picker").spectrum({color:e.color});
+    });
 
 
 

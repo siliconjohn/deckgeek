@@ -44,7 +44,7 @@ App.JCardView = Backbone.View.extend(
     _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'performUndo', 'performRedo',
       'saveForRedo', 'performRevert', 'enableDragBg', 'disableDragBg', 'setupDrag',
       'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
-      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger' );
+      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -62,7 +62,18 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "bgImageSmaller", this.bgImageSmaller);
     $("body").delegate( "", "bdrBigger", this.bdrBigger);
     $("body").delegate( "", "bdrSmaller", this.bdrSmaller);
+    $("body").delegate( "", "changeBdrColor", this.changeBdrColor);
+  },
 
+  changeBdrColor:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    if( e.color != this.$(".jcard-border").css('border-color'))
+    {
+      this.saveForUndo();
+      this.$(".jcard-border").css('border-color', e.color);
+    }
   },
 
   bdrSmaller:function(e)
@@ -259,11 +270,16 @@ App.JCardView = Backbone.View.extend(
     return this;
   },
 
+  // not sure why this is here
   updatePageUIForCard: function()
   {
-      var event=jQuery.Event("setBgColor");
-      event.color=this.$(".jcard").css('background-color');
-      $('body').trigger(event);
+    // var event=jQuery.Event("setBgColor");
+    // event.color=this.$(".jcard").css('background-color');
+    // $('body').trigger(event);
+
+    // event2=jQuery.Event("setBdrColor");
+    // event2.color=this.$(".jcard-border").css('border-color');
+    // $('body').trigger(event2);
   }
 });
 
@@ -350,12 +366,13 @@ App.JCardsView = Backbone.View.extend(
 
   updatePageUIForCard: function()
   {
-      var event=jQuery.Event("setBgColor");
-      event.color=this.selectedCardView.css('background-color');
-      $('body').trigger(event);
+    var event=jQuery.Event("setBgColor");
+    event.color=this.selectedCardView.css('background-color');
+    $('body').trigger(event);
 
-
-
+    event=jQuery.Event("setBdrColor");
+    event.color=this.selectedCardView.find(".jcard-border").css('border-top-color');
+    $('body').trigger(event);
   },
 
   addJCardView: function(model)

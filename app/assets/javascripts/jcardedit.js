@@ -270,16 +270,16 @@ App.JCardView = Backbone.View.extend(
     return this;
   },
 
-  // not sure why this is here
+  //this is for undo!
   updatePageUIForCard: function()
   {
-    // var event=jQuery.Event("setBgColor");
-    // event.color=this.$(".jcard").css('background-color');
-    // $('body').trigger(event);
+    var event=jQuery.Event("setBgColor");
+    event.color=this.$(".jcard").css('background-color');
+    $('body').trigger(event);
 
-    // event2=jQuery.Event("setBdrColor");
-    // event2.color=this.$(".jcard-border").css('border-color');
-    // $('body').trigger(event2);
+    event2=jQuery.Event("setBdrColor");
+    event2.color=this.$(".jcard-border").css('border-color');
+    $('body').trigger(event2);
   }
 });
 

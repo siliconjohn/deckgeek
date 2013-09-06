@@ -44,7 +44,7 @@ App.JCardView = Backbone.View.extend(
     _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'performUndo', 'performRedo',
       'saveForRedo', 'performRevert', 'enableDragBg', 'disableDragBg', 'setupDrag',
       'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
-      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor' );
+      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor', 'addText' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -63,6 +63,19 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "bdrBigger", this.bdrBigger);
     $("body").delegate( "", "bdrSmaller", this.bdrSmaller);
     $("body").delegate( "", "changeBdrColor", this.changeBdrColor);
+    $("body").delegate( "", "addText", this.addText);
+    
+  },
+
+  addText:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    var target = this.$(".jcard-layers");
+
+// TODO optimize
+    target.append('<div class="jcard-text"/>');
+    this.$('.jcard-text').draggable();
+    this.$('.jcard-text').resizable({ handles: "n, e, s, w"});
   },
 
   changeBdrColor:function(e)

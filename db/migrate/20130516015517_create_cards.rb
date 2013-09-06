@@ -29,7 +29,7 @@ class CreateCards < ActiveRecord::Migration
       t.boolean :description_visible, :default => true
       t.string :description_bg_color, :default => "rgba(9, 10, 12, 0.41)"
       t.integer :description_border_radius,  :default => 0
-      t.string :html, :default => '<div class="jcard"><img class="jcard-bg-image"/><div class="jcard-border"/></div>'
+      t.string :html, :default => '<div class="jcard"><img class="jcard-bg-image"/><div class="jcard-border"/><div class="jcard-layers"/></div>'
       t.timestamps
     end
     add_index :cards, :deck_id

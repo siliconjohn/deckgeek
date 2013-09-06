@@ -37,3 +37,25 @@
   pointer-events: none;
 }
 
+.jcard-layers
+{
+  left:0px;
+  top:0px;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  overflow:hidden;
+  ppointer-events: none;
+}
+
+.jcard-text 
+{
+  float: left;
+  background-color:rgba(255, 128, 128, 0.5);
+  width:90%;
+  height:100px;
+  left:20px;
+  top:40px;
+}

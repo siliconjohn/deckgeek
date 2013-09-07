@@ -15,7 +15,7 @@ class Card < ActiveRecord::Base
                   :description_width, :description_alignment, :description_bottom,
                   :description_height, :description_border_outline, :description_visible,
                   :description_bg_color, :description_border_radius,
-
+                  
                   :html
 
   validates_length_of :description, :maximum => 255

@@ -50,7 +50,7 @@ App.JCardView = Backbone.View.extend(
       'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
       'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor', 'addText',
       'selectText', 'changeTextBgColor', 'txtBdrRadiusSmaller', 'txtBdrRadiusBigger',  'txtBdrSmaller',
-      'changeTxtBdrColor', 'txtBdrBigger', 'performSave' );
+      'changeTxtBdrColor', 'txtBdrBigger', 'txtChange', 'performSave' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -77,7 +77,15 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "txtBdrBigger", this.txtBdrBigger);
     $("body").delegate( "", "txtBdrSmaller", this.txtBdrSmaller);
     $("body").delegate( "", "changeTxtBdrColor", this.changeTxtBdrColor);
+    $("body").delegate( "", "txtChange", this.txtChange);
+    },
+
+  txtChange:function(e)
+  {
+alert('e');
+
   },
+
 
   changeTxtBdrColor:function(e)
   {
@@ -363,6 +371,21 @@ App.JCardView = Backbone.View.extend(
     this.$('.jcard-bg-image').attr('data-id',e.model.attributes.id);
   },
 
+  performSave: function()
+  {
+    if(!this.$el.hasClass('active'))return;
+    if(this.undoStack.length==0)return;//TODO add a better way to know if its modified
+
+this.model.set("html", this.$el.html());
+   //  this.model.save();  
+    
+    console.log(this.model.attributes.html);
+     this.model.save();  
+    console.log(this.model.attributes.html);
+    
+  
+  },
+
   performUndo: function()
   {
     if(!this.$el.hasClass('active'))return;
@@ -401,13 +424,6 @@ App.JCardView = Backbone.View.extend(
   {
     this.saveForUndo();
     this.render();
-  },
-
-  performSave: function()
-  {
-    
-    this.model.set("html", this.$el.html());
-    this.model.save();
   },
 
   render:function()

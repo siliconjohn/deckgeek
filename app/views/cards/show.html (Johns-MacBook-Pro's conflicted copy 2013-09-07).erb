@@ -105,8 +105,16 @@
 
       <a id="text-bdr-color-btn" title="Border color" class="btn btn-inverse color-picker-btn"><input type='text' id="text-bdr-color-picker"/>
           <script>addColorPickerWithAlpha( "#text-bdr-color-picker", "0x808080")</script>
-        </a>
-   </div>
+      </a>
+
+      </div>
+
+
+      <input id="input-text" type="text" value="" placeholder="Stuff"></input>
+
+
+
+
 
   </div>
 
@@ -133,9 +141,13 @@
     $('body').attr('style','background-color:#414141;');
 
     // toolbar events
+        
     $( '#save-btn' ).click( function(){
       $( '#jcards-view' ).trigger( jQuery.Event( "performSave" ));
     });
+
+
+
 
     $( '#undo-btn' ).click( function(){
       $( '#jcards-view' ).trigger( jQuery.Event( "performUndo" ));
@@ -237,6 +249,9 @@
       $('body').trigger(event);
     });
 
+     $('#input-text').change( function(e){
+       $('body').trigger( jQuery.Event("txtChange"));
+    });
 
 
 
@@ -250,11 +265,7 @@
     $("body").delegate( "", "setBdrColor", function(e){
       $("#bdr-color-picker").spectrum({color:e.color});
     });
-
-
-
-
-
+ 
      // add backbone stuff
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
     addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );

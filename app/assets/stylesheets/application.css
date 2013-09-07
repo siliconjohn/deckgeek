@@ -12,6 +12,6 @@
  *= require defaults
  *= require spectrum
  *= require style-default
- *= require jquery-ui-1.10.3.custom.min
+ *= require jquery-ui-1.10.3.custom
  *= require_tree .
 */

@@ -88,6 +88,14 @@
       <div class="control-row-title">Text:</div>
       <div class="btn-group">
         <a id="add-text-btn" title="Add a text area" class="btn btn-inverse">Add Text</a>
+         <a id="text-bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="text-bg-color-picker"/>
+          <script>addColorPickerWithAlpha( "#text-bg-color-picker", "0x808080")</script>
+        </a>
+      </div>
+
+      <div class="btn-group">
+        <a id="text-bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="text-bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
       </div>
    </div>
 
@@ -188,9 +196,19 @@
        $('body').trigger( jQuery.Event("addText"));
     });
 
+    $("#text-bg-color-picker").bind('change', function(e){
+      var event=jQuery.Event("changeTextBgColor");
+      event.color=$("#text-bg-color-picker").spectrum("get").toRgbString();
+      $('body').trigger(event);
+    });
 
+    $('#text-bdr-smaller-btn').click( function(e){
+       $('body').trigger( jQuery.Event("txtBdrSmaller"));
+    });
 
-
+    $('#text-bdr-bigger-btn').click( function(e){
+       $('body').trigger( jQuery.Event("txtBdrBigger"));
+    });
 
 
 

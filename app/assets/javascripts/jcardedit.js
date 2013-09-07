@@ -35,6 +35,10 @@ App.JCardView = Backbone.View.extend(
   redoStack: null,
   bgDragOn: false,
   bgDragGridOn: false,
+  events:
+  {
+    'click .jcard-text': 'selectText'
+  },
 
   initialize: function()
   {
@@ -44,7 +48,8 @@ App.JCardView = Backbone.View.extend(
     _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'performUndo', 'performRedo',
       'saveForRedo', 'performRevert', 'enableDragBg', 'disableDragBg', 'setupDrag',
       'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
-      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor', 'addText' );
+      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor', 'addText',
+      'selectText', 'changeTextBgColor', 'txtBdrSmaller', 'txtBdrBigger' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -63,8 +68,75 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "bdrBigger", this.bdrBigger);
     $("body").delegate( "", "bdrSmaller", this.bdrSmaller);
     $("body").delegate( "", "changeBdrColor", this.changeBdrColor);
-    $("body").delegate( "", "addText", this.addText);
+    $("body").delegate( "", "addText", this.addText); 
+    $("body").delegate( "", "changeTextBgColor", this.changeTextBgColor);
+    $("body").delegate( "", "txtBdrBigger", this.txtBdrBigger);
+    $("body").delegate( "", "txtBdrSmaller", this.txtBdrSmaller);
+  
+  },
+
+
+  txtBdrBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    var target=this.$('.jcard-text.jselected');
     
+    var w=Math.round(parseFloat(target.css( 'borderTopRightRadius'))); 
+
+    var newWidth = w + 1;
+
+    if( newWidth != w && newWidth < 100 )
+    {
+      this.saveForUndo();
+      target.css( 'border-top-left-radius', newWidth + 'px' );
+      target.css( 'border-top-right-radius', newWidth + 'px' );
+      target.css( 'border-bottom-right-radius', newWidth + 'px' );
+      target.css( 'border-bottom-left-radius', newWidth + 'px' );
+    }
+  },
+
+  txtBdrSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    var target=this.$('.jcard-text.jselected');
+    
+    var w=Math.round(parseFloat(target.css( 'borderTopRightRadius'))); 
+
+    var newWidth = w - 1;
+
+    if( newWidth != w && newWidth > -1 )
+    {
+      this.saveForUndo();
+      target.css( 'border-top-left-radius', newWidth + 'px' );
+      target.css( 'border-top-right-radius', newWidth + 'px' );
+      target.css( 'border-bottom-right-radius', newWidth + 'px' );
+      target.css( 'border-bottom-left-radius', newWidth + 'px' );
+    }
+  },
+
+
+
+  changeTextBgColor:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+    if (target.length == 0) return;
+ 
+    if( e.color != target.css('background-color'))
+    {
+      this.saveForUndo();
+      target.css('background-color', e.color);
+    }
+  },
+
+  selectText:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    
+    this.$('.jcard-text').removeClass('jselected');
+ 
+    $(e.currentTarget).addClass('jselected');
   },
 
   addText:function(e)
@@ -72,7 +144,7 @@ App.JCardView = Backbone.View.extend(
     if(!this.$el.hasClass('active'))return;
     var target = this.$(".jcard-layers");
 
-// TODO optimize
+    // TODO optimize
     target.append('<div class="jcard-text"/>');
     this.$('.jcard-text').draggable();
     this.$('.jcard-text').resizable({ handles: "n, e, s, w"});

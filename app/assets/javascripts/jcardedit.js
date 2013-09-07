@@ -49,7 +49,8 @@ App.JCardView = Backbone.View.extend(
       'saveForRedo', 'performRevert', 'enableDragBg', 'disableDragBg', 'setupDrag',
       'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
       'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor', 'addText',
-      'selectText', 'changeTextBgColor', 'txtBdrSmaller', 'txtBdrBigger' );
+      'selectText', 'changeTextBgColor', 'txtBdrRadiusSmaller', 'txtBdrRadiusBigger',  'txtBdrSmaller',
+      'changeTxtBdrColor', 'txtBdrBigger' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -70,17 +71,72 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "changeBdrColor", this.changeBdrColor);
     $("body").delegate( "", "addText", this.addText); 
     $("body").delegate( "", "changeTextBgColor", this.changeTextBgColor);
+    $("body").delegate( "", "txtBdrRadiusBigger", this.txtBdrRadiusBigger);
+    $("body").delegate( "", "txtBdrRadiusSmaller", this.txtBdrRadiusSmaller);
     $("body").delegate( "", "txtBdrBigger", this.txtBdrBigger);
     $("body").delegate( "", "txtBdrSmaller", this.txtBdrSmaller);
-  
+    $("body").delegate( "", "changeTxtBdrColor", this.changeTxtBdrColor);
   },
 
+  changeTxtBdrColor:function(e)
+  {
+    if(!this.$el.hasClass('active'))return; 
+    var target=this.$('.jcard-text.jselected');
+    if (target.length == 0) return;
+
+    if( e.color != target.css('border-color'))
+    {
+      this.saveForUndo();
+      target.css('border-color', e.color);
+    }
+  },
+
+  txtBdrSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    var target=this.$('.jcard-text.jselected');
+    if (target.length == 0) return;
+
+    var w=Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
+
+    var newWidth = w - 1;
+
+    if( newWidth != w && newWidth > -1 )
+    {
+      this.saveForUndo();
+      target.css( 'border-top-width', newWidth + 'px' );
+      target.css( 'border-bottom-width', newWidth + 'px' );
+      target.css( 'border-left-width', newWidth + 'px' );
+      target.css( 'border-right-width', newWidth + 'px' );
+    }
+  },
 
   txtBdrBigger:function(e)
   {
     if(!this.$el.hasClass('active'))return;
     var target=this.$('.jcard-text.jselected');
-    
+    if (target.length == 0) return;
+ 
+    var w=Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
+ 
+    var newWidth = w + 1;
+
+    if( newWidth != w && newWidth <30 )
+    {
+      this.saveForUndo(); 
+      target.css( 'border-top-width', newWidth + 'px' );
+      target.css( 'border-bottom-width', newWidth + 'px' );
+      target.css( 'border-left-width', newWidth + 'px' );
+      target.css( 'border-right-width', newWidth + 'px' );
+    }
+  },
+
+  txtBdrRadiusBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    var target=this.$('.jcard-text.jselected');
+    if (target.length == 0) return;
+ 
     var w=Math.round(parseFloat(target.css( 'borderTopRightRadius'))); 
 
     var newWidth = w + 1;
@@ -95,11 +151,12 @@ App.JCardView = Backbone.View.extend(
     }
   },
 
-  txtBdrSmaller:function(e)
+  txtBdrRadiusSmaller:function(e)
   {
     if(!this.$el.hasClass('active'))return;
     var target=this.$('.jcard-text.jselected');
-    
+    if (target.length == 0) return;
+ 
     var w=Math.round(parseFloat(target.css( 'borderTopRightRadius'))); 
 
     var newWidth = w - 1;
@@ -113,8 +170,6 @@ App.JCardView = Backbone.View.extend(
       target.css( 'border-bottom-left-radius', newWidth + 'px' );
     }
   },
-
-
 
   changeTextBgColor:function(e)
   {
@@ -144,10 +199,9 @@ App.JCardView = Backbone.View.extend(
     if(!this.$el.hasClass('active'))return;
     var target = this.$(".jcard-layers");
 
-    // TODO optimize
+    this.saveForUndo();
     target.append('<div class="jcard-text"/>');
-    this.$('.jcard-text').draggable();
-    this.$('.jcard-text').resizable({ handles: "n, e, s, w"});
+    this.$('.jcard-text').draggable().resizable({ handles: "n, e, s, w"});
   },
 
   changeBdrColor:function(e)

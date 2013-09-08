@@ -50,12 +50,12 @@ App.JCardView = Backbone.View.extend(
       'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
       'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor', 'addText',
       'selectText', 'changeTextBgColor', 'txtBdrRadiusSmaller', 'txtBdrRadiusBigger',  'txtBdrSmaller',
-      'changeTxtBdrColor', 'txtBdrBigger', 'performSave' );
+      'changeTxtBdrColor', 'txtBdrBigger', 'save' );
 
     this.listenTo(this.model, 'change', this.render);
 
     $("body").delegate( "", "selectedImage", this.selectedImage);
-    $("body").delegate( "", "performSave", this.performSave);
+    $("body").delegate( "", "save", this.save);
     $("body").delegate( "", "performUndo", this.performUndo);
     $("body").delegate( "", "performRedo", this.performRedo);
     $("body").delegate( "", "performRevert", this.performRevert);
@@ -403,10 +403,28 @@ App.JCardView = Backbone.View.extend(
     this.render();
   },
 
-  performSave: function()
+  save: function()
   {
+    if(this.undoStack.length==0)return;
     
-    this.model.set("html", this.$el.html());
+    var newElement= this.$el.clone();
+       
+    ///////////////////////////////////
+    // clean all drag and resize stuff
+    // from the html
+    ///////////////////////////////////
+
+    // remove drag stuff
+    newElement.find('.jcard-bg-image, .jcard-text').removeClass('ui-resizable ui-draggable ui-draggable-disabled ui-state-disabled')
+              .removeAttr("aria-disabled");
+
+    // remove resize stuff ( for text areas)
+    newElement.find('.ui-resizable-handle').remove();
+
+    ///////////////////////////////////
+    ///////////////////////////////////
+     
+    this.model.set("html", newElement.html());
     this.model.save();
   },
 

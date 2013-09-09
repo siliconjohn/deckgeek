@@ -6,12 +6,12 @@
 .control-row {
   margin-top: 10px;
 
-  .control-row-title {
+  /*.control-row-title {
     color:#fff;
     display: inline;
     margin-right: 74px;
   }
-
+*/
 }
 
 #prev-btn, #next-btn {
@@ -41,8 +41,8 @@
 
 .jselected {
   outline-color:#ff0;//rgba (255,255,0,0.3);  
-outline-style:dotted;
-outline-width:1px;
+  outline-style:dotted;
+  outline-width:1px;
 }
 
 

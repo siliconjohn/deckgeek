@@ -6,7 +6,7 @@
         showAlpha: true,
         showInput: true,
         showPalette: true,
-        preferredFormat: "hex6",
+        preferredFormat: "rgb",
         localStorageKey: "spectrum.gamegen",
         hide: function(tinycolor){
           $(id).trigger('change');
@@ -27,87 +27,95 @@
         },
     });
   }
-
 </script>
 
 <!-- top toolbar -->
 <div id="top-toolbar">
 
   <div class="btn-group">
-    <a id="save-btn" class="btn btn-green">Save</a>
+    <a id="save-btn" title="Save cards" class="btn btn-green">Save</a>
   </div>
 
   <div class="btn-group">
-    <a id="undo-btn" class="btn btn-small btn-inverse"><i class="icon-white icon-chevron-left"></i> Undo</a>
-    <a id="redo-btn" class="btn btn-small btn-inverse">Redo <i class="icon-white icon-chevron-right"></i></a>
+    <a id="undo-btn" class="btn btn-small btn-inverse" title="Undo"><i class="icon-white icon-chevron-left"></i> Undo</a>
+    <a id="redo-btn" class="btn btn-small btn-inverse" title="Redo">Redo <i class="icon-white icon-chevron-right"></i></a>
+  </div>
+  
+  <div class="btn-group">
+    <a id="snap-to-grid-btn" data-toggle="buttons-radio" title="Snap to grid" class="btn btn-small btn-inverse"><i class="icon-white icon-th"></i> Grid</a>
   </div>
 
-  <div class="btn-group ">
-    <a id="revert-btn" class="btn btn-small btn-inverse"><i class="icon-white icon-trash"></i> Trash Changes</a>
+  <div class="btn-group">
+    <a id="add-text-btn" title="Add a text area" class="btn btn-inverse  btn-small">Add Text Area</a>
   </div>
-
 </div>
 
-<!-- cards view toolbar -->
+<!-- card -->
 <div class="row">
+  
+  <!-- card properties -->
   <div class="span4">
 
-    <div class="btn-group">
-      <a id="drag-bg-btn"  class="btn btn-inverse"><i class="icon-white icon-move"></i> Move</a>
-      <a id="drag-bg-grid-btn" data-toggle="buttons-radio" title="Snap to grid" class="btn btn-inverse"><i class="icon-white icon-th"></i></a>
-    </div>
-    <div class="btn-group">
-      <a id="bg-smaller-btn" title="Make background image smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-      <a id="bg-bigger-btn" title="Make background image larger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-    </div>
-    <div class="btn-group">
-      <a id="bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
-        <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
-      </a>
-    </div>
-    <div class="btn-group">
-      <a id="drag-bg-delete-btn" title="Delete background image" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
+    <!-- bg properties -->
+    <div class="control-row">
+
+      <div class="btn-group">
+        <a id="bg-smaller-btn" title="Make background image smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="bg-bigger-btn" title="Make background image larger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+      </div>
+
+      <div class="btn-group">
+        <a id="bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
+          <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
+        </a>
+      </div>
+
+      <div class="btn-group">
+        <a id="delete-bg-btn" title="Delete background image" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
+      </div>
     </div>
 
+    <!-- border properties -->
     <div class="control-row">
-      <div class="control-row-title">Border:</div>
+      
       <div class="btn-group">
         <a id="bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
         <a id="bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
       </div>
+      
       <div class="btn-group">
-        <a id="bdr-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bdr-color-picker"/>
+        <a id="bdr-color-btn" title="Background color" class="btn btn-inverse color-picker-btn">
+          <input type='text' id="bdr-color-picker"/>
           <script>addColorPickerWithAlpha( "#bdr-color-picker", "0x808080")</script>
         </a>
       </div>
     </div>
 
-
-
+    <!-- text properties -->
     <div class="control-row">
-      <div class="control-row-title">Text:</div>
+
       <div class="btn-group">
-        <a id="add-text-btn" title="Add a text area" class="btn btn-inverse">Add Text</a>
-         <a id="text-bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="text-bg-color-picker"/>
+        <a id="text-bg-color-btn" title="Text background color" class="btn btn-inverse color-picker-btn">
+          <input type='text' id="text-bg-color-picker"/>
           <script>addColorPickerWithAlpha( "#text-bg-color-picker", "0x808080")</script>
         </a>
       </div>
-
-      <div class="btn-group">
-        <a id="text-bdr-radius-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-        <a id="text-bdr-radius-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-      </div>
+      
+      <a id="text-bdr-color-btn" title="Text border color" class="btn btn-inverse color-picker-btn">
+        <input type='text' id="text-bdr-color-picker"/>
+        <script>addColorPickerWithAlpha( "#text-bdr-color-picker", "0x808080")</script>
+      </a>
 
       <div class="btn-group">
         <a id="txt-bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
         <a id="txt-bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
       </div>
 
-      <a id="text-bdr-color-btn" title="Border color" class="btn btn-inverse color-picker-btn"><input type='text' id="text-bdr-color-picker"/>
-          <script>addColorPickerWithAlpha( "#text-bdr-color-picker", "0x808080")</script>
-        </a>
-   </div>
-
+      <div class="btn-group">
+        <a id="text-bdr-radius-smaller-btn" title="Make border radius wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="text-bdr-radius-bigger-btn" title="Make border radius smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+      </div>
+    </div>
   </div>
 
   <div class="span4">
@@ -132,53 +140,34 @@
     $('#top-toolbar').addClass('navbar-fixed-top');
     $('body').attr('style','background-color:#414141;');
 
-    // toolbar events
+    // top toolbar events
     $( '#save-btn' ).click( function(){
       $( '#jcards-view' ).trigger( jQuery.Event( "save" ));
     });
 
     $( '#undo-btn' ).click( function(){
-      $( '#jcards-view' ).trigger( jQuery.Event( "performUndo" ));
+      $( '#jcards-view' ).trigger( jQuery.Event( "undo" ));
     });
 
     $( '#redo-btn' ).click( function(){
-      $( '#jcards-view' ).trigger( jQuery.Event( "performRedo" ));
+      $( '#jcards-view' ).trigger( jQuery.Event( "redo" ));
     });
 
-    $( '#revert-btn' ).click( function(){
-      $( '#jcards-view' ).trigger( jQuery.Event( "performRevert" ));
-    });
-
-    $( '#drag-bg-btn' ).click( function()
+    $( '#snap-to-grid-btn').click( function(e)
     {
-      var el=$('#drag-bg-btn');
-
-      if(el.hasClass('active'))
-      {
-        $( '#jcards-view' ).trigger( jQuery.Event( "disableDragBg" ));
-        el.removeClass('active');
-      }
+      if($('#snap-to-grid-btn').hasClass('active'))
+        $('#snap-to-grid-btn').trigger( jQuery.Event("disableDragGrid"));
       else
-      {
-        $( '#jcards-view' ).trigger( jQuery.Event( "enableDragBg" ));
-        el.addClass('active');
-      }
+        $('#snap-to-grid-btn').trigger( jQuery.Event("enableDragGrid"));
     });
 
-    $( '#drag-bg-grid-btn').click( function(e)
-    {
-      if($('#drag-bg-grid-btn').hasClass('active'))
-        $('#drag-bg-grid-btn').trigger( jQuery.Event("disableBgDragGrid"));
-      else
-        $('#drag-bg-grid-btn').trigger( jQuery.Event("enableBgDragGrid"));
-    });
-
-    $('#drag-bg-delete-btn').click( function(e){
-       $('body').trigger( jQuery.Event("deleteBgImage"));
+    // card properties
+    $('#delete-bg-btn').click( function(e){
+       $('body').trigger( jQuery.Event("removeBgImage"));
     });
 
     $("#bg-color-picker").bind('change', function(e){
-      var event=jQuery.Event("changeBgColor");
+      var event=jQuery.Event("setBgColor");
       event.color=$("#bg-color-picker").spectrum("get").toRgbString();
       $('body').trigger(event);
     });
@@ -200,39 +189,39 @@
     });
 
     $("#bdr-color-picker").bind('change', function(e){
-      var event=jQuery.Event("changeBdrColor");
+      var event=jQuery.Event("setBdrColor");
       event.color=$("#bdr-color-picker").spectrum("get").toRgbString();
       $('body').trigger(event);
     });
 
     $('#add-text-btn').click( function(e){
-       $('body').trigger( jQuery.Event("addText"));
+       $('body').trigger( jQuery.Event("addTextArea"));
     });
 
     $("#text-bg-color-picker").bind('change', function(e){
-      var event=jQuery.Event("changeTextBgColor");
+      var event=jQuery.Event("setTextAreaBgColor");
       event.color=$("#text-bg-color-picker").spectrum("get").toRgbString();
       $('body').trigger(event);
     });
 
     $('#text-bdr-radius-smaller-btn').click( function(e){
-       $('body').trigger( jQuery.Event("txtBdrRadiusSmaller"));
+       $('body').trigger( jQuery.Event("setTextAreaBdrRadiusSmaller"));
     });
 
     $('#text-bdr-radius-bigger-btn').click( function(e){
-       $('body').trigger( jQuery.Event("txtBdrRadiusBigger"));
+       $('body').trigger( jQuery.Event("setTextAreaBdrRadiusBigger"));
     });
 
     $('#txt-bdr-smaller-btn').click( function(e){
-      $('body').trigger( jQuery.Event("txtBdrSmaller"));
+      $('body').trigger( jQuery.Event("setTextAreaBdrSmaller"));
     });
 
     $('#txt-bdr-bigger-btn').click( function(e){
-       $('body').trigger( jQuery.Event("txtBdrBigger"));
+       $('body').trigger( jQuery.Event("setTextAreaBdrBigger"));
     });
 
     $("#text-bdr-color-picker").bind('change', function(e){
-      var event=jQuery.Event("changeTxtBdrColor");
+      var event=jQuery.Event("setTextAreaBdrColor");
       event.color=$("#text-bdr-color-picker").spectrum("get").toRgbString();
       $('body').trigger(event);
     });
@@ -243,18 +232,14 @@
 
 
     // SETTERS
-    $("body").delegate( "", "setBgColor", function(e){
-      $("#bg-color-picker").spectrum({color:e.color});
-    });
+    // $("body").delegate( "", "setBgColor", function(e){
+    //   $("#bg-color-picker").spectrum({color:e.color});
+    // });
 
-    $("body").delegate( "", "setBdrColor", function(e){
-      $("#bdr-color-picker").spectrum({color:e.color});
-    });
-
-
-
-
-
+    // $("body").delegate( "", "setBdrColor", function(e){
+    //   $("#bdr-color-picker").spectrum({color:e.color});
+    // });
+ 
      // add backbone stuff
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
     addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );

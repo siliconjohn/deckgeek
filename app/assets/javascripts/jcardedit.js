@@ -32,12 +32,11 @@ App.JCardView = Backbone.View.extend(
 {
   className: "item",
   undoStack: null,
-  redoStack: null,
-  bgDragOn: false,
-  bgDragGridOn: false,
+  redoStack: null, 
+  dragGridOn: false,
   events:
   {
-    'click .jcard-text': 'selectText'
+    'click .jcard-text': 'selectTextArea'
   },
 
   initialize: function()
@@ -45,44 +44,81 @@ App.JCardView = Backbone.View.extend(
     this.undoStack = new Array;
     this.redoStack = new Array;
 
-    _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'performUndo', 'performRedo',
-      'saveForRedo', 'performRevert', 'enableDragBg', 'disableDragBg', 'setupDrag',
-      'enableBgDragGrid', 'disableBgDragGrid', 'deleteBgImage', 'changeBgColor', 'updatePageUIForCard',
-      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'changeBdrColor', 'addText',
-      'selectText', 'changeTextBgColor', 'txtBdrRadiusSmaller', 'txtBdrRadiusBigger',  'txtBdrSmaller',
-      'changeTxtBdrColor', 'txtBdrBigger', 'save' );
+    _.bindAll(this, 'render', 'selectedImage', 'saveForUndo', 'undo', 'redo',
+      'saveForRedo', 'revertToSaved', 'enableDragAndResize', 'setBgImage', 'getCleanedHTML',
+      'enableDragGrid', 'disableDragGrid', 'removeBgImage', 'setBgColor', 'updateHTMLPageUI',
+      'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'setBdrColor', 'addTextArea',
+      'selectTextArea', 'setTextAreaBgColor', 'setTextAreaBdrRadiusSmaller', 'setTextAreaBdrRadiusBigger',  'setTextAreaBdrSmaller',
+      'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save' );
 
     this.listenTo(this.model, 'change', this.render);
 
     $("body").delegate( "", "selectedImage", this.selectedImage);
     $("body").delegate( "", "save", this.save);
-    $("body").delegate( "", "performUndo", this.performUndo);
-    $("body").delegate( "", "performRedo", this.performRedo);
-    $("body").delegate( "", "performRevert", this.performRevert);
-    $("body").delegate( "", "enableDragBg", this.enableDragBg);
-    $("body").delegate( "", "disableDragBg", this.disableDragBg);
-    $("body").delegate( "", "enableBgDragGrid", this.enableBgDragGrid);
-    $("body").delegate( "", "disableBgDragGrid", this.disableBgDragGrid);
-    $("body").delegate( "", "deleteBgImage", this.deleteBgImage);
-    $("body").delegate( "", "changeBgColor", this.changeBgColor);
+    $("body").delegate( "", "undo", this.undo);
+    $("body").delegate( "", "redo", this.redo);
+    $("body").delegate( "", "revertToSaved", this.revertToSaved); 
+    $("body").delegate( "", "enableDragGrid", this.enableDragGrid);
+    $("body").delegate( "", "disableDragGrid", this.disableDragGrid);
+    $("body").delegate( "", "removeBgImage", this.removeBgImage);
+    $("body").delegate( "", "setBgColor", this.setBgColor);
     $("body").delegate( "", "bgImageBigger", this.bgImageBigger);
     $("body").delegate( "", "bgImageSmaller", this.bgImageSmaller);
     $("body").delegate( "", "bdrBigger", this.bdrBigger);
     $("body").delegate( "", "bdrSmaller", this.bdrSmaller);
-    $("body").delegate( "", "changeBdrColor", this.changeBdrColor);
-    $("body").delegate( "", "addText", this.addText); 
-    $("body").delegate( "", "changeTextBgColor", this.changeTextBgColor);
-    $("body").delegate( "", "txtBdrRadiusBigger", this.txtBdrRadiusBigger);
-    $("body").delegate( "", "txtBdrRadiusSmaller", this.txtBdrRadiusSmaller);
-    $("body").delegate( "", "txtBdrBigger", this.txtBdrBigger);
-    $("body").delegate( "", "txtBdrSmaller", this.txtBdrSmaller);
-    $("body").delegate( "", "changeTxtBdrColor", this.changeTxtBdrColor);
+    $("body").delegate( "", "setBdrColor", this.setBdrColor);
+    $("body").delegate( "", "addTextArea", this.addTextArea); 
+    $("body").delegate( "", "setTextAreaBgColor", this.setTextAreaBgColor);
+    $("body").delegate( "", "setTextAreaBdrRadiusBigger", this.setTextAreaBdrRadiusBigger);
+    $("body").delegate( "", "setTextAreaBdrRadiusSmaller", this.setTextAreaBdrRadiusSmaller);
+    $("body").delegate( "", "setTextAreaBdrBigger", this.setTextAreaBdrBigger);
+    $("body").delegate( "", "setTextAreaBdrSmaller", this.setTextAreaBdrSmaller);
+    $("body").delegate( "", "setTextAreaBdrColor", this.setTextAreaBdrColor);
   },
 
-  changeTxtBdrColor:function(e)
+  /////////////////////////////
+  // Text Areas
+  /////////////////////////////
+
+  addTextArea:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    
+    this.saveForUndo();
+
+    this.$(".jcard").append('<div class="jcard-text"/>');
+    this.enableDragAndResize();
+  },
+
+  selectTextArea:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    
+    this.$('.jcard-text').removeClass('jselected');
+    $(e.currentTarget).addClass('jselected');
+  },
+  
+  setTextAreaBgColor:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+ 
+    if( e.color != target.css('background-color'))
+    {
+      this.saveForUndo();
+      target.css('background-color', e.color);
+    }
+  },
+ 
+  setTextAreaBdrColor:function(e)
   {
     if(!this.$el.hasClass('active'))return; 
+   
     var target=this.$('.jcard-text.jselected');
+   
     if (target.length == 0) return;
 
     if( e.color != target.css('border-color'))
@@ -92,7 +128,7 @@ App.JCardView = Backbone.View.extend(
     }
   },
 
-  txtBdrSmaller:function(e)
+  setTextAreaBdrSmaller:function(e)
   {
     if(!this.$el.hasClass('active'))return;
     var target=this.$('.jcard-text.jselected');
@@ -105,14 +141,14 @@ App.JCardView = Backbone.View.extend(
     if( newWidth != w && newWidth > -1 )
     {
       this.saveForUndo();
-      target.css( 'border-top-width', newWidth + 'px' );
-      target.css( 'border-bottom-width', newWidth + 'px' );
-      target.css( 'border-left-width', newWidth + 'px' );
-      target.css( 'border-right-width', newWidth + 'px' );
+      target.css( 'border-top-width', newWidth + 'px' )
+            .css( 'border-bottom-width', newWidth + 'px' )
+            .css( 'border-left-width', newWidth + 'px' )
+            .css( 'border-right-width', newWidth + 'px' );
     }
   },
 
-  txtBdrBigger:function(e)
+  setTextAreaBdrBigger:function(e)
   {
     if(!this.$el.hasClass('active'))return;
     var target=this.$('.jcard-text.jselected');
@@ -125,14 +161,14 @@ App.JCardView = Backbone.View.extend(
     if( newWidth != w && newWidth <30 )
     {
       this.saveForUndo(); 
-      target.css( 'border-top-width', newWidth + 'px' );
-      target.css( 'border-bottom-width', newWidth + 'px' );
-      target.css( 'border-left-width', newWidth + 'px' );
-      target.css( 'border-right-width', newWidth + 'px' );
+      target.css( 'border-top-width', newWidth + 'px' ) 
+            .css( 'border-bottom-width', newWidth + 'px' ) 
+            .css( 'border-left-width', newWidth + 'px' ) 
+            .css( 'border-right-width', newWidth + 'px' );
     }
   },
 
-  txtBdrRadiusBigger:function(e)
+  setTextAreaBdrRadiusBigger:function(e)
   {
     if(!this.$el.hasClass('active'))return;
     var target=this.$('.jcard-text.jselected');
@@ -145,14 +181,14 @@ App.JCardView = Backbone.View.extend(
     if( newWidth != w && newWidth < 100 )
     {
       this.saveForUndo();
-      target.css( 'border-top-left-radius', newWidth + 'px' );
-      target.css( 'border-top-right-radius', newWidth + 'px' );
-      target.css( 'border-bottom-right-radius', newWidth + 'px' );
-      target.css( 'border-bottom-left-radius', newWidth + 'px' );
+      target.css( 'border-top-left-radius', newWidth + 'px' ) 
+            .css( 'border-top-right-radius', newWidth + 'px' ) 
+            .css( 'border-bottom-right-radius', newWidth + 'px' ) 
+            .css( 'border-bottom-left-radius', newWidth + 'px' );
     }
   },
 
-  txtBdrRadiusSmaller:function(e)
+  setTextAreaBdrRadiusSmaller:function(e)
   {
     if(!this.$el.hasClass('active'))return;
     var target=this.$('.jcard-text.jselected');
@@ -165,20 +201,139 @@ App.JCardView = Backbone.View.extend(
     if( newWidth != w && newWidth > -1 )
     {
       this.saveForUndo();
-      target.css( 'border-top-left-radius', newWidth + 'px' );
-      target.css( 'border-top-right-radius', newWidth + 'px' );
-      target.css( 'border-bottom-right-radius', newWidth + 'px' );
-      target.css( 'border-bottom-left-radius', newWidth + 'px' );
+      target.css( 'border-top-left-radius', newWidth + 'px' ) 
+            .css( 'border-top-right-radius', newWidth + 'px' ) 
+            .css( 'border-bottom-right-radius', newWidth + 'px' ) 
+            .css( 'border-bottom-left-radius', newWidth + 'px' );
     }
   },
+ 
+  /////////////////////////////
+  // Border
+  /////////////////////////////
 
-  changeTextBgColor:function(e)
+  setBdrColor:function(e)
   {
     if(!this.$el.hasClass('active'))return;
 
-    var target=this.$('.jcard-text.jselected');
-    if (target.length == 0) return;
+    var target = this.$(".jcard-border");
+   
+    if( e.color != target.css('border-color'))
+    {
+      this.saveForUndo();
+      target.css('border-color', e.color);
+    }
+  },
+
+  bdrSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target = this.$(".jcard-border");
+
+    var w = Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
+
+    var newWidth = w - 1;
+
+    if( newWidth != w && newWidth > -1 )
+    {
+      this.saveForUndo();
+      target.css( 'border-top-width', newWidth + 'px' ) 
+            .css( 'border-bottom-width', newWidth + 'px' ) 
+            .css( 'border-left-width', newWidth + 'px' ) 
+            .css( 'border-right-width', newWidth + 'px' );
+    }
+  },
+
+  bdrBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+   
+    var target = this.$(".jcard-border");
+
+    var w = Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
+
+    var newWidth = w + 1;
+
+    if( newWidth != w && newWidth <150 )
+    {
+      this.saveForUndo();
+      target.css( 'border-top-width', newWidth + 'px' ) 
+            .css( 'border-bottom-width', newWidth + 'px' ) 
+            .css( 'border-left-width', newWidth + 'px' ) 
+            .css( 'border-right-width', newWidth + 'px' );
+    }
+  },
  
+  /////////////////////////////
+  // Background
+  /////////////////////////////
+
+  selectedImage:function(e)
+  { 
+    // TODO: this should set the image based on what is selected, bg or icon or text
+    this.setBgImage(e);
+  },
+
+  setBgImage:function(e)
+  { 
+    if(!this.$el.hasClass('active'))return;
+
+    this.saveForUndo();
+
+    this.$('.jcard-bg-image').attr('src','/assets/images/'+e.model.attributes.url) 
+                             .attr('alt',e.model.attributes.url) 
+                             .attr('data-id',e.model.attributes.id) 
+                             .draggable();
+  },
+
+  removeBgImage:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    
+    this.saveForUndo();
+    
+    this.$(".jcard-bg-image").removeAttr("src")
+                             .removeAttr("alt");
+
+    // this is monkey buisness to work in all browsers
+    var c=this.$(".jcard-bg-image")[0].outerHTML;
+    this.$(".jcard-bg-image").remove();
+    this.$(".jcard").prepend(c);
+  },
+
+  bgImageSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var img=this.$(".jcard-bg-image");
+
+    if( img.attr("src") == undefined ) return;
+    
+    this.saveForUndo();
+
+    img.animate({ width: '-=10px' }, { duration:250 });
+  },
+
+  bgImageBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+   
+    var img=this.$(".jcard-bg-image");
+    
+    if( img.attr("src") == undefined ) return;
+    
+    this.saveForUndo();
+   
+    img.animate({ width: '+=10px' }, { duration:250 });
+  },
+
+  setBgColor:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target = this.$(".jcard");
+
     if( e.color != target.css('background-color'))
     {
       this.saveForUndo();
@@ -186,267 +341,136 @@ App.JCardView = Backbone.View.extend(
     }
   },
 
-  selectText:function(e)
+  /////////////////////////////
+  // Grid 
+  /////////////////////////////
+
+  enableDragGrid:function(e)
   {
-    if(!this.$el.hasClass('active'))return;
-    
-    this.$('.jcard-text').removeClass('jselected');
- 
-    $(e.currentTarget).addClass('jselected');
+     this.dragGridOn = true;
+     this.$(".jcard-bg-image, .jcard-text").draggable( "option", "grid", [ 8, 8 ] );
   },
 
-  addText:function(e)
+  disableDragGrid:function(e)
   {
-    if(!this.$el.hasClass('active'))return;
-    var target = this.$(".jcard");
-
-    this.saveForUndo();
-    target.append('<div class="jcard-text"/>');
-    this.$('.jcard-text').draggable().resizable({ handles: "n, e, s, w"});
+     this.dragGridOn =false;
+     this.$(".jcard-bg-image, .jcard-text").draggable( "option", "grid", false );
   },
 
-  changeBdrColor:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-
-    if( e.color != this.$(".jcard-border").css('border-color'))
-    {
-      this.saveForUndo();
-      this.$(".jcard-border").css('border-color', e.color);
-    }
-  },
-
-  bdrSmaller:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-    var target = this.$(".jcard-border");
-
-    var w=Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
-
-    var newWidth = w - 1;
-
-    if( newWidth != w && newWidth > -1 )
-    {
-      this.saveForUndo();
-      target.css( 'border-top-width', newWidth + 'px' );
-      target.css( 'border-bottom-width', newWidth + 'px' );
-      target.css( 'border-left-width', newWidth + 'px' );
-      target.css( 'border-right-width', newWidth + 'px' );
-    }
-  },
-
-  bdrBigger:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-    var target = this.$(".jcard-border");
-
-    var w=Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
-
-    var newWidth = w + 1;
-
-    if( newWidth != w && newWidth <150 )
-    {
-      this.saveForUndo();
-      target.css( 'border-top-width', newWidth + 'px' );
-      target.css( 'border-bottom-width', newWidth + 'px' );
-      target.css( 'border-left-width', newWidth + 'px' );
-      target.css( 'border-right-width', newWidth + 'px' );
-    }
-  },
-
-  bgImageSmaller:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-    if(this.$(".jcard-bg-image").attr("src")==undefined)return;
-    this.saveForUndo();
-    this.$(".jcard-bg-image").animate({width: '-=10px'}, {duration:250});
-  },
-
-  bgImageBigger:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-    if(this.$(".jcard-bg-image").attr("src")==undefined)return;
-    this.saveForUndo();
-    this.$(".jcard-bg-image").animate({width: '+=10px'}, {duration:250});
-  },
-
-  changeBgColor:function(e)
+  /////////////////////////////
+  // Undo/Redo 
+  /////////////////////////////
+  
+  undo: function()
   {
     if(!this.$el.hasClass('active'))return;
 
-    if( e.color != this.$(".jcard").css('background-color'))
-    {
-      this.saveForUndo();
-      this.$(".jcard").css('background-color', e.color);
-    }
-  },
-
-  changeBgColor:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-
-    if( e.color != this.$(".jcard").css('background-color'))
-    {
-      this.saveForUndo();
-      this.$(".jcard").css('background-color', e.color);
-    }
-  },
-
-  enableDragBg:function(e)
-  {
-    this.bgDragOn = true;
-    this.$(".jcard-bg-image").draggable( "enable" );
-  },
-
-  disableDragBg:function(e)
-  {
-    this.bgDragOn = false;
-    this.$(".jcard-bg-image").draggable( "disable" );
-  },
-
-  enableBgDragGrid:function(e)
-  {
-     this.bgDragGridOn = true;
-     this.$(".jcard-bg-image").draggable( "option", "grid", [ 10, 10 ] );
-  },
-
-  disableBgDragGrid:function(e)
-  {
-     this.bgDragGridOn =false;
-     this.$(".jcard-bg-image").draggable( "option", "grid", false );
-  },
-
-  deleteBgImage:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-    this.saveForUndo();
-    this.$(".jcard-bg-image").removeAttr("src");
-    this.$(".jcard-bg-image").removeAttr("alt");
-    var c=this.$(".jcard-bg-image")[0].outerHTML;
-    this.$(".jcard-bg-image").remove();
-    this.$(".jcard").prepend(c);
-    this.setupDrag();
-  },
-
-  setupDrag:function()
-  {
-    var el = this.$(".jcard-bg-image");
-
-    el.draggable();
-
-    el.on( "dragstart", function( event, ui )
-    {
-      this.saveForUndo();
-    }.bind(this));
-
-    if(this.bgDragOn==false)
-      el.draggable( "disable" );
-    else
-      el.draggable( "enable" );
-
-    if(this.bgDragGridOn==true)
-      this.enableBgDragGrid();
-    else
-      this.disableBgDragGrid();
-  },
-
-  selectedImage:function(e)
-  {
-    // if selected
-    if(!this.$el.hasClass('active'))return;
-
-    this.saveForUndo();
-
-    // set new image
-    this.$('.jcard-bg-image').attr('src','/assets/images/'+e.model.attributes.url);
-    this.$('.jcard-bg-image').attr('alt',e.model.attributes.url);
-    this.$('.jcard-bg-image').attr('data-id',e.model.attributes.id);
-    this.enableDragBg();
-  },
-
-  performUndo: function()
-  {
-    if(!this.$el.hasClass('active'))return;
     if(this.undoStack.length==0)return;
+    
     this.saveForRedo();
     this.$el.html(this.undoStack.pop());
-    this.setupDrag();
-    this.updatePageUIForCard();
+    this.enableDragAndResize();
+    this.updateHTMLPageUI();
   },
 
-  performRedo: function()
+  redo: function()
   {
     if(!this.$el.hasClass('active'))return;
+
     if(this.redoStack.length==0)return;
+
     this.saveForUndo();
     this.$el.html(this.redoStack.pop());
-    this.setupDrag();
-    this.updatePageUIForCard();
+    this.enableDragAndResize();
+    this.updateHTMLPageUI();
   },
 
   saveForUndo: function()
   {
-    var html=this.$el.html();
+    var html=this.getCleanedHTML(); 
+
     if(html != _.last(this.undoStack))
       this.undoStack.push(html);
   },
 
   saveForRedo: function()
   {
-    var html=this.$el.html();
+    var html=this.getCleanedHTML();
+    
     if(html != _.last(this.redoStack))
-    this.redoStack.push(html);
+      this.redoStack.push(html);
   },
 
-  performRevert: function()
+  revertToSaved: function()
   {
     this.saveForUndo();
     this.render();
   },
-
+  
+  /////////////////////////////
+  // Save
+  /////////////////////////////
+  
   save: function()
   {
     if(this.undoStack.length==0)return;
     
-    var newElement = this.$el.clone();
-       
-    ///////////////////////////////////
-    // clean all drag and resize stuff
-    // from the html
-    ///////////////////////////////////
-
-    // remove drag stuff
-    newElement.find('.jcard-bg-image, .jcard-text').removeClass('ui-resizable ui-draggable ui-draggable-disabled ui-state-disabled')
-              .removeAttr("aria-disabled");
-
-    // remove resize stuff ( for text areas)
-    newElement.find('.ui-resizable-handle').remove();
-
-    ///////////////////////////////////
-    ///////////////////////////////////
-     
-    this.model.set("html", newElement.html());
+    this.model.set("html", this.getCleanedHTML());
     this.model.save();
   },
 
-  render:function()
+  getCleanedHTML: function()
+  {
+    var newElement = this.$el.clone();
+        
+    newElement.find('.jcard-bg-image, .jcard-text').removeClass('ui-resizable ui-draggable ui-draggable-disabled ui-state-disabled')
+              .removeAttr("aria-disabled");
+
+    newElement.find('.ui-resizable-handle').remove();
+    
+    return newElement.html();
+  },
+
+  /////////////////////////////
+  // UI 
+  /////////////////////////////
+  
+  render: function()
   {
     this.$el.html(this.model.attributes.html);
-    this.setupDrag();
+    this.enableDragAndResize();
+    this.updateHTMLPageUI();
     return this;
   },
 
-  //this is for undo 
-  updatePageUIForCard: function()
+  enableDragAndResize: function()
   {
-    var event=jQuery.Event("setBgColor");
-    event.color=this.$(".jcard").css('background-color');
-    $('body').trigger(event);
+    this.$(".jcard-bg-image")
+        .draggable()
+        .on( "dragstart", function( event, ui )
+        {
+          this.saveForUndo();
+        }.bind(this)); 
 
-    event2=jQuery.Event("setBdrColor");
-    event2.color=this.$(".jcard-border").css('border-color');
-    $('body').trigger(event2);
+    this.$('.jcard-text').draggable().resizable({ handles: "n, e, s, w"});
+
+    if(this.dragGridOn==true)
+      this.enableDragGrid();
+    else
+      this.disableDragGrid();
+  },
+
+  // TODO: this is not done
+  updateHTMLPageUI: function()
+  {
+    // var event=jQuery.Event("setBgColor");
+    // event.color=this.$(".jcard").css('background-color');
+    // $('body').trigger(event);
+    // event2=jQuery.Event("setBdrColor");
+    // event2.color=this.$(".jcard-border").css('border-color');
+    // $('body').trigger(event2);
   }
+
 });
 
 /******************************************
@@ -469,7 +493,7 @@ App.JCardsView = Backbone.View.extend(
 
   initialize: function()
   {
-    _.bindAll(this, 'render', 'addJCardView', 'prevBtnClick', 'nextBtnClick', 'slid', 'updatePageUIForCard' );
+    _.bindAll(this, 'render', 'addJCardView', 'prevBtnClick', 'nextBtnClick', 'slid', 'updateHTMLPageUI' );
   },
 
   prevBtnClick: function()
@@ -484,7 +508,7 @@ App.JCardsView = Backbone.View.extend(
       this.$('.carousel').carousel('prev');
       if(this.selectedIndex==0)this.$('#prev-btn').addClass('disabled');
       if(this.selectedIndex==this.collection.length-2)this.$('#next-btn').removeClass('disabled');
-      this.updatePageUIForCard();
+      this.updateHTMLPageUI();
     }
   },
 
@@ -500,7 +524,7 @@ App.JCardsView = Backbone.View.extend(
       this.$('.carousel').carousel('next');
       if(this.selectedIndex==this.collection.length-1)this.$('#next-btn').addClass('disabled');
       if(this.selectedIndex==1)this.$('#prev-btn').removeClass('disabled');
-      this.updatePageUIForCard();
+      this.updateHTMLPageUI();
     }
   },
 
@@ -530,7 +554,7 @@ App.JCardsView = Backbone.View.extend(
     return this;
   },
 
-  updatePageUIForCard: function()
+  updateHTMLPageUI: function()
   {
     var event=jQuery.Event("setBgColor");
     event.color=this.selectedCardView.css('background-color');
@@ -583,5 +607,5 @@ function addJCards(container, id, cards)
                                                     selectID:id});
   window.App.views.jCardsView.$el.appendTo(container);
   window.App.views.jCardsView.render();
-//  window.App.views.jCardsView.updatePageUIForCard();
+//  window.App.views.jCardsView.updateHTMLPageUI();
 }

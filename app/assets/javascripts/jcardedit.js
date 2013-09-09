@@ -423,7 +423,7 @@ App.JCardView = Backbone.View.extend(
   {
     var newElement = this.$el.clone();
         
-    newElement.find('.jcard-bg-image, .jcard-text').removeClass('ui-resizable ui-draggable ui-draggable-disabled ui-state-disabled')
+    newElement.find('.jcard-bg-image, .jcard-text').removeClass('ui-resizable ui-draggable ui-draggable-disabled ui-state-disabled jselected')
               .removeAttr("aria-disabled");
 
     newElement.find('.ui-resizable-handle').remove();

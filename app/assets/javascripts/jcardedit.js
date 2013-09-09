@@ -198,7 +198,7 @@ App.JCardView = Backbone.View.extend(
   addText:function(e)
   {
     if(!this.$el.hasClass('active'))return;
-    var target = this.$(".jcard-layers");
+    var target = this.$(".jcard");
 
     this.saveForUndo();
     target.append('<div class="jcard-text"/>');
@@ -361,6 +361,7 @@ App.JCardView = Backbone.View.extend(
     this.$('.jcard-bg-image').attr('src','/assets/images/'+e.model.attributes.url);
     this.$('.jcard-bg-image').attr('alt',e.model.attributes.url);
     this.$('.jcard-bg-image').attr('data-id',e.model.attributes.id);
+    this.enableDragBg();
   },
 
   performUndo: function()
@@ -407,7 +408,7 @@ App.JCardView = Backbone.View.extend(
   {
     if(this.undoStack.length==0)return;
     
-    var newElement= this.$el.clone();
+    var newElement = this.$el.clone();
        
     ///////////////////////////////////
     // clean all drag and resize stuff
@@ -435,7 +436,7 @@ App.JCardView = Backbone.View.extend(
     return this;
   },
 
-  //this is for undo!
+  //this is for undo 
   updatePageUIForCard: function()
   {
     var event=jQuery.Event("setBgColor");

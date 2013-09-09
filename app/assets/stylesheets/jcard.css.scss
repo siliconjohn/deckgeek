@@ -36,7 +36,7 @@
   -webkit-box-sizing: border-box;
   pointer-events: none;
 }
-
+/*
 .jcard-layers
 {
   left:0px;
@@ -47,17 +47,19 @@
   margin: 0px;
   position: absolute;
   overflow:hidden;
-  ppointer-events: none;
+  pointer-events: none;
 }
-
+*/
 .jcard-text 
 {
   float: left;
-  background-color:rgba(255, 128, 128, 0.5);
-  width:90%;
+  background-color:rgba(164, 164, 164, 0.7);
+  width:85%;
   height:100px;
-  left:20px;
-  top:40px;
-  border-color: rgba(48, 48, 48, 0.5);;
+  left:16px;
+  top:15px;
+   position: absolute;
+  border-color: rgba(48, 48, 48, 0.5);
+  border-width: 3px; border-radius: 10px 10px 10px 10px;
   border-style: solid;
 }

@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(:version => 20130806152411) do
     t.boolean  "description_visible",        :default => true
     t.string   "description_bg_color",       :default => "rgba(9, 10, 12, 0.41)"
     t.integer  "description_border_radius",  :default => 0
-    t.string   "html",                       :default => "<div class=\"jcard\"><img class=\"jcard-bg-image\"/><div class=\"jcard-border\"/><div class=\"jcard-layers\"/></div>"
-    t.datetime "created_at",                                                                                                                                                     :null => false
-    t.datetime "updated_at",                                                                                                                                                     :null => false
+    t.string   "html",                       :default => "<div class=\"jcard\"><img class=\"jcard-bg-image\"/><div class=\"jcard-border\"/></div>"
+    t.datetime "created_at",                                                                                                                        :null => false
+    t.datetime "updated_at",                                                                                                                        :null => false
   end
 
   add_index "cards", ["deck_id"], :name => "index_cards_on_deck_id"

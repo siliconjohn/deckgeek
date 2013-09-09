@@ -486,9 +486,9 @@ App.JCardsView = Backbone.View.extend(
   selectedIndex: null,
   events:
   {
-   "click #prev-btn": 'prevBtnClick',
-   "click #next-btn": 'nextBtnClick',
-   "slid .carousel": 'slid'
+    "click #prev-btn": 'prevBtnClick',
+    "click #next-btn": 'nextBtnClick',
+    "slid .carousel": 'slid'
   },
 
   initialize: function()
@@ -556,18 +556,19 @@ App.JCardsView = Backbone.View.extend(
 
   updateHTMLPageUI: function()
   {
-    var event=jQuery.Event("setBgColor");
-    event.color=this.selectedCardView.css('background-color');
-    $('body').trigger(event);
+    // TODO: finish this shit
+    // var event=jQuery.Event("setBgColor");
+    // event.color=this.selectedCardView.css('background-color');
+    // $('body').trigger(event);
 
-    event=jQuery.Event("setBdrColor");
-    event.color=this.selectedCardView.find(".jcard-border").css('border-top-color');
-    $('body').trigger(event);
+    // event=jQuery.Event("setBdrColor");
+    // event.color=this.selectedCardView.find(".jcard-border").css('border-top-color');
+    // $('body').trigger(event);
   },
 
   addJCardView: function(model)
   {
-    var modelView = new App.JCardView({model:model});
+    var modelView = new App.JCardView({ model:model });
     modelView.$el.appendTo(this.$('.carousel-inner'));
     modelView.render();
 
@@ -606,6 +607,5 @@ function addJCards(container, id, cards)
                                                     collection: window.App.data.jCardModels,
                                                     selectID:id});
   window.App.views.jCardsView.$el.appendTo(container);
-  window.App.views.jCardsView.render();
-//  window.App.views.jCardsView.updateHTMLPageUI();
+  window.App.views.jCardsView.render(); 
 }

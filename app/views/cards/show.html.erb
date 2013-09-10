@@ -46,8 +46,15 @@
   </div>
 
   <div class="btn-group">
-    <a id="add-text-btn" title="Add a text area" class="btn btn-inverse  btn-small">Add Text Area</a>
-    <a id="add-img-btn" title="Add an image" class="btn btn-inverse  btn-small">Add Image</a>
+    <a id="add-text-btn" title="Add a text area" class="btn btn-inverse  btn-small"><i class="icon-white icon-pencil"></i> Add Text</a>
+  </div>
+  
+  <div class="btn-group">
+    <a id="add-img-btn" title="Add an image" class="btn btn-inverse  btn-small"><i class="icon-white icon-picture"></i> Add Image</a>
+  </div>
+
+  <div class="btn-group">
+    <a id="delete-btn" title="Delete" class="btn btn-inverse  btn-small"><i class="icon-white icon-trash"></i> Delete</a>
   </div>
 
 </div>
@@ -150,17 +157,24 @@
           <script>addColorPickerWithAlpha( "#text-color-picker", "0x808080")</script>
         </a>
       </div>
-
-      <div class="btn-group">
-        <a id="delete-txt-btn" title="Delete text area" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
-      </div>
-
+ 
       <div class="btn-group">
         <a id="txt-align-left-btn" title="Make font wider" class="btn btn-inverse"><i class="icon-white icon-align-left"></i></a>
         <a id="txt-align-center-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-align-center"></i></a>
         <a id="txt-align-right-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-align-right"></i></a>
       </div>
   </div>
+
+  <!-- image properties -->
+  <div class="control-row">
+
+    <div class="btn-group">
+      <a id="image-smaller-btn" title="Make image bigger" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+      <a id="image-bigger-btn" title="Make image smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+    </div>
+ 
+  </div>    
+
 </div>
 </div>
 
@@ -270,10 +284,7 @@
       event.text = $( this ).val();
       $('body').trigger(event);  ;
     });
-
-    $('#delete-txt-btn').click( function(e){
-       $('body').trigger( jQuery.Event("deleteTextArea"));
-    });
+ 
 
     $( "#txt-font" ).on("change", function() {
       var event=jQuery.Event("setTextAreaFont");
@@ -310,7 +321,20 @@
     $('#add-img-btn').click( function(e){
        $('body').trigger( jQuery.Event("addImage"));
     });
-      
+        
+    $('#image-smaller-btn').click( function(e){
+       $('body').trigger( jQuery.Event("setImageSmaller"));
+    });
+
+    $('#image-bigger-btn').click( function(e){
+       $('body').trigger( jQuery.Event("setImageBigger"));
+    });
+  
+ 
+    $('#delete-btn').click( function(e){
+       $('body').trigger( jQuery.Event("deleteSelected"));
+    }); 
+
 
 
     // SETTERS

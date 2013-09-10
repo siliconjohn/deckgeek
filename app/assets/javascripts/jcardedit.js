@@ -52,8 +52,9 @@ App.JCardView = Backbone.View.extend(
       'selectTextArea', 'setTextAreaBgColor', 'setTextAreaBdrRadiusSmaller', 'setTextAreaBdrRadiusBigger',
       'setTextAreaBdrSmaller', 'setTextAreaFont', 'setTextAreaFontSizeBigger', 'setTextAreaFontSizeSmaller',
       'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save', 'setTextAreaText', 'deleteTextArea', 'addImage',
-      'selectImage', 'deSelectAll', 'setImageSource',
-      'setTextAreaFontColor', 'setTextAreaAlignRight' , 'setTextAreaAlignLeft', 'setTextAreaAlignCenter' );
+      'selectImage', 'deSelectAll', 'setImageSource', 'deleteImage', 'setImageSmaller',  'setImageBigger', 
+      'setTextAreaFontColor', 'setTextAreaAlignRight' , 'setTextAreaAlignLeft', 'setTextAreaAlignCenter',
+      'deleteSelected' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -89,6 +90,10 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "setTextAreaAlignRight", this.setTextAreaAlignRight);
     $("body").delegate( "", "addImage", this.addImage);
     $("body").delegate( "", "selectImage", this.selectImage);
+    $("body").delegate( "", "deleteImage", this.deleteImage);
+    $("body").delegate( "", "setImageSmaller", this.setImageSmaller);
+    $("body").delegate( "", "setImageBigger", this.setImageBigger);
+    $("body").delegate( "", "deleteSelected", this.deleteSelected);
   },
 
   /////////////////////////////
@@ -123,6 +128,45 @@ App.JCardView = Backbone.View.extend(
     
     this.deSelectAll();
     $(e.currentTarget).addClass('jselected');
+  }, 
+
+  deleteImage:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-image.jselected');
+   
+    if (target.length == 0) return;
+    
+    this.saveForUndo();
+    
+    target.remove();
+  },
+
+  setImageSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var img=this.$(".jcard-image");
+
+    if( img.attr("src") == undefined ) return;
+    
+    this.saveForUndo();
+
+    img.animate({ width: '-=4px' }, { duration:250 });
+  },
+
+  setImageBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+   
+    var img=this.$(".jcard-image");
+    
+    if( img.attr("src") == undefined ) return;
+    
+    this.saveForUndo();
+   
+    img.animate({ width: '+=4px' }, { duration:250 });
   },
 
   /////////////////////////////
@@ -671,6 +715,19 @@ App.JCardView = Backbone.View.extend(
   // Misc 
   /////////////////////////////
  
+  deleteSelected: function()
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jselected');
+   
+    if (target.length == 0) return;
+    
+    this.saveForUndo();
+    
+    target.remove();
+  },
+
   deSelectAll: function()
   {
     this.$('.jcard-text,.jcard-image').removeClass('jselected');

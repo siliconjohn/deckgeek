@@ -47,7 +47,9 @@
 
   <div class="btn-group">
     <a id="add-text-btn" title="Add a text area" class="btn btn-inverse  btn-small">Add Text Area</a>
+    <a id="add-img-btn" title="Add an image" class="btn btn-inverse  btn-small">Add Image</a>
   </div>
+
 </div>
 
 <!-- card -->
@@ -305,7 +307,10 @@
        $('body').trigger( jQuery.Event("setTextAreaAlignRight"));
     });
 
-
+    $('#add-img-btn').click( function(e){
+       $('body').trigger( jQuery.Event("addImage"));
+    });
+      
 
 
     // SETTERS

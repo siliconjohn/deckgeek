@@ -36,7 +36,8 @@ App.JCardView = Backbone.View.extend(
   dragGridOn: false,
   events:
   {
-    'click .jcard-text': 'selectTextArea'
+    'click .jcard-text': 'selectTextArea',
+    'click .jcard-image': 'selectImage'
   },
 
   initialize: function()
@@ -50,7 +51,8 @@ App.JCardView = Backbone.View.extend(
       'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'setBdrColor', 'addTextArea',
       'selectTextArea', 'setTextAreaBgColor', 'setTextAreaBdrRadiusSmaller', 'setTextAreaBdrRadiusBigger',
       'setTextAreaBdrSmaller', 'setTextAreaFont', 'setTextAreaFontSizeBigger', 'setTextAreaFontSizeSmaller',
-      'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save', 'setTextAreaText', 'deleteTextArea',
+      'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save', 'setTextAreaText', 'deleteTextArea', 'addImage',
+      'selectImage', 'deSelectAll', 'setImageSource',
       'setTextAreaFontColor', 'setTextAreaAlignRight' , 'setTextAreaAlignLeft', 'setTextAreaAlignCenter' );
 
     this.listenTo(this.model, 'change', this.render);
@@ -85,6 +87,42 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "setTextAreaAlignLeft", this.setTextAreaAlignLeft);
     $("body").delegate( "", "setTextAreaAlignCenter", this.setTextAreaAlignCenter);
     $("body").delegate( "", "setTextAreaAlignRight", this.setTextAreaAlignRight);
+    $("body").delegate( "", "addImage", this.addImage);
+    $("body").delegate( "", "selectImage", this.selectImage);
+  },
+
+  /////////////////////////////
+  // Images
+  /////////////////////////////
+
+  addImage:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+    
+    this.saveForUndo();
+
+    this.$(".jcard").append('<img src="/assets/jcard-image-placeholder.png" class="jcard-image"/>');
+    this.enableDragAndResize();
+  },
+  
+  setImageSource:function(e)
+  { 
+    if(!this.$el.hasClass('active'))return;
+
+    this.saveForUndo();
+
+    this.$('.jcard-image,.jselected').attr('src','/assets/images/'+e.model.attributes.url) 
+                                     .attr('alt',e.model.attributes.url) 
+                                     .attr('data-id',e.model.attributes.id) 
+                                     .draggable();
+  },
+
+  selectImage: function(e)
+  {
+   if(!this.$el.hasClass('active'))return;
+    
+    this.deSelectAll();
+    $(e.currentTarget).addClass('jselected');
   },
 
   /////////////////////////////
@@ -118,7 +156,7 @@ App.JCardView = Backbone.View.extend(
   {
     if(!this.$el.hasClass('active'))return;
     
-    this.$('.jcard-text').removeClass('jselected');
+    this.deSelectAll();
     $(e.currentTarget).addClass('jselected');
   },
   
@@ -423,8 +461,14 @@ App.JCardView = Backbone.View.extend(
 
   selectedImage:function(e)
   { 
-    // TODO: this should set the image based on what is selected, bg or icon or text
-    this.setBgImage(e);
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-image.jselected');
+   
+    if (target.length == 0)
+       this.setBgImage(e);
+    else
+      this.setImageSource(e);
   },
 
   setBgImage:function(e)
@@ -597,7 +641,7 @@ App.JCardView = Backbone.View.extend(
 
   enableDragAndResize: function()
   {
-    this.$(".jcard-bg-image")
+    this.$(".jcard-bg-image,.jcard-image")
         .draggable()
         .on( "dragstart", function( event, ui )
         {
@@ -621,8 +665,16 @@ App.JCardView = Backbone.View.extend(
     // event2=jQuery.Event("setBdrColor");
     // event2.color=this.$(".jcard-border").css('border-color');
     // $('body').trigger(event2);
-  }
+  },
 
+  /////////////////////////////
+  // Misc 
+  /////////////////////////////
+ 
+  deSelectAll: function()
+  {
+    this.$('.jcard-text,.jcard-image').removeClass('jselected');
+  }
 });
 
 /******************************************

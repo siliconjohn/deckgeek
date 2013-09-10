@@ -37,6 +37,7 @@
   -webkit-box-sizing: border-box;
   pointer-events: none;
 }
+
 /*
 .jcard-layers
 {
@@ -51,6 +52,7 @@
   pointer-events: none;
 }
 */
+
 .jcard-text 
 {
   float: left;
@@ -59,8 +61,12 @@
   height:100px;
   left:16px;
   top:15px;
-   position: absolute;
+  position: absolute;
+  overflow: hidden;
   border-color: rgba(48, 48, 48, 0.5);
   border-width: 3px; border-radius: 10px 10px 10px 10px;
   border-style: solid;
+  font-size: 18px;
+  text-align: center;
+  font-family: arial;
 }

@@ -114,7 +114,7 @@
       <div class="btn-group">
         <a id="text-bdr-radius-smaller-btn" title="Make border radius wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
         <a id="text-bdr-radius-bigger-btn" title="Make border radius smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-      </div>
+      </div>  
     </div>
   </div>
 
@@ -122,7 +122,44 @@
     <div id="jcards-view"></div>
   </div>
 
-  <div class="span4"></div>
+  <div class="span4">
+
+    <!-- text properties -->
+    <div class="control-row">
+      <textarea rows="3" id="txt-text" type="Enter text here" placeholder="Text"></textarea>
+    
+      <select id="txt-font">
+        <option>Serif</option>
+        <option>Arial</option>
+        <option>Sans-Serif</option>                                  
+        <option>Tahoma</option>
+        <option>Verdana</option>
+        <option>Lucida Sans Unicode</option>                               
+      </select> 
+
+      <div class="btn-group">
+        <a id="txt-size-smaller-btn" title="Make font wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="txt-size-bigger-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+      </div> 
+
+      <div class="btn-group">
+        <a id="text-color-btn" title="Text border color" class="btn btn-inverse color-picker-btn">
+          <input type='text' id="text-color-picker"/>
+          <script>addColorPickerWithAlpha( "#text-color-picker", "0x808080")</script>
+        </a>
+      </div>
+
+      <div class="btn-group">
+        <a id="delete-txt-btn" title="Delete text area" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
+      </div>
+
+      <div class="btn-group">
+        <a id="txt-align-left-btn" title="Make font wider" class="btn btn-inverse"><i class="icon-white icon-align-left"></i></a>
+        <a id="txt-align-center-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-align-center"></i></a>
+        <a id="txt-align-right-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-align-right"></i></a>
+      </div>
+  </div>
+</div>
 </div>
 
 <!-- image toolbar -->
@@ -226,7 +263,47 @@
       $('body').trigger(event);
     });
 
+    $( "#txt-text" ).on("keyup", function() {
+      var event=jQuery.Event("setTextAreaText");
+      event.text = $( this ).val();
+      $('body').trigger(event);  ;
+    });
 
+    $('#delete-txt-btn').click( function(e){
+       $('body').trigger( jQuery.Event("deleteTextArea"));
+    });
+
+    $( "#txt-font" ).on("change", function() {
+      var event=jQuery.Event("setTextAreaFont");
+      event.fontFamily = $( this ).val();
+      $('body').trigger(event);
+    });
+
+    $('#txt-size-bigger-btn').click( function(e){
+       $('body').trigger( jQuery.Event("setTextAreaFontSizeBigger"));
+    });
+
+    $('#txt-size-smaller-btn').click( function(e){
+       $('body').trigger( jQuery.Event("setTextAreaFontSizeSmaller"));
+    });
+      
+    $("#text-color-picker").bind('change', function(e){
+      var event=jQuery.Event("setTextAreaFontColor");
+      event.color=$("#text-color-picker").spectrum("get").toRgbString();
+      $('body').trigger(event);
+    });
+
+    $('#txt-align-left-btn').click( function(e){
+       $('body').trigger( jQuery.Event("setTextAreaAlignLeft"));
+    });
+
+    $('#txt-align-center-btn').click( function(e){
+       $('body').trigger( jQuery.Event("setTextAreaAlignCenter"));
+    });
+
+    $('#txt-align-right-btn').click( function(e){
+       $('body').trigger( jQuery.Event("setTextAreaAlignRight"));
+    });
 
 
 

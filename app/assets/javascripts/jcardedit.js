@@ -48,8 +48,10 @@ App.JCardView = Backbone.View.extend(
       'saveForRedo', 'revertToSaved', 'enableDragAndResize', 'setBgImage', 'getCleanedHTML',
       'enableDragGrid', 'disableDragGrid', 'removeBgImage', 'setBgColor', 'updateHTMLPageUI',
       'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'setBdrColor', 'addTextArea',
-      'selectTextArea', 'setTextAreaBgColor', 'setTextAreaBdrRadiusSmaller', 'setTextAreaBdrRadiusBigger',  'setTextAreaBdrSmaller',
-      'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save' );
+      'selectTextArea', 'setTextAreaBgColor', 'setTextAreaBdrRadiusSmaller', 'setTextAreaBdrRadiusBigger',
+      'setTextAreaBdrSmaller', 'setTextAreaFont', 'setTextAreaFontSizeBigger', 'setTextAreaFontSizeSmaller',
+      'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save', 'setTextAreaText', 'deleteTextArea',
+      'setTextAreaFontColor', 'setTextAreaAlignRight' , 'setTextAreaAlignLeft', 'setTextAreaAlignCenter' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -74,6 +76,15 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "setTextAreaBdrBigger", this.setTextAreaBdrBigger);
     $("body").delegate( "", "setTextAreaBdrSmaller", this.setTextAreaBdrSmaller);
     $("body").delegate( "", "setTextAreaBdrColor", this.setTextAreaBdrColor);
+    $("body").delegate( "", "setTextAreaText", this.setTextAreaText);
+    $("body").delegate( "", "deleteTextArea", this.deleteTextArea);
+    $("body").delegate( "", "setTextAreaFont", this.setTextAreaFont);
+    $("body").delegate( "", "setTextAreaFontSizeBigger", this.setTextAreaFontSizeBigger);
+    $("body").delegate( "", "setTextAreaFontSizeSmaller", this.setTextAreaFontSizeSmaller);
+    $("body").delegate( "", "setTextAreaFontColor", this.setTextAreaFontColor);
+    $("body").delegate( "", "setTextAreaAlignLeft", this.setTextAreaAlignLeft);
+    $("body").delegate( "", "setTextAreaAlignCenter", this.setTextAreaAlignCenter);
+    $("body").delegate( "", "setTextAreaAlignRight", this.setTextAreaAlignRight);
   },
 
   /////////////////////////////
@@ -86,8 +97,21 @@ App.JCardView = Backbone.View.extend(
     
     this.saveForUndo();
 
-    this.$(".jcard").append('<div class="jcard-text"/>');
+    this.$(".jcard").append('<div class="jcard-text"><span/></div>');
     this.enableDragAndResize();
+  },
+
+  deleteTextArea:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+    
+    this.saveForUndo();
+    
+    target.remove();
   },
 
   selectTextArea:function(e)
@@ -96,6 +120,134 @@ App.JCardView = Backbone.View.extend(
     
     this.$('.jcard-text').removeClass('jselected');
     $(e.currentTarget).addClass('jselected');
+  },
+  
+  setTextAreaText:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected span');
+   
+    if (target.length == 0) return;
+ 
+    if( target.text() != e.text )
+    {
+      this.saveForUndo();
+      target.text(e.text);
+    }
+  },
+
+  setTextAreaAlignLeft:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+  
+    if( target.css('text-align') != 'left')
+    {
+      this.saveForUndo();
+      target.css('text-align', 'left');
+    }
+  },
+  
+  setTextAreaAlignCenter:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+
+    if( target.css('text-align') != 'center')
+    {
+      this.saveForUndo();
+      target.css('text-align', 'center');
+    }
+  },
+  
+  setTextAreaAlignRight:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+
+    if( target.css('text-align') != 'right')
+    {
+      this.saveForUndo();
+      target.css('text-align', 'right');
+    }
+  },
+
+  setTextAreaFontColor:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+ 
+    if( e.color != target.css('color'))
+    {
+      this.saveForUndo();
+      target.css('color', e.color);
+    }
+  },
+
+  setTextAreaFont:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+ 
+    if( target.css('font-family') != e.fontFamily )
+    {
+      this.saveForUndo();
+      target.css('font-family', e.fontFamily);
+    }
+  },
+
+  setTextAreaFontSizeBigger:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+ 
+    var size = Math.round(parseFloat(target.css( 'font-size' ))); 
+
+    var newSize = size + 1;
+
+    if( newSize != size && newSize <30 )
+    {
+      this.saveForUndo(); 
+      target.css( 'font-size', newSize + 'px' );
+    }
+  },
+
+  setTextAreaFontSizeSmaller:function(e)
+  {
+    if(!this.$el.hasClass('active'))return;
+
+    var target=this.$('.jcard-text.jselected');
+   
+    if (target.length == 0) return;
+ 
+    var size = Math.round(parseFloat(target.css( 'font-size' ))); 
+
+    var newSize = size - 1;
+
+    if( newSize != size && newSize > 8 )
+    {
+      this.saveForUndo(); 
+      target.css( 'font-size', newSize + 'px' );
+    }
   },
   
   setTextAreaBgColor:function(e)

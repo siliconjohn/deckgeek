@@ -32,31 +32,40 @@
 <!-- top toolbar -->
 <div id="top-toolbar">
 
-  <div class="btn-group">
-    <a id="save-btn" title="Save cards" class="btn btn-green">Save</a>
-  </div>
-
-  <div class="btn-group">
-    <a id="undo-btn" class="btn btn-small btn-inverse" title="Undo"><i class="icon-white icon-chevron-left"></i> Undo</a>
-    <a id="redo-btn" class="btn btn-small btn-inverse" title="Redo">Redo <i class="icon-white icon-chevron-right"></i></a>
-  </div>
+  <div class="row">
   
-  <div class="btn-group">
-    <a id="snap-to-grid-btn" data-toggle="buttons-radio" title="Snap to grid" class="btn btn-small btn-inverse"><i class="icon-white icon-th"></i> Grid</a>
+  <div class="span2">
+    <div class="btn-group">
+      <a id="save-btn" title="Save cards" class="btn btn-green">Save</a>
+    </div>
   </div>
 
-  <div class="btn-group">
-    <a id="add-text-btn" title="Add a text area" class="btn btn-inverse  btn-small"><i class="icon-white icon-pencil"></i> Add Text</a>
+  <div class="span8">
+    <div class="btn-group">
+      <a id="snap-to-grid-btn" data-toggle="buttons-radio" title="Snap to grid" class="btn btn-small btn-inverse"><i class="icon-white icon-th"></i> Grid</a>
+    </div>
+    <div class="btn-group">
+      <a id="add-text-btn" title="Add a text area" class="btn btn-inverse  btn-small"><i class="icon-white icon-pencil"></i> Add Text</a>
+    </div>
+    <div class="btn-group">
+      <a id="add-img-btn" title="Add an image" class="btn btn-inverse  btn-small"><i class="icon-white icon-picture"></i> Add Image</a>
+    </div>
+    <div class="btn-group">
+      <a id="delete-btn" title="Delete" class="btn btn-inverse  btn-small"><i class="icon-white icon-trash"></i> Delete</a>
+    </div>
   </div>
+
+  <div class="span2">
+    <div class="btn-group">
+      <a id="undo-btn" class="btn btn-small btn-inverse" title="Undo"><i class="icon-white icon-chevron-left"></i> Undo</a>
+      <a id="redo-btn" class="btn btn-small btn-inverse" title="Redo">Redo <i class="icon-white icon-chevron-right"></i></a>
+    </div>
+  </div>
+</div>  
+
   
-  <div class="btn-group">
-    <a id="add-img-btn" title="Add an image" class="btn btn-inverse  btn-small"><i class="icon-white icon-picture"></i> Add Image</a>
-  </div>
-
-  <div class="btn-group">
-    <a id="delete-btn" title="Delete" class="btn btn-inverse  btn-small"><i class="icon-white icon-trash"></i> Delete</a>
-  </div>
-
+ 
+  
 </div>
 
 <!-- card -->
@@ -67,64 +76,61 @@
 
     <!-- bg properties -->
     <div class="control-row">
+      <div class="title">Background</div>
 
+      <div class="btn-group">
+        <a id="bg-image-choose-btn" title="Choose an image" class="btn btn-inverse"><i class="icon-white icon-picture"></i></a>
+      </div>
+       
+      <div class="small-label">Size</div>
       <div class="btn-group">
         <a id="bg-smaller-btn" title="Make background image smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
         <a id="bg-bigger-btn" title="Make background image larger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
       </div>
 
       <div class="btn-group">
-        <a id="bg-color-btn" title="Background color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
+        <a id="bg-color-btn" title="Border color" class="btn btn-inverse color-picker-btn"><input type='text' id="bg-color-picker"/>
           <script>addColorPicker( "#bg-color-picker", "0x808080")</script>
         </a>
       </div>
-
-      <div class="btn-group">
+      <div class="btn-group pull-right">
         <a id="delete-bg-btn" title="Delete background image" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
       </div>
     </div>
-
+    
     <!-- border properties -->
     <div class="control-row">
-      
-      <div class="btn-group">
-        <a id="bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-        <a id="bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-      </div>
-      
+      <div class="title">Border</div>
       <div class="btn-group">
         <a id="bdr-color-btn" title="Background color" class="btn btn-inverse color-picker-btn">
           <input type='text' id="bdr-color-picker"/>
           <script>addColorPickerWithAlpha( "#bdr-color-picker", "0x808080")</script>
         </a>
       </div>
-    </div>
 
-    <!-- text properties -->
-    <div class="control-row">
-
+      <div class="small-label">Size</div>
+      
       <div class="btn-group">
-        <a id="text-bg-color-btn" title="Text background color" class="btn btn-inverse color-picker-btn">
-          <input type='text' id="text-bg-color-picker"/>
-          <script>addColorPickerWithAlpha( "#text-bg-color-picker", "0x808080")</script>
-        </a>
+        <a id="bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
       </div>
       
-      <a id="text-bdr-color-btn" title="Text border color" class="btn btn-inverse color-picker-btn">
-        <input type='text' id="text-bdr-color-picker"/>
-        <script>addColorPickerWithAlpha( "#text-bdr-color-picker", "0x808080")</script>
-      </a>
-
-      <div class="btn-group">
-        <a id="txt-bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-        <a id="txt-bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-      </div>
-
-      <div class="btn-group">
-        <a id="text-bdr-radius-smaller-btn" title="Make border radius wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-        <a id="text-bdr-radius-bigger-btn" title="Make border radius smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-      </div>  
+      
     </div>
+    
+    <!-- image properties -->
+    <div class="control-row">
+      <div class="title">Image</div>
+      <div class="btn-group">
+        <a id="image-choose-btn" title="Choose an image" class="btn btn-inverse"><i class="icon-white icon-picture"></i></a>
+      </div>
+      <div class="small-label">Size</div>
+      
+      <div class="btn-group">
+        <a id="image-smaller-btn" title="Make image bigger" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="image-bigger-btn" title="Make image smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+      </div>
+    </div>    
   </div>
 
   <div class="span4">
@@ -133,49 +139,81 @@
 
   <div class="span4">
 
-    <!-- text properties -->
+    <!-- text box properties -->
     <div class="control-row">
+      <div class="title">Text</div>
       <textarea rows="3" id="txt-text" type="Enter text here" placeholder="Text"></textarea>
     
-      <select id="txt-font">
-        <option>Serif</option>
-        <option>Arial</option>
-        <option>Sans-Serif</option>                                  
-        <option>Tahoma</option>
-        <option>Verdana</option>
-        <option>Lucida Sans Unicode</option>                               
-      </select> 
-
       <div class="btn-group">
-        <a id="txt-size-smaller-btn" title="Make font wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-        <a id="txt-size-bigger-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-      </div> 
-
-      <div class="btn-group">
-        <a id="text-color-btn" title="Text border color" class="btn btn-inverse color-picker-btn">
+        <a class="btn   btn-inverse" data-toggle="dropdown" href="#"><i class="icon-white icon-font"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="">Serif</a></li>
+          <li><a href="">Arial</a></li>
+          <li><a href="">Sans-Serif</a></li>                                  
+          <li><a href="">Tahoma</a></li>
+          <li><a href="">Verdana</a></li>
+          <li><a href="">Lucida Sans Unicode</a></li>   
+        </ul>
+          <a id="text-color-btn" title="Text border color" class="btn btn-inverse color-picker-btn">
           <input type='text' id="text-color-picker"/>
           <script>addColorPickerWithAlpha( "#text-color-picker", "0x808080")</script>
         </a>
-      </div>
+      </div> 
  
       <div class="btn-group">
-        <a id="txt-align-left-btn" title="Make font wider" class="btn btn-inverse"><i class="icon-white icon-align-left"></i></a>
-        <a id="txt-align-center-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-align-center"></i></a>
-        <a id="txt-align-right-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-align-right"></i></a>
+        <a id="txt-size-smaller-btn" title="Make font smaller" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="txt-size-bigger-btn" title="Make font bigger" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+      </div> 
+  
+      <div class="btn-group pull-right">
+        <a id="txt-align-left-btn" title="Align left" class="btn btn-inverse"><i class="icon-white icon-align-left"></i></a>
+        <a id="txt-align-center-btn" title="Align center" class="btn btn-inverse"><i class="icon-white icon-align-center"></i></a>
+        <a id="txt-align-right-btn" title="Align right" class="btn btn-inverse"><i class="icon-white icon-align-right"></i></a>
       </div>
-  </div>
-
-  <!-- image properties -->
-  <div class="control-row">
-
-    <div class="btn-group">
-      <a id="image-smaller-btn" title="Make image bigger" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
-      <a id="image-bigger-btn" title="Make image smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
     </div>
- 
-  </div>    
 
-</div>
+
+    <div class="control-row">
+      <div class="title">Background</div>
+      <div class="btn-group">
+        <a id="text-bg-color-btn" title="Text background color" class="btn btn-inverse color-picker-btn">
+          <input type='text' id="text-bg-color-picker"/>
+          <script>addColorPickerWithAlpha( "#text-bg-color-picker", "0x808080")</script>
+        </a>
+      </div>
+       <div class="btn-group pull-right">
+        <a id="delete-text-bg-btn" title="Delete background" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
+      </div>
+    </div>
+
+
+    <div class="control-row">
+    
+      <div class="title">Border</div>
+     
+      <div class="btn-group">
+      <a id="text-bdr-color-btn" title="Text border color" class="btn btn-inverse color-picker-btn">
+        <input type='text' id="text-bdr-color-picker"/>
+        <script>addColorPickerWithAlpha( "#text-bdr-color-picker", "0x808080")</script>
+      </a>
+      </div>
+      
+      <div class="small-label">Size</div>
+      
+      <div class="btn-group">
+        <a id="txt-bdr-smaller-btn" title="Make border wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="txt-bdr-bigger-btn" title="Make border smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+      </div>
+      
+      <div class="small-label">Radius</div>
+      
+      <div class="btn-group">
+        <a id="text-bdr-radius-smaller-btn" title="Make border radius wider" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
+        <a id="text-bdr-radius-bigger-btn" title="Make border radius smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+      </div>
+
+    </div>  
+  </div>
 </div>
 
 <!-- image toolbar -->

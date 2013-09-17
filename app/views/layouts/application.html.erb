@@ -20,8 +20,7 @@
 
 <% if get_current_or_guest_user %>
 <div class="navbar navbar-fixed-top ">
-  <div class="navbar-inner">
-    <ul class="nav">
+      <ul class="nav">
     <% if user_signed_in? %>
       <li><%= gravatar_for(get_current_or_guest_user.email, size:30, class: 'avatar-small', alt: 'avatar') %></li>
       <li><a id="card-genisis" class="brand" href="/">CARD GENESIS</a></li>
@@ -45,8 +44,7 @@
         <li><%= link_to "Sign In", new_user_session_path %></li>
       </ul>
       <% end %>
-    <% end %>
-  </div>
+    <% end %> 
 </div>
 <% end %>
 

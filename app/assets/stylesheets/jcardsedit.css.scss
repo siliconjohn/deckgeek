@@ -4,14 +4,44 @@
 }
 
 .control-row {
-  margin-top: 10px;
+  margin-bottom: 10px;
+  width:100%;
+  padding-bottom: 5px;
 
-  /*.control-row-title {
+  .title {
+    border-bottom: 1px solid #7a7a7a;
+
     color:#fff;
-    display: inline;
-    margin-right: 74px;
+    width:100%;
+    display: block;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
   }
-*/
+
+  .small-label {
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 11.844px;
+    font-weight: bold;
+    line-height: 14px;
+    color: #8a8a8a;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: rgba(0,0,0,0);
+  }
+
+  textarea {
+    width:286px;
+    resize: none;
+  }
+}
+
+
+.center
+{
+margin-left:auto;
+margin-right:auto;
 }
 
 #prev-btn, #next-btn {
@@ -46,6 +76,7 @@
 .color-picker-btn {
   padding-left:6px;
   padding-right:6px;
+  width:26px;
 }
 
 .sp-replacer {

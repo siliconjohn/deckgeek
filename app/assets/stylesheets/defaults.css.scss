@@ -3,33 +3,26 @@
  ***************************/
 
 body {
-  padding-top: 66px; /* to make the container go all the way to the bottom of the topbar for bootstrap*/
-  background-color: #F5F5F5;
+  padding-top: 66px; /* to make the container go all the way to the bottom of the top bar for bootstrap */
+  background-color: #414141;
   font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 
-code,
-pre {
+code, pre {
   font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 
-input,
-button,
-select,
-textarea {
+input, button, select, textarea {
   font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-
 }
 
 .navbar-search .search-query {
   font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 
-.navbar-inner {
-  background-color: rgba(255, 255, 255, 0.95);
+.navbar-inner { 
   background-image: none;
   min-height: 50px;
-  border-bottom: 0px;
 }
 
 .nav {
@@ -42,70 +35,90 @@ textarea {
 
 .navbar .brand {
   font-size: 20px;
-  color: rgb(171,190,114);
+  color: #414141;
 }
 
-.navbar-fixed-top .navbar-inner,
-.navbar-static-top .navbar-inner {
+.navbar{
+
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #aaa;
+  background-color: #dedede;
+  min-height: 40px;
+}
+
+.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 3px rgba(0,0,0,0.8);
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8)
 }
 
 .hero-unit {
   margin-bottom: 15px;
-  background-color: #fff;
+  background-color: #dedede;
   border-radius: 8px;
-  box-shadow: 0px 1px 3px rgba(0,0,0,0.3),
-              0px 0px 1px rgba(0,0,0, 0.9);
-}
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #aaa;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.77);
+   
+ }
 
-.hero-unit h1
+.hero-unit p
 {
-  color: #2A3975;
+  color: #060624;
 }
 
 .lead
 {
-  color: #2A3975;
+  color: #414141;
 }
 
 #card-genisis {
-  color: #334400;
+  color: #1A1A1A;
   font-size: 20px;
   padding-right: 10px;
   padding-left: 16px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.77);
 }
 
 #user-email {
   padding-left: 0px;
-  color: #666;
+  color: #1A1A1A;
   font-size: 12px;
   padding-top: 12px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.57);
 }
 
 #sign-out {
-  color: #334400;
+  color: #1A1A1A;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.77);
 }
 
 .btn-toolbar {
     margin-left:16px;
 }
 
+/***************************
+ * buttons
+ ***************************/
+
+$blue-btn-dark: #3e78a8;
+$blue-btn-light:#2A3975 ;
+
 .btn-blue {
   color: #FFFFFF;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #3E78A8;
-  *background-color: #3E78A8;
-  background-image: -moz-linear-gradient(top, #36A5FF, #3E78A8);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#36A5FF), to(#3E78A8));
-  background-image: -webkit-linear-gradient(top, #36A5FF, #3E78A8);
-  background-image: -o-linear-gradient(top, #36A5FF, #3E78A8);
-  background-image: linear-gradient(to bottom, #36A5FF, #3E78A8);
+  text-shadow: 0 -1px 0 #000;
+  background-color: $blue-btn-light;
+  *background-color: $blue-btn-light;
+  background-image: -moz-linear-gradient(top, $blue-btn-dark, $blue-btn-light);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue-btn-dark), to($blue-btn-light));
+  background-image: -webkit-linear-gradient(top, $blue-btn-dark, $blue-btn-light);
+  background-image: -o-linear-gradient(top, $blue-btn-dark, $blue-btn-light);
+  background-image: linear-gradient(to bottom, $blue-btn-dark, $blue-btn-light);
   background-repeat: repeat-x;
-  border-color: #3E78A8;
+  border-color: $blue-btn-light;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36A5FF', endColorstr='#3E78A8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-btn-dark', endColorstr='$blue-btn-light', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .btn-blue:hover,
@@ -114,24 +127,27 @@ textarea {
 .btn-blue.disabled,
 .btn-blue[disabled] {
   color: #FFFFFF;
-  background-color: #3E78A8;
-  *background-color: #003bb3;
+  background-color: $blue-btn-light;
+  *background-color: $blue-btn-light;
 }
 
- .btn-green {
+$green-btn-dark: #279427;
+$green-btn-light: #005F00;
+
+.btn-green {
   color: #FFFFFF;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #629962;
-  *background-color: #629962;
-  background-image: -moz-linear-gradient(top, #64D464, #629962);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#64D464), to(#629962));
-  background-image: -webkit-linear-gradient(top, #64D464, #629962);
-  background-image: -o-linear-gradient(top, #64D464, #629962);
-  background-image: linear-gradient(to bottom, #64D464, #629962);
+  text-shadow: 0 -1px 0 #000;
+  background-color: $green-btn-light;
+  *background-color: $green-btn-light;
+  background-image: -moz-linear-gradient(top, $green-btn-dark, $green-btn-light);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($green-btn-dark), to($green-btn-light));
+  background-image: -webkit-linear-gradient(top, $green-btn-dark, $green-btn-light);
+  background-image: -o-linear-gradient(top, $green-btn-dark, $green-btn-light);
+  background-image: linear-gradient(to bottom, $green-btn-dark, $green-btn-light);
   background-repeat: repeat-x;
-  border-color: #629962;
+  border-color: $green-btn-light;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#64D464', endColorstr='#629962', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green-btn-dark', endColorstr='$green-btn-light', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .btn-green:hover,
@@ -140,8 +156,37 @@ textarea {
 .btn-green.disabled,
 .btn-green[disabled] {
   color: #FFFFFF;
-  background-color: #629962;
-  *background-color: #003bb3;
+  background-color: $green-btn-light;
+  *background-color: $green-btn-light;
+}
+  
+$red-btn-dark: #C24747;
+$red-btn-light: #272727;
+
+.btn-red {
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 #000;
+  background-color: $red-btn-light;
+  *background-color: $red-btn-light;
+  background-image: -moz-linear-gradient(top, $red-btn-dark, $red-btn-light);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($red-btn-dark), to($red-btn-light));
+  background-image: -webkit-linear-gradient(top, $red-btn-dark, $red-btn-light);
+  background-image: -o-linear-gradient(top, $red-btn-dark, $red-btn-light);
+  background-image: linear-gradient(to bottom, $red-btn-dark, $red-btn-light);
+  background-repeat: repeat-x;
+  border-color: $red-btn-light;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-btn-dark', endColorstr='$red-btn-light', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-red:hover,
+.btn-red:active,
+.btn-red.active,
+.btn-red.disabled,
+.btn-red[disabled] {
+  color: #FFFFFF;
+  background-color: $red-btn-light;
+  *background-color: $red-btn-light;
 }
 
 /***************************
@@ -167,15 +212,15 @@ textarea {
 }
 
 .line {
-  border-top: 1px solid #ddd;
-  //border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid #7a7a7a;
   height:0px;
   margin-top: 14px;
   width:100%;
 }
 
 #admin {
-  color: #334400;
+  color: #1A1A1A;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.77);
 }
 
 .home-page-forms {

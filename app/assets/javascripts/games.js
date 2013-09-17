@@ -33,7 +33,7 @@ App.GameView = Backbone.View.extend(
   template: JST[ 'templates/games/gameview' ],
   events:
   {
-    'click .delete-game-btn': 'delete',
+    'click .delete-game-button': 'delete',
     'click .edit-game-button' : 'editGame',
     'click .print-game-button' : 'printGame'
   },

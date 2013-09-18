@@ -82,10 +82,10 @@ App.PrintDeckView = Backbone.View.extend(
 
   printToggle: function(e)
   {
-  	if ( $( e.currentTarget ).hasClass( 'btn-success' )) 
+  	if ( $( e.currentTarget ).hasClass( 'btn-green' )) 
 		{
 			// turn off print
-	 		$( e.currentTarget ).removeClass( 'btn-success' );
+	 		$( e.currentTarget ).removeClass( 'btn-green' );
 	 		$( e.currentTarget ).removeClass( 'active' );
 	 		$( e.currentTarget ).addClass( 'btn-blue' ) ;
 			$( e.currentTarget ).text( 'Print' );
@@ -93,7 +93,7 @@ App.PrintDeckView = Backbone.View.extend(
 		else
 		{
 			// turn on print
-			$( e.currentTarget ).addClass( 'btn-success' ) ;
+			$( e.currentTarget ).addClass( 'btn-green' ) ;
 			$( e.currentTarget ).addClass( 'active' );
 	 		$( e.currentTarget ).removeClass( 'btn-blue' ) ; 
 	 		$( e.currentTarget ).text( 'Printing' );

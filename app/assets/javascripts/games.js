@@ -48,16 +48,16 @@ App.GameView = Backbone.View.extend(
   {
     this.$el.html( this.template( this.model.attributes ));
 
-    // shuffle cards
-    for(var i = this.model.attributes.cards.length - 1; i > 0; i--)
-    {
-        var j = Math.floor( Math.random() * ( i + 1 ));
-        var temp = this.model.attributes.cards[i];
-        this.model.attributes.cards[i] = this.model.attributes.cards[j];
-        this.model.attributes.cards[j] = temp;
-    }
+    // // shuffle cards
+    // for(var i = this.model.attributes.cards.length - 1; i > 0; i--)
+    // {
+    //     var j = Math.floor( Math.random() * ( i + 1 ));
+    //     var temp = this.model.attributes.cards[i];
+    //     this.model.attributes.cards[i] = this.model.attributes.cards[j];
+    //     this.model.attributes.cards[j] = temp;
+    // }
 
-    addCardsViewForJson( this.$el.find( ".game-bottom" ), this.model.attributes.cards, false, false);
+    // addCardsViewForJson( this.$el.find( ".game-bottom" ), this.model.attributes.cards, false, false);
   },
 
   remove: function()

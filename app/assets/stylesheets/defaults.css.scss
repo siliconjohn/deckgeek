@@ -199,12 +199,42 @@ $red-btn-light: #272727;
   *background-color: $red-btn-light;
 }
 
+
+$black-btn-dark: #5E5E5E;
+$black-btn-light: #272727;
+
+.btn-black {
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 #000;
+  background-color: $black-btn-light;
+  *background-color: $black-btn-light;
+  background-image: -moz-linear-gradient(top, $black-btn-dark, $black-btn-light);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($black-btn-dark), to($black-btn-light));
+  background-image: -webkit-linear-gradient(top, $black-btn-dark, $black-btn-light);
+  background-image: -o-linear-gradient(top, $black-btn-dark, $black-btn-light);
+  background-image: linear-gradient(to bottom, $black-btn-dark, $black-btn-light);
+  background-repeat: repeat-x;
+  border-color: $black-btn-light;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$black-btn-dark', endColorstr='$black-btn-light', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-black:hover,
+.btn-black:active,
+.btn-black.active,
+.btn-black.disabled,
+.btn-black[disabled] {
+  color: #FFFFFF;
+  background-color: $black-btn-light;
+  *background-color: $black-btn-light;
+}
+
 /***************************
  * misc
  ***************************/
 
 .btn-toolbar {
-    margin-left: 16px;
+    margin-left: 0px;
 }
 
 #idadvatar{

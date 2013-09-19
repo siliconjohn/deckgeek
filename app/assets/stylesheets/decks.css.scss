@@ -1,99 +1,92 @@
-
 .decks-view {
-  margin-top:15px;
+  margin-top: 25px;
 
   .deck-view {
     width: 235px;
     height: 343px;
-    float:left;
-    position:relative;
-
+    position: relative;
+    float: left;
+    
     .deck-base {
-      background-color:#f0f0f0;
       width: 200px;
       height: 300px;
+      position: absolute;
       float: left;
-      border:0px;
-      border:0px;
+      background-color: #ccc;
+      border: 0px;
       box-shadow: 0px 1px 3px rgba(0,0,0,0.3),
                   0px 0px 1px rgba(0,0,0, 0.9);
-      border-radius:10px;
-      position:absolute;
+      border-radius: 10px;
     }
 
     .card-1 {
-      left:9px;
-      top:0px;
-      z-index:5;
-      background-color: #fafafa;
-      border:0px;
+      left: 9px;
+      top: 0px;
+      z-index: 5;
+      border: 0px;
+      background-color: #dedede;
     }
 
     .card-2 {
-      z-index:4;
-      left:17px;
-      top:14px;
+      left: 17px;
+      top: 14px;
+      z-index: 4;
     }
 
     .card-3 {
-      z-index:3;
-      left:19px;
-      top:17px;
+      left: 19px;
+      top: 17px;
+      z-index: 3;
     }
 
     .card-4 {
-      z-index:2;
-      left:21px;
-      top:19px;
+      left: 21px;
+      top: 19px;
+      z-index: 2;
     }
 
     .card-5 {
-      z-index:1;
-      left:23px;
-      top:21px;
+      left: 23px;
+      top: 21px;
+      z-index: 1;
     }
 
     .card-6 {
-      z-index:0;
-      left:25px;
-      top:23px;
-      -webkit-box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
-      box-shadow:  2px 2px 4px 0px rgba(48, 48, 48, .3);
+      left: 25px;
+      top: 23px;
+      z-index: 0;
+      -webkit-box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, 0.3);
+      box-shadow: 2px 2px 4px 0px rgba(48, 48, 48, 0.3);
     }
 
     .btn-group {
+      left: 10px;
+      top: 262px;
       position:absolute;
-      left:10px;
-      top:262px;
     }
 
     .edit-deck-button {
-      width:65px;
+      width: 65px;
     }
 
     .delete-deck-btn {
-      width:65px;
+      width: 65px;
     }
 
     .deck-name {
-      color: #333;
-      display: block;
-      font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-      font-size: 18px;
-      font-weight: 200;
       height: 21px;
-      line-height: 30px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-top: 0px;
+      display: block;
       overflow-x: hidden;
       overflow-y: hidden;
       padding-bottom: 10px;
       padding-left: 10px;
       padding-right: 10px;
       padding-top: 4px;
-
+      color: #000;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.77);   
+      font-size: 18px;
+      font-weight: 200;
+      line-height: 30px;
     }
   }
 }

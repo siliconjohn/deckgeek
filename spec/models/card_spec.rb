@@ -10,5 +10,4 @@ describe Card do
   it{should allow_value( "x" * 255 ).for(:name)}
 
   it{should belong_to(:deck)}
-  it{should belong_to(:style)}
 end

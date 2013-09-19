@@ -8,6 +8,6 @@ class Deck < ActiveRecord::Base
   validates_length_of :name, :maximum => 255
 
   def as_json(a)
-    super( :include => { :cards => { :include => [ :style, :background ] }});
+    super( :include => :cards );
   end
 end

@@ -17,6 +17,15 @@ body {
   color: $font-color;
   text-shadow: 0 -1px 0 #000;
 }
+ 
+a {
+  color: #7FACD1;
+}
+
+.table td {
+ color: lightGrey;
+ border-top: 1px solid #6D6D6D;
+}
 
 code, pre {
   font-family: $font-family;

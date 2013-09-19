@@ -45,7 +45,7 @@ App.AdminUserView = Backbone.View.extend(
 App.AdminUsersView = Backbone.View.extend(
 {
 	tagName: "table",
-	className: "table table-striped",
+	className: "table",
 	template: JST[ 'templates/admin/usertable' ],
 
 	initialize:function()

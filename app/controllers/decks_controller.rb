@@ -22,7 +22,6 @@ class DecksController < ApplicationController
       render_404
     else
       @cards = Card.where( :deck_id => params[:id] )
-      @styles = Style.all
       @defaultCard = Card.find( 1 );
       respond_to do |format|
         format.html

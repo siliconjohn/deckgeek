@@ -38,13 +38,6 @@ imageTags=ImageTag.create(
     { image_id: images[3].id, tag_id: tags[2].id }
   ])
 
-styles=Style.create(
-   [{name: 'Title Here', description:'Description 1.', template_name:'style-1', width:250, height: 350},
-   { name: 'Title Here', description:'Description 2.', template_name:'style-2', width:350, height: 250},
-   { name: 'Title Here', description:'Description 3.', template_name:'style-3', width:300, height: 300},
-   { name: 'Title Here', description:'Description 4.', template_name:'style-4', width:200, height: 200}
-   ])
-
 games=Game.create(
   [{ name: 'My Sweet Game', description:'My awesome game description.', user_id:users[0].id},
    { name: 'Long long long long game name', description:'desc 2:1', user_id:users[1].id}

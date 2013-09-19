@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130806152411) do
   create_table "cards", :force => true do |t|
     t.string   "name",       :default => "My Card"
     t.integer  "deck_id"
-    t.integer  "style_id",   :default => 1
     t.string   "html",       :default => "<div class=\"jcard\"><img class=\"jcard-bg-image\"/><div class=\"jcard-border\"/></div>"
     t.datetime "created_at",                                                                                                        :null => false
     t.datetime "updated_at",                                                                                                        :null => false

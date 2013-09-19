@@ -30,20 +30,10 @@ class PrintController < ApplicationController
   end
 
   def get_stylesheets
-    ["#{Rails.root}/app/assets/stylesheets/style-default.css.scss",
-     "#{Rails.root}/app/assets/stylesheets/style-1.css.scss",
-     "#{Rails.root}/app/assets/stylesheets/style-2.css.scss",
-     "#{Rails.root}/app/assets/stylesheets/style-3.css.scss",
-     "#{Rails.root}/app/assets/stylesheets/style-4.css.scss",
-     "#{Rails.root}/app/assets/stylesheets/card.css.scss"]
+    [ "#{Rails.root}/app/assets/stylesheets/card.css.scss"]
     
     # if Rails.env.production? 
-    #   ["#{Rails.root}/public/assets/style-default.css.scss",
-    #    "#{Rails.root}/public/assets/style-1.css.scss",
-    #    "#{Rails.root}/public/assets/style-2.css.scss",
-    #    "#{Rails.root}/public/assets/style-3.css.scss",
-    #    "#{Rails.root}/public/assets/style-4.css.scss",
-    #    "#{Rails.root}/public/assets/card.css.scss"]
+    #   "#{Rails.root}/public/assets/card.css.scss"]
     # else
   end
   

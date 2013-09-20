@@ -3,8 +3,8 @@
 	[
 		{
       "path": "/Users/johndoerfler/Dropbox/Projects/gamegen",
-      "folder_exclude_patterns": ["tmp"],
-      "file_exclude_patterns": ["*.sublime-workspace", "*.sublime-project"]
+      "folder_exclude_patterns": ["tmp", "js", "log", "public", "doc", "test"],
+      "file_exclude_patterns": ["*.sublime-workspace", "*.sublime-project", "Gamegen Buisness Plan.graffle", "Gamegen Buisness Plan.pdf", "TODO.txt", "delseed.sh"]
 		}
 	]
 }

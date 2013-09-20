@@ -741,7 +741,7 @@ App.JCardView = Backbone.View.extend(
 App.JCardsView = Backbone.View.extend(
 {
   className:"card-carousels-view",
-  template: JST['templates/card/jcardcarouselsview'],
+  template: JST['templates/cards/jcardscarouselview'],
   selectedCardView: null,
   selectedModel: null,
   selectedIndex: null,

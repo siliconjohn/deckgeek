@@ -84,8 +84,7 @@ class ApplicationController < ActionController::Base
       card = Card.new({ deck_id: deck.id })
       card.save
       card = Card.new({ deck_id: deck.id })
-      card.save
-      card.update_attributes(getBlankCardAttributes)
+      card.save 
     end
   end
 
@@ -111,7 +110,6 @@ class ApplicationController < ActionController::Base
     card.save
     card = Card.new({ deck_id: deck.id })
     card.save
-    card.update_attributes(getBlankCardAttributes)
   end
 
   def add_example_deck_to_user( game )
@@ -121,11 +119,6 @@ class ApplicationController < ActionController::Base
     card.save
     card = Card.new({ deck_id: deck.id })
     card.save
-    card.update_attributes(getBlankCardAttributes)
   end
 
-  def getBlankCardAttributes
-    { background_visible: "false", name: "Blank Card", 
-      title_bg_color: "rgba(9, 10, 12, 0.2)", description_bg_color: "rgba(9, 10, 12, 0.2)" }
-  end    
 end

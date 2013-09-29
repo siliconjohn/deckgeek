@@ -179,7 +179,7 @@ App.JCardView = Backbone.View.extend(
     
     this.saveForUndo();
 
-    this.$(".jcard").append('<div class="jcard-text"><span/></div>');
+    this.$(".jcard").append('<div class="jcard-text"><span>My Text</span></div>');
     this.enableDragAndResize();
   },
 

@@ -1,5 +1,4 @@
-.jcard
-{
+.jcard {
   width: 248px;
   height: 346px; 
   margin: 0;
@@ -17,3 +16,9 @@
   max-width: 248px; 
 }
  
+ .jcard-text {
+  position: absolute; 
+  height: 39px; 
+  width: 93px; 
+  text-align: center;
+ }

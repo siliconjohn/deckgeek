@@ -4,6 +4,27 @@
  ******************************************/
 
 /******************************************
+ * New Card Model
+ ******************************************/
+
+App.NewCard = Backbone.Model.extend(
+{
+  deckId: "",
+  gameId: "",
+
+  initialize: function( array, options )
+  {
+    gameId = options.gameId;
+    deckId = options.deckId;
+  },
+
+  url: function()
+  {  
+    return  "/games/" +gameId + "/decks/" + deckId+ "/cards/";
+  }
+});
+
+/******************************************
  * Deck Model
  ******************************************/
 
@@ -95,9 +116,24 @@ App.DeckView = Backbone.View.extend(
 
   editDeck: function()
   {
-    window.location = this.model.url();
+    // if there is card in the deck show the editor
+    if(typeof this.model.attributes.cards[0] !== 'undefined' && this.model.attributes.cards[0] !== null) 
+    {
+      window.location = this.model.url()+'/cards/'+this.model.attributes.cards[0].id;
+    }
+    else
+    {
+      // create a blank card if there are no cards in the deck
+      card=new App.NewCard([],{deckId:this.model.attributes.id, gameId: this.model.attributes.game_id });
+      card.save([], 
+      {
+        success: function()
+        {  
+          window.location = this.model.url()+'/cards/'+card.attributes.id;
+        }.bind( this )});
+    }    
   }
-});
+}); 
 
 /******************************************
  * Decks View
@@ -125,7 +161,7 @@ App.DecksView = Backbone.View.extend(
   },
 
   addDeck: function( deckModel )
-  {
+  { 
     var deckView = new App.DeckView({ model: deckModel });
     deckView.$el.appendTo( this.$el );
     deckView.render();
@@ -149,7 +185,7 @@ App.DecksView = Backbone.View.extend(
  ******************************************/
 
 function addDecks( container, game_id )
-{
+{ 
   window.App.data.decks = new App.Decks( [], { gameId: game_id} );
   window.App.views.decksView = new App.DecksView({ collection: window.App.data.decks, game_id: game_id });
   window.App.views.decksView.$el.appendTo( container );

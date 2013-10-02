@@ -22,7 +22,7 @@ class PrintController < ApplicationController
     format.pdf {
       html = render_to_string(:layout => "pdf.html.erb" , :action => "index.html.erb", :formats => [:html], :handlers => [:erb])
       kit = PDFKit.new(html)
-      kit.stylesheets = get_stylesheets
+      #kit.stylesheets = get_stylesheets
       send_data(kit.to_pdf, :filename => "test.pdf", :type => 'application/pdf')
       return # to avoid double render call
       }
@@ -30,7 +30,7 @@ class PrintController < ApplicationController
   end
 
   def get_stylesheets
-    [ "#{Rails.root}/app/assets/stylesheets/card.css.scss"]
+    #[ "#{Rails.root}/app/assets/stylesheets/card.css.scss"]
     
     # if Rails.env.production? 
     #   "#{Rails.root}/public/assets/card.css.scss"]

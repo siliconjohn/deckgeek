@@ -58,7 +58,7 @@ App.PrintDeckView = Backbone.View.extend(
   render: function()
   {
     this.$el.html( this.template( this.model.attributes ));
-    //addCardsViewForJson( this.$el.find( ".card-1" ), this.model.attributes.cards, false, false );
+    addCardsViewForJson( this.$el.find( ".card-1" ), this.model.attributes.cards );
     this.alignCardsViews();
     var v = $( JST[ 'templates/print/printbuttons' ]()); 
     this.$el.find(".deck-name").append( v );

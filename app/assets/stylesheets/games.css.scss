@@ -38,7 +38,7 @@
       .game-description {
         height: 20px;
         margin-top: 6px;
-        margin-left: 25px;
+        margin-left: 18px;
         overflow: hidden;
         color: #444;
         font-size: 14px;
@@ -64,6 +64,28 @@
         bottom: 7px;
         width: 75px;
         position: absolute;
+      }
+
+      .cards-view {
+        width: 388%;
+        opacity: 0.85;
+        margin-top: 8px;
+        margin-left: 18px;
+        margin-right: 20px;
+        overflow: hidden;
+        height: 360px;
+        transform: scale(0.25, 0.25);
+        -ms-transform: scale(0.25, 0.25);
+        -webkit-transform: scale(0.25, 0.25);
+        transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -webkit-transform-origin: 0% 0%;
+      
+        .card-view {
+          float: left;
+          margin-right: 11px;
+          margin-bottom: 20px;
+        }
       }
     }
   }

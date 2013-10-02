@@ -25,6 +25,27 @@
       z-index: 5;
       border: 0px;
       background-color: #dedede;
+
+      .cards-view {
+        width: 600px;
+        margin-top: 0px;
+        margin-left: 18px;
+        margin-right: 20px;
+        overflow: hidden;
+        height: 750px;
+        transform: scale(0.31, 0.31);
+        -ms-transform: scale(0.31, 0.31);
+        -webkit-transform: scale(0.31, 0.31);
+        transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -webkit-transform-origin: 0% 0%;
+        
+        .card-view {
+          float: left;
+          margin-right: 25px;
+          margin-bottom: 20px;   
+        }
+      }
     }
 
     .card-2 {
@@ -78,7 +99,7 @@
       display: block;
       overflow-x: hidden;
       overflow-y: hidden;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       padding-left: 10px;
       padding-right: 10px;
       padding-top: 4px;

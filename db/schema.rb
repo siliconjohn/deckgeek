@@ -64,16 +64,6 @@ ActiveRecord::Schema.define(:version => 20130806152411) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "styles", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "template_name"
-    t.integer  "width",         :default => 250
-    t.integer  "height",        :default => 350
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-  end
-
   create_table "tags", :force => true do |t|
     t.string   "title",      :default => "Image Tag"
     t.datetime "created_at",                          :null => false

@@ -4,27 +4,6 @@
  ******************************************/
 
 /******************************************
- * New Card Model
- ******************************************/
-
-App.NewCard = Backbone.Model.extend(
-{
-  deckId: "",
-  gameId: "",
-
-  initialize: function( array, options )
-  {
-    gameId = options.gameId;
-    deckId = options.deckId;
-  },
-
-  url: function()
-  {  
-    return  "/games/" +gameId + "/decks/" + deckId+ "/cards/";
-  }
-});
-
-/******************************************
  * Deck Model
  ******************************************/
 
@@ -81,7 +60,7 @@ App.DeckView = Backbone.View.extend(
   render: function()
   {
     this.$el.html( this.template( this.model.attributes ));
-    //addCardsViewForJson( this.$el.find( ".card-1" ), this.model.attributes.cards, false, false );
+    addCardsViewForJson( this.$el.find( ".card-1" ), this.model.attributes.cards);
     this.alignCardsViews();
     var v = $( JST[ 'templates/decks/editdeletebuttons' ]()); 
     this.$el.find(".deck-name").append( v );
@@ -124,13 +103,14 @@ App.DeckView = Backbone.View.extend(
     else
     {
       // create a blank card if there are no cards in the deck
-      card=new App.NewCard([],{deckId:this.model.attributes.id, gameId: this.model.attributes.game_id });
+      card=new App.Card([],{deckId:this.model.attributes.id, gameId: this.model.attributes.game_id });
       card.save([], 
       {
         success: function()
         {  
           window.location = this.model.url()+'/cards/'+card.attributes.id;
-        }.bind( this )});
+        }.bind( this )
+      });
     }    
   }
 }); 

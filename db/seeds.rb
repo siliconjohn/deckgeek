@@ -77,5 +77,57 @@ cards=Card.create(
 {
   name: "Sample Card 4",
   deck_id: decks[1].id,
-}]
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+{
+  deck_id: decks[0].id,
+},
+]
 )

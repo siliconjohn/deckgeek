@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Card Genesis</title>
+  <title>Deck Geek</title>
   <% if Rails.env.production? %>
     <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
     <%= javascript_include_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" %>
@@ -23,7 +23,7 @@
       <ul class="nav">
     <% if user_signed_in? %>
       <li><%= gravatar_for(get_current_or_guest_user.email, size:30, class: 'avatar-small', alt: 'avatar') %></li>
-      <li><a id="card-genisis" class="brand" href="/">DECK SPAWN</a></li>
+      <li><a id="card-genisis" class="brand" href="/">DECK GEEK</a></li>
       <li><%= link_to "#{get_current_or_guest_user.email}", edit_user_registration_path,  {:id => "user-email"} %></li>
     </ul>
 

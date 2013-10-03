@@ -23,7 +23,7 @@
       <ul class="nav">
     <% if user_signed_in? %>
       <li><%= gravatar_for(get_current_or_guest_user.email, size:30, class: 'avatar-small', alt: 'avatar') %></li>
-      <li><a id="card-genisis" class="brand" href="/">CARD GENESIS</a></li>
+      <li><a id="card-genisis" class="brand" href="/">DECK SPAWN</a></li>
       <li><%= link_to "#{get_current_or_guest_user.email}", edit_user_registration_path,  {:id => "user-email"} %></li>
     </ul>
 

@@ -5,6 +5,13 @@
   $backgroundLight: #dedede;
   $backgroundDark: #ccc;
 
+  .games-list {
+    background-image:url('/assets/nogames.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+    min-height: 200px;
+  }
+
   .game-view {
     width: 100%;
     height: 220px;

@@ -26,6 +26,11 @@
       <li><a id="card-genisis" class="brand" href="/">CARD GENESIS</a></li>
       <li><%= link_to "#{get_current_or_guest_user.email}", edit_user_registration_path,  {:id => "user-email"} %></li>
     </ul>
+
+
+
+<a href="#myModal" role="button" id="suck-btn" class="btn btn-mini btn-blue" data-toggle="modal">Do I suck?</a>
+
     <ul class="nav pull-right">
      <% if get_current_or_guest_user.try(:admin?) %>
           <li><a id="admin" href="/admin">Admin</a></li>
@@ -67,6 +72,45 @@
   <%= yield %>
 
 </div>
+
+<!-- feedback form -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>I need feedback!</h3>
+  </div>
+  
+  <%= form_for("feedback", :url => feedbacks_path,   :html => {:class => "feedback-form"}) do |f| %>
+ 
+    <div class="modal-body">
+    
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label">Subject</label>
+          <div class="controls">
+            <%= f.text_field :subject, :placeholder => 'Subject (optional)', :id => 'sub'  %>
+          </div>
+        </div>
+       
+        <div class="control-group">
+          <label class="control-label">What do you want to say?</label>
+          <div class="controls">
+            <%= f.text_field :body, :placeholder => 'Tell me I am great or tell me I suck', :id => 'bdy'  %>
+          </div>
+        </div>
+      </fieldset>
+    
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <%= f.submit "Send Feedback!", :class => "btn btn-green"  %>
+    </div>
+    
+  <% end %>
+</div>
+<!-- end feedback form -->
 
 </body>
 </html>

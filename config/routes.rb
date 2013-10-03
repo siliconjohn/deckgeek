@@ -16,8 +16,9 @@ Gg::Application.routes.draw do
   resources :backgrounds, :only => :index
   resources :admin , :only => [:index, :show]
   resources :print , :only => [:show, :index]
- resources :images, :only => :index
- resources :tags, :only => :index
+  resources :images, :only => :index
+  resources :tags, :only => :index
+  resources :feedbacks, :only => [ :index, :create]
 
   root :to => "home#index"
   match 'guest' => 'home#guest'

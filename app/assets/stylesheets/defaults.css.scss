@@ -47,6 +47,12 @@ input[type="checkbox"] {
 }
 
 .hero-unit {
+  
+  // beta banner
+  background-image:url('/assets/betabanner.png');
+  background-repeat:no-repeat;
+  background-position:right top;
+
   margin-bottom: 15px;
   border-radius: 8px;
   border-top: 1px solid #eee;

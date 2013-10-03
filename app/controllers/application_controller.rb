@@ -34,6 +34,11 @@ class ApplicationController < ActionController::Base
   ########################################
 
   helper_method :get_current_or_guest_user
+  helper_method :get_current_user
+
+  def get_current_user
+    current_user
+  end
 
   def get_current_or_guest_user
     current_user || get_guest_user

@@ -1,3 +1,83 @@
+<% if !user_signed_in? %>
+<br/>
+<h3 class="text-center">You must sign in to print your cards.</h3>
+<br/><div class="home-page-forms">
+
+<div class="row">
+  <div class="span6">
+  <legend>Sign In</legend>
+  <%= form_for("user", :url => user_session_path, :html => {:class => "form-horizontal"}) do |f| %>
+  <fieldset>
+   
+    <div class="control-group">
+      <label class="control-label">Email</label>
+      <div class="controls">
+        <%= f.email_field :email, :placeholder => 'Email', :id => 'idemail' %>
+      </div>
+    </div>
+   
+    <div class="control-group">
+      <label class="control-label">Password</label>
+      <div class="controls">
+        <%= f.password_field :password, :placeholder => 'Password' %>
+      </div>
+    </div>
+   
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+          <%= f.check_box :remember_me, :class => "checkbox" %> Remember me
+        </label>
+      </div>  
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <div><%= f.submit "Sign In", :class => "btn btn-green", :id => 'signinbtn' %></div>
+      </div>
+    </div>
+
+  </fieldset>
+  <% end %>
+</div>
+
+<div class="span6">
+  <legend>Sign Up</legend>
+  <%= form_for("user", :url => new_user_session_path, :html => {:class => "form-horizontal"}) do |f| %>
+  <fieldset>
+   
+    <div class="control-group">
+      <label class="control-label">Email</label>
+      <div class="controls">
+        <%= f.email_field :email, :placeholder => 'Email', :id => 'idemail' %>
+      </div>
+    </div>
+   
+    <div class="control-group">
+      <label class="control-label">Password</label>
+      <div class="controls">
+        <%= f.password_field :password, :placeholder => 'Password' %>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <label class="control-label">Confirm Password</label>
+      <div class="controls">
+        <%= f.password_field :password_confirmation, :placeholder => "Password Confrimation" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+      <div><%= f.submit "Sign Up", :class => "btn btn-green" %></div>
+    </div>
+  </fieldset>
+  <% end %>
+</div>
+
+</div>
+<% else %>
+    
 <h3>Choose the decks you want to print</h3>
 
 <div class="print-decks-holder"></div>
@@ -10,3 +90,5 @@
   });
  
 </script>
+
+<% end %>

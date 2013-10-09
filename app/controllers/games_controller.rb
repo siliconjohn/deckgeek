@@ -75,4 +75,70 @@ class GamesController < ApplicationController
     end
   end
 
+
+
+
+
+
+
+
+  def print
+  
+    if !get_current_user
+      render "printguest"
+      return
+    end
+  
+    @game = Game.find( params[:game_id])
+   
+    respond_to do |format|
+      format.html
+      format.pdf {
+      
+      PDFKit.configure do |config|
+        config.default_options = {
+        #  :Orientation => 'Landscape',
+        :page_size     => 'Letter',
+        :margin_top    => '0.1in',
+        :margin_right  => '0.1in',
+        :margin_bottom => '0.1in',
+        :margin_left   => '0.1in',
+        :disable_smart_shrinking=>true,
+        :dpi => '300'
+        }
+      end
+      
+      html = render_to_string(:layout => "pdf.html.erb" , :action => "printpdf.html.erb", :formats => [:html], :handlers => [:erb])
+      kit = PDFKit.new(html)
+      kit.stylesheets = get_stylesheets
+      send_data(kit.to_pdf, :filename => @game.name + ".pdf", :type => 'application/pdf')
+    }
+    end
+
+  end
+
+
+
+#normalize.css
+
+  def get_stylesheets
+   if Rails.env.production? 
+    [
+     "#{Rails.root}/public/assets/pdf.css.scss",
+     "#{Rails.root}/public/assets/jcard.css.scss"
+    ]
+   else
+    [
+     "#{Rails.root}/app/assets/stylesheets/pdf.css.scss",
+     "#{Rails.root}/app/assets/stylesheets/jcard.css.scss"   
+    ]
+   end
+  end
+
+
+
+
+
+
+
 end

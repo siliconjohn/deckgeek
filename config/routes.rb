@@ -6,6 +6,7 @@ Gg::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "users/registrations" }
   
+
   resources :games, :only => [:create, :show, :update, :destroy, :index] do
     resources :decks, :only => [:create, :show, :update, :destroy, :index] do
       resources :cards, :only => [:create, :show, :update, :destroy, :index]
@@ -15,7 +16,6 @@ Gg::Application.routes.draw do
   resources :styles, :only => :index
   resources :backgrounds, :only => :index
   resources :admin , :only => [:index, :show]
-  resources :print , :only => [:show, :index]
   resources :images, :only => :index
   resources :tags, :only => :index
   resources :feedbacks, :only => [ :index, :create]
@@ -23,6 +23,10 @@ Gg::Application.routes.draw do
   root :to => "home#index"
   match 'guest' => 'home#guest'
 
+  resources :games do
+    get :print
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

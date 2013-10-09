@@ -1,11 +1,6 @@
- 
-CARDS FOR PRINTING 
-
-<div class="card-print" ></div>
-
-<script type="text/javascript">
-//<script type="text/javascript" src="<%= Rails.root %>/vendor/assets/javascripts/underscore.js"></script>
-
-//	$( "<p>Test</p>" ).appendTo( ".card-print" );
-	//$(function(){  addCardsViewForJson(".card-print", <%= @cards.to_json.to_s.html_safe %>,false,false);});
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<%= yield %>
+<body>
+<html>

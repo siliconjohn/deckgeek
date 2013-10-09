@@ -78,7 +78,7 @@ App.GameView = Backbone.View.extend(
 
   printGame: function()
   {
-    window.location="/print/" + this.model.id ;
+    window.location="/games/" + this.model.id + "/print";
   }
 });
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Deck Geek</title>
+  <title>Deck Geek - Design and print your own card games!</title>
   <% if Rails.env.production? %>
     <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
     <%= javascript_include_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" %>
@@ -15,6 +15,17 @@
   <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag  "application", :media => "all" %>
   <%= csrf_meta_tags %>
+
+  <!-- google tracking -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44741212-1', 'deckgeek.com');
+  ga('send', 'pageview');
+  </script>
+
 </head>
 <body>
 

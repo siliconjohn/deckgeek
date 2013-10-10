@@ -124,13 +124,11 @@ class GamesController < ApplicationController
   def get_stylesheets
    if Rails.env.production? 
     [
-     "#{Rails.root}/public/assets/pdf.css.scss",
-     "#{Rails.root}/public/assets/jcard.css.scss"
+     "#{Rails.root}/public/assets/pdfprint.css"
     ]
    else
     [
-     "#{Rails.root}/app/assets/stylesheets/pdf.css.scss",
-     "#{Rails.root}/app/assets/stylesheets/jcard.css.scss"   
+     "#{Rails.root}/vendor/assets/stylesheets/pdfprint.css"   
     ]
    end
   end

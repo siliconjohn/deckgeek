@@ -4,7 +4,14 @@
 
 .pdf-table {
   margin: auto; 
+    page-break-inside:avoid ; 
+
 }
+
+.pdf-table tr {
+  page-break-inside:avoid ; 
+}
+
 
 .pdf-table td {
   padding:15px;

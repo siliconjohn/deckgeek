@@ -112,6 +112,10 @@ class GamesController < ApplicationController
       kit = PDFKit.new(html)
       kit.stylesheets = get_stylesheets
       send_data(kit.to_pdf, :filename => @game.name + ".pdf", :type => 'application/pdf')
+      # send_data @pdf, :filename => "whatever.pdf",
+      #           :type => "application/pdf",
+      #           :disposition  => "inline" # either "inline" or "attachment"
+
     }
     end
 

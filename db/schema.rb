@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20131002231027) do
 
-  create_table "backgrounds", :force => true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "cards", :force => true do |t|
     t.string   "name",       :default => "My Card"
     t.integer  "deck_id"

@@ -90,7 +90,8 @@ class GamesController < ApplicationController
     end
   
     @game = Game.find( params[:game_id])
-   
+    #@cards = Card.where( :game_id => params[ :game_id ]);#.order( :deck_id )
+
     respond_to do |format|
       format.html
       format.pdf {

@@ -1,25 +1,15 @@
+<div class="pdf-title"><%= @game.name %> <%= Time.now.strftime("%m-%d-%Y") %></div>
+
+<table class="pdf-table"> 
  
-<table class="pbi_avoid">
-  <tr>
-    <td><div class="jcard"></div></td>
-    <td><div class="jcard"></div></td>
-  </tr>
-  
-  <tr>
-    <td><div class="jcard"></div></td>
-    <td><div class="jcard"></div></td>
-  </tr>
-  
-</table>
-<table class="pbi_avoid">
-  <tr>
-    <td><div class="jcard"></div></td>
-    <td><div class="jcard"></div></td>
-  </tr>
-  
-  <tr>
-    <td><div class="jcard"></div></td>
-    <td><div class="jcard"></div></td>
-  </tr>
-  
-</table>
+  <% @game.cards.each_slice(2) do |slice| %> 
+
+    <tr class="pbi_avoid">
+      <% slice.each do |c| %>
+        <td><%= c.html.to_s.html_safe %> </td>
+      <% end %>  
+    </tr>
+
+  <% end %>
+
+</table> 

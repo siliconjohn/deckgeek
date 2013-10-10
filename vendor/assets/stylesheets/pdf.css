@@ -1,3 +1,18 @@
 .pb_before { page-break-before:always; }
 .pb_after  { page-break-after:always ; }
 .pbi_avoid { page-break-inside:avoid ; }
+
+.pdf-table {
+  margin: auto; 
+}
+
+.pdf-table td {
+  padding:15px;
+}
+
+.pdf-title {
+  font-size: 14px;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  color: #000000;
+  text-align:center;
+}

@@ -16,7 +16,7 @@ backgrounds=Background.create(
   ])
 
 images=Image.create(
-  [{ name: 'background 4', url:'4.jpg'},
+  [{ name: 'background 4', url:'http://www.google.com/images/srpr/logo6w.png'},
    { name: 'background 2', url:'2.jpg'},
    { name: 'background 3', url:'3.jpg'},
    { name: 'background 1', url:'1.jpg'},

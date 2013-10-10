@@ -68,15 +68,15 @@ App.DeckView = Backbone.View.extend(
 
   alignCardsViews: function()
   {
-    var a=0;
-    var opacity=1.0;
+    // var a=0;
+    // var opacity=1.0;
 
-    this.$el.find( '.card-view' ).each(function(card)
-    {
-        $(this).attr( "style" , 'left:' + a + 'px;top:' + a + "px;opacity:" + opacity +";" );
-      a+=40;
-      opacity-=0.3;
-    });
+    // this.$el.find( '.card-view' ).each(function(card)
+    // {
+    //     $(this).attr( "style" , 'left:' + a + 'px;top:' + a + "px;opacity:" + opacity +";" );
+    //   a+=40;
+    //   opacity-=0.3;
+    // });
 
     var parent = this.$el.find( '.cards-view' );
     parent.children().each( function( i, li ){ parent.prepend( li ) })

@@ -17,9 +17,9 @@
   min-width: 10px; 
 }
  
- .jcard-text {
+.jcard-text {
   position: absolute; 
   height: 39px; 
   width: 93px; 
   text-align: center;
- }
+}

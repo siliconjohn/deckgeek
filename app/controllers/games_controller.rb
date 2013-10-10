@@ -119,7 +119,8 @@ class GamesController < ApplicationController
  
   def get_stylesheets
     [
-     "#{Rails.root}/vendor/assets/stylesheets/pdfprint.css"
+     "#{Rails.root}/vendor/assets/stylesheets/pdf.css",
+     "#{Rails.root}/vendor/assets/stylesheets/jcard.css"
     ]
   end
 

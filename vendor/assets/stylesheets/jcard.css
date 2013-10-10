@@ -13,11 +13,15 @@
 .jcard-bg-image {
   left: 0px; 
   top: 0px;
+  margin: 0;
+  padding: 0;
   max-width: 400%;
   min-width: 10px; 
 }
  
 .jcard-text {
+  margin: 0;
+  padding: 0;
   position: absolute; 
   height: 39px; 
   width: 93px; 

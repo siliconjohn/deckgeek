@@ -115,10 +115,8 @@ class GamesController < ApplicationController
       # send_data @pdf, :filename => "whatever.pdf",
       #           :type => "application/pdf",
       #           :disposition  => "inline" # either "inline" or "attachment"
-
     }
     end
-
   end
  
   def get_stylesheets

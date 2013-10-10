@@ -12,6 +12,5 @@
  *= require defaults
  *= require spectrum 
  *= require jquery-ui-1.10.3.custom
- *= require pdfprint
  *= require_tree .
 */

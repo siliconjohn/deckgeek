@@ -116,27 +116,11 @@ class GamesController < ApplicationController
     end
 
   end
-
-
-
-#normalize.css
-
+ 
   def get_stylesheets
-   if Rails.env.production? 
     [
-     "#{Rails.root}/vendor/assets/stylesheets/pdfprint.css"   # "#{Rails.root}/public/assets/pdfprint.css"
+     "#{Rails.root}/vendor/assets/stylesheets/pdfprint.css"
     ]
-   else
-    [
-     "#{Rails.root}/vendor/assets/stylesheets/pdfprint.css"   
-    ]
-   end
   end
-
-
-
-
-
-
 
 end

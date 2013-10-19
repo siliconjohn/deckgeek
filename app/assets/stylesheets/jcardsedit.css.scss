@@ -1,6 +1,6 @@
 .card-carousels-view .item {
   height: 346px;
-  margin-left: 25px;
+  lmargin-left: 25px;
 }
 
 .control-row {
@@ -42,7 +42,7 @@
 }
 
 #next-prev-btns {
-  margin-left: 29px;
+  margin-left: 62px;
 }
 
 #top-toolbar {
@@ -53,10 +53,31 @@
   overflow-y: hidden;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #aaa;
-  padding-left: 10px;
+  padding-left: -20px;
+ 
+  .center-btns {
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    width: 195px;
+  }
+  
+  .row {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+  
+    .lefty {
+      margin-left: 15px;
+    } 
+  }
 
   .btn-group {
     padding-top: 5px;
+  }
+
+  #save-btn {
+    width: 100px;
   }
 }
 

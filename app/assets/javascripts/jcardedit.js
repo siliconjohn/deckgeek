@@ -468,7 +468,7 @@ App.JCardView = Backbone.View.extend(
     var w = Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
 
     var newWidth = w - 1;
-
+alert(newWidth);
     if( newWidth != w && newWidth > -1 )
     {
       this.saveForUndo();
@@ -488,7 +488,7 @@ App.JCardView = Backbone.View.extend(
     var w = Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
 
     var newWidth = w + 1;
-
+alert(newWidth);
     if( newWidth != w && newWidth <150 )
     {
       this.saveForUndo();

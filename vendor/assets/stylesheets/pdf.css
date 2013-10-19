@@ -1,20 +1,20 @@
-.pb_before { page-break-before:always; }
-.pb_after  { page-break-after:always ; }
-.pbi_avoid { page-break-inside:avoid ; }
+.pb_before { page-break-before: always; }
+.pb_after  { page-break-after: always; }
+.pbi_avoid { page-break-inside: avoid; }
 
 .pdf-table {
   margin: auto; 
-    page-break-inside:avoid ; 
-
+  page-break-inside: avoid; 
 }
 
 .pdf-table tr {
-  page-break-inside:avoid ; 
+  page-break-inside:avoid; 
 }
-
 
 .pdf-table td {
   padding:15px;
+  width: 248px;
+  height: 346px;
 }
 
 .pdf-title {

@@ -22,8 +22,7 @@ class CardsController < ApplicationController
     begin
       @card = Card.find( params[:id], :conditions => { :deck_id => params[ :deck_id ] })
       @images = Image.all
-      @tags =Tag.all
-      @backgrounds = Background.all;
+      @tags =Tag.all 
       @cards = Card.where( :deck_id => params[ :deck_id ]).order( :created_at )
 
     rescue ActiveRecord::RecordNotFound => e

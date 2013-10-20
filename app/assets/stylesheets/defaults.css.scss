@@ -180,12 +180,14 @@ $blue-btn-light:#2A3975 ;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue-btn-dark', endColorstr='$blue-btn-light', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
 .btn-blue:hover,
+.btn-blue:focus,
 .btn-blue:active,
 .btn-blue.active,
 .btn-blue.disabled,
 .btn-blue[disabled] {
-  color: #FFFFFF;
+   color: #FFFFFF;
   background-color: $blue-btn-light;
   *background-color: $blue-btn-light;
 }
@@ -209,7 +211,9 @@ $green-btn-light: #005F00;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green-btn-dark', endColorstr='$green-btn-light', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
 .btn-green:hover,
+.btn-green:focus,
 .btn-green:active,
 .btn-green.active,
 .btn-green.disabled,
@@ -220,7 +224,7 @@ $green-btn-light: #005F00;
 }
   
 $red-btn-dark: #C24747;
-$red-btn-light: #272727;
+$red-btn-light: #530A0A;
 
 .btn-red {
   color: #FFFFFF;
@@ -238,7 +242,9 @@ $red-btn-light: #272727;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-btn-dark', endColorstr='$red-btn-light', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
 .btn-red:hover,
+.btn-red:focus,
 .btn-red:active,
 .btn-red.active,
 .btn-red.disabled,
@@ -268,7 +274,9 @@ $black-btn-light: #272727;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$black-btn-dark', endColorstr='$black-btn-light', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
 .btn-black:hover,
+.btn-black:focus,
 .btn-black:active,
 .btn-black.active,
 .btn-black.disabled,

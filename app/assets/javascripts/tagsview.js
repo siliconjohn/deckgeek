@@ -60,12 +60,13 @@ App.TagsView = Backbone.View.extend(
   className: "jscroller tags-view",
   template: _.template("<ul class='jscroller-ul'></ul>"), 
   events: {
-    'click #show-hide-tags-btn' : 'toggle'
+    'click #show-hide-tags-btn' : 'toggle',
   },
- 
+  
   initialize:function()
   {
     _.bindAll(this, 'render', 'addTagView', 'toggle' );
+    $("body").delegate( "", "showImagesView", this.toggle );
   },
 
   render:function()
@@ -114,7 +115,7 @@ App.TagsView = Backbone.View.extend(
     {
       this.busy=true;
       this.open=true;
-        $('#show-hide-tags-btn i').addClass('icon-chevron-down').removeClass('icon-chevron-up');
+      $('#show-hide-tags-btn i').addClass('icon-chevron-down').removeClass('icon-chevron-up');
       
       $('#images-scroller').show(300, 'swing', function(){
         this.busy=false;
@@ -131,8 +132,8 @@ App.TagsView = Backbone.View.extend(
 
 function addTagsView( container, json, options )
 {
-  tagsView = new App.TagsView({ collection: new Backbone.Collection( json ),
+  App.views.tagsView = new App.TagsView({ collection: new Backbone.Collection( json ),
                                 options: options });
-  tagsView.$el.appendTo( container );
-  tagsView.render();
+  App.views.tagsView.$el.appendTo( container );
+  App.views.tagsView.render();
 }

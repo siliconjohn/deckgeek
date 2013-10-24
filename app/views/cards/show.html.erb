@@ -366,13 +366,14 @@
     $('#image-bigger-btn').click( function(e){
        $('body').trigger( jQuery.Event("setImageBigger"));
     });
-  
  
     $('#delete-btn').click( function(e){
        $('body').trigger( jQuery.Event("deleteSelected"));
     }); 
 
-
+    $('#bg-image-choose-btn').click( function(e){
+       $('body').trigger( jQuery.Event("showImagesView"));
+    });
 
     // SETTERS
     // $("body").delegate( "", "setBgColor", function(e){
@@ -383,7 +384,7 @@
     //   $("#bdr-color-picker").spectrum({color:e.color});
     // });
  
-     // add backbone stuff
+    // add backbone stuff
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
     addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );
     addJCards("#jcards-view",  <%= @card.id %>, <%= @cards.to_json.to_s.html_safe %>);

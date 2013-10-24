@@ -48,20 +48,15 @@
   -webkit-box-sizing: border-box;
   pointer-events: none;
 }
-/*
-.jcard-layers
-{
-  left:0px;
-  top:0px;
-  width: 100%;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
+
+.jcard-image {
   position: absolute;
-  overflow:hidden;
-  pointer-events: none;
+  display: inline;
+  left: 0px;
+  top: 0px;
+  max-width: 400%; 
 }
-*/
+
 .ajcard-text 
 {
   float: left;

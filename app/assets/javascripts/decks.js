@@ -79,7 +79,7 @@ App.DeckView = Backbone.View.extend(
     // });
 
     var parent = this.$el.find( '.cards-view' );
-    parent.children().each( function( i, li ){ parent.prepend( li ) })
+    parent.children().each( function( i, li ){ parent.append( li ) })
   },
 
   remove: function()

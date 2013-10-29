@@ -386,8 +386,38 @@
 
     // $("body").delegate( "", "setBdrColor", function(e){
     //   $("#bdr-color-picker").spectrum({color:e.color});
-    // });
- 
+    // });  
+  
+    $('#bdr-color-btn').click( function(e) {
+        $("#bdr-color-picker").spectrum("toggle");
+        return false;
+      }
+    );
+
+    $('#bg-color-btn').click( function(e) {
+        $("#bg-color-picker").spectrum("toggle");
+        return false;
+      }
+    );
+
+    $('#text-color-btn').click( function(e) {
+        $("#text-color-picker").spectrum("toggle");
+        return false;
+      }
+    );
+
+    $('#text-bg-color-btn').click( function(e) {
+        $("#text-bg-color-picker").spectrum("toggle");
+        return false;
+      }
+    );
+
+    $('#text-bdr-color-btn').click( function(e) {
+        $("#text-bdr-color-picker").spectrum("toggle");
+        return false;
+      }
+    );
+
     // add backbone stuff
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
     addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );

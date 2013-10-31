@@ -22,13 +22,20 @@
  
 .jcard-text {
   margin: 0;
-  padding: 0;
   position: absolute; 
   height: 39px; 
   width: 93px;
-  left:0;
-  top:0; 
   text-align: center;
+  padding-top: 10px;
+  left: 16px; 
+  top: 17px; 
+  background-color: rgba(228, 228, 228, 0.4); 
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px; 
+  border-bottom-right-radius: 8px; 
+  border-bottom-left-radius: 8px; 
+  position: absolute; 
+  width: 214px;
 }
 
 .jcard-border

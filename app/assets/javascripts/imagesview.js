@@ -6,7 +6,8 @@
 App.ImageView = Backbone.View.extend(
 {
   tagName: "li",
-  template: _.template("<img alt='<%= url %>' src='/assets/images/thumbnails/<%= url %>'/>"), 
+  // images url here
+  template: _.template("<img alt='<%= url %>' src='http://www.siliconjohn.com/deckgeek/images/thumbnails/<%= url %>'/>"), 
   events:
   {
     'becameSelected': 'becameSelected'

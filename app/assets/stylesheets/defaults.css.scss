@@ -287,8 +287,38 @@ $black-btn-light: #272727;
 }
 
 /***************************
+ * tour
+ ***************************/
+
+.tour-backdrop {
+  opacity: 0.4;
+}
+
+.popover {
+  color: #000000;
+
+  .popover-navigation .btn-group {
+    display: inline;
+  }
+
+}
+
+/***************************
  * misc
  ***************************/
+
+.tour-backdrop {
+  opacity: 0.4;
+}
+
+.popover {
+  color: #000000;
+
+  .popover-navigation .btn-group {
+    display: inline;
+  }
+
+}
 
 .btn-toolbar {
     margin-left: 0px;

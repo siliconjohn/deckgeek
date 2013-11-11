@@ -1,38 +1,42 @@
 
-
-<!-- Load the games -->
 <script type="text/javascript">
+
+  // load the games
 
   $(function(){addGameView('#main-container');});
 
+  window.onload = function() { 
+  
+    var tour = new Tour({
+      debug: true,
+      backdrop: true,
+      storage: window.localStorage
+    });
 
-window.onload = function () { 
-  var tour = new Tour({
-  debug: true,
-  backdrop: true,
-    storage: window.localStorage}
-    );
-
-  tour.addSteps([
+    tour.addSteps([
     {
-        element: "#new-game-button", // string (jQuery selector) - html element next to which the step popover should be shown
-        title: "Creating a new game...", // string - title of the popover
-        content: "Click this button to create a new card game. Create as many as you want.", // string - content of the popover
-          placement: "right" 
+      element: "#new-game-button",
+      title: "Creating a new game",
+      content: "Click this button to create a new card game. Create as many as you want.", 
+      placement: "right" 
     },
     {
-        element: $(".edit-game-button").first(),
-        title: "Editing your game...",
-        content: "Click the green 'Edit Game' button to make changes to your game. ",
-          placement: "top"
+      element: $(".edit-game-button").first(),
+      title: "Editing your game",
+      content: "Click the green 'Edit Game' button to make changes to your game. ",
+      placement: "top"
     },
     {
-        element: $(".print-game-button").first(),
-        title: "Printing",
-        content: "When you are finished with your game click this button to download your game for printing.",
-          placement: "left" 
-    }
-]);
-tour.restart(true);
-}
+      element: $(".print-game-button").first(),
+      title: "Printing",
+      content: "When you are finished with your game click this button to download your game for printing.",
+      placement: "left" 
+    }]);
+
+    <% if !get_current_user %>
+      //only start tour for guest users
+      tour.start();
+    <% end %>
+  }
+
 </script>

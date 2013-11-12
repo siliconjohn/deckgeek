@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(:version => 20131002231027) do
 
   create_table "games", :force => true do |t|
     t.string   "name",        :default => "My Game!"
-    t.string   "description", :default => "Click the green 'Edit Game' button to make changes to this game."
+    t.string   "description", :default => "This is an example game, you can do anything you want to it."
     t.integer  "user_id"
-    t.datetime "created_at",                                                                                  :null => false
-    t.datetime "updated_at",                                                                                  :null => false
+    t.datetime "created_at",                                                                              :null => false
+    t.datetime "updated_at",                                                                              :null => false
   end
 
   add_index "games", ["user_id"], :name => "index_games_on_user_id"

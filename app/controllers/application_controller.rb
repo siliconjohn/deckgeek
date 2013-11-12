@@ -113,15 +113,11 @@ class ApplicationController < ActionController::Base
     deck.save
     card = Card.new({ deck_id: deck.id })
     card.save
-    card = Card.new({ deck_id: deck.id })
-    card.save
   end
 
   def add_example_deck_to_user( game )
     deck = Deck.new({ game_id: game.id })
     deck.save
-    card = Card.new({ deck_id: deck.id })
-    card.save
     card = Card.new({ deck_id: deck.id })
     card.save
   end

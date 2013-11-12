@@ -1,8 +1,8 @@
 class CreateGames < ActiveRecord::Migration
   def change
     create_table :games do |t|
-      t.string :name, :default => "My Sweet Game!"
-      t.string :description, :default => "This game will impress all the girls."
+      t.string :name, :default => "My Game!"
+      t.string :description, :default => "Click the green 'Edit Game' button to make changes to this game."
       t.references :user
 
       t.timestamps

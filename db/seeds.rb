@@ -1,16 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-
 users=User.create(
-  [{ email: 'johndoerfler@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true, admin:true },
-   { email: '1@1.com', password:'111111', password_confirmation:'111111', remember_me:true},
-   { email: '2@2.com', password:'111111', password_confirmation:'111111', remember_me:true},
-   { email: 'charlie651@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true},
+  [
+    { email: 'johndoerfler@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true, admin:true },
+    { email: '1@1.com', password:'111111', password_confirmation:'111111', remember_me:true},
+    { email: '2@2.com', password:'111111', password_confirmation:'111111', remember_me:true},
+    { email: 'charlie651@gmail.com', password:'111111', password_confirmation:'111111', remember_me:true},
   ])
 
 images=Image.create(
-  [
-    { name: 'background', url:'1.jpg'},
+  [ { name: 'background', url:'1.jpg'},
     { name: 'background', url:'2.jpg'},
     { name: 'background', url:'3.jpg'},
     { name: 'background', url:'4.jpg'},
@@ -45,20 +42,19 @@ images=Image.create(
     { name: 'background', url:'33.jpg'},
     { name: 'background', url:'34.jpg'},
     { name: 'background', url:'35.jpg'},
-    
     { name: 'background', url:'36.jpg'},
-    
-    
-    ])
+  ])
 
 tags=Tag.create(
-  [{ title: 'All' },
-   { title: 'Tomasz Strzalkowski' },
-   { title: 'George Grie' }
+  [
+    { title: 'All' },
+    { title: 'Tomasz Strzalkowski' },
+    { title: 'George Grie' }
   ])
 
 imageTags=ImageTag.create(
-  [ { image_id: images[0].id, tag_id: tags[1].id },
+  [ 
+    { image_id: images[0].id, tag_id: tags[1].id },
     { image_id: images[1].id, tag_id: tags[1].id },
     { image_id: images[2].id, tag_id: tags[1].id },
     { image_id: images[3].id, tag_id: tags[1].id },
@@ -77,117 +73,115 @@ imageTags=ImageTag.create(
     { image_id: images[16].id, tag_id: tags[1].id },
     { image_id: images[17].id, tag_id: tags[1].id },
     { image_id: images[18].id, tag_id: tags[2].id },
-{ image_id: images[19].id, tag_id: tags[2].id },
-{ image_id: images[20].id, tag_id: tags[2].id },
-{ image_id: images[21].id, tag_id: tags[2].id },
-{ image_id: images[22].id, tag_id: tags[2].id },
-{ image_id: images[23].id, tag_id: tags[2].id },
-{ image_id: images[24].id, tag_id: tags[2].id },
-{ image_id: images[25].id, tag_id: tags[2].id },
-{ image_id: images[26].id, tag_id: tags[2].id },
-{ image_id: images[27].id, tag_id: tags[2].id },
-{ image_id: images[28].id, tag_id: tags[2].id },
-{ image_id: images[29].id, tag_id: tags[2].id },
-{ image_id: images[30].id, tag_id: tags[2].id },
-{ image_id: images[31].id, tag_id: tags[2].id },
-{ image_id: images[32].id, tag_id: tags[2].id },
-{ image_id: images[33].id, tag_id: tags[2].id },
-{ image_id: images[34].id, tag_id: tags[2].id },
-{ image_id: images[35].id, tag_id: tags[2].id },
-
-
+    { image_id: images[19].id, tag_id: tags[2].id },
+    { image_id: images[20].id, tag_id: tags[2].id },
+    { image_id: images[21].id, tag_id: tags[2].id },
+    { image_id: images[22].id, tag_id: tags[2].id },
+    { image_id: images[23].id, tag_id: tags[2].id },
+    { image_id: images[24].id, tag_id: tags[2].id },
+    { image_id: images[25].id, tag_id: tags[2].id },
+    { image_id: images[26].id, tag_id: tags[2].id },
+    { image_id: images[27].id, tag_id: tags[2].id },
+    { image_id: images[28].id, tag_id: tags[2].id },
+    { image_id: images[29].id, tag_id: tags[2].id },
+    { image_id: images[30].id, tag_id: tags[2].id },
+    { image_id: images[31].id, tag_id: tags[2].id },
+    { image_id: images[32].id, tag_id: tags[2].id },
+    { image_id: images[33].id, tag_id: tags[2].id },
+    { image_id: images[34].id, tag_id: tags[2].id },
+    { image_id: images[35].id, tag_id: tags[2].id },
   ])
 
-games=Game.create(
-  [{ name: 'My Sweet Game', description:'My awesome game description.', user_id:users[0].id},
-   { name: 'Long long long long game name', description:'desc 2:1', user_id:users[1].id}
-  ])
+# games=Game.create(
+#   [{ name: 'My Sweet Game', description:'My awesome game description.', user_id:users[0].id},
+#    { name: 'Long long long long game name', description:'desc 2:1', user_id:users[1].id}
+#   ])
 
-decks=Deck.create(
-  [{ name: 'Deck 1', description:'Deck description 1', game_id:games[0].id},
-   { name: 'Deck 2', description:'Deck description 2', game_id:games[0].id},
-   { name: 'Deck 3', description:'Deck description 3', game_id:games[1].id}
-  ])
+# decks=Deck.create(
+#   [{ name: 'Deck 1', description:'Deck description 1', game_id:games[0].id},
+#    { name: 'Deck 2', description:'Deck description 2', game_id:games[0].id},
+#    { name: 'Deck 3', description:'Deck description 3', game_id:games[1].id}
+#   ])
 
-cards=Card.create(
-[
-{
-  deck_id: decks[0].id,
-},
-{
-  name: "Sample Card 3",
-  deck_id: decks[0].id,
-},
-{
-  name: "Sample Card 4",
-  deck_id: decks[0].id,
-},
-{
-  name: "Sample Card 1",
-  deck_id: decks[1].id,
-},
-{
-  name: "Sample Card 2",
-  deck_id: decks[1].id,
-},
-{
-  name: "Sample Card 3",
-  deck_id: decks[1].id,
-},
-{
-  name: "Sample Card 4",
-  deck_id: decks[1].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-{
-  deck_id: decks[0].id,
-},
-]
-)
+# cards=Card.create(
+# [
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   name: "Sample Card 3",
+#   deck_id: decks[0].id,
+# },
+# {
+#   name: "Sample Card 4",
+#   deck_id: decks[0].id,
+# },
+# {
+#   name: "Sample Card 1",
+#   deck_id: decks[1].id,
+# },
+# {
+#   name: "Sample Card 2",
+#   deck_id: decks[1].id,
+# },
+# {
+#   name: "Sample Card 3",
+#   deck_id: decks[1].id,
+# },
+# {
+#   name: "Sample Card 4",
+#   deck_id: decks[1].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# {
+#   deck_id: decks[0].id,
+# },
+# ]
+# )

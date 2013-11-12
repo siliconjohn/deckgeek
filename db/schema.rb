@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20131002231027) do
   create_table "cards", :force => true do |t|
     t.string   "name",       :default => "My Card"
     t.integer  "deck_id"
-    t.string   "html",       :default => "<div class=\"jcard\"><img class=\"jcard-bg-image\"/><div class=\"jcard-border\"/></div>"
-    t.datetime "created_at",                                                                                                        :null => false
-    t.datetime "updated_at",                                                                                                        :null => false
+    t.string   "html",       :default => "<div class=\"jcard\"><img class=\"jcard-bg-image\" style=\"position: relative;\" src=\"http://www.siliconjohn.com/deckgeek/images/2.jpg\" alt=\"2.jpg\" data-id=\"2\"><div class=\"jcard-border\"></div><div class=\"jcard-text\" style=\"left: 17px; top: 16px;\"><span>Card title, click me to change the text.</span></div><div class=\"jcard-text\" style=\"left: 17px; top: 279px;\"><span>Card description </span></div></div>"
+    t.datetime "created_at",                                                                                                                                                                                                                                                                                                                                                                                                                                                     :null => false
+    t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                                                                                                                                                     :null => false
   end
 
   add_index "cards", ["deck_id"], :name => "index_cards_on_deck_id"
@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(:version => 20131002231027) do
   end
 
   create_table "games", :force => true do |t|
-    t.string   "name",        :default => "My Sweet Game!"
-    t.string   "description", :default => "This game will impress all the girls."
+    t.string   "name",        :default => "My Game!"
+    t.string   "description", :default => "Click the green 'Edit Game' button to make changes to this game."
     t.integer  "user_id"
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.datetime "created_at",                                                                                  :null => false
+    t.datetime "updated_at",                                                                                  :null => false
   end
 
   add_index "games", ["user_id"], :name => "index_games_on_user_id"

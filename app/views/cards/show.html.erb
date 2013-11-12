@@ -51,7 +51,7 @@
     <div class="center-btns">
     <div class="btn-group">
       <a id="add-text-btn" title="Add a text area" class="btn btn-inverse "><i class="icon-white icon-pencil"></i> Add Text</a>
-      <a id="add-img-btn" title="Add an image" class="btn btn-inverse "><i class="icon-white icon-picture"></i> Add Image</a>
+     <!--  <a id="add-img-btn" title="Add an image" class="btn btn-inverse "><i class="icon-white icon-picture"></i> Add Image</a> -->
     </div>
    </div>
 </div>
@@ -117,7 +117,7 @@
       
     </div>
     
-    <!-- image properties -->
+    <!-- image properties 
     <div class="control-row">
       <div class="title">Image</div>
       <div class="btn-group">
@@ -129,7 +129,7 @@
         <a id="image-smaller-btn" title="Make image bigger" class="btn btn-inverse"><i class="icon-white icon-minus"></i></a>
         <a id="image-bigger-btn" title="Make image smaller" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
       </div>
-    </div>    
+    </div>   --> 
   </div>
 
   <div class="span4">
@@ -173,7 +173,7 @@
 
 
     <div class="control-row">
-      <div class="title">Background</div>
+      <div class="title">Text Background</div>
       <div class="btn-group">
         <a id="text-bg-color-btn" title="Text background color" class="btn btn-inverse color-picker-btn">
           <input type='text' id="text-bg-color-picker"/>
@@ -186,7 +186,7 @@
     </div>
 
 
-    <div class="control-row">
+    <!-- <div class="control-row">
     
       <div class="title">Border</div>
      
@@ -212,7 +212,7 @@
       </div>
 
     </div>  
-  </div>
+  </div> -->
 </div>
 
 <!-- image toolbar -->
@@ -425,4 +425,44 @@
 
   });
 
+  window.onload = function() { 
+  
+    var edittour = new Tour({
+      debug: true,
+      backdrop: true,
+      storage: window.localStorage
+    });
+
+    edittour.addSteps([
+    {
+      element: "#tags-scroller",
+      title: "Images",
+      content: "Select an image to be the background of your card.", 
+      placement: "top" 
+    },
+    {
+      element: $(".jcard-bg-image").first(),
+      title: "Background Image",
+      content: "Drag the background image to place it anywhere on the card",
+      placement: "left",
+      backdrop: false,
+    },
+    {
+      element: "#add-text-btn",
+      title: "Adding text",
+      content: "Click this to add a new text area to your card",
+      placement: "bottom" 
+    },
+    {
+      element: $(".jcard-text").first(),
+      title: "Text Area",
+      content: "You can drag and resize text areas or click on one to edit it's text.",
+      placement: "bottom" 
+    }]);
+
+    <% if !get_current_user %>
+      //only start tour for guest users
+      edittour.start();
+    <% end %>
+  }
 </script>

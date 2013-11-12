@@ -22,4 +22,47 @@
     window.App.views.decksView.newDeck();
   });
 
+
+  window.onload = function() { 
+  
+    var gametour = new Tour({
+      debug: true,
+      backdrop: true,
+      storage: window.localStorage
+    });
+
+    gametour.addSteps([
+    {
+      element: "#add-deck-btn",
+      title: "Add a new deck",
+      content: "Click this button to add a new deck to your game. Go crazy dude.", 
+      placement: "right" 
+    },
+    {
+      element: $(".deck-view").first() ,
+      title: "Your Deck",
+      content: "This is your deck of cards. Enjoy.",
+      placement: "right",
+      backdrop: false
+    },
+    {
+      element: $(".edit-deck-button").first() ,
+      title: "Editing your deck",
+      content: "This will take you to the edit window to create your cards.",
+      placement: "right",
+      backdrop: false
+    },
+    {
+      element: "#edit-btn",
+      title: "Game Name",
+      content: "Click this to change your game name or description.",
+      placement: "top" 
+    }]);
+
+    <% if !get_current_user %>
+      //only start tour for guest users
+      gametour.start();
+    <% end %>
+  }
+
 </script>

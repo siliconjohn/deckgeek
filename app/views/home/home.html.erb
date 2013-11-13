@@ -2,7 +2,7 @@
 <script type="text/javascript">
 
   // load the games
-  $(function(){addGameView('#main-container', <%= @game.to_json.to_s.html_safe %>) });
+  $(function(){addGameView('#main-container', <%= @game.to_json.to_s.html_safe %>); });
 
   window.onload = function() { 
   

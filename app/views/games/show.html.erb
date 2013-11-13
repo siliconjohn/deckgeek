@@ -22,12 +22,11 @@
     window.App.views.decksView.newDeck();
   });
 
-
   window.onload = function() { 
   
     var gametour = new Tour({
       name: "GameTour",
-      debug: true,
+       debug: true,
       backdrop: true,
       storage: window.localStorage
     });
@@ -61,7 +60,6 @@
     }]);
 
     <% if !get_current_user %>
-      //only start tour for guest users
       gametour.start();
     <% end %>
   }

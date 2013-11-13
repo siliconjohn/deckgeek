@@ -126,11 +126,11 @@ App.GamesView = Backbone.View.extend(
   }
 });
 
-function addGameView(container)
+function addGameView(container,json)
 {
   window.App.data.games = new App.Games();
   window.App.views.gamesView = new App.GamesView({ collection: window.App.data.games });
   window.App.views.gamesView.$el.appendTo( container );
   window.App.views.gamesView.render();
-  window.App.data.games.fetch();
+  window.App.data.games.set(json);
 }

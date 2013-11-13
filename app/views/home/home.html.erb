@@ -2,8 +2,7 @@
 <script type="text/javascript">
 
   // load the games
-
-  $(function(){addGameView('#main-container');});
+  $(function(){addGameView('#main-container', <%= @game.to_json.to_s.html_safe %>) });
 
   window.onload = function() { 
   
@@ -35,7 +34,6 @@
     }]);
 
     <% if !get_current_user %>
-      //only start tour for guest users
       tour.start();
     <% end %>
   }

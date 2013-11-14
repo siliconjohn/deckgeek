@@ -5,7 +5,6 @@ Gg::Application.routes.draw do
   get "admin/show"
 
   devise_for :users, :controllers => { :registrations => "users/registrations" }
-  
 
   resources :games, :only => [:create, :show, :update, :destroy, :index] do
     resources :decks, :only => [:create, :show, :update, :destroy, :index] do
@@ -14,7 +13,6 @@ Gg::Application.routes.draw do
   end
 
   resources :styles, :only => :index
-  resources :backgrounds, :only => :index
   resources :admin , :only => [:index, :show]
   resources :images, :only => :index
   resources :tags, :only => :index

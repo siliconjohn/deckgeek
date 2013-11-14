@@ -164,11 +164,11 @@ App.DecksView = Backbone.View.extend(
  * Gets and adds the decks to a el
  ******************************************/
 
-function addDecks( container, game_id )
+function addDecks( container, game_id, json )
 { 
   window.App.data.decks = new App.Decks( [], { gameId: game_id} );
   window.App.views.decksView = new App.DecksView({ collection: window.App.data.decks, game_id: game_id });
   window.App.views.decksView.$el.appendTo( container );
   window.App.views.decksView.render();
-  window.App.data.decks.fetch();
+  window.App.data.decks.set(json);
 }

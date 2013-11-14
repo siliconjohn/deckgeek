@@ -24,7 +24,7 @@ class DecksController < ApplicationController
       @cards = Card.where( :deck_id => params[:id] )
       @defaultCard = Card.find( 1 );
       respond_to do |format|
-        format.html
+        format.html { render_404 }
         format.json { render json: @deck }
       end
     end

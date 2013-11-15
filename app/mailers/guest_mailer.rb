@@ -1,5 +1,5 @@
 class GuestMailer < ActionMailer::Base
-  default from: "app@deckgeek.com"
+  default from: "app18557776@heroku.com"
 
   def new_guest(user)
     @user = user

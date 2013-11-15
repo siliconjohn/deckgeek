@@ -94,10 +94,6 @@ class ApplicationController < ActionController::Base
       game.save
       deck = Deck.new({ game_id: game.id })
       deck.save
-      card = Card.new({ deck_id: deck.id })
-      card.save
-      card = Card.new({ deck_id: deck.id })
-      card.save 
     end
   end
 
@@ -106,6 +102,7 @@ class ApplicationController < ActionController::Base
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
     add_example_game_to_user( u )
+    GuestMailer.new_guest(u).deliver
     u
   end
  

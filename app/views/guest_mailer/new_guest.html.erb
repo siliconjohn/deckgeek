@@ -4,7 +4,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>New Guest User <%= @user.id %></h1>
+    <p>User ID: <%= @user.id %></p>
+    <a href="http://geomaplookup.net/?ip=<%=ip%>">From IP: <%=ip%><a>
     <a href="http://www.deckgeek.com/admin/<%=@user.id%>">Click to view user</a>
   </body>
 </html>

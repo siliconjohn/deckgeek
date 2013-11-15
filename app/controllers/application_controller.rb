@@ -102,7 +102,8 @@ class ApplicationController < ActionController::Base
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
     add_example_game_to_user( u )
-    GuestMailer.new_guest(u).deliver
+    ip=request.remote_ip;
+    GuestMailer.new_guest(u,ip).deliver
     u
   end
  

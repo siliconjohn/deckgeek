@@ -50,8 +50,9 @@
     </div> -->
     <div class="center-btns">
     <div class="btn-group">
+      <a id="new-card-btn" title="Add a new card" class="btn btn-inverse "><i class="icon-white icon-pencil"></i> Add Card</a>
       <a id="add-text-btn" title="Add a text area" class="btn btn-inverse "><i class="icon-white icon-pencil"></i> Add Text</a>
-     <!--  <a id="add-img-btn" title="Add an image" class="btn btn-inverse "><i class="icon-white icon-picture"></i> Add Image</a> -->
+      <!--  <a id="add-img-btn" title="Add an image" class="btn btn-inverse "><i class="icon-white icon-picture"></i> Add Image</a> -->
     </div>
    </div>
 </div>
@@ -379,6 +380,12 @@
        $('body').trigger( jQuery.Event("showImagesView"));
     });
 
+    $('#new-card-btn').click( function(e){
+       $('body').trigger( jQuery.Event("addNewCard"));
+    });
+
+    
+
     // SETTERS
     // $("body").delegate( "", "setBgColor", function(e){
     //   $("#bg-color-picker").spectrum({color:e.color});
@@ -421,7 +428,7 @@
     // add backbone stuff
     addImagesView("#images-scroller",<%= @images.to_json.to_s.html_safe %>,{multiple:false} );
     addTagsView("#tags-scroller",<%= @tags.to_json.to_s.html_safe %>,{multiple:false} );
-    addJCards("#jcards-view",  <%= @card.id %>, <%= @cards.to_json.to_s.html_safe %>);
+    addJCards("#jcards-view",  <%= @card.id %>, <%= @cards.to_json.to_s.html_safe %>,<%= params[:game_id] %> ,<%= params[:deck_id] %>);
 
   });
 

@@ -79,23 +79,6 @@ describe DecksController do
     end
   end
 
-  describe "Get deck as html" do
-    it "should return html from proper template" do
-
-      # prep
-      signIn
-      @game = FactoryGirl.create( :game, :user_id => $user.id );
-
-      # request as html
-      get :show, :id => @game.decks.first.id, :game_id => @game.id, :format => :html
-
-      # tests
-      expect( response.status ).to eq( 200 )
-      response.header[ 'Content-Type' ].should include 'text/html'
-      response.should render_template( "decks/show" )
-    end
-  end
-
   #**********************************
   # PUT: update
   # /games/:game_id/decks/:id(.:format)

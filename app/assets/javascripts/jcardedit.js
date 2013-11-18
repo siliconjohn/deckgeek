@@ -7,12 +7,17 @@ App.JCardModel = Backbone.Model.extend(
 {
   url:function()
   {
-    return this.get("id");
+    var id = this.get( "id" );
+   
+    if( id == undefined )
+      return "/games/" + window.App.data.gameid + "/decks/"+window.App.data.deckid + "/cards/";
+    else
+      return "/games/" + window.App.data.gameid + "/decks/"+window.App.data.deckid + "/cards/" + id;
   },
 
-  parse:function(resp, xhr)
-  {
-  }
+  // parse:function(resp, xhr)
+  // {
+  // }
 });
 
 /******************************************
@@ -656,7 +661,6 @@ App.JCardView = Backbone.View.extend(
   save: function()
   {
     if(this.undoStack.length==0)return;
-    
     this.model.set("html", this.getCleanedHTML());
     this.model.save();
   },
@@ -751,12 +755,37 @@ App.JCardsView = Backbone.View.extend(
   {
     "click #prev-btn": 'prevBtnClick',
     "click #next-btn": 'nextBtnClick',
-    "slid .carousel": 'slid'
+    "slid .carousel": 'slid', 
   },
 
   initialize: function()
   {
-    _.bindAll(this, 'render', 'addJCardView', 'prevBtnClick', 'nextBtnClick', 'slid', 'updateHTMLPageUI' );
+    _.bindAll(this, 'render', 'addJCardView', 'prevBtnClick', 'nextBtnClick', 'slid', 'updateHTMLPageUI',
+              'addNewCard', 'showOrHideNextPrevButtons' );
+  
+    $("body").delegate( "", "addNewCard", this.addNewCard);
+  },
+
+  addNewCard: function()
+  {
+    window.App.card = new App.JCardModel();
+ 
+    window.App.card.save({}, { success: function(){  
+      this.collection.add( window.App.card.attributes );
+      this.addJCardView(window.App.card); 
+      this.showOrHideNextPrevButtons();  
+
+      // select the new card
+      var a=this.collection.length-1;
+      this.$('.carousel').carousel(a);  
+      this.selectedIndex=a;
+      this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
+      this.selectedModel=_.indexOf(this.collection.models[a]);
+      if(this.selectedIndex==this.collection.length-1)this.$('#next-btn').addClass('disabled');
+      if(this.selectedIndex==1)this.$('#prev-btn').removeClass('disabled');
+      this.updateHTMLPageUI();
+
+    }.bind( this )});
   },
 
   prevBtnClick: function()
@@ -796,7 +825,7 @@ App.JCardsView = Backbone.View.extend(
     this.selectedIndex=-1;
     this.$el.html(this.template());
     this.collection.each(this.addJCardView);
-
+    
     // setup next prev buttons
     if(this.selectedIndex==this.collection.length-1)
       this.$('#next-btn').addClass('disabled');
@@ -827,6 +856,26 @@ App.JCardsView = Backbone.View.extend(
     // event=jQuery.Event("setBdrColor");
     // event.color=this.selectedCardView.find(".jcard-border").css('border-top-color');
     // $('body').trigger(event);
+  },
+
+  showOrHideNextPrevButtons: function()
+  {
+     // setup next prev buttons
+    if(this.selectedIndex==this.collection.length-1)
+      this.$('#next-btn').addClass('disabled');
+    else
+      this.$('#next-btn').removeClass('disabled');
+
+    if(this.selectedIndex==0)
+      this.$('#prev-btn').addClass('disabled');
+    else
+      this.$('#prev-btn').removeClass('disabled');
+
+    // remove if only one card
+    if (this.collection.length<2)
+      $('#next-prev-btns').css('display','none');
+    else
+      $('#next-prev-btns').css('display','inline-block');
   },
 
   addJCardView: function(model)
@@ -863,12 +912,15 @@ App.JCardsView = Backbone.View.extend(
  * Add the JCardView to the DOM
  ******************************************/
 
-function addJCards(container, id, cards)
-{
+function addJCards(container, id, cards, gameid,deckid)
+{  
+  window.App.data.deckid = deckid;
+  window.App.data.gameid = gameid;  
   window.App.data.jCardModels = new App.JCardCollection(cards);
   window.App.views.jCardsView = new App.JCardsView({model: window.App.data.jCardModels.findWhere({id: id}),
                                                     collection: window.App.data.jCardModels,
                                                     selectID:id});
   window.App.views.jCardsView.$el.appendTo(container);
   window.App.views.jCardsView.render(); 
+
 }

@@ -13,11 +13,7 @@ App.JCardModel = Backbone.Model.extend(
       return "/games/" + window.App.data.gameid + "/decks/"+window.App.data.deckid + "/cards/";
     else
       return "/games/" + window.App.data.gameid + "/decks/"+window.App.data.deckid + "/cards/" + id;
-  },
-
-  // parse:function(resp, xhr)
-  // {
-  // }
+  }
 });
 
 /******************************************
@@ -185,7 +181,7 @@ App.JCardView = Backbone.View.extend(
     
     this.saveForUndo();
 
-    this.$(".jcard").append('<div class="jcard-text"><span>My Text</span></div>');
+    this.$(".jcard").append('<div class="jcard-text"><div class="jspan">My Text</div></div>');
     this.enableDragAndResize();
   },
 
@@ -208,20 +204,75 @@ App.JCardView = Backbone.View.extend(
     
     this.deSelectAll();
     $(e.currentTarget).addClass('jselected');
+
+    $("#text-color-picker").spectrum({ 
+        showAlpha: true,
+        showInput: true,
+        showPalette: true,
+        color:$(e.currentTarget).css('color')});
+
+    $("#text-bg-color-picker").spectrum({ 
+        showAlpha: true,
+        showInput: true,
+        showPalette: true,
+        color:$(e.currentTarget).css('background-color')});
+
+    var align=$(e.currentTarget).css('text-align');
+    if(align=='center')
+    {
+      $("#txt-align-left-btn").removeClass('active');
+      $("#txt-align-center-btn").addClass('active');
+      $("#txt-align-right-btn").removeClass('active');  
+    }else
+
+    if(align=='left')
+    {
+      $("#txt-align-left-btn").addClass('active');
+      $("#txt-align-center-btn").removeClass('active');
+      $("#txt-align-right-btn").removeClass('active');
+    }else
+
+    if(align=='right')
+    {
+      $("#txt-align-left-btn").removeClass('active');
+      $("#txt-align-center-btn").removeClass('active');
+      $("#txt-align-right-btn").addClass('active');
+      
+    }else
+    {
+      $("#txt-align-left-btn").removeClass('active');
+      $("#txt-align-center-btn").removeClass('active');
+      $("#txt-align-right-btn").removeClass('active');
+    }
+
+
+
+
+//fix
+//console.log($(e.currentTarget).find('.jspan'));
+///    $("#txt-text").html($(e.currentTarget).find('.jspan').html());
+//console.log($(e.currentTarget).find('.jspan').html());
+    //     $("#bg-color-picker").spectrum({color:this.selectedCardView.css('background-color')});
+    // $("#bdr-color-picker").spectrum({ 
+    //     showAlpha: true,
+    //     showInput: true,
+    //     showPalette: true,
+    //     color:this.selectedCardView.find(".jcard-border").css('border-top-color')});
+
   },
   
   setTextAreaText:function(e)
   {
     if(!this.$el.hasClass('active'))return;
-
-    var target=this.$('.jcard-text.jselected span');
+    //fix
+    var target=this.$('.jcard-text.jselected.jspan');
    
     if (target.length == 0) return;
  
-    if( target.text() != e.text )
+    if( target.html() != e.text )
     {
       this.saveForUndo();
-      target.text(e.text);
+      target.html(e.text);
     }
   },
 
@@ -706,9 +757,10 @@ App.JCardView = Backbone.View.extend(
       this.disableDragGrid();
   },
 
-  // TODO: this is not done
+  
   updateHTMLPageUI: function()
   {
+
     // var event=jQuery.Event("setBgColor");
     // event.color=this.$(".jcard").css('background-color');
     // $('body').trigger(event);
@@ -847,15 +899,13 @@ App.JCardsView = Backbone.View.extend(
   },
 
   updateHTMLPageUI: function()
-  {
-    // TODO: finish this shit
-    // var event=jQuery.Event("setBgColor");
-    // event.color=this.selectedCardView.css('background-color');
-    // $('body').trigger(event);
-
-    // event=jQuery.Event("setBdrColor");
-    // event.color=this.selectedCardView.find(".jcard-border").css('border-top-color');
-    // $('body').trigger(event);
+  {  
+    $("#bg-color-picker").spectrum({color:this.selectedCardView.css('background-color')});
+    $("#bdr-color-picker").spectrum({ 
+        showAlpha: true,
+        showInput: true,
+        showPalette: true,
+        color:this.selectedCardView.find(".jcard-border").css('border-top-color')});
   },
 
   showOrHideNextPrevButtons: function()
@@ -888,9 +938,11 @@ App.JCardsView = Backbone.View.extend(
     {
       modelView.$el.addClass('active');
       active='class="active"';
-      this.selectedCardView=modelView;
+      this.selectedCardView=modelView.$el.find('.jcard');
+
       this.selectedModel=model;
       this.selectedIndex=_.indexOf(this.collection.models,model);
+      this.updateHTMLPageUI();
     }
     else
       active='';

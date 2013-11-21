@@ -181,9 +181,10 @@
           <script>addColorPickerWithAlpha( "#text-bg-color-picker", "0x808080")</script>
         </a>
       </div>
-       <div class="btn-group pull-right">
+
+      <!--  <div class="btn-group pull-right">
         <a id="delete-text-bg-btn" title="Delete background" class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
-      </div>
+      </div> -->
     </div>
 
 
@@ -345,15 +346,27 @@
     });
 
     $('#txt-align-left-btn').click( function(e){
-       $('body').trigger( jQuery.Event("setTextAreaAlignLeft"));
+          $("#txt-align-left-btn").addClass('active');
+          $("#txt-align-center-btn").removeClass('active');
+          $("#txt-align-right-btn").removeClass('active');  
+          $('body').trigger( 
+          jQuery.Event("setTextAreaAlignLeft"));
     });
 
     $('#txt-align-center-btn').click( function(e){
-       $('body').trigger( jQuery.Event("setTextAreaAlignCenter"));
+       $("#txt-align-left-btn").removeClass('active');
+          $("#txt-align-center-btn").addClass('active');
+          $("#txt-align-right-btn").removeClass('active');  
+          $('body').trigger(
+          jQuery.Event("setTextAreaAlignCenter"));
     });
 
     $('#txt-align-right-btn').click( function(e){
-       $('body').trigger( jQuery.Event("setTextAreaAlignRight"));
+       $("#txt-align-left-btn").removeClass('active');
+          $("#txt-align-center-btn").removeClass('active');
+          $("#txt-align-right-btn").addClass('active');  
+          $('body').trigger(
+          jQuery.Event("setTextAreaAlignRight"));
     });
 
     $('#add-img-btn').click( function(e){

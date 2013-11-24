@@ -850,7 +850,7 @@ App.JCardsView = Backbone.View.extend(
     if(a>=0)
     {
       this.selectedIndex=a;
-      this.selectedCardView.deSelectAll();
+      //this.selectedCardView.deSelectAll();
       this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
       this.selectedModel=_.indexOf(this.collection.models[a]);
       this.$('.carousel').carousel('prev');
@@ -867,7 +867,7 @@ App.JCardsView = Backbone.View.extend(
     if(a<this.collection.length)
     {
       this.selectedIndex=a;
-      this.selectedCardView.deSelectAll();
+      //this.selectedCardView.deSelectAll();
       this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
       this.selectedModel=_.indexOf(this.collection.models[a]);
       this.$('.carousel').carousel('next');
@@ -956,9 +956,10 @@ App.JCardsView = Backbone.View.extend(
   slid: function()
   {
     // this is needed to stop accedital sliding
-    // possible bootstrap bug
+    // // possible bootstrap bug
     this.$('.carousel').carousel({
-      interval: false
+      interval: false,
+      loop:false
     });
 
     this.$('.carousel').carousel('pause');

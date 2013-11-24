@@ -181,7 +181,7 @@ App.JCardView = Backbone.View.extend(
     
     this.saveForUndo();
 
-    this.$(".jcard").append('<div class="jcard-text"><div class="jspan">My Text</div></div>');
+    this.$(".jcard").append('<div class="jcard-text"><div class="jtext">My Text</div></div>');
     this.enableDragAndResize();
   },
 
@@ -249,9 +249,9 @@ App.JCardView = Backbone.View.extend(
 
 
 //fix
-//console.log($(e.currentTarget).find('.jspan'));
-///    $("#txt-text").html($(e.currentTarget).find('.jspan').html());
-//console.log($(e.currentTarget).find('.jspan').html());
+//console.log($(e.currentTarget).find('.jtext'));
+///    $("#txt-text").html($(e.currentTarget).find('.jtext').html());
+//console.log($(e.currentTarget).find('.jtext').html());
     //     $("#bg-color-picker").spectrum({color:this.selectedCardView.css('background-color')});
     // $("#bdr-color-picker").spectrum({ 
     //     showAlpha: true,
@@ -265,7 +265,7 @@ App.JCardView = Backbone.View.extend(
   {
     if(!this.$el.hasClass('active'))return;
     //fix
-    var target=this.$('.jcard-text.jselected.jspan');
+    var target=this.$('.jcard-text.jselected.jtext');
    
     if (target.length == 0) return;
  
@@ -359,7 +359,7 @@ App.JCardView = Backbone.View.extend(
    
     if (target.length == 0) return;
  
-    var size = Math.round(parseFloat(target.css( 'font-size' ))); 
+    var size = parseFloat(target.css( 'font-size' )); 
 
     var newSize = size + 1;
 
@@ -377,11 +377,10 @@ App.JCardView = Backbone.View.extend(
     var target=this.$('.jcard-text.jselected');
    
     if (target.length == 0) return;
- 
-    var size = Math.round(parseFloat(target.css( 'font-size' ))); 
+    var size = parseFloat(target.css( 'font-size' )); 
 
     var newSize = size - 1;
-
+    
     if( newSize != size && newSize > 8 )
     {
       this.saveForUndo(); 
@@ -522,18 +521,11 @@ App.JCardView = Backbone.View.extend(
 
     var target = this.$(".jcard-border");
 
-    var w = Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
-
-    var newWidth = w - 1;
- 
-    if( newWidth != w && newWidth > -1 )
-    {
-      this.saveForUndo();
-      target.css( 'border-top-width', newWidth + 'px' ) 
-            .css( 'border-bottom-width', newWidth + 'px' ) 
-            .css( 'border-left-width', newWidth + 'px' ) 
-            .css( 'border-right-width', newWidth + 'px' );
-    }
+    this.saveForUndo();
+    target.css( "borderTopWidth", "-=2" );
+    target.css( "borderBottomWidth", "-=2" );
+    target.css( "borderLeftWidth", "-=2" );
+    target.css( "borderRightWidth", "-=2" );
   },
 
   bdrBigger:function(e)
@@ -542,18 +534,11 @@ App.JCardView = Backbone.View.extend(
    
     var target = this.$(".jcard-border");
 
-    var w = Math.round(parseFloat(target.css( 'borderTopWidth'))); // have to round for firefox, dont know why
-
-    var newWidth = w + 1;
- 
-    if( newWidth != w && newWidth <150 )
-    {
-      this.saveForUndo();
-      target.css( 'border-top-width', newWidth + 'px' ) 
-            .css( 'border-bottom-width', newWidth + 'px' ) 
-            .css( 'border-left-width', newWidth + 'px' ) 
-            .css( 'border-right-width', newWidth + 'px' );
-    }
+    this.saveForUndo();
+    target.css( "borderTopWidth", "+=2" );
+    target.css( "borderBottomWidth", "+=2" );
+    target.css( "borderLeftWidth", "+=2" );
+    target.css( "borderRightWidth", "+=2" );
   },
  
   /////////////////////////////

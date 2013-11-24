@@ -245,35 +245,22 @@ App.JCardView = Backbone.View.extend(
       $("#txt-align-right-btn").removeClass('active');
     }
 
-
-
-
-//fix
-//console.log($(e.currentTarget).find('.jtext'));
-///    $("#txt-text").html($(e.currentTarget).find('.jtext').html());
-//console.log($(e.currentTarget).find('.jtext').html());
-    //     $("#bg-color-picker").spectrum({color:this.selectedCardView.css('background-color')});
-    // $("#bdr-color-picker").spectrum({ 
-    //     showAlpha: true,
-    //     showInput: true,
-    //     showPalette: true,
-    //     color:this.selectedCardView.find(".jcard-border").css('border-top-color')});
-
+    $("#txt-text").val($(e.currentTarget).find('.jtext').html());
   },
   
   setTextAreaText:function(e)
   {
-    if(!this.$el.hasClass('active'))return;
-    //fix
-    var target=this.$('.jcard-text.jselected.jtext');
-   
-    if (target.length == 0) return;
+     if(!this.$el.hasClass('active'))return;
+    
+     var target = $(e.currentTarget).find('.jselected .jtext');
+
+     if (target.length == 0) return;
  
-    if( target.html() != e.text )
-    {
+     if( target.html() != e.text )
+     {
       this.saveForUndo();
       target.html(e.text);
-    }
+     }
   },
 
   setTextAreaAlignLeft:function(e)

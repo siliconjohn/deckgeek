@@ -38,7 +38,8 @@ App.JCardView = Backbone.View.extend(
   events:
   {
     'click .jcard-text': 'selectTextArea',
-    'click .jcard-image': 'selectImage'
+    'click .jcard-image': 'selectImage',
+    'click .jcard': 'deSelectAll'
   },
 
   initialize: function()
@@ -55,7 +56,7 @@ App.JCardView = Backbone.View.extend(
       'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save', 'setTextAreaText', 'deleteTextArea', 'addImage',
       'selectImage', 'deSelectAll', 'setImageSource', 'deleteImage', 'setImageSmaller',  'setImageBigger', 
       'setTextAreaFontColor', 'setTextAreaAlignRight' , 'setTextAreaAlignLeft', 'setTextAreaAlignCenter',
-      'deleteSelected' );
+      'deleteSelected', 'setSaveBtnToSaved', 'setSaveBtnToModified' );
 
     this.listenTo(this.model, 'change', this.render);
 
@@ -246,6 +247,8 @@ App.JCardView = Backbone.View.extend(
     }
 
     $("#txt-text").val($(e.currentTarget).find('.jtext').html());
+
+    e.stopPropagation();
   },
   
   setTextAreaText:function(e)
@@ -661,6 +664,8 @@ App.JCardView = Backbone.View.extend(
 
     if(html != _.last(this.undoStack))
       this.undoStack.push(html);
+
+    this.setSaveBtnToModified();
   },
 
   saveForRedo: function()
@@ -680,12 +685,28 @@ App.JCardView = Backbone.View.extend(
   /////////////////////////////
   // Save
   /////////////////////////////
-  
+   
   save: function()
   {
     if(this.undoStack.length==0)return;
+    $("#save-btn").html("Saving...");
+
     this.model.set("html", this.getCleanedHTML());
-    this.model.save();
+    this.model.save({}, { success: function(){  
+      this.setSaveBtnToSaved();     
+    }.bind(this)});
+  },
+  
+  setSaveBtnToSaved: function()
+  {
+    $("#save-btn").html("Saved  :)") 
+                  .addClass("disabled");
+  },
+
+  setSaveBtnToModified: function()
+  {
+    $("#save-btn").html("Save") 
+                  .removeClass("disabled");
   },
 
   getCleanedHTML: function()
@@ -708,7 +729,7 @@ App.JCardView = Backbone.View.extend(
   {
     this.$el.html(this.model.attributes.html);
     this.enableDragAndResize();
-    this.updateHTMLPageUI();
+    //this.updateHTMLPageUI();
     return this;
   },
 
@@ -729,9 +750,17 @@ App.JCardView = Backbone.View.extend(
       this.disableDragGrid();
   },
 
-  
   updateHTMLPageUI: function()
   {
+    var clr=this.$el.find(".jcard").css('background-color');
+
+    $("#bg-color-picker").spectrum({color:clr});
+    $("#bdr-color-picker").spectrum({ 
+        showAlpha: true,
+        showInput: true,
+        showPalette: true,
+        color:this.$el.find(".jcard-border").css('border-top-color')});
+  
 
     // var event=jQuery.Event("setBgColor");
     // event.color=this.$(".jcard").css('background-color');
@@ -760,6 +789,7 @@ App.JCardView = Backbone.View.extend(
 
   deSelectAll: function()
   {
+    $("#txt-text").val("");
     this.$('.jcard-text,.jcard-image').removeClass('jselected');
   }
 });
@@ -792,6 +822,7 @@ App.JCardsView = Backbone.View.extend(
 
   addNewCard: function()
   {
+
     window.App.card = new App.JCardModel();
  
     window.App.card.save({}, { success: function(){  
@@ -819,6 +850,7 @@ App.JCardsView = Backbone.View.extend(
     if(a>=0)
     {
       this.selectedIndex=a;
+      this.selectedCardView.deSelectAll();
       this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
       this.selectedModel=_.indexOf(this.collection.models[a]);
       this.$('.carousel').carousel('prev');
@@ -835,6 +867,7 @@ App.JCardsView = Backbone.View.extend(
     if(a<this.collection.length)
     {
       this.selectedIndex=a;
+      this.selectedCardView.deSelectAll();
       this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
       this.selectedModel=_.indexOf(this.collection.models[a]);
       this.$('.carousel').carousel('next');

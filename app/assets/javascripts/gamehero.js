@@ -36,8 +36,11 @@ App.GameHeroView = Backbone.View.extend(
 
   save: function()
   {
-    this.model.set( "name", $( "#input-name" ).val() );
-    this.model.set( "description", $("#input-description").val() );
+    var d=$("#input-description").val();
+    var n=$("#input-name").val();
+
+    this.model.set( "description", d );
+    this.model.set( "name", n );
     this.model.save();
   }
 });

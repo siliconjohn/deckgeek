@@ -805,6 +805,7 @@ App.JCardsView = Backbone.View.extend(
   selectedCardView: null,
   selectedModel: null,
   selectedIndex: null,
+  jCardViews:[],
   events:
   {
     "click #prev-btn": 'prevBtnClick',
@@ -822,24 +823,27 @@ App.JCardsView = Backbone.View.extend(
 
   addNewCard: function()
   {
-
     window.App.card = new App.JCardModel();
  
     window.App.card.save({}, { success: function(){  
+      this.jCardViews[this.selectedIndex].deSelectAll();
       this.collection.add( window.App.card.attributes );
       this.addJCardView(window.App.card); 
-      this.showOrHideNextPrevButtons();  
 
       // select the new card
       var a=this.collection.length-1;
-      this.$('.carousel').carousel(a);  
       this.selectedIndex=a;
-      this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
+      this.selectedCardView=$(this.$('.item')[a]);
       this.selectedModel=_.indexOf(this.collection.models[a]);
+      this.$('.carousel').carousel(a);
       if(this.selectedIndex==this.collection.length-1)this.$('#next-btn').addClass('disabled');
-      if(this.selectedIndex==1)this.$('#prev-btn').removeClass('disabled');
+      if(this.collection.length>1)this.$('#prev-btn').removeClass('disabled');
+      if (this.collection.length<2)
+        $('#next-prev-btns').css('display','none');
+      else
+        $('#next-prev-btns').css('display','inline-block');
       this.updateHTMLPageUI();
-
+     
     }.bind( this )});
   },
 
@@ -850,8 +854,8 @@ App.JCardsView = Backbone.View.extend(
     if(a>=0)
     {
       this.selectedIndex=a;
-      //this.selectedCardView.deSelectAll();
-      this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
+      this.jCardViews[a+1].deSelectAll();
+      this.selectedCardView=$(this.$('.item')[a]);
       this.selectedModel=_.indexOf(this.collection.models[a]);
       this.$('.carousel').carousel('prev');
       if(this.selectedIndex==0)this.$('#prev-btn').addClass('disabled');
@@ -867,8 +871,8 @@ App.JCardsView = Backbone.View.extend(
     if(a<this.collection.length)
     {
       this.selectedIndex=a;
-      //this.selectedCardView.deSelectAll();
-      this.selectedCardView=$(this.$('.item')[a]).find('.jcard');
+      this.jCardViews[a-1].deSelectAll();
+      this.selectedCardView=$(this.$('.item')[a]);
       this.selectedModel=_.indexOf(this.collection.models[a]);
       this.$('.carousel').carousel('next');
       if(this.selectedIndex==this.collection.length-1)this.$('#next-btn').addClass('disabled');
@@ -905,12 +909,12 @@ App.JCardsView = Backbone.View.extend(
 
   updateHTMLPageUI: function()
   {  
-    $("#bg-color-picker").spectrum({color:this.selectedCardView.css('background-color')});
+    $("#bg-color-picker").spectrum({color:this.selectedCardView.find('.jcard').css('background-color')});
     $("#bdr-color-picker").spectrum({ 
         showAlpha: true,
         showInput: true,
         showPalette: true,
-        color:this.selectedCardView.find(".jcard-border").css('border-top-color')});
+        color:this.selectedCardView.find(".jcard .jcard-border").css('border-top-color')});
   },
 
   showOrHideNextPrevButtons: function()
@@ -936,6 +940,7 @@ App.JCardsView = Backbone.View.extend(
   addJCardView: function(model)
   {
     var modelView = new App.JCardView({ model:model });
+    this.jCardViews.push(modelView);
     modelView.$el.appendTo(this.$('.carousel-inner'));
     modelView.render();
 
@@ -943,7 +948,7 @@ App.JCardsView = Backbone.View.extend(
     {
       modelView.$el.addClass('active');
       active='class="active"';
-      this.selectedCardView=modelView.$el.find('.jcard');
+      this.selectedCardView=modelView.$el;
 
       this.selectedModel=model;
       this.selectedIndex=_.indexOf(this.collection.models,model);

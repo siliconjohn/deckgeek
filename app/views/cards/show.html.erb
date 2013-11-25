@@ -225,6 +225,15 @@
 
   $(function()
   {
+
+    window.onbeforeunload = confirmExit;
+    
+    function confirmExit()
+    {
+      if(!$("#save-btn").hasClass("disabled"))
+        return "If you leave this page you will loose your unsaved changes. Stay on this page and click 'Save' to save changes."
+    }
+
     // element adjustments
     $('.navbar-fixed-top').remove();
     $('#top-toolbar').addClass('navbar-fixed-top');
@@ -432,6 +441,18 @@
     $('#text-bdr-color-btn').click( function(e) {
         $("#text-bdr-color-picker").spectrum("toggle");
         return false;
+      }
+    );
+
+
+    $('#modal-dont-save-btn').click( function(e) {
+        return true;
+      }
+    );
+
+    $('#modal-save-btn').click( function(e) {
+        $( '#jcards-view' ).trigger( jQuery.Event("save"));
+        return true;
       }
     );
 

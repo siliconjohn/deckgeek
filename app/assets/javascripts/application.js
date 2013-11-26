@@ -17,6 +17,7 @@
 //= require spectrum
 //= require jquery-ui-1.10.3.custom.min
 //= require bootstrap-tour.min
+//= require loadover
 //= require app
 //= require_tree ./templates
 //= require_tree .

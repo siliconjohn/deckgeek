@@ -550,7 +550,11 @@ App.JCardView = Backbone.View.extend(
     if(!this.$el.hasClass('active'))return;
 
     this.saveForUndo();
-    
+    this.$el.find(".jcard").loadOverStart();
+    this.$('.jcard-bg-image').load(function() {
+      this.$el.find(".jcard").loadOverStop();
+  
+    }.bind(this));
     // images url here
     this.$('.jcard-bg-image').attr('src','http://www.siliconjohn.com/deckgeek/images/'+e.model.attributes.url) 
                              .attr('alt',e.model.attributes.url) 

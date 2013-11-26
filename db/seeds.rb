@@ -92,22 +92,20 @@ imageTags=ImageTag.create(
     { image_id: images[35].id, tag_id: tags[2].id },
   ])
 
-# games=Game.create(
-#   [{ name: 'My Sweet Game', description:'My awesome game description.', user_id:users[0].id},
-#    { name: 'Long long long long game name', description:'desc 2:1', user_id:users[1].id}
-#   ])
+games=Game.create(
+  [{ user_id:users[0].id},
+   { user_id:users[1].id}
+  ])
 
-# decks=Deck.create(
-#   [{ name: 'Deck 1', description:'Deck description 1', game_id:games[0].id},
-#    { name: 'Deck 2', description:'Deck description 2', game_id:games[0].id},
-#    { name: 'Deck 3', description:'Deck description 3', game_id:games[1].id}
-#   ])
+decks=Deck.create(
+  [{ name: 'Deck 1', description:'Deck description 1', game_id:games[0].id},
+  ])
 
-# cards=Card.create(
-# [
-# {
-#   deck_id: decks[0].id,
-# },
+cards=Card.create(
+[{
+  deck_id: decks[0].id,
+}])
+
 # {
 #   name: "Sample Card 3",
 #   deck_id: decks[0].id,

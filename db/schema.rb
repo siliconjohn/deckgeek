@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20131002231027) do
   create_table "cards", :force => true do |t|
     t.string   "name",       :default => "My Card"
     t.integer  "deck_id"
-    t.text     "html",       :default => "<div class=\"jcard\"><img class=\"jcard-bg-image\" style=\"position: relative;\" src=\"http://www.siliconjohn.com/deckgeek/images/2.jpg\" alt=\"2.jpg\" data-id=\"2\"><div class=\"jcard-border\"></div><div class=\"jcard-text\" style=\"left: 17px; top: 16px;\"><div class=\"jtext\">Card title, click me to change the text.</div></div><div class=\"jcard-text\" style=\"left: 17px; top: 279px;\"><div class=\"jtext\">Card description </div></div></div>"
-    t.datetime "created_at",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 :null => false
-    t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 :null => false
+    t.text     "html",       :default => "<div class=\"jcard\"><img class=\"jcard-bg-image\" style=\"position: relative; left: -18px; top: -21px; display: inline-block; width: 328px;\" src=\"http://www.siliconjohn.com/deckgeek/images/31.jpg\" alt=\"31.jpg\" data-id=\"31\"><div class=\"jcard-border\"></div><div class=\"jcard-text\" style=\"left: 17px; top: 16px;\"><div class=\"jtext\">Click me to change this text.</div></div></div>"
+    t.datetime "created_at",                                                                                                                                                                                                                                                                                                                                                                                                                         :null => false
+    t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                                                                                                                         :null => false
   end
 
   add_index "cards", ["deck_id"], :name => "index_cards_on_deck_id"
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(:version => 20131002231027) do
 
   create_table "games", :force => true do |t|
     t.string   "name",        :default => "My Game!"
-    t.string   "description", :default => "This is an example game, you can do anything you want to it."
+    t.string   "description", :default => "This is my game. There are many like it, but this one is mine."
     t.integer  "user_id"
-    t.datetime "created_at",                                                                              :null => false
-    t.datetime "updated_at",                                                                              :null => false
+    t.datetime "created_at",                                                                                :null => false
+    t.datetime "updated_at",                                                                                :null => false
   end
 
   add_index "games", ["user_id"], :name => "index_games_on_user_id"

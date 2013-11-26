@@ -53,7 +53,7 @@ App.JCardView = Backbone.View.extend(
       'bgImageSmaller', 'bgImageBigger', 'bdrSmaller', 'bdrBigger', 'setBdrColor', 'addTextArea',
       'selectTextArea', 'setTextAreaBgColor', 'setTextAreaBdrRadiusSmaller', 'setTextAreaBdrRadiusBigger',
       'setTextAreaBdrSmaller', 'setTextAreaFont', 'setTextAreaFontSizeBigger', 'setTextAreaFontSizeSmaller',
-      'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save', 'setTextAreaText', 'deleteTextArea', 'addImage',
+      'setTextAreaBdrColor', 'setTextAreaBdrBigger', 'save', 'setTextAreaText', 'addImage',
       'selectImage', 'deSelectAll', 'setImageSource', 'deleteImage', 'setImageSmaller',  'setImageBigger', 
       'setTextAreaFontColor', 'setTextAreaAlignRight' , 'setTextAreaAlignLeft', 'setTextAreaAlignCenter',
       'deleteSelected', 'setSaveBtnToSaved', 'setSaveBtnToModified' );
@@ -81,8 +81,7 @@ App.JCardView = Backbone.View.extend(
     $("body").delegate( "", "setTextAreaBdrBigger", this.setTextAreaBdrBigger);
     $("body").delegate( "", "setTextAreaBdrSmaller", this.setTextAreaBdrSmaller);
     $("body").delegate( "", "setTextAreaBdrColor", this.setTextAreaBdrColor);
-    $("body").delegate( "", "setTextAreaText", this.setTextAreaText);
-    $("body").delegate( "", "deleteTextArea", this.deleteTextArea);
+    $("body").delegate( "", "setTextAreaText", this.setTextAreaText); 
     $("body").delegate( "", "setTextAreaFont", this.setTextAreaFont);
     $("body").delegate( "", "setTextAreaFontSizeBigger", this.setTextAreaFontSizeBigger);
     $("body").delegate( "", "setTextAreaFontSizeSmaller", this.setTextAreaFontSizeSmaller);
@@ -186,19 +185,6 @@ App.JCardView = Backbone.View.extend(
     this.enableDragAndResize();
   },
 
-  deleteTextArea:function(e)
-  {
-    if(!this.$el.hasClass('active'))return;
-
-    var target=this.$('.jcard-text.jselected');
-   
-    if (target.length == 0) return;
-    
-    this.saveForUndo();
-    
-    target.remove();
-  },
-
   selectTextArea:function(e)
   {
     if(!this.$el.hasClass('active'))return;
@@ -247,6 +233,18 @@ App.JCardView = Backbone.View.extend(
     }
 
     $("#txt-text").val($(e.currentTarget).find('.jtext').html());
+
+    $('#text-color-btn, #txt-size-smaller-btn, #txt-size-bigger-btn, #txt-align-left-btn,'+
+      '#txt-align-center-btn, #txt-align-right-btn, #font-btn, #text-bg-color-btn').removeClass('disabled');    
+    $("#txt-text").prop("disabled", false);
+    
+    $("#text-bg-color-picker").prop("disabled", false);  
+    $("#text-bg-color-picker").spectrum({ disabled: false });
+
+    $("#text-color-picker").prop("disabled", false);  
+    $("#text-color-picker").spectrum({ disabled: false });
+
+    //$("#text-color-picker, .sp-replacer").removeClass("sp-disabled");
 
     e.stopPropagation();
   },
@@ -742,7 +740,7 @@ App.JCardView = Backbone.View.extend(
           this.saveForUndo();
         }.bind(this)); 
 
-    this.$('.jcard-text').draggable().resizable({ handles: "n, e, s, w"});
+    this.$('.jcard-text').draggable({start: this.saveForUndo }).resizable({ handles: "n, e, s, w"});
 
     if(this.dragGridOn==true)
       this.enableDragGrid();
@@ -785,12 +783,20 @@ App.JCardView = Backbone.View.extend(
     this.saveForUndo();
     
     target.remove();
+
+    this.deSelectAll();
   },
 
   deSelectAll: function()
   {
     $("#txt-text").val("");
+
     this.$('.jcard-text,.jcard-image').removeClass('jselected');
+    $('#text-color-btn, #txt-size-smaller-btn, #txt-size-bigger-btn, #txt-align-left-btn,'+
+      '#txt-align-center-btn, #txt-align-right-btn, #font-btn, #text-bg-color-btn').addClass('disabled');    
+    $("#txt-text").prop("disabled", true);
+    $("#text-bg-color-picker").spectrum({ disabled: true });
+    $("#text-color-picker").spectrum({ disabled: true });
   }
 });
 
@@ -943,13 +949,13 @@ App.JCardsView = Backbone.View.extend(
     this.jCardViews.push(modelView);
     modelView.$el.appendTo(this.$('.carousel-inner'));
     modelView.render();
+    modelView.deSelectAll();
 
     if( this.options.selectID == model.id )
     {
       modelView.$el.addClass('active');
       active='class="active"';
       this.selectedCardView=modelView.$el;
-
       this.selectedModel=model;
       this.selectedIndex=_.indexOf(this.collection.models,model);
       this.updateHTMLPageUI();

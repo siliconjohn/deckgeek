@@ -140,10 +140,10 @@
     <!-- text box properties -->
     <div class="control-row">
       <div class="title">Text</div>
-      <textarea rows="3" id="txt-text" type="text" placeholder="Type here dude."></textarea>
+      <textarea rows="3" id="txt-text" type="text" placeholder=""></textarea>
     
       <div class="btn-group">
-        <a class="btn   btn-inverse" data-toggle="dropdown" href="#"><i class="icon-white icon-font"></i></a>
+        <a id="font-btn" class="btn btn-inverse" data-toggle="dropdown" href="#"><i class="icon-white icon-font"></i></a>
         <ul class="dropdown-menu">
           <li><a href="">Serif</a></li>
           <li><a href="">Arial</a></li>
@@ -303,19 +303,23 @@
     });
 
     $('#text-bdr-radius-smaller-btn').click( function(e){
-       $('body').trigger( jQuery.Event("setTextAreaBdrRadiusSmaller"));
+      if($(e.target).hasClass('disabled'))return;
+      $('body').trigger( jQuery.Event("setTextAreaBdrRadiusSmaller"));
     });
 
     $('#text-bdr-radius-bigger-btn').click( function(e){
-       $('body').trigger( jQuery.Event("setTextAreaBdrRadiusBigger"));
+      if($(e.target).hasClass('disabled'))return;
+      $('body').trigger( jQuery.Event("setTextAreaBdrRadiusBigger"));
     });
 
     $('#txt-bdr-smaller-btn').click( function(e){
+      if($(e.target).hasClass('disabled'))return;
       $('body').trigger( jQuery.Event("setTextAreaBdrSmaller"));
     });
 
     $('#txt-bdr-bigger-btn').click( function(e){
-       $('body').trigger( jQuery.Event("setTextAreaBdrBigger"));
+      if($(e.target).hasClass('disabled'))return;
+      $('body').trigger( jQuery.Event("setTextAreaBdrBigger"));
     });
 
     $("#text-bdr-color-picker").bind('change', function(e){
@@ -331,16 +335,19 @@
     });
  
     $( "#txt-font" ).on("change", function() {
+      if($(e.target).hasClass('disabled'))return;
       var event=jQuery.Event("setTextAreaFont");
       event.fontFamily = $( this ).val();
       $('body').trigger(event);
     });
 
     $('#txt-size-bigger-btn').click( function(e){
+       if($(e.target).hasClass('disabled'))return;
        $('body').trigger( jQuery.Event("setTextAreaFontSizeBigger"));
     });
 
     $('#txt-size-smaller-btn').click( function(e){
+       if($(e.target).hasClass('disabled'))return;
        $('body').trigger( jQuery.Event("setTextAreaFontSizeSmaller"));
     });
       
@@ -351,27 +358,30 @@
     });
 
     $('#txt-align-left-btn').click( function(e){
-          $("#txt-align-left-btn").addClass('active');
-          $("#txt-align-center-btn").removeClass('active');
-          $("#txt-align-right-btn").removeClass('active');  
-          $('body').trigger( 
-          jQuery.Event("setTextAreaAlignLeft"));
+      if($(e.target).hasClass('disabled'))return;
+      $("#txt-align-left-btn").addClass('active');
+      $("#txt-align-center-btn").removeClass('active');
+      $("#txt-align-right-btn").removeClass('active');  
+      $('body').trigger( 
+      jQuery.Event("setTextAreaAlignLeft"));
     });
 
     $('#txt-align-center-btn').click( function(e){
-       $("#txt-align-left-btn").removeClass('active');
-          $("#txt-align-center-btn").addClass('active');
-          $("#txt-align-right-btn").removeClass('active');  
-          $('body').trigger(
-          jQuery.Event("setTextAreaAlignCenter"));
+      if($(e.target).hasClass('disabled'))return;
+      $("#txt-align-left-btn").removeClass('active');
+      $("#txt-align-center-btn").addClass('active');
+      $("#txt-align-right-btn").removeClass('active');  
+      $('body').trigger(
+      jQuery.Event("setTextAreaAlignCenter"));
     });
 
     $('#txt-align-right-btn').click( function(e){
-       $("#txt-align-left-btn").removeClass('active');
-          $("#txt-align-center-btn").removeClass('active');
-          $("#txt-align-right-btn").addClass('active');  
-          $('body').trigger(
-          jQuery.Event("setTextAreaAlignRight"));
+      if($(e.target).hasClass('disabled'))return;
+      $("#txt-align-left-btn").removeClass('active');
+      $("#txt-align-center-btn").removeClass('active');
+      $("#txt-align-right-btn").addClass('active');  
+      $('body').trigger(
+      jQuery.Event("setTextAreaAlignRight"));
     });
 
     $('#add-img-btn').click( function(e){
@@ -426,23 +436,25 @@
     );
 
     $('#text-color-btn').click( function(e) {
+        if($(e.target).hasClass('disabled'))return;
         $("#text-color-picker").spectrum("toggle");
         return false;
       }
     );
 
     $('#text-bg-color-btn').click( function(e) {
+        if($(e.target).hasClass('disabled'))return;
         $("#text-bg-color-picker").spectrum("toggle");
         return false;
       }
     );
 
     $('#text-bdr-color-btn').click( function(e) {
+        if($(e.target).hasClass('disabled'))return;
         $("#text-bdr-color-picker").spectrum("toggle");
         return false;
       }
     );
-
 
     $('#modal-dont-save-btn').click( function(e) {
         return true;

@@ -36,6 +36,8 @@
   border-bottom-left-radius: 8px; 
   position: absolute; 
   width: 214px;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  color: #fff; 
 }
 
 .jcard-border

@@ -7,6 +7,7 @@ gem 'ejs', '1.1.1'
 gem 'devise', '1.5.4' 
 gem "pdfkit", "~> 0.5.2"
 gem 'jquery-rails' 
+#gem 'shrimp'
 
 # Gems used only for assets and not required
 # in production environments by default.

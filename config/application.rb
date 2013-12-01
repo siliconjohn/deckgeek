@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+#require 'shrimp'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -60,5 +61,9 @@ module Gg
     config.assets.initialize_on_precompile = false
 
     config.paths['app/views'] << "app/views/devise"
+
+    # shrimp
+    #config.middleware.use Shrimp::Middleware
+    #config.middleware.use Shrimp::Middleware, :polling_interval => 1, :polling_offset => 5
   end
 end

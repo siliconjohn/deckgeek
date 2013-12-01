@@ -92,11 +92,21 @@ class GamesController < ApplicationController
     @game = Game.find( params[:game_id])
     #@cards = Card.where( :game_id => params[ :game_id ]);#.order( :deck_id )
 
-    respond_to do |format|
+    # Thread.new do
+       # url     = 'http://www.deckgeek.com'
+       # options = { :margin => "1cm",  :loadImages => true }
+       # s=Shrimp::Phantom.new(url, options).to_png("~/test.png")    
+    # # end
+
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf{ send_data(s, :filename => @game.name + ".pdf", :type => 'application/pdf') }
+    # end
+ 
+      respond_to do |format|
       format.html
-      format.pdf {
-      
-      PDFKit.configure do |config|
+      format.pdf{ 
+        PDFKit.configure do |config|
         config.default_options = {
         #  :Orientation => 'Landscape',
         :page_size     => 'Letter',
@@ -110,6 +120,7 @@ class GamesController < ApplicationController
       end
       
       html = render_to_string(:layout => "pdf.html.erb" , :action => "printpdf.html.erb", :formats => [:html], :handlers => [:erb])
+      
       kit = PDFKit.new(html)
       kit.stylesheets = get_stylesheets
       send_data(kit.to_pdf, :filename => @game.name + ".pdf", :type => 'application/pdf')
@@ -117,11 +128,12 @@ class GamesController < ApplicationController
       #           :type => "application/pdf",
       #           :disposition  => "inline" # either "inline" or "attachment"
     }
-    end
+  end
   end
  
   def get_stylesheets
     [
+     "#{Rails.root}/vendor/assets/stylesheets/bootstrap.css",
      "#{Rails.root}/vendor/assets/stylesheets/pdf.css",
      "#{Rails.root}/vendor/assets/stylesheets/jcard.css"
     ]

@@ -6,7 +6,7 @@
         showAlpha: true,
         showInput: true,
         showPalette: true,
-        preferredFormat: "rgb",
+        preferredFormat: "rgba",
         localStorageKey: "spectrum.gamegen",
         hide: function(tinycolor){
           $(id).trigger('change');
@@ -443,8 +443,9 @@
     );
 
     $('#text-bg-color-btn').click( function(e) {
-        if($(e.target).hasClass('disabled'))return;
-        $("#text-bg-color-picker").spectrum("toggle");
+      if($(e.target).hasClass('disabled'))return;
+      $("#text-bg-color-picker").spectrum("option", "showAlpha", "true");
+      $("#text-bg-color-picker").spectrum("toggle");
         return false;
       }
     );

@@ -1,5 +1,5 @@
 /******************************************
- * Images View - shows a list of images in  
+ * Images View - shows a list of images in
  * a jscroller
  ******************************************/
 
@@ -7,7 +7,7 @@ App.ImageView = Backbone.View.extend(
 {
   tagName: "li",
   // images url here
-  template: _.template("<img alt='<%= url %>' src='http://www.siliconjohn.com/deckgeek/images/thumbnails/<%= url %>'/>"), 
+  template: _.template("<img alt='<%= url %>' src='http://deckgeek.herokuapp.com/assets/images/thumbnails/<%= url %>'/>"),
   events:
   {
     'becameSelected': 'becameSelected'
@@ -38,8 +38,8 @@ App.ImagesView = Backbone.View.extend(
 {
   imageViews:[],
   className: "jscroller images-view",
-  template: _.template("<ul class='jscroller-ul'></ul>"), 
- 
+  template: _.template("<ul class='jscroller-ul'></ul>"),
+
   initialize:function()
   {
     _.bindAll(this, 'render', 'addImageView', 'addImageIds', 'removeImageIds');
@@ -53,7 +53,7 @@ App.ImagesView = Backbone.View.extend(
     this.collection.each(this.addImageView);
     return this;
   },
-  
+
   addImageIds:function(e)
   {
     if(e.images=='All')

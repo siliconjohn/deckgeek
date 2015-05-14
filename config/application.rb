@@ -62,6 +62,10 @@ module Gg
 
     config.paths['app/views'] << "app/views/devise"
 
+    Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
+      config.assets.paths << path
+    end
+
     # shrimp
     #config.middleware.use Shrimp::Middleware
     #config.middleware.use Shrimp::Middleware, :polling_interval => 1, :polling_offset => 5
